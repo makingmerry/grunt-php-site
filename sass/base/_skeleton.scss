@@ -1,0 +1,233 @@
+//////////////////////////////
+// skeleton
+//////////////////////////////
+/*------------------------------------*\
+  #layout
+\*------------------------------------*/
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: $pri-family;
+  line-height: 1.6;
+  color: $base;
+}
+
+main {
+  height: 100%;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+section + section {
+  margin-top: 4rem;
+}
+
+aside {
+  margin: 3rem 0;
+}
+
+footer {
+  margin-top: 6rem;
+}
+
+/*------------------------------------*\
+  #headline
+\*------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  display: block;
+  line-height: 1;
+  font-weight: 900;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2.25em;
+}
+
+h3 {
+  font-size: 1.75em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5, h6 {
+  font-size: 1em;
+}
+
+/*------------------------------------*\
+  #list
+\*------------------------------------*/
+ul, ol {
+  padding: .25rem 0;
+  list-style-position: inside;
+}
+
+ul ol, ul ul, ol ol, ol ul {
+  margin-left: 1rem;
+  font-size: .9em;
+}
+
+ul ol,
+ol ol {
+  list-style-type: lower-roman;
+}
+
+dt {
+  font-weight: 500;
+}
+
+dd {
+  margin-left: 1rem;
+}
+
+li + li {
+  margin-top: .25rem;
+}
+
+/*------------------------------------*\
+  #typography
+\*------------------------------------*/
+p {
+  margin-top: 2rem;
+
+  &:first-letter {
+    margin-left: 2rem;
+  }
+}
+
+small {
+  font-size: .9em;
+}
+
+mark {
+  font-weight: 400;
+  font-style: normal;
+}
+
+blockquote {
+  max-width: 30rem;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  font-family: $sec-family;
+
+  &:before { content: "\201C"; }
+  &:after  { content: "\201D"; }
+}
+
+/*------------------------------------*\
+  #link
+\*------------------------------------*/
+a {
+  text-decoration: none;
+  color: green;
+  border-bottom: 2px solid green;
+
+  &:hover,
+  &:focus {
+    color: darkgreen;
+    border-color: darkgreen;
+  }
+}
+
+/*------------------------------------*\
+  #media
+\*------------------------------------*/
+img {
+  display: block;
+  width: 100%;
+}
+
+figcaption {
+  padding: .75rem 1rem;
+  font-size: .9em;
+}
+
+/*------------------------------------*\
+  #table
+\*------------------------------------*/
+table {
+  table-layout: fixed;
+  width: 100%;
+  text-align: left;
+}
+
+caption {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+th, td {
+  padding: .125rem .25rem;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+/*------------------------------------*\
+  #form
+\*------------------------------------*/
+fieldset {
+  margin-top: 1.5rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+legend {
+  font-size: .9em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+label {
+  font-size: .9em;
+  text-transform: capitalize;
+}
+
+input, textarea, select {
+  color: $neutral-1;
+}
+
+$form_placeholder_prefixes: ('::-webkit-input-placeholder', ':-moz-placeholder', '::-moz-placeholder', ':-ms-input-placeholder', '::input-placeholder', '::placeholder' );
+@each $prefix in $form_placeholder_prefixes {
+  input[placeholder]#{$prefix},
+  textarea[placeholder]#{$prefix} {
+    color: $neutral-2;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid $neutral-2;
+
+  &:checked {
+    background: $neutral-3;
+  }
+}
+
+input[type="radio"] {
+  @include border-radius(50%);
+}
