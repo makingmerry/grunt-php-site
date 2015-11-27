@@ -1,0 +1,67 @@
+// # styleguide
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////
+// # section
+//////////////////////////////
+.sg__section {
+  margin-bottom: 8rem;
+}
+
+.sg__section-title {
+  margin-bottom: 3rem;
+  font-size: 2.25em;
+}
+
+//////////////////////////////
+// # block
+//////////////////////////////
+.sg__block {
+  margin-bottom: 5rem;
+  padding: 2rem;
+  border: 1px solid #999;
+  @include border-radius(.25rem);
+}
+
+.sg__block-title {
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #999;
+  font-size: 1.75em;
+}
+
+.sg__block-unit-title {
+  margin: 2rem 0;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid #999;
+  font-size: 1.25em;
+}
+
+//////////////////////////////
+// # swatch
+//////////////////////////////
+.sg__swatch {
+  padding: 2rem !important;
+}
+
+//////////////////////////////
+// # icon list
+//////////////////////////////
+.sg__icon-list {
+  list-style: none;
+  overflow: hidden;
+}
+
+.sg__icon-item {
+  float: left;
+  width: 10%;
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+  padding: .5rem;
+}
+
+.sg__icon-label {
+  margin-bottom: .5rem;
+}
