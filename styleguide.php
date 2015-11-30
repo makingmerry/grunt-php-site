@@ -301,17 +301,19 @@ include 'mast.php';
   <section class="sg__section">
     <h2 class="sg__section-title">Elements:</h2>
 
-    <h3 class="sg__block-title">Basic list:</h3>
-    <ul class="basic-list">
-      <li class="basic-item">Item #1</li>
-      <li class="basic-item">Item #2</li>
-    </ul>
+    <div class="sg__block">
+      <h3 class="sg__block-title">Basic list:</h3>
+      <ul class="basic-list">
+        <li class="basic-item">Item #1</li>
+        <li class="basic-item">Item #2</li>
+      </ul>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
 <pre><code>&lt;ul class="basic-list"&gt;
   &lt;li class="basic-item"&gt;&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 </div>
+    </div>
 
     <!-- <div class="sg__block">
       <h3 class="sg__block-title">Item:</h3>
