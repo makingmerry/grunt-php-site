@@ -102,7 +102,7 @@ include 'mast.php';
 
     <div class="sg__block">
       <h3 class="sg__block-title">Color swatches:</h3>
-      <table>
+      <table class="sg__swatch-table">
         <tr>
           <td class="sg__swatch" style="background-color: #111; color: #fff;">$black : #111;</td>
           <td class="sg__swatch" style="background-color: #333; color: #fff;">$base: #333;</td>
@@ -115,6 +115,181 @@ include 'mast.php';
           <td class="sg__swatch" style="background-color: #fff;">$white: #fff;</td>
         </tr>
       </table>
+    </div>
+
+    <div class="sg__block">
+      <h3 class="sg__block-title">Table:</h3>
+      <table>
+        <caption>Caption</caption>
+        <thead>
+          <tr>
+            <th colspan="6" scope="col">Key</th>
+            <th colspan="6" scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th colspan="6" scope="row">Item</th>
+            <td colspan="6">0000</td>
+          </tr>
+          <tr>
+            <th colspan="6" scope="row">Item</th>
+            <td colspan="6">0000</td>
+          </tr>
+          <tr>
+            <th colspan="6" scope="row">Item</th>
+            <td colspan="6">0000</td>
+          </tr>
+        </tbody>
+      </table>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;table&gt;
+  &lt;caption&gt;Caption&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&quot;6&quot; scope=&quot;col&quot;&gt;Key&lt;/th&gt;
+      &lt;th colspan=&quot;6&quot; scope=&quot;col&quot;&gt;Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&quot;6&quot; scope=&quot;row&quot;&gt;Item&lt;/th&gt;
+      &lt;td colspan=&quot;6&quot;&gt;0000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&quot;6&quot; scope=&quot;row&quot;&gt;Item&lt;/th&gt;
+      &lt;td colspan=&quot;6&quot;&gt;0000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th colspan=&quot;6&quot; scope=&quot;row&quot;&gt;Item&lt;/th&gt;
+      &lt;td colspan=&quot;6&quot;&gt;0000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</div>
+    </div>
+
+    <div class="sg__block">
+      <h3 class="sg__block-title">Form:</h3>
+      <fieldset>
+        <legend>Legend</legend>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;legend&gt;Legend&lt;/legend&gt;</code></pre>
+</div>
+
+      <h4 class="sg__block-unit-title">Textual inputs:</h4>
+        <label class="block-label">
+          Label for <strong>text</strong> input
+          <input type="text" placeholder="e.g. John Doe" required>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label&quot;&gt;
+  Label for &lt;strong&gt;text&lt;/strong&gt; input
+  &lt;input type=&quot;text&quot; placeholder=&quot;e.g. John Doe&quot; required&gt;
+&lt;/label&gt;</code></pre>
+</div>
+
+        <label class="block-label">
+          Label for <strong>email</strong> input
+          <input type="email" placeholder="john@email.com" required>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label&quot;&gt;
+  Label for &lt;strong&gt;email&lt;/strong&gt; input
+  &lt;input type=&quot;email&quot; placeholder=&quot;john@email.com&quot; required&gt;
+&lt;/label&gt;</code></pre>
+</div>
+
+        <label class="block-label">
+          Label for <strong>tel</strong> input
+          <input type="tel" placeholder="98765432" required>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label&quot;&gt;
+  Label for &lt;strong&gt;tel&lt;/strong&gt; input
+  &lt;input type=&quot;tel&quot; placeholder=&quot;98765432&quot; required&gt;
+&lt;/label&gt;</code></pre>
+</div>
+
+        <label class="block-label">
+          Label for <strong>date</strong> input
+          <input type="date" required>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label&quot;&gt;
+  Label for &lt;strong&gt;date&lt;/strong&gt; input
+  &lt;input type=&quot;date&quot; required&gt;
+&lt;/label&gt;</code></pre>
+</div>
+
+        <label class="block-label">
+          Label for <strong>textarea</strong>
+          <textarea placeholder="I fucking love this band. They are the best band in the world. PERIOD."></textarea>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label&quot;&gt;
+  Label for &lt;strong&gt;textarea&lt;/strong&gt;
+  &lt;textarea placeholder=&quot;I fucking love this band. They are the best band in the world. PERIOD.&quot;&gt;&lt;/textarea&gt;
+&lt;/label&gt;</code></pre>
+</div>
+      </fieldset>
+
+      <h4 class="sg__block-unit-title">Option inputs:</h4>
+      <fieldset>
+        <legend>legend</legend>
+        <label class="block-label">
+          Label for <strong>checkbox</strong> inputs
+          <label class="option-label"><input type="checkbox" name="checkbox"> option</label>
+          <label class="option-label"><input type="checkbox" name="checkbox"> option</label>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label&quot;&gt;
+  Label for &lt;strong&gt;checkbox&lt;/strong&gt; inputs
+  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;checkbox&quot;&gt; option&lt;/label&gt;
+  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;checkbox&quot;&gt; option&lt;/label&gt;
+&lt;/label&gt;</code></pre>
+</div>
+
+        <label class="block-label">
+          Label for <strong>radio</strong> inputs
+          <label class="option-label"><input type="radio" name="radio"> option</label>
+          <label class="option-label"><input type="radio" name="radio"> option</label>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label&quot;&gt;
+  Label for &lt;strong&gt;radio&lt;/strong&gt; inputs
+  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt; option&lt;/label&gt;
+  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt; option&lt;/label&gt;
+&lt;/label&gt;</code></pre>
+</div>
+
+        <label class="block-label select-label">
+          <span class="select-label__text">Label for <strong>select</strong> input</span>
+          <select class="select">
+            <option value="0">option</option>
+            <option value="0">option</option>
+          </select>
+        </label>
+<div class="sg__code-block">
+<h5 class="sg__code-block-title">html:</h5>
+<pre><code>&lt;label class=&quot;block-label select-label&quot;&gt;
+  &lt;span class=&quot;select-label__text&quot;&gt;Label for &lt;strong&gt;select&lt;/strong&gt; input&lt;/span&gt;
+  &lt;select class=&quot;select&quot;&gt;
+    &lt;option value=&quot;0&quot;&gt;option&lt;/option&gt;
+    &lt;option value=&quot;0&quot;&gt;option&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/label&gt;</code></pre>
+</div>
+      </fieldset>
     </div>
 
     <!-- <div class="sg__block">
@@ -136,20 +311,6 @@ include 'mast.php';
 <pre><code>&lt;ul class="basic-list"&gt;
   &lt;li class="basic-item"&gt;&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
-</div>
-
-
-    <!-- REMOVE -->
-
-    <h3 class="sg__block-title">Preamble:</h3>
-    <div class="preamble">
-      <p>This paragraph is a preamble. Pellentesque id vehicula tortor. Curabitur cursus massa semper, feugiat nulla at, viverra purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi fermentum purus sem, ac commodo augue varius sit amet. Morbi semper dui vel imperdiet congue. Vivamus lobortis justo non sapien efficitur pellentesque. Praesent mauris ipsum, iaculis sit amet orci quis, vehicula aliquam metus.</p>
-    </div>
-<div class="sg__code-block">
-<h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;div class=&quot;preamble&quot;&gt;
-  &lt;p&gt;&lt;/p&gt;
-&lt;/div&gt;</code></pre>
 </div>
 
     <!-- <div class="sg__block">
