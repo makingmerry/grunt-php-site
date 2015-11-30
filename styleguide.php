@@ -114,6 +114,9 @@ include 'mast.php';
           <td class="sg__swatch" style="background-color: #eee;">$neutral-4: #eee;</td>
           <td class="sg__swatch" style="background-color: #fff;">$white: #fff;</td>
         </tr>
+        <tr>
+          <td class="sg__swatch" style="background-color: #ff6633; color: #fff;">$sun-orange: #ff6633;</td>
+        </tr>
       </table>
     </div>
 
@@ -148,21 +151,21 @@ include 'mast.php';
   &lt;caption&gt;Caption&lt;/caption&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th colspan=&quot;6&quot; scope=&quot;col&quot;&gt;Key&lt;/th&gt;
-      &lt;th colspan=&quot;6&quot; scope=&quot;col&quot;&gt;Value&lt;/th&gt;
+      &lt;th colspan=&quot;6&quot; <strong>scope=&quot;col&quot;</strong>&gt;Key&lt;/th&gt;
+      &lt;th colspan=&quot;6&quot; <strong>scope=&quot;col&quot;</strong>&gt;Value&lt;/th&gt;
     &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;th colspan=&quot;6&quot; scope=&quot;row&quot;&gt;Item&lt;/th&gt;
+      &lt;th colspan=&quot;6&quot; <strong>scope=&quot;row&quot;</strong>&gt;Item&lt;/th&gt;
       &lt;td colspan=&quot;6&quot;&gt;0000&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;th colspan=&quot;6&quot; scope=&quot;row&quot;&gt;Item&lt;/th&gt;
+      &lt;th colspan=&quot;6&quot; <strong>scope=&quot;row&quot;</strong>&gt;Item&lt;/th&gt;
       &lt;td colspan=&quot;6&quot;&gt;0000&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;th colspan=&quot;6&quot; scope=&quot;row&quot;&gt;Item&lt;/th&gt;
+      &lt;th colspan=&quot;6&quot; <strong>scope=&quot;row&quot;</strong>&gt;Item&lt;/th&gt;
       &lt;td colspan=&quot;6&quot;&gt;0000&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
@@ -186,8 +189,8 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label&quot;&gt;
-  Label for &lt;strong&gt;text&lt;/strong&gt; input
+<pre><code>&lt;label class=&quot;<strong>block-label</strong>&quot;&gt;
+  Label for text input
   &lt;input type=&quot;text&quot; placeholder=&quot;e.g. John Doe&quot; required&gt;
 &lt;/label&gt;</code></pre>
 </div>
@@ -198,8 +201,8 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label&quot;&gt;
-  Label for &lt;strong&gt;email&lt;/strong&gt; input
+<pre><code>&lt;label class=&quot;<strong>block-label</strong>&quot;&gt;
+  Label for email input
   &lt;input type=&quot;email&quot; placeholder=&quot;john@email.com&quot; required&gt;
 &lt;/label&gt;</code></pre>
 </div>
@@ -210,8 +213,8 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label&quot;&gt;
-  Label for &lt;strong&gt;tel&lt;/strong&gt; input
+<pre><code>&lt;label class=&quot;<strong>block-label</strong>&quot;&gt;
+  Label for tel input
   &lt;input type=&quot;tel&quot; placeholder=&quot;98765432&quot; required&gt;
 &lt;/label&gt;</code></pre>
 </div>
@@ -222,8 +225,8 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label&quot;&gt;
-  Label for &lt;strong&gt;date&lt;/strong&gt; input
+<pre><code>&lt;label class=&quot;<strong>block-label</strong>&quot;&gt;
+  Label for date input
   &lt;input type=&quot;date&quot; required&gt;
 &lt;/label&gt;</code></pre>
 </div>
@@ -234,8 +237,8 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label&quot;&gt;
-  Label for &lt;strong&gt;textarea&lt;/strong&gt;
+<pre><code>&lt;label class=&quot;<strong>block-label</strong>&quot;&gt;
+  Label for textarea
   &lt;textarea placeholder=&quot;I fucking love this band. They are the best band in the world. PERIOD.&quot;&gt;&lt;/textarea&gt;
 &lt;/label&gt;</code></pre>
 </div>
@@ -251,10 +254,10 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label&quot;&gt;
-  Label for &lt;strong&gt;checkbox&lt;/strong&gt; inputs
-  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;checkbox&quot;&gt; option&lt;/label&gt;
-  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;checkbox&quot;&gt; option&lt;/label&gt;
+<pre><code>&lt;label class=&quot;<strong>block-label</strong>&quot;&gt;
+  Label for checkbox inputs
+  &lt;label class=&quot;<strong>option-label</strong>&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;checkbox&quot;&gt; option&lt;/label&gt;
+  &lt;label class=&quot;<strong>option-label</strong>&quot;&gt;&lt;input type=&quot;checkbox&quot; name=&quot;checkbox&quot;&gt; option&lt;/label&gt;
 &lt;/label&gt;</code></pre>
 </div>
 
@@ -265,10 +268,10 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label&quot;&gt;
-  Label for &lt;strong&gt;radio&lt;/strong&gt; inputs
-  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt; option&lt;/label&gt;
-  &lt;label class=&quot;option-label&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt; option&lt;/label&gt;
+<pre><code>&lt;label class=&quot;<strong>block-label</strong>&quot;&gt;
+  Label for radio inputs
+  &lt;label class=&quot;<strong>option-label</strong>&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt; option&lt;/label&gt;
+  &lt;label class=&quot;<strong>option-label</strong>&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt; option&lt;/label&gt;
 &lt;/label&gt;</code></pre>
 </div>
 
@@ -281,9 +284,9 @@ include 'mast.php';
         </label>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;label class=&quot;block-label select-label&quot;&gt;
-  &lt;span class=&quot;select-label__text&quot;&gt;Label for &lt;strong&gt;select&lt;/strong&gt; input&lt;/span&gt;
-  &lt;select class=&quot;select&quot;&gt;
+<pre><code>&lt;label class=&quot;<strong>block-label select-label</strong>&quot;&gt;
+  &lt;span class=&quot;<strong>select-label__text</strong>&quot;&gt;Label for select input&lt;/span&gt;
+  &lt;select class=&quot;<strong>select</strong>&quot;&gt;
     &lt;option value=&quot;0&quot;&gt;option&lt;/option&gt;
     &lt;option value=&quot;0&quot;&gt;option&lt;/option&gt;
   &lt;/select&gt;
@@ -309,8 +312,8 @@ include 'mast.php';
       </ul>
 <div class="sg__code-block">
 <h5 class="sg__code-block-title">html:</h5>
-<pre><code>&lt;ul class="basic-list"&gt;
-  &lt;li class="basic-item"&gt;&lt;/li&gt;
+<pre><code>&lt;ul class="<strong>basic-list</strong>"&gt;
+  &lt;li class="<strong>basic-item</strong>"&gt;&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 </div>
     </div>
