@@ -269,5 +269,5 @@ input[type="radio"] {
 }
 
 input[type="radio"] {
-  @include border-radius(50%);
+  border-radius: 0;
 }

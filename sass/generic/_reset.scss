@@ -15,8 +15,6 @@
 
 html {
   box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
 }
 
 *, *:before, *:after {
@@ -98,8 +96,6 @@ input, select {
 }
 
 button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   margin: 0;
   cursor: pointer;
@@ -111,8 +107,6 @@ button:focus {
 }
 
 input, select, textarea  {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  @include border-radius(0);
+  border-radius: 0;
 }

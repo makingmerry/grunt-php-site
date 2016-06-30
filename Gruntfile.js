@@ -8,6 +8,49 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     //////////////////////////////
+    // # css
+    //////////////////////////////
+    // compile sass to css
+    sass: {
+      dist: {
+        options: {
+          style: 'expanded',
+          require: 'breakpoint'
+        },
+        files: {
+          'stylesheets/style.css': 'sass/style.scss'
+        }
+      }
+    },
+
+    // add fallbacks for rem units,
+    // add vendor prefixes,
+    // minify the result
+    postcss: {
+      options: {
+        map: true,
+        processors: [
+          require('pixrem')(),
+          require('autoprefixer')({browsers: 'last 2 versions'}),
+          require('cssnano')()
+        ]
+      },
+      dist: {
+        src: 'stylesheets/*.css'
+      }
+    },
+
+    penthouse: {
+      extract: {
+        outfile: 'stylesheets/tmp/critical.css',
+        css: 'stylesheets/style.css',
+        url: 'http://localhost:8888/personal/playground/base-site/',
+        width: 1280,
+        height: 720,
+      },
+    },
+
+    //////////////////////////////
     // # javascript
     //////////////////////////////
     // # concat javascript files
@@ -71,14 +114,18 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //////////////////////////////
+  // # css
+  //////////////////////////////
+  grunt.registerTask('build-css', ['sass', 'postcss']);
+
+  //////////////////////////////
   // # javascript
   //////////////////////////////
   grunt.registerTask('build-js', ['concat', 'jshint', 'uglify']);
 
-
   //////////////////////////////
   // # default
   //////////////////////////////
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['build-css', 'build-js']);
 
 };
