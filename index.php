@@ -5,7 +5,7 @@ include 'mast.php';
 ?>
 
 <main>
-  <button>test</button>
+  <h1 class="index__headline">Index page</h1>
 </main>
 
 <?
