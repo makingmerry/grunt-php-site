@@ -21,8 +21,5 @@
 
   <!-- stylesheets -->
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
-
-  <!-- scripts -->
-  <script src="javascripts/build/eq.min.js"></script>
 </head>
 <body>
