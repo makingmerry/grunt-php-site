@@ -191,7 +191,7 @@ module.exports = function(grunt) {
 
       // watch for changes in sass files
       css: {
-        files: 'sass/*.scss',
+        files: 'sass/**/*.scss',
         tasks: 'build-base-css'
       },
 
