@@ -156,7 +156,52 @@ module.exports = function(grunt) {
         src: 'javascripts/global.js',
         dest: 'javascripts/build/global.min.js'
       }
-    }
+    },
+
+    //////////////////////////////
+    // # core
+    //////////////////////////////
+    // *
+    // watch files for changes
+    watch: {
+      options: {
+        spawn: false,
+        livereload: {
+          host: '127.0.0.1',
+          port: 35729
+        }
+      },
+
+      // watch for changes to mark up
+      template: {
+        files: '*.{html,php}'
+      },
+
+      // watch for new images in source folder
+      img: {
+        files: 'images/src/*.{png,jpg,gif}',
+        tasks: 'build-img'
+      },
+
+      // watch for new svg files in source folder
+      svgs: {
+        files: 'svgs/src/*.svg',
+        tasks: 'build-svg',
+      },
+
+      // watch for changes in sass files
+      css: {
+        files: 'sass/*.scss',
+        tasks: 'build-base-css'
+      },
+
+      // watch for changes in javascript files
+      js: {
+        files: 'javascripts/libs/*.js',
+        tasks: 'build-js'
+      }
+    },
+
   });
 
 
@@ -220,7 +265,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build-js', ['concat', 'jshint', 'uglify']);
 
   //////////////////////////////
-  // # default
+  // # core
   //////////////////////////////
   grunt.registerTask('default', ['build-media', 'build-css', 'build-js']);
 
