@@ -27,6 +27,51 @@ module.exports = function(grunt) {
     },
 
     // *
+    // ID cleanup: performs a manual ID cleanup as Illustrator exports a mess
+    replace: {
+      svgclass: {
+        src: ['svgs/src/*.svg'],
+        overwrite: true,
+        replacements: [{
+          // Remove escaped underscore character
+          from: '_x5F_',
+          to: '-'
+        }, {
+          // replace class names with proper classes
+          //class_x3D__x22_tank-option_x22__2_
+          from: /id\=\"class_x3D__x22_(.+?)_x22_(.*?)\"/gi,
+          to: function(matchedWord, index, fullText, regexMatches) {
+              return 'class="'+ regexMatches[0].toLowerCase()+'"';
+          }
+        }, {
+          // lowercase all ids
+          from: /id\=\"(.+?)\"/gi,
+          to: function(matchedWord, index, fullText, regexMatches) {
+              return 'id="'+ regexMatches[0].toLowerCase()+'"';
+          }
+        }, {
+          // lowercase all id references to match the previous replace rule
+          from: /url\(\#(.+?)\)/gi,
+          to: function(matchedWord, index, fullText, regexMatches) {
+              return 'url(#'+ regexMatches[0].toLowerCase() +')';
+          }
+        }, {
+          // lowercase all id href to match the previous replace rule
+          from: /href\=\"\#(.+?)\"/gi,
+          to: function(matchedWord, index, fullText, regexMatches) {
+              return 'href="#'+ regexMatches[0].toLowerCase() +'"';
+          }
+        }, {
+          // remove all font references as we will use CSS for this
+          from: /font\-family\=\"(.+?)\"/gi,
+          to: function(matchedWord, index, fullText, regexMatches) {
+              return '';
+          }
+        }]
+      }
+    },
+
+    // *
     // minifying svg with svgo
     svgmin: {
       dist: {
@@ -236,6 +281,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # core
   //////////////////////////////
+  grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
 
@@ -249,7 +295,7 @@ module.exports = function(grunt) {
   // # media
   //////////////////////////////
   grunt.registerTask('build-img', 'imagemin');
-  grunt.registerTask('build-svg', ['svgmin', 'svgstore', 'svg2png']);
+  grunt.registerTask('build-svg', ['replace:svgclass', 'svgmin', 'svgstore', 'svg2png']);
   grunt.registerTask('build-media', ['build-img', 'build-svg']);
 
   //////////////////////////////

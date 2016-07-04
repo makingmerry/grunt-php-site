@@ -17,6 +17,7 @@
     "grunt-svg2png": "^0.2.7",
     "grunt-svgmin": "^3.2.0",
     "grunt-svgstore": "^1.0.0",
+    "grunt-text-replace": "^0.4.0",
     "pixrem": "^3.0.1"
   },
   "dependencies": {}
