@@ -1,8 +1,9 @@
 .sass-cache/
 node_modules/
 images/build/
+images/tmp/
 svgs/build/
-svgs/*.svg
+svgs/tmp/
 stylesheets/
 javascripts/build/
-javascripts/global.js
+javascripts/tmp/
