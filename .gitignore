@@ -1,9 +1,10 @@
 .sass-cache/
 node_modules/
-images/build/
-images/tmp/
 svgs/build/
 svgs/tmp/
+favicons/build/
+images/build/
+images/tmp/
 stylesheets/
 javascripts/build/
 javascripts/tmp/

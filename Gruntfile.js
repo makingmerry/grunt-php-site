@@ -8,27 +8,11 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     //////////////////////////////
-    // # image
+    // # media
     //////////////////////////////
-    // *
-    // minifying image
-    imagemin: {
-      build: {
-        options: {
-          optimizationLevel: 3
-        },
-        files: [{
-          expand: true,
-          cwd: 'images/src/',
-          src: ['**/*.{png,jpg,gif}'],
-          dest: 'images/build/'
-        }]
-      }
-    },
-
-    //////////////////////////////
+    ///////////////
     // # svg
-    //////////////////////////////
+    ///////////////
     // *
     // ID cleanup: performs a manual ID cleanup as Illustrator exports a mess
     replace: {
@@ -118,6 +102,65 @@ module.exports = function(grunt) {
           dest: 'svgs/build/'
         }]
       }
+    },
+
+    ///////////////
+    // # favicon
+    ///////////////
+    // *
+    // generate favicons for various platforms
+    favicons: {
+      options: {
+        html: 'header.php',
+        HTMLPrefix: 'favicons/build/'
+      },
+      icons: {
+        src: 'favicons/src/favicon.png',
+        dest: 'favicons/build/'
+      }
+    },
+
+    ///////////////
+    // # general
+    ///////////////
+    // *
+    // minifying image
+    imagemin: {
+      statics: {
+        options: {
+          optimizationLevel: 3
+        },
+        files: [{
+          expand: true,
+          cwd: 'images/src/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: 'images/build/'
+        }]
+      },
+
+      svgs: {
+        options: {
+          optimizationLevel: 3
+        },
+        files: [{
+          expand: true,
+          cwd: 'svgs/build/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: 'svgs/build/'
+        }]
+      },
+
+      favicons: {
+        options: {
+          optimizationLevel: 3
+        },
+        files: [{
+          expand: true,
+          cwd: 'favicons/build/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: 'favicons/build/'
+        }]
+      },
     },
 
     //////////////////////////////
@@ -270,16 +313,13 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //////////////////////////////
-  // # image
-  //////////////////////////////
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-
-  //////////////////////////////
-  // # svg
+  // # media
   //////////////////////////////
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-svg2png');
+  grunt.loadNpmTasks('grunt-favicons');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
   //////////////////////////////
   // # css
@@ -309,14 +349,11 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //////////////////////////////
-  // # image
+  // # media
   //////////////////////////////
-  grunt.registerTask('build-img', 'imagemin');
-
-  //////////////////////////////
-  // # svg
-  //////////////////////////////
-  grunt.registerTask('build-svg', ['replace:svgclass', 'svgmin', 'svgstore', 'svg2png']);
+  grunt.registerTask('build-svg', ['replace:svgclass', 'svgmin', 'svgstore', 'svg2png', 'imagemin:svgs']);
+  grunt.registerTask('build-favicons', ['favicons', 'imagemin:favicons']);
+  grunt.registerTask('build-img', 'imagemin:statics');
 
   //////////////////////////////
   // # css
@@ -333,6 +370,6 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # core
   //////////////////////////////
-  grunt.registerTask('default', ['build-img', 'build-svg', 'build-css', 'build-js']);
+  grunt.registerTask('default', ['build-svg', 'build-favicons', 'build-img', 'build-css', 'build-js']);
 
 };

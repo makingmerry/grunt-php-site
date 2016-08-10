@@ -16,10 +16,9 @@
   <meta property="og:description" content="">
   <meta property="og:image" content="">
 
-  <!-- favicon -->
-  <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-
   <!-- stylesheets -->
   <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+
+  <!-- favicons -->
 </head>
-<body>
+<body></body></html>
