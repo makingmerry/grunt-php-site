@@ -26,12 +26,15 @@ module.exports = function(grunt) {
       }
     },
 
+    //////////////////////////////
+    // # svg
+    //////////////////////////////
     // *
     // ID cleanup: performs a manual ID cleanup as Illustrator exports a mess
     replace: {
       svgclass: {
         src: ['svgs/src/*.svg'],
-        overwrite: true,
+        dest: 'svgs/tmp/',
         replacements: [{
           // Remove escaped underscore character
           from: '_x5F_',
@@ -41,45 +44,45 @@ module.exports = function(grunt) {
           //class_x3D__x22_tank-option_x22__2_
           from: /id\=\"class_x3D__x22_(.+?)_x22_(.*?)\"/gi,
           to: function(matchedWord, index, fullText, regexMatches) {
-              return 'class="'+ regexMatches[0].toLowerCase()+'"';
+            return 'class="'+ regexMatches[0].toLowerCase()+'"';
           }
         }, {
           // lowercase all ids
           from: /id\=\"(.+?)\"/gi,
           to: function(matchedWord, index, fullText, regexMatches) {
-              return 'id="'+ regexMatches[0].toLowerCase()+'"';
+            return 'id="'+ regexMatches[0].toLowerCase()+'"';
           }
         }, {
           // lowercase all id references to match the previous replace rule
           from: /url\(\#(.+?)\)/gi,
           to: function(matchedWord, index, fullText, regexMatches) {
-              return 'url(#'+ regexMatches[0].toLowerCase() +')';
+            return 'url(#'+ regexMatches[0].toLowerCase() +')';
           }
         }, {
           // lowercase all id href to match the previous replace rule
           from: /href\=\"\#(.+?)\"/gi,
           to: function(matchedWord, index, fullText, regexMatches) {
-              return 'href="#'+ regexMatches[0].toLowerCase() +'"';
+            return 'href="#'+ regexMatches[0].toLowerCase() +'"';
           }
         }, {
           // remove all font references as we will use CSS for this
           from: /font\-family\=\"(.+?)\"/gi,
           to: function(matchedWord, index, fullText, regexMatches) {
-              return '';
+            return '';
           }
         }]
       }
     },
 
     // *
-    // minifying svg with svgo
+    // minify individual svgs
     svgmin: {
       dist: {
         files: [{
           expand: true,
-          cwd: 'svgs/src/',
+          cwd: 'svgs/tmp/',
           src: ['*.svg'],
-          dest: 'svgs/'
+          dest: 'svgs/tmp/'
         }]
       },
       options: {
@@ -91,16 +94,16 @@ module.exports = function(grunt) {
     },
 
     // *
-    // merge svgs in a folder
+    // merge svgs to a spritesheet
     svgstore: {
       dist: {
         files: {
-          'svgs/build/svg-defs.svg': ['svgs/*.svg']
+          'svgs/build/svg-defs.svg': ['svgs/tmp/*.svg']
         },
       },
       options: {
         cleanup: true,
-        prefix: 'icon-'
+        prefix: 'shape-'
       }
     },
 
@@ -110,7 +113,7 @@ module.exports = function(grunt) {
       dist: {
         files: [{ 
           flatten: true,
-          cwd: 'svgs/', 
+          cwd: 'svgs/src/', 
           src: ['*.svg'], 
           dest: 'svgs/build/'
         }]
@@ -129,7 +132,7 @@ module.exports = function(grunt) {
           require: 'breakpoint'
         },
         files: {
-          'stylesheets/style.css': 'sass/style.scss'
+          'stylesheets/tmp/style.css': 'sass/style.scss'
         }
       }
     },
@@ -142,35 +145,39 @@ module.exports = function(grunt) {
       // base css
       base: {
         options: {
-          map: true,
+          map: {
+            inline: true
+          },
           processors: [
             require('pixrem')(),
             require('autoprefixer')({browsers: 'last 2 versions'}),
             require('cssnano')()
           ]
         },
-        src: 'stylesheets/*.css'
+        src: 'stylesheets/tmp/style.css',
+        dest: 'stylesheets/build/style.css'
       },
 
       // critical inline css
       critical: {
         options: {
+          map: true,
           processors: [
             require('cssnano')()
           ]
         },
-        src: 'stylesheets/tmp/*.css'
+        src: 'stylesheets/tmp/critical/*.css',
       }
     },
 
     // *
-    // build critical inline stylesheet
+    // build critical inline stylesheets
     penthouse: {
       // index page template
       index: {
-        css: 'stylesheets/style.css',
+        css: 'stylesheets/build/style.css',
         url: 'http://localhost:8888/personal/playground/base-site/',
-        outfile: 'stylesheets/tmp/critical.css',
+        outfile: 'stylesheets/tmp/critical/index.critical.css',
         width: 1280,
         height: 720
       }
@@ -183,22 +190,28 @@ module.exports = function(grunt) {
     // concat javascript files
     concat: {
       dist: {
-        src: ['javascripts/libs/picturefill.min.js', 'svg4everybody.min.js', 'javascripts/libs/eq.min.js', 'javascripts/libs/jquery.min.js', 'javascripts/libs/velocity.min.js', 'javascripts/libs/main.js'],
-        dest: 'javascripts/global.js',
+        src: [
+          'javascripts/src/picturefill.min.js',
+          'javascripts/src/svg4everybody.min.js',
+          'javascripts/src/eq.min.js',
+          'javascripts/src/jquery.min.js',
+          'javascripts/src/velocity.min.js',
+          'javascripts/src/main.js'],
+        dest: 'javascripts/tmp/global.js',
       },
     },
 
     // *
     // hint for javascript errors
     jshint: {
-      all: 'javascripts/libs/main.js',
+      all: 'javascripts/src/main.js',
     },
 
     // *
     // compress global javascript file
     uglify: {
       build: {
-        src: 'javascripts/global.js',
+        src: 'javascripts/tmp/global.js',
         dest: 'javascripts/build/global.min.js'
       }
     },
@@ -242,7 +255,7 @@ module.exports = function(grunt) {
 
       // watch for changes in javascript files
       js: {
-        files: 'javascripts/libs/*.js',
+        files: 'javascripts/src/*.js',
         tasks: 'build-js'
       }
     },
@@ -257,9 +270,13 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //////////////////////////////
-  // # media
+  // # image
   //////////////////////////////
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+
+  //////////////////////////////
+  // # svg
+  //////////////////////////////
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-svg2png');
@@ -292,11 +309,14 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   //////////////////////////////
-  // # media
+  // # image
   //////////////////////////////
   grunt.registerTask('build-img', 'imagemin');
+
+  //////////////////////////////
+  // # svg
+  //////////////////////////////
   grunt.registerTask('build-svg', ['replace:svgclass', 'svgmin', 'svgstore', 'svg2png']);
-  grunt.registerTask('build-media', ['build-img', 'build-svg']);
 
   //////////////////////////////
   // # css
@@ -313,6 +333,6 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # core
   //////////////////////////////
-  grunt.registerTask('default', ['build-media', 'build-css', 'build-js']);
+  grunt.registerTask('default', ['build-img', 'build-svg', 'build-css', 'build-js']);
 
 };
