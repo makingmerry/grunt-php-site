@@ -236,7 +236,7 @@ module.exports = function(grunt) {
         src: [
           'javascripts/src/picturefill.min.js',
           'javascripts/src/svg4everybody.min.js',
-          'javascripts/src/eq.min.js',
+          // 'javascripts/src/eq.min.js', // element query not required in default build
           'javascripts/src/jquery.min.js',
           'javascripts/src/velocity.min.js',
           'javascripts/src/main.js'],
