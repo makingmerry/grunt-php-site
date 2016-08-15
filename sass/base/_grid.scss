@@ -2,3 +2,93 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////
+// # row
+//////////////////////////////
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.row--catalog {
+  flex-flow: row wrap;
+}
+
+//////////////////////////////
+// # column
+//////////////////////////////
+.col {
+  order: 1;
+}
+
+// *
+// small screen (default)
+$i: 1;
+@while $i <= $col-count {
+  $flex-basis: unquote((100 / ($col-count / $i)) + "%");
+  .col--#{$i} {
+    flex: 0 1 $flex-basis;
+  }
+  .col--order-#{$i} {
+    order: $i;
+  }
+  $i: $i + 1;
+}
+
+// *
+// medium screen
+@include breakpoint($medium-screen) {
+  $i: 1;
+  @while $i <= $col-count {
+    $flex-basis: unquote((100 / ($col-count / $i)) + "%");
+    .col--m#{$i} {
+      flex: 0 1 $flex-basis;
+    }
+    .col--order-m#{$i} {
+      order: $i;
+    }
+
+    $i: $i + 1;
+  }
+}
+
+// *
+// large screen
+@include breakpoint($large-screen) {
+  $i: 1;
+  @while $i <= $col-count {
+    $flex-basis: unquote((100 / ($col-count / $i)) + "%");
+    .col--l#{$i} {
+      flex: 0 1 $flex-basis;
+    }
+    .col--order-l#{$i} {
+      order: $i;
+    }
+    $i: $i + 1;
+  }
+}
+
+//////////////////////////////
+// # column element
+//////////////////////////////
+.col__core {
+  height: 100%;
+  padding-right: $gutter;
+  padding-left: $gutter;
+
+  @include breakpoint($medium-screen) {
+    padding-right: $gutter--m;
+    padding-left: $gutter--m;
+  }
+
+  @include breakpoint($large-screen) {
+    padding-right: $gutter--l;
+    padding-left: $gutter--l;
+  }
+}
+
+.col__core--no-pad {
+  padding-right: 0;
+  padding-left: 0;
+}
