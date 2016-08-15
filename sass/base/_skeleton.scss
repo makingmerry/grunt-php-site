@@ -16,72 +16,42 @@
   width: device-width;
 }
 
-html {
-  font-family: $pri-font--reg;
+body {
+  font-family: $font-pri;
   line-height: 1.4;
   color: $base;
 }
 
-main {
-  height: 100%;
-}
+header, article, section, aside, footer {
+  margin-bottom: $gutter * 4;
 
-header {
-  margin-bottom: 2rem;
-}
-
-section {
-  margin: 4rem 0;
-}
-
-aside {
-  margin: 3rem 0;
-}
-
-footer {
-  margin-top: 6rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 //////////////////////////////
 // # title
 //////////////////////////////
 h1, h2, h3, h4, h5, h6 {
-  display: block;
-  line-height: 1;
+  line-height: 1.1;
   font-weight: bold;
-}
-
-h1 {
-  font-size: 3em;
-}
-
-h2 {
-  font-size: 2.25em;
-}
-
-h3 {
-  font-size: 1.75em;
-}
-
-h4 {
-  font-size: 1.2em;
-}
-
-h5, h6 {
-  font-size: 1em;
 }
 
 //////////////////////////////
 // # list
 //////////////////////////////
 ul, ol {
-  padding: .25rem 0;
   list-style-position: inside;
+  margin-bottom: $gutter;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 ul ol, ul ul, ol ol, ol ul {
-  margin-left: 1rem;
-  font-size: .9em;
+  margin-left: $gutter;
 }
 
 ul ol,
@@ -89,30 +59,51 @@ ol ol {
   list-style-type: lower-roman;
 }
 
+li {
+  margin-bottom: 0.25em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+dl {
+  margin-bottom: $gutter;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 dt {
+  margin-bottom: 0.25em;
   font-weight: bold;
 }
 
 dd {
-  margin-left: 1rem;
-  margin-top: .25rem;
-  margin-bottom: .25rem;
-}
+  margin-left: $gutter;
+  margin-bottom: $gutter;
 
-li {
-  margin: .25rem 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 //////////////////////////////
 // # text
 //////////////////////////////
 p {
-  margin: 2rem 0;
+  margin-bottom: $gutter;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 sub, sup {
   position: relative;
-  margin: 0 0.25em;
+  margin-right: 0.25em;
+  margin-left: 0.25em;
   font-size: 75%;
   line-height: 0;
 }
@@ -126,18 +117,20 @@ sub {
 }
 
 small {
-  font-size: .9em;
+  font-size: $font-size--s;
 }
 
 mark {
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
 }
 
 blockquote {
-  max-width: 30rem;
-  margin: 1.5rem auto;
-  padding: 0 1rem;
+  margin-bottom: $gutter;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &:before { content: "\201C"; }
   &:after  { content: "\201D"; }
@@ -153,28 +146,34 @@ code {
 // # link
 //////////////////////////////
 a {
+  border-bottom: 1px solid $base;
+  color: inherit;
   text-decoration: none;
-  color: $neutral-2;
-  border-bottom: 2px solid $neutral-2;
 
   &:hover,
   &:focus {
-    color: $neutral-1;
-    border-color: $neutral-1;
+    color: $neutral-2;
+    border-bottom-color: $neutral-2;
   }
 }
 
 //////////////////////////////
 // # media
 //////////////////////////////
-img {
+figure, picture, img {
   display: block;
   width: 100%;
+  margin-bottom: $gutter;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 figcaption {
-  padding: .75rem 1rem;
-  font-size: .9em;
+  margin-top: -0.25em;
+  margin-right: $gutter;
+  font-size: $font-size--s;
 }
 
 //////////////////////////////
@@ -183,61 +182,85 @@ figcaption {
 table {
   table-layout: fixed;
   width: 100%;
-  border: 2px solid $neutral-2;
+  margin-bottom: $gutter;
+  border-top: 1px solid $base;
+  border-right: 1px solid $base;
+  border-bottom: 1px solid $base;
+  border-left: 1px solid $base;
   text-align: left;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 caption {
-  margin-bottom: 0.25rem;
-  text-align: left;
-  color: $base;
+  margin-bottom: 0.5em;
+  text-align: inherit;
   font-weight: bold;
 }
 
-th, td {
-  padding-left  : 0.5rem;
-  padding-top   : 0.25rem;
-  padding-right : 0.5rem;
-  padding-bottom: 0.25rem;
-
-  &[scope="col"] {
-    padding-top   : 0.65rem;
-    padding-bottom: 0.5rem;
-    border-right : 1px solid $neutral-2;
-    border-bottom: 1px solid $neutral-2;
-    text-transform: uppercase;
-    line-height: 1;
-
-    &:last-child {
-      border-right: none;
-    }
-  }
-
-  &[scope="row"] {
-    border-right: 1px solid $neutral-2;
-  }
+th, td {  
+  padding-top: 0.25em;
+  padding-right: 0.5em;
+  padding-bottom: 0.25em;
+  padding-left: 0.5em;
+  border-top: 1px solid $base;
+  border-right: 1px solid $base;
+  border-bottom: 1px solid $base;
+  border-left: 1px solid $base;
 }
 
 //////////////////////////////
 // # form
 //////////////////////////////
 fieldset {
-  margin-top: 1.5rem;
+  margin-bottom: $gutter * 4;
 
-  &:first-child {
-    margin-top: 0;
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
 legend {
-  margin-bottom: .25rem;
+  margin-bottom: $gutter;
   font-weight: bold;
 }
 
-input, textarea, select {
+label {
+  display: block;
+}
+
+textarea, select, input {
+  line-height: 1.4;
+}
+
+textarea, select,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="color"],
+input[type="range"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="search"],
+input[type="tel"],
+input[type="url"] {
   display: block;
   width: 100%;
-  color: $neutral-1;
+  padding-top: 0.25em;
+  padding-left: 0.5em;
+  padding-bottom: 0.25em;
+  padding-right: 0.5em;
+  border-top: 1px solid $neutral-3;
+  border-right: 1px solid $neutral-3;
+  border-bottom: 1px solid $neutral-3;
+  border-left: 1px solid $neutral-3;
 }
 
 $form_placeholder_prefixes: ('::-webkit-input-placeholder', ':-moz-placeholder', '::-moz-placeholder', ':-ms-input-placeholder', '::input-placeholder', '::placeholder' );
@@ -248,30 +271,41 @@ $form_placeholder_prefixes: ('::-webkit-input-placeholder', ':-moz-placeholder',
   }
 }
 
-input[type="text"],
-input[type="date"],
-input[type="email"],
-input[type="tel"],
-textarea {
-  padding-top: 0.5rem;
-}
+input {
+  &[type="radio"],
+  &[type="checkbox"] {
+    display: inline-block;
+    vertical-align: text-top;
+    width: 1em;
+    height: 1em;
+    padding-top: 0.25em;
+    padding-right: 0.25em;
+    padding-bottom: 0.25em;
+    padding-left: 0.25em;
+    border-top: 1px solid $base;
+    border-right: 1px solid $base;
+    border-bottom: 1px solid $base;
+    border-left: 1px solid $base;
 
-textarea {
-  resize: vertical;
-}
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
 
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid $neutral-2;
-
-  &:checked {
-    background: $neutral-3;
+    &:checked {
+      &::before {
+        background: $base;
+      }
+    }
   }
 }
 
 input[type="radio"] {
-  border-radius: 0;
+  border-radius: 50%;
+
+  &::before {
+    border-radius: 50%;
+  }
 }

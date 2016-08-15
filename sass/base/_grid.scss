@@ -38,7 +38,7 @@ $i: 1;
 
 // *
 // medium screen
-@include breakpoint($medium-screen) {
+@include breakpoint($screen--m) {
   $i: 1;
   @while $i <= $col-count {
     $flex-basis: unquote((100 / ($col-count / $i)) + "%");
@@ -55,7 +55,7 @@ $i: 1;
 
 // *
 // large screen
-@include breakpoint($large-screen) {
+@include breakpoint($screen--l) {
   $i: 1;
   @while $i <= $col-count {
     $flex-basis: unquote((100 / ($col-count / $i)) + "%");
@@ -70,19 +70,19 @@ $i: 1;
 }
 
 //////////////////////////////
-// # column element
+// # core
 //////////////////////////////
 .col__core {
   height: 100%;
   padding-right: $gutter;
   padding-left: $gutter;
 
-  @include breakpoint($medium-screen) {
+  @include breakpoint($screen--m) {
     padding-right: $gutter--m;
     padding-left: $gutter--m;
   }
 
-  @include breakpoint($large-screen) {
+  @include breakpoint($screen--l) {
     padding-right: $gutter--l;
     padding-left: $gutter--l;
   }

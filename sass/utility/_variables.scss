@@ -4,37 +4,39 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////
-// # typography
-//////////////////////////////
-// *
-// primary typeface
-$pri-font--reg: helvetica, arial, sans-serif;
-
-//////////////////////////////
-// # color swatches
-//////////////////////////////
-$base: #111;
-$neutral-1: #333;
-$neutral-2: #666;
-$neutral-3: #999;
-$neutral-4: #ccc;
-$neutral-5: #eee;
-$white: #fff;
-
-//////////////////////////////
 // # layout
 //////////////////////////////
 $col-count: 12;
 
-$gutter: 0.75rem;
-$gutter--m: 1rem;
-$gutter--l: 1.25rem;
+$gutter: 0.75em;
+$gutter--m: 1em;
+$gutter--l: 1.25em;
 
 //////////////////////////////
 // # media size
 //////////////////////////////
 $max-width: 100em;
 
-$medium-screen: 40em;
-$large-screen: 70em;
-$huge-screen: calc(#{$max-width} + (#{gutter} * 4));
+$screen--m: 40em;
+$screen--l: 70em;
+$screen--xl: calc(#{$max-width} + (#{gutter} * 4));
+
+//////////////////////////////
+// # typography
+//////////////////////////////
+$font-pri: helvetica, arial, sans-serif;
+
+$font-size--s: 0.85em;
+$font-size--m: 1.25em;
+$font-size--l: 1.65em;
+$font-size--xl: 2em;
+
+//////////////////////////////
+// # color swatches
+//////////////////////////////
+$base: #111;
+$neutral-1: #666;
+$neutral-2: #999;
+$neutral-3: #ccc;
+$neutral-4: #eee;
+$white: #fff;
