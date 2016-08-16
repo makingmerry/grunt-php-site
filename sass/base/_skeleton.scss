@@ -22,7 +22,7 @@ body {
   color: $base;
 }
 
-header, article, section, aside, footer {
+header, nav, article, section, aside, footer {
   margin-bottom: $gutter * 4;
 
   &:last-child {
