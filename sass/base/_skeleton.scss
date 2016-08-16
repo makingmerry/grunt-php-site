@@ -30,6 +30,12 @@ header, nav, article, section, aside, footer {
   }
 }
 
+hr {
+  margin-top: $gutter * 4;
+  margin-bottom: $gutter * 4;
+  border-top-color: $neutral-3;
+}
+
 //////////////////////////////
 // # title
 //////////////////////////////

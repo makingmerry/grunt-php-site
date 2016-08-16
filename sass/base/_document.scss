@@ -15,7 +15,7 @@ $pc-darkindigo: #2f3345;
 $pc-ultradarkindigo: #1f2231;
 
 //////////////////////////////
-// # document header
+// # header
 //////////////////////////////
 .pc-doc__header {
   margin-bottom: 0;
@@ -32,14 +32,14 @@ $pc-ultradarkindigo: #1f2231;
 }
 
 //////////////////////////////
-// # document navigation
+// # navigation
 //////////////////////////////
 .pc-doc__nav {
   padding-top: $gutter * 2;
   padding-bottom: $gutter * 4;
   background:
     linear-gradient(
-      45deg,
+      90deg,
       $pc-indigo,
       $pc-darkindigo 90%
     );
@@ -120,7 +120,7 @@ $pc-ultradarkindigo: #1f2231;
 }
 
 //////////////////////////////
-// # document article area
+// # article area
 //////////////////////////////
 .pc-doc__article {
   @include breakpoint($screen--m) {
@@ -151,18 +151,10 @@ $pc-ultradarkindigo: #1f2231;
 }
 
 //////////////////////////////
-// # document article section
+// # section
 //////////////////////////////
 .pc-doc__section {
   counter-increment: i;
-
-  &:first-child {
-    .pc-doc__section-textarea {
-      color: $neutral-1;
-      font-size: $font-size--m;
-      line-height: 1.25;
-    }
-  }
 }
 
 .pc-doc__section-header {
@@ -181,5 +173,55 @@ $pc-ultradarkindigo: #1f2231;
     display: inline-block;
     margin-right: 0.75em;
     color: $pc-lightorange--plus;
+  }
+}
+
+//////////////////////////////
+// # sub section
+//////////////////////////////
+.pc-doc__sub-section {
+  padding-top: $gutter * 2;
+}
+
+.pc-doc__sub-section-header {
+  margin-bottom: $gutter * 2;
+}
+
+//////////////////////////////
+// # text area
+//////////////////////////////
+.pc-doc__section-textarea {
+  overflow: hidden;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: $gutter * 3;
+    margin-bottom: $gutter;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.pc-doc__section-textarea--sub {
+  padding-left: $gutter;
+  border-left: 2px solid $pc-lightorange;
+
+  @include breakpoint($screen--m) {
+    padding-left: $gutter * 2;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font-size--s;
+
+    &:first-child {
+      font-size: 1em;
+    }
+  }
+
+  hr {
+    & + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
+      font-size: 1em;
+    }
   }
 }
