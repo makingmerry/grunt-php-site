@@ -1,10 +1,10 @@
-.sass-cache/
 node_modules/
 svgs/build/
 svgs/tmp/
 favicons/build/
 images/build/
 images/tmp/
+.sass-cache/
 stylesheets/
 javascripts/build/
 javascripts/tmp/

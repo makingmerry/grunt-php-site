@@ -171,9 +171,7 @@ include 'mast.php';
                 <a href="https://github.com/gruntjs/grunt-contrib-imagemin">https://github.com/gruntjs/grunt-contrib-imagemin</a>
               </li>
             </ul>
-  
-            <
-          /div>
+          </div>
         </section>
 
 
@@ -420,6 +418,73 @@ include 'mast.php';
             </ul>
           </div>
         </section>
+      </section>
+
+
+
+      <section class="pc-doc__section" id="configurations">
+        <header class="pc-doc__section-header">
+          <h2 class="title title--l pc-doc__section-title">Configurations</h2>
+        </header>
+
+        <section class="pc-doc__sub-section" id="add-updating-site-url">
+          <header class="pc-doc__sub-section-header">
+            <h3 class="title title--m">Add/updating site url</h3>
+          </header>
+
+          <div class="pc-doc__section-textarea pc-doc__section-textarea--sub">
+            <ul>
+              <li>Add url to grunt.initConfig.config.domainName</li>
+            </ul>
+          </div>
+        </section>
+
+
+
+        <section class="pc-doc__sub-section" id="add-updating-site-url">
+          <header class="pc-doc__sub-section-header">
+            <h3 class="title title--m">List in order script files for concatenating</h3>
+          </header>
+
+          <div class="pc-doc__section-textarea pc-doc__section-textarea--sub">
+            <ul>
+              <li>Add filenames to array in grunt.initConfig.concat.dist.src</li>
+            </ul>
+          </div>
+        </section>
+
+
+
+        <section class="pc-doc__sub-section" id="add-updating-site-url">
+          <header class="pc-doc__sub-section-header">
+            <h3 class="title title--m">Add template names for critical CSS extraction</h3>
+          </header>
+
+          <div class="pc-doc__section-textarea pc-doc__section-textarea--sub">
+            <ul>
+              <li>Create new grunt.initConfig.criticalcss Object named after template name</li>
+              <li>Update Object.url, Object.outputfile with appropriate values</li>
+              <li>Add/update Object.forceinclude array if necessary</li>
+            </ul>
+          </div>
+        </section>
+      </section>
+
+
+
+      <section class="pc-doc__section" id="introduction">
+        <header class="pc-doc__section-header">
+          <h2 class="title title--l pc-doc__section-title">Tasks</h2>
+        </header>
+
+        <div class="pc-doc__section-textarea">
+          <ol>
+            <li>Grunt watch</li>
+            <li>Grunt build-favicons</li>
+            <li>Grunt build-critical-css</li>
+            <li>Grunt (default)</li>
+          </ol>
+        </div>
       </section>
     </div>
   </article>

@@ -6,6 +6,9 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    config: {
+      domainName: 'http://localhost:8888/'
+    },
 
     //////////////////////////////
     // # media
@@ -188,9 +191,7 @@ module.exports = function(grunt) {
       // base css
       base: {
         options: {
-          map: {
-            inline: true
-          },
+          map: true,
           processors: [
             require('pixrem')(),
             require('autoprefixer')({browsers: 'last 2 versions'}),
@@ -204,8 +205,10 @@ module.exports = function(grunt) {
       // critical inline css
       critical: {
         options: {
-          map: true,
+          map: false,
           processors: [
+            require('pixrem')(),
+            require('autoprefixer')({browsers: 'last 2 versions'}),
             require('cssnano')()
           ]
         },
@@ -215,15 +218,18 @@ module.exports = function(grunt) {
 
     // *
     // build critical inline stylesheets
-    penthouse: {
+    criticalcss: {
       // index page template
       index: {
-        css: 'stylesheets/build/style.css',
-        url: 'http://localhost:8888/personal/playground/base-site/',
-        outfile: 'stylesheets/tmp/critical/index.critical.css',
-        width: 1280,
-        height: 720
-      }
+        options: {
+          url: '<%= config.domainName %>',
+          filename: 'stylesheets/tmp/style.css',
+          width: 1280,
+          height: 720,
+          outputfile: 'stylesheets/tmp/critical/index.css',
+          forceInclude: []
+        }
+      },
     },
 
     //////////////////////////////
@@ -326,7 +332,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
-  grunt.loadNpmTasks('grunt-penthouse');
+  grunt.loadNpmTasks('grunt-criticalcss');
 
   //////////////////////////////
   // # javascript
@@ -359,7 +365,7 @@ module.exports = function(grunt) {
   // # css
   //////////////////////////////
   grunt.registerTask('build-base-css', ['sass', 'postcss:base']);
-  grunt.registerTask('build-critical-css', ['penthouse', 'postcss:critical']);
+  grunt.registerTask('build-critical-css', ['criticalcss', 'postcss:critical']);
   grunt.registerTask('build-css', ['build-base-css', 'build-critical-css']);
 
   //////////////////////////////

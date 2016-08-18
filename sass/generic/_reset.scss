@@ -6,7 +6,7 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   border: 0;
@@ -21,7 +21,7 @@ body {
   line-height: 1;
 }
 
-main, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, div {
+main, article, aside, details, figcaption, figure, footer, header, menu, nav, section, div {
   display: block;
 }
 
@@ -29,10 +29,10 @@ blockquote, q {
   quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
   content: none;
 }
 

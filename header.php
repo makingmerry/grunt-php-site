@@ -17,6 +17,12 @@
 
   <!-- # stylesheets -->
   <!-- load critical inline styles -->
+  <style type="text/css">
+    <?php
+    $file = 'stylesheets/tmp/critical/'.$page.'.css';
+    file_exists($file) AND include $file;
+    ?>
+  </style>
 
   <!-- defer loading of non-critical styles -->
   <noscript id="deferred-styles">
@@ -48,4 +54,4 @@
 
   <!-- # favicons -->
 </head>
-<body>
+<body></body></html>
