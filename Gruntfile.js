@@ -7,7 +7,27 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     config: {
-      domainName: 'http://localhost:8888/'
+      // *
+      // general
+      siteFullPath: 'http://localhost:8888/',
+      src: 'src',
+      tmp: 'tmp',
+      build: 'build',
+
+      // *
+      // media
+      svgDir: 'svgs',
+      faviDir: 'favicons',
+      imgDir: 'images',
+
+      // *
+      // css
+      sassDir: 'sass',
+      cssDir: 'stylesheets',
+
+      // *
+      // javascript
+      jsDir: 'javascripts'
     },
 
     //////////////////////////////
@@ -20,8 +40,8 @@ module.exports = function(grunt) {
     // ID cleanup: performs a manual ID cleanup as Illustrator exports a mess
     replace: {
       svgclass: {
-        src: ['svgs/src/*.svg'],
-        dest: 'svgs/tmp/',
+        src: ['<%= config.svgDir %>/<%= config.src %>/*.svg'],
+        dest: '<%= config.svgDir %>/<%= config.tmp %>/',
         replacements: [{
           // Remove escaped underscore character
           from: '_x5F_',
@@ -67,9 +87,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'svgs/tmp/',
+          cwd: '<%= config.svgDir %>/<%= config.tmp %>/',
           src: ['*.svg'],
-          dest: 'svgs/tmp/'
+          dest: '<%= config.svgDir %>/<%= config.tmp %>/'
         }]
       },
       options: {
@@ -85,7 +105,7 @@ module.exports = function(grunt) {
     svgstore: {
       dist: {
         files: {
-          'svgs/build/svg-defs.svg': ['svgs/tmp/*.svg']
+          '<%= config.svgDir %>/<%= config.build %>/svg-defs.svg': ['<%= config.svgDir %>/<%= config.tmp %>/*.svg']
         },
       },
       options: {
@@ -100,9 +120,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{ 
           flatten: true,
-          cwd: 'svgs/src/', 
+          cwd: '<%= config.svgDir %>/<%= config.src %>/', 
           src: ['*.svg'], 
-          dest: 'svgs/build/'
+          dest: '<%= config.svgDir %>/<%= config.build %>/'
         }]
       }
     },
@@ -115,11 +135,11 @@ module.exports = function(grunt) {
     favicons: {
       options: {
         html: 'header.php',
-        HTMLPrefix: 'favicons/build/'
+        HTMLPrefix: '<%= config.faviDir %>/<%= config.build %>/'
       },
       icons: {
-        src: 'favicons/src/favicon.png',
-        dest: 'favicons/build/'
+        src: '<%= config.faviDir %>/<%= config.src %>/favicon.png',
+        dest: '<%= config.faviDir %>/<%= config.build %>/'
       }
     },
 
@@ -135,9 +155,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'images/src/',
+          cwd: '<%= config.imgDir %>/<%= config.src %>/',
           src: ['**/*.{png,jpg,gif}'],
-          dest: 'images/build/'
+          dest: '<%= config.imgDir %>/<%= config.build %>/'
         }]
       },
 
@@ -147,9 +167,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'svgs/build/',
+          cwd: '<%= config.svgDir %>/<%= config.build %>/',
           src: ['**/*.{png,jpg,gif}'],
-          dest: 'svgs/build/'
+          dest: '<%= config.svgDir %>/<%= config.build %>/'
         }]
       },
 
@@ -159,9 +179,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'favicons/build/',
+          cwd: '<%= config.faviDir %>/<%= config.build %>/',
           src: ['**/*.{png,jpg,gif}'],
-          dest: 'favicons/build/'
+          dest: '<%= config.faviDir %>/<%= config.build %>/'
         }]
       },
     },
@@ -178,7 +198,7 @@ module.exports = function(grunt) {
           require: 'breakpoint'
         },
         files: {
-          'stylesheets/tmp/style.css': 'sass/style.scss'
+          '<%= config.cssDir %>/<%= config.tmp %>/style.css': '<%= config.sassDir %>/style.scss'
         }
       }
     },
@@ -194,12 +214,12 @@ module.exports = function(grunt) {
           map: true,
           processors: [
             require('pixrem')(),
-            require('autoprefixer')({browsers: 'last 2 versions'}),
+            require('autoprefixer')({ browsers: 'last 2 versions' }),
             require('cssnano')()
           ]
         },
-        src: 'stylesheets/tmp/style.css',
-        dest: 'stylesheets/build/style.css'
+        src: '<%= config.cssDir %>/<%= config.tmp %>/style.css',
+        dest: '<%= config.cssDir %>/<%= config.build %>/style.css'
       },
 
       // critical inline css
@@ -208,11 +228,11 @@ module.exports = function(grunt) {
           map: false,
           processors: [
             require('pixrem')(),
-            require('autoprefixer')({browsers: 'last 2 versions'}),
+            require('autoprefixer')({ browsers: 'last 2 versions' }),
             require('cssnano')()
           ]
         },
-        src: 'stylesheets/tmp/critical/*.css',
+        src: '<%= config.cssDir %>/<%= config.tmp %>/critical/*.css',
       }
     },
 
@@ -222,11 +242,11 @@ module.exports = function(grunt) {
       // index page template
       index: {
         options: {
-          url: '<%= config.domainName %>',
-          filename: 'stylesheets/tmp/style.css',
+          url: '<%= config.siteFullPath %>',
+          filename: '<%= config.cssDir %>/<%= config.tmp %>/style.css',
           width: 1280,
           height: 720,
-          outputfile: 'stylesheets/tmp/critical/index.css',
+          outputfile: '<%= config.cssDir %>/<%= config.tmp %>/critical/index.css',
           forceInclude: []
         }
       },
@@ -240,28 +260,28 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          'javascripts/src/picturefill.min.js',
-          'javascripts/src/svg4everybody.min.js',
-          // 'javascripts/src/eq.min.js', // element query not required in default build
-          'javascripts/src/jquery.min.js',
-          'javascripts/src/velocity.min.js',
-          'javascripts/src/main.js'],
-        dest: 'javascripts/tmp/global.js',
+          '<%= config.jsDir %>/<%= config.src %>/picturefill.min.js',
+          '<%= config.jsDir %>/<%= config.src %>/svg4everybody.min.js',
+          // '<%= config.jsDir %>/<%= config.src %>/eq.min.js', // element query not required in default build
+          '<%= config.jsDir %>/<%= config.src %>/jquery.min.js',
+          '<%= config.jsDir %>/<%= config.src %>/velocity.min.js',
+          '<%= config.jsDir %>/<%= config.src %>/main.js'],
+        dest: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
       },
     },
 
     // *
     // hint for javascript errors
     jshint: {
-      all: 'javascripts/src/main.js',
+      all: '<%= config.jsDir %>/<%= config.src %>/main.js',
     },
 
     // *
     // compress global javascript file
     uglify: {
       build: {
-        src: 'javascripts/tmp/global.js',
-        dest: 'javascripts/build/global.min.js'
+        src: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
+        dest: '<%= config.jsDir %>/<%= config.build %>/global.min.js'
       }
     },
 
@@ -274,8 +294,8 @@ module.exports = function(grunt) {
       options: {
         spawn: false,
         livereload: {
-          host: '127.0.0.1',
-          port: 35729
+          host: '127.0.0.1', // livereload IP
+          port: 35729 // livereload port
         }
       },
 
@@ -286,25 +306,25 @@ module.exports = function(grunt) {
 
       // watch for new images in source folder
       img: {
-        files: 'images/src/*.{png,jpg,gif}',
+        files: '<%= config.imgDir %>/<%= config.src %>/*.{png,jpg,gif}',
         tasks: 'build-img'
       },
 
       // watch for new svg files in source folder
       svgs: {
-        files: 'svgs/src/*.svg',
+        files: '<%= config.svgDir %>/<%= config.src %>/*.svg',
         tasks: 'build-svg',
       },
 
       // watch for changes in sass files
       css: {
-        files: 'sass/**/*.scss',
+        files: '<%= config.sassDir %>/**/*.scss',
         tasks: 'build-base-css'
       },
 
       // watch for changes in javascript files
       js: {
-        files: 'javascripts/src/*.js',
+        files: '<%= config.jsDir %>/<%= config.src %>/*.js',
         tasks: 'build-js'
       }
     },
