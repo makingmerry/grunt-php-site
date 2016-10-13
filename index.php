@@ -4,7 +4,7 @@ include 'header.php';
 include 'mast.php';
 ?>
 
-<main>
+<!-- <main>
   <header class="row">
     <div class="col col--s-12 col--m-8 col--l-9">
       <div class="col__core">
@@ -418,7 +418,25 @@ include 'mast.php';
       </div>
     </article>
   </div>
-</main>
+</main> -->
+
+<button class="test-btn">TOGGLE</button>
+
+<div class="test-mast">
+  <a href="#0">Mast Link</a>
+</div>
+
+<div class="test-shell">
+  <div class="test-main">
+    <a href="#0">Main Link</a>
+  </div>
+
+  <div class="test-foot">
+    <div class="test-foot__content">
+      <a href="#0">Foot Link</a>
+    </div>
+  </div>
+</div>
 
 <?
 include 'base.php';

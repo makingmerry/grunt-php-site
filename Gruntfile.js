@@ -24,6 +24,7 @@ module.exports = function(grunt) {
       // css
       sassDir: 'sass',
       cssDir: 'stylesheets',
+      fontDir: 'fonts',
 
       // *
       // javascript
@@ -289,6 +290,31 @@ module.exports = function(grunt) {
     // # core
     //////////////////////////////
     // *
+    // copy build files for deployment
+    copy: {
+      deploy: {
+        expand: true,
+        src: [
+          // media
+          '<%= config.svgDir %>/<%= config.build %>/*',
+          '<%= config.faviDir %>/<%= config.build %>/*',
+          '<%= config.imgDir %>/<%= config.build %>/*',
+
+          // css
+          '<%= config.cssDir %>/<%= config.build %>/*',
+          '<%= config.fontDir %>/*',
+
+          // javascript
+          '<%= config.jsDir %>/<%= config.build %>/*',
+
+          // template
+          '*.{html,php}'
+        ],
+        dest: 'build/'
+      }
+    },
+
+    // *
     // watch files for changes
     watch: {
       options: {
@@ -365,6 +391,7 @@ module.exports = function(grunt) {
   // # core
   //////////////////////////////
   grunt.loadNpmTasks('grunt-text-replace');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
 
@@ -396,6 +423,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # core
   //////////////////////////////
-  grunt.registerTask('default', ['build-svg', 'build-favicons', 'build-img', 'build-css', 'build-js']);
+  grunt.registerTask('deploy', 'copy:deploy');
+  grunt.registerTask('default', ['build-svg', 'build-favicons', 'build-img', 'build-css', 'build-js', 'deploy']);
 
 };
