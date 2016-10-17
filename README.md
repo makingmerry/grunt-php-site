@@ -53,8 +53,8 @@ Grunt task runner for rapid deployment of static PHP sites by:
 
 
 ## Features
-### Scalable Vector Graphics (SVG)
 
+### Scalable Vector Graphics (SVG)
 #### Clean SVGs
 Change `classes` and ids to lowercase
 Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`)
@@ -89,8 +89,10 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 - Recommended size for base image is 640 * 640px
 - HTML is generated into page header
 - Compression of generated favicon images
+
 ##### Issues/Milestones
 - Subsequent favicon generation creates blank lines
+
 ##### Sources/documentation
 - <https://github.com/audreyr/favicon-cheat-sheet>
 - <https://github.com/gleero/grunt-favicons>
@@ -100,6 +102,7 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 ### Static Images
 #### Compressing static images
 - Accepts .png, .jpg, .gif image formats
+
 ##### Sources/documentation
 - <https://github.com/gruntjs/grunt-contrib-imagemin>
 
@@ -108,6 +111,7 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 #### Compiling Sass into CSS
 - Automated prefixing for CSS properties
 - Automated `px` fallback values provided for `rem` values
+
 ##### Sources/documentation
 - <https://github.com/gruntjs/grunt-contrib-sass>
 
@@ -117,6 +121,7 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 - Critical CSS is called into page header
 - Asynchronous and deferred loading of non-critical CSS
 - * Manual listing of template pages in Gruntfile
+
 ##### Sources/documentation
 - <https://github.com/filamentgroup/grunt-criticalcss>
 - <https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery>
@@ -126,6 +131,7 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 ### Javascripts (JS)
 #### Ensuring code quality and consistency
 - Lint logs errors, bad practices and inconsistencies in terminal
+
 ##### Sources/documentation
 - <https://github.com/gruntjs/grunt-contrib-jshint>
 
@@ -134,6 +140,7 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 #### Concatenating scripts into a global script
 - Generates global script in build sub-folder (file reference: global.min.js
 - * Manual ordered listing of script files in Gruntfile
+
 ##### Sources/documentation
 - <https://github.com/gruntjs/grunt-contrib-concat>
 - <https://github.com/gruntjs/grunt-contrib-uglify>
@@ -143,6 +150,7 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 #### Prevent render blocking of non-critical scripts
 - Asynchronous and deferred loading of non-critical scripts
 - * Manual adding of critical scripts
+
 ##### Sources/documentation
 - <https://developers.google.com/speed/docs/insights/BlockingJS>
 - <https://varvy.com/pagespeed/render-blocking.html>
@@ -151,6 +159,7 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 ### Layout
 #### Basic grid system
 - `Flex-box` based row and column grid system (file references: base/_grid.scss)
+
 ##### Sources/documentation
 - <https://css-tricks.com/snippets/css/a-guide-to-flexbox>/
 
