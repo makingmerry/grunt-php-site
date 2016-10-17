@@ -4,7 +4,7 @@ include 'header.php';
 include 'mast.php';
 ?>
 
-<!-- <main>
+<main>
   <header class="row">
     <div class="col col--s-12 col--m-8 col--l-9">
       <div class="col__core">
@@ -418,9 +418,9 @@ include 'mast.php';
       </div>
     </article>
   </div>
-</main> -->
+</main>
 
-<button class="test-btn">TOGGLE</button>
+<!-- <button class="test-btn">TOGGLE</button>
 
 <div class="test-mast">
   <a href="#0">Mast Link</a>
@@ -437,7 +437,7 @@ include 'mast.php';
     </div>
   </div>
 </div>
-
+ -->
 <?
 include 'base.php';
 include 'footer.php';
