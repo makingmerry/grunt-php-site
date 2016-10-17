@@ -18,7 +18,7 @@ Grunt task runner for rapid deployment of static PHP sites by:
 5. Install [Brew](http://brew.sh/) and [ImageMagick](https://github.com/gleero/grunt-favicons) for grunt-favicons module
 6. Install LiveReload (optional), preferably Chrome's [LiveReload browser extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) if developing on Chrome.
 7. Add _base-site_(rename to preference) to folder
-8. Change directory to deployment on Terminal(Mac) and run 'npm install'
+8. Change directory to deployment on Terminal(Mac) and run `npm install`
 
 
 
