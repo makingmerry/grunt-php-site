@@ -22,22 +22,31 @@ Grunt task runner for rapid deployment of static PHP sites by:
 
 
 ## Configuration
+### General
 | Property name | Default value | Description                                                                                   |
 | ------------- | :-----------: | --------------------------------------------------------------------------------------------: |
-| **General**                                                                                                                 |||
 | siteFullPath  | `null`        | Full path to the project folder                                                               |
 | src           | "src"         | Source folder name. Source folders store initial assets before build processing.              |
 | tmp           | "tmp"         | Temporary folder name. Temporary folders stored by-products generated during build processes. |
 | build         | "build"       | Build folder name. Build folders store the output of build processes.                         |
-| **Media**                                                                                                                   |||
+
+### Media
+| Property name | Default value | Description                                                                                   |
+| ------------- | :-----------: | --------------------------------------------------------------------------------------------: |
 | svgDir        | "svgs"        | Folder storing SVG icon assets                                                                |
 | faviDir       | "favicons"    | Folder storing Favicon assets                                                                 |
 | imgDir        | "images"      | Folder storing static images                                                                  |
-| **Stylesheets**                                                                                                             |||
+
+### Stylesheets
+| Property name | Default value | Description                                                                                   |
+| ------------- | :-----------: | --------------------------------------------------------------------------------------------: |
 | sassDir       | "sass"        | Folder storing Sass assets                                                                    |
 | cssDir        | "stylesheets" | Folder storing generated css assets                                                           |
 | fontDir       | "fonts"       | Folder storing font assets                                                                    |
-| **Javascripts**                                                                                                             |||
+
+### Javascripts
+| Property name | Default value | Description                                                                                   |
+| ------------- | :-----------: | --------------------------------------------------------------------------------------------: |
 | jsDir         | "javascripts" | Folder storing javascript assets       
 
 
