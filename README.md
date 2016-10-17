@@ -4,6 +4,7 @@
 
 ## Introduction
 Grunt task runner for rapid deployment of static PHP sites by:
+
 1. Automating processes to meet basic optimisations in current development standards
 2. Setting development conventions in the organisation
 
@@ -53,9 +54,11 @@ Grunt task runner for rapid deployment of static PHP sites by:
 
 ## Features
 ### Scalable Vector Graphics (SVG)
+
 #### Clean SVGs
 Change `classes` and ids to lowercase
 Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`)
+
 ##### Sources/documentation
 - <http://mattsoria.com/killersvgworkflow/>
 - <https://github.com/yoniholmes/grunt-text-replace>
@@ -67,9 +70,11 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 - Generates spritesheet in build sub-folder (file reference: svg-defs.svg)
 - Generates image fallbacks (file reference: {name of file}.png)
 - Compression of generated fallback images
+
 ##### Issues/Milestones
 - Generate Sass spritesheet partial
 - Generate HTML demo file
+
 ##### Sources/documentation
 - <http://mattsoria.com/killersvgworkflow/>
 - <https://github.com/FWeinb/grunt-svgstore>
