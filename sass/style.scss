@@ -8,7 +8,7 @@
 //////////////////////////////
 @import "breakpoint";
 @import "utility/mixins";
-// @import "utility/font-face";
+@import "utility/font-face";
 
 // *
 // element query (eq.js)
@@ -46,7 +46,7 @@
 // *
 // document
 // template styles when developing a document
-@import "base/document";
+// @import "base/document";
 
 // *
 // style guide

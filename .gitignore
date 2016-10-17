@@ -8,3 +8,6 @@ images/tmp/
 stylesheets/
 javascripts/build/
 javascripts/tmp/
+build/
+.DS_Store
+*/.DS_Store
