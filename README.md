@@ -26,27 +26,27 @@ Grunt task runner for rapid deployment of static PHP sites by:
 | ------------- | :-----------: | --------------------------------------------------------------------------------------------: |
 | **General**                                                                                                                   |
 | siteFullPath  | `null`        | Full path to the project folder                                                               |
-| src           | `src`         | Source folder name. Source folders store initial assets before build processing.              |
-| tmp           | `tmp`         | Temporary folder name. Temporary folders stored by-products generated during build processes. |
-| build         | `build`       | Build folder name. Build folders store the output of build processes.                         |
+| src           | "src"         | Source folder name. Source folders store initial assets before build processing.              |
+| tmp           | "tmp"         | Temporary folder name. Temporary folders stored by-products generated during build processes. |
+| build         | "build"       | Build folder name. Build folders store the output of build processes.                         |
 | **Media**                                                                                                                     |
-| svgDir        | `svgs`        | Folder storing SVG icon assets                                                                |
-| faviDir       | `favicons`    | Folder storing Favicon assets                                                                 |
-| imgDir        | `images`      | Folder storing static images                                                                  |
+| svgDir        | "svgs"        | Folder storing SVG icon assets                                                                |
+| faviDir       | "favicons"    | Folder storing Favicon assets                                                                 |
+| imgDir        | "images"      | Folder storing static images                                                                  |
 | **Stylesheets**                                                                                                               |
-| sassDir       | `sass`        | Folder storing Sass assets                                                                    |
-| cssDir        | `stylesheets` | Folder storing generated css assets                                                           |
-| fontDir       | `fonts`       | Folder storing font assets                                                                    |
+| sassDir       | "sass"        | Folder storing Sass assets                                                                    |
+| cssDir        | "stylesheets" | Folder storing generated css assets                                                           |
+| fontDir       | "fonts"       | Folder storing font assets                                                                    |
 | **Javascripts**                                                                                                               |
-| jsDir         | `javascripts` | Folder storing javascript assets       
+| jsDir         | "javascripts" | Folder storing javascript assets       
 
 
 
 ## Features
 ### Scalable Vector Graphics (SVG)
 #### Clean SVGs
-Change classes and ids to lowercase
-Change ids of SVG groups to classes (name paths/layers: "class="{class name}"")
+Change `classes` and ids to lowercase
+Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`)
 ##### Sources/documentation
 - <http://mattsoria.com/killersvgworkflow/>
 - <https://github.com/yoniholmes/grunt-text-replace>
@@ -54,7 +54,7 @@ Change ids of SVG groups to classes (name paths/layers: "class="{class name}"")
 ---
 
 #### Concatenating SVGs into spritesheet
-- Injects individual shape with ids with 'shape-' prefix (shape reference: '#shape-' + {name of file})
+- Injects individual shape with ids with `shape-` prefix (shape reference: `#shape- + {name of file}`)
 - Generates spritesheet in build sub-folder (file reference: svg-defs.svg)
 - Generates image fallbacks (file reference: {name of file}.png)
 - Compression of generated fallback images
@@ -93,7 +93,7 @@ Change ids of SVG groups to classes (name paths/layers: "class="{class name}"")
 ### Cascading Stylesheets (CSS)
 #### Compiling Sass into CSS
 - Automated prefixing for CSS properties
-- Automated px fallback values provided for rem values
+- Automated `px` fallback values provided for `rem` values
 ##### Sources/documentation
 - <https://github.com/gruntjs/grunt-contrib-sass>
 
@@ -136,35 +136,21 @@ Change ids of SVG groups to classes (name paths/layers: "class="{class name}"")
 
 ### Layout
 #### Basic grid system
-- Flex-box based row and column grid system (file references: base/_grid.scss)
+- `Flex-box` based row and column grid system (file references: base/_grid.scss)
 ##### Sources/documentation
 - <https://css-tricks.com/snippets/css/a-guide-to-flexbox>/
 
 
 
 ## Tasks
-### grunt watch
-Watches for changes to specific scopes:
-- Template files
-- Static images
-- SVG files
-- Sass files
-- Project script (file reference: main.js)
-and runs scope specific processes, fires LiveReload if available.
+| Operation name             | Description                                                                                                                                                                       |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `grunt watch`              | Watches for changes to listed scope (templates, images, SVG files, Sass files, scripts) and fires LiveReload if available.                                                        |
+| `grunt build-favicons`     | Generate favicon images and HTML. * Subsequent generations create blank lines in place of previously generated HTML, refactor as required.                                        |
+| `grunt build-critical-css` | Generate critical CSS for various template files. * Not included in watch due to manual aspect of listing template files and long processing time for generating critical styles. |
+| `grunt deploy`             | Generate a build copy of the files (not listing source and temporarily generated files)                                                                                           |
+| `grunt`                    | Full build of site, useful for initial deployment.                                                                                                                                |
 
----
 
-### grunt build-favicons
-Generate favicon images and HTML.
-* Subsequent generations create blank lines in place of previously generated HTML, refactor as required.
 
----
 
-### grunt build-critical-css
-Generate critical CSS for various template files.
-* Not included in watch due to manual aspect of listing template files and long processing time for generating critical styles.
-
----
-
-### grunt
-Full build of site, useful for initial deployment.

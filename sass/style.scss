@@ -46,7 +46,7 @@
 // *
 // document
 // template styles when developing a document
-@import "base/document";
+// @import "base/document";
 
 // *
 // style guide
@@ -80,54 +80,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-.test-btn {
-  position: fixed;
-  z-index: 300;
-  top: 20px;
-  right: 20px;
-  background: lavender;
-  padding: 10px;
-}
-
-.test-mast {
-  position: fixed;
-  z-index: 200;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: orange;
-  transform: translate(0, 100%);
-}
-
-.test-shell {
-  position: relative;
-  z-index: 100;
-}
-
-.test-main {
-  position: relative;
-  z-index: 20;
-  height: 3200px;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727));
-}
-
-.test-foot {
-  position: relative;
-  z-index: 10;
-  height: 200px;
-  background: red;
-}
-
-.test-foot__content {
-  position: fixed;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: red;
-}
-
 
 
