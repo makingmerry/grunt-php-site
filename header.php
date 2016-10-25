@@ -54,4 +54,4 @@
 
   <!-- # favicons -->
 </head>
-<body></body></html>
+<body>
