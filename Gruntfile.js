@@ -318,6 +318,7 @@ module.exports = function(grunt) {
     // watch files for changes
     watch: {
       options: {
+        event: ['changed', 'added', 'deleted'],
         spawn: false,
         livereload: {
           host: '127.0.0.1', // livereload IP
@@ -327,31 +328,31 @@ module.exports = function(grunt) {
 
       // watch for changes to mark up
       template: {
-        files: '*.{html,php}'
+        files: ['**/*.{html,php}'],
       },
 
       // watch for new images in source folder
       img: {
-        files: '<%= config.imgDir %>/<%= config.src %>/*.{png,jpg,gif}',
-        tasks: 'build-img'
+        files: ['<%= config.imgDir %>/<%= config.src %>/**'],
+        tasks: ['build-img'],
       },
 
       // watch for new svg files in source folder
       svgs: {
-        files: '<%= config.svgDir %>/<%= config.src %>/*.svg',
-        tasks: 'build-svg',
+        files: ['<%= config.svgDir %>/<%= config.src %>/**'],
+        tasks: ['build-svg'],
       },
 
       // watch for changes in sass files
       css: {
-        files: '<%= config.sassDir %>/**/*.scss',
-        tasks: 'build-base-css'
+        files: ['<%= config.sassDir %>/**/*.scss'],
+        tasks: ['build-base-css'],
       },
 
       // watch for changes in javascript files
       js: {
-        files: '<%= config.jsDir %>/<%= config.src %>/*.js',
-        tasks: 'build-js'
+        files: ['<%= config.jsDir %>/<%= config.src %>/**/*.js'],
+        tasks: ['build-js'],
       }
     },
 
