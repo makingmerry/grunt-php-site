@@ -261,11 +261,11 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
-          '<%= config.jsDir %>/<%= config.src %>/picturefill.min.js',
-          '<%= config.jsDir %>/<%= config.src %>/svg4everybody.min.js',
-          // '<%= config.jsDir %>/<%= config.src %>/eq.min.js', // element query not required in default build
-          '<%= config.jsDir %>/<%= config.src %>/jquery.min.js',
-          '<%= config.jsDir %>/<%= config.src %>/velocity.min.js',
+          '<%= config.jsDir %>/<%= config.src %>/picturefill.js',
+          '<%= config.jsDir %>/<%= config.src %>/svg4everybody.js',
+          // '<%= config.jsDir %>/<%= config.src %>/eq.js', // element query not required in default build
+          '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
+          '<%= config.jsDir %>/<%= config.src %>/velocity.js',
           '<%= config.jsDir %>/<%= config.src %>/main.js'],
         dest: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
       },
