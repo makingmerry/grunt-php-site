@@ -59,6 +59,7 @@ $i: 1;
   $flex-basis: unquote((100 / ($col-count / $i)) + "%");
   .col--#{$i} {
     flex: 0 1 $flex-basis;
+    max-width: $flex-basis; // hot fix: `flex-basis` doesn't account for `box-sizing: border-box`
   }
   .col--order-#{$i} {
     order: $i;
@@ -74,6 +75,7 @@ $i: 1;
     $flex-basis: unquote((100 / ($col-count / $i)) + "%");
     .col--m-#{$i} {
       flex: 0 1 $flex-basis;
+      max-width: $flex-basis; // hot fix: see line 70
     }
     .col--order-m-#{$i} {
       order: $i;
@@ -90,6 +92,7 @@ $i: 1;
     $flex-basis: unquote((100 / ($col-count / $i)) + "%");
     .col--l-#{$i} {
       flex: 0 1 $flex-basis;
+      max-width: $flex-basis; // hot fix: see line 70
     }
     .col--order-l-#{$i} {
       order: $i;
