@@ -248,7 +248,8 @@ module.exports = function(grunt) {
           width: 1280,
           height: 720,
           outputfile: '<%= config.cssDir %>/<%= config.tmp %>/critical/index.css',
-          forceInclude: []
+          forceInclude: [],
+          ignoreConsole: true
         }
       },
     },
