@@ -85,7 +85,7 @@ module.exports = function(grunt) {
     // *
     // minify individual svgs
     svgmin: {
-      dist: {
+      icons: {
         files: [{
           expand: true,
           cwd: '<%= config.svgDir %>/<%= config.tmp %>/',
@@ -96,7 +96,10 @@ module.exports = function(grunt) {
       options: {
         plugins: [
           { removeViewBox: false },
-          { removeEmptyAttrs: false }
+          { removeEmptyAttrs: false },
+          { removeAttrs: {
+            attrs: ['fill']
+          }}
         ]
       }
     },
@@ -104,7 +107,7 @@ module.exports = function(grunt) {
     // *
     // merge svgs to a spritesheet
     svgstore: {
-      dist: {
+      icons: {
         files: {
           '<%= config.svgDir %>/<%= config.build %>/svg-defs.svg': ['<%= config.svgDir %>/<%= config.tmp %>/*.svg']
         },
@@ -118,12 +121,21 @@ module.exports = function(grunt) {
     // *
     // build png fallbacks from svg
     svg2png: {
-      dist: {
+      staticSvgs: {
+        files: [{ 
+          flatten: true,
+          cwd: '<%= config.imgDir %>/<%= config.src %>/', 
+          src: ['*.svg'], 
+          dest: '<%= config.imgDir %>/<%= config.tmp %>/'
+        }]
+      },
+
+      icons: {
         files: [{ 
           flatten: true,
           cwd: '<%= config.svgDir %>/<%= config.src %>/', 
           src: ['*.svg'], 
-          dest: '<%= config.svgDir %>/<%= config.build %>/'
+          dest: '<%= config.svgDir %>/<%= config.tmp %>/'
         }]
       }
     },
@@ -152,23 +164,42 @@ module.exports = function(grunt) {
     imagemin: {
       statics: {
         options: {
-          optimizationLevel: 3
+          optimizationLevel: 3,
+          svgoPlugins: [
+            { cleanupIDs: false },
+            { removeDimensions: true },
+            { removeAttrs: {
+              attrs: ['fill']
+            }}
+          ]
         },
         files: [{
           expand: true,
           cwd: '<%= config.imgDir %>/<%= config.src %>/',
-          src: ['**/*.{png,jpg,gif}'],
+          src: ['**/*.{png,jpg,gif,svg}'],
           dest: '<%= config.imgDir %>/<%= config.build %>/'
         }]
       },
 
-      svgs: {
+      staticSvgs: {
         options: {
           optimizationLevel: 3
         },
         files: [{
           expand: true,
-          cwd: '<%= config.svgDir %>/<%= config.build %>/',
+          cwd: '<%= config.imgDir %>/<%= config.tmp %>/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: '<%= config.imgDir %>/<%= config.build %>/'
+        }]
+      },
+
+      icons: {
+        options: {
+          optimizationLevel: 3
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= config.svgDir %>/<%= config.tmp %>/',
           src: ['**/*.{png,jpg,gif}'],
           dest: '<%= config.svgDir %>/<%= config.build %>/'
         }]
@@ -233,7 +264,10 @@ module.exports = function(grunt) {
             require('cssnano')()
           ]
         },
-        src: '<%= config.cssDir %>/<%= config.tmp %>/critical/*.css',
+        expand: true,
+        cwd: '<%= config.cssDir %>/<%= config.tmp %>/critical/',
+        src: ['**/*.css'],
+        dest: '<%= config.cssDir %>/<%= config.build %>/critical/'
       }
     },
 
@@ -248,8 +282,7 @@ module.exports = function(grunt) {
           width: 1280,
           height: 720,
           outputfile: '<%= config.cssDir %>/<%= config.tmp %>/critical/index.css',
-          forceInclude: [],
-          ignoreConsole: true
+          forceInclude: []
         }
       },
     },
@@ -293,7 +326,7 @@ module.exports = function(grunt) {
     // *
     // copy build files for deployment
     copy: {
-      deploy: {
+      build: {
         expand: true,
         src: [
           // media
@@ -302,7 +335,7 @@ module.exports = function(grunt) {
           '<%= config.imgDir %>/<%= config.build %>/*',
 
           // css
-          '<%= config.cssDir %>/<%= config.build %>/*',
+          '<%= config.cssDir %>/<%= config.build %>/**',
           '<%= config.fontDir %>/*',
 
           // javascript
@@ -406,9 +439,9 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # media
   //////////////////////////////
-  grunt.registerTask('build-svg', ['replace:svgclass', 'svgmin', 'svgstore', 'svg2png', 'imagemin:svgs']);
+  grunt.registerTask('build-icons', ['replace:icons', 'svgmin:icons', 'svgstore:icons', 'svg2png:icons', 'imagemin:icons']);
   grunt.registerTask('build-favicons', ['favicons', 'imagemin:favicons']);
-  grunt.registerTask('build-img', 'imagemin:statics');
+  grunt.registerTask('build-img', ['imagemin:statics', 'svg2png:staticSvgs', 'imagemin:staticSvgs']);
 
   //////////////////////////////
   // # css
@@ -425,7 +458,6 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # core
   //////////////////////////////
-  grunt.registerTask('deploy', 'copy:deploy');
-  grunt.registerTask('default', ['build-svg', 'build-favicons', 'build-img', 'build-css', 'build-js', 'deploy']);
-
+  grunt.registerTask('build', 'copy:build');
+  grunt.registerTask('default', ['build-svg', 'build-favicons', 'build-img', 'build-css', 'build-js', 'build']);
 };

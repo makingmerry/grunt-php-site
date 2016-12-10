@@ -17,8 +17,8 @@
   <!-- # stylesheets -->
   <!-- load critical inline styles -->
   <style type="text/css">
-    <?php
-    $file = 'stylesheets/tmp/critical/'.$page.'.css';
+    <?
+    $file = 'stylesheets/build/critical/'.$page.'.css';
     file_exists($file) AND include $file;
     ?>
   </style>
