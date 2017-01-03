@@ -18,12 +18,12 @@
 
 body {
   font-family: $font-pri;
-  line-height: 1.4;
+  line-height: $line-height;
   color: $base;
 }
 
 header, nav, article, section, aside, footer {
-  margin-bottom: $gutter * 4;
+  margin-bottom: $gutter * 2;
 
   &:last-child {
     margin-bottom: 0;
@@ -31,8 +31,8 @@ header, nav, article, section, aside, footer {
 }
 
 hr {
-  margin-top: $gutter * 4;
-  margin-bottom: $gutter * 4;
+  margin-top: $gutter * 2;
+  margin-bottom: $gutter * 2;
   border-top-color: $neutral-3;
 }
 
@@ -40,7 +40,7 @@ hr {
 // # title
 //////////////////////////////
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.1;
+  line-height: 1;
   font-weight: bold;
 }
 
@@ -87,8 +87,7 @@ dt {
 }
 
 dd {
-  margin-left: $gutter;
-  margin-bottom: $gutter;
+  margin-bottom: 1em;
 
   &:last-child {
     margin-bottom: 0;
@@ -104,6 +103,14 @@ p {
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+strong, b {
+  font-weight: bold;
+}
+
+em, i {
+  font-style: italic;
 }
 
 sub, sup {
@@ -189,15 +196,11 @@ table {
   table-layout: fixed;
   width: 100%;
   margin-bottom: $gutter;
-  border-top: 1px solid $base;
-  border-right: 1px solid $base;
-  border-bottom: 1px solid $base;
-  border-left: 1px solid $base;
+  border-top: 1px solid $neutral-3;
+  border-right: 1px solid $neutral-3;
+  border-bottom: 1px solid $neutral-3;
+  border-left: 1px solid $neutral-3;
   text-align: left;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
 
 caption {
@@ -211,17 +214,17 @@ th, td {
   padding-right: 0.5em;
   padding-bottom: 0.25em;
   padding-left: 0.5em;
-  border-top: 1px solid $base;
-  border-right: 1px solid $base;
-  border-bottom: 1px solid $base;
-  border-left: 1px solid $base;
+  border-top: 1px solid $neutral-3;
+  border-right: 1px solid $neutral-3;
+  border-bottom: 1px solid $neutral-3;
+  border-left: 1px solid $neutral-3;
 }
 
 //////////////////////////////
 // # form
 //////////////////////////////
 fieldset {
-  margin-bottom: $gutter * 4;
+  margin-bottom: $gutter;
 
   &:last-child {
     margin-bottom: 0;
@@ -241,22 +244,7 @@ textarea, select, input {
   line-height: 1.4;
 }
 
-textarea, select,
-input[type="text"],
-input[type="password"],
-input[type="number"],
-input[type="date"],
-input[type="color"],
-input[type="range"],
-input[type="month"],
-input[type="week"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="email"],
-input[type="search"],
-input[type="tel"],
-input[type="url"] {
+textarea, select, input[type="text"], input[type="password"], input[type="number"], input[type="date"], input[type="color"], input[type="range"], input[type="month"], input[type="week"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="search"], input[type="tel"], input[type="url"] {
   display: block;
   width: 100%;
   padding-top: 0.25em;
@@ -288,10 +276,10 @@ input {
     padding-right: 0.25em;
     padding-bottom: 0.25em;
     padding-left: 0.25em;
-    border-top: 1px solid $base;
-    border-right: 1px solid $base;
-    border-bottom: 1px solid $base;
-    border-left: 1px solid $base;
+    border-top: 1px solid $neutral-3;
+    border-right: 1px solid $neutral-3;
+    border-bottom: 1px solid $neutral-3;
+    border-left: 1px solid $neutral-3;
 
     &::before {
       content: "";

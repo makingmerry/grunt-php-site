@@ -5,9 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="">
   <meta name="description" content="">
-  <title><? echo $page; ?></title>
+  <title><?= $page; ?></title>
 
   <!-- # og tags -->
   <meta property="og:url" content="">
@@ -46,12 +45,16 @@
 
   <!-- # load critical scripts -->
   <script>
-    // javascript enabled
-    document.documentElement.className = 'js';
+    // javascript hook
+    if (document.documentElement.classList.length) {
+      document.documentElement.className += ' js';
+    } else {
+      document.documentElement.className = ' js';
+    }
     // picture element HTML5 shiv
     document.createElement('picture');
   </script>
 
   <!-- # favicons -->
 </head>
-<body></body></html>
+<body>

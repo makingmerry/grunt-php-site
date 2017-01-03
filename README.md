@@ -56,8 +56,8 @@ Grunt task runner for rapid deployment of static PHP sites by:
 
 ### Scalable Vector Graphics (SVG)
 #### Clean SVGs
-Change `classes` and ids to lowercase
-Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`)
+- Change `classes` and `ids` to lowercase
+- Change `ids` of SVG groups to `classes` (name paths/layers: `class="{class name}"`)
 
 ##### Sources/documentation
 - <http://mattsoria.com/killersvgworkflow/>
@@ -173,7 +173,3 @@ Change ids of SVG groups to `classes` (name paths/layers: `class="{class name}"`
 | `grunt build-critical-css` | Generate critical CSS for various template files. * Not included in watch due to manual aspect of listing template files and long processing time for generating critical styles. |
 | `grunt deploy`             | Generate a build copy of the files (not listing source and temporarily generated files)                                                                                           |
 | `grunt`                    | Full build of site, useful for initial deployment.                                                                                                                                |
-
-
-
-

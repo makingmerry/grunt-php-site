@@ -2,16 +2,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////
-// # row
-//////////////////////////////
-.row {
+.grid {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
-.row--m {
+.grid--m {
   display: block;
 
   @include breakpoint($screen--m) {
@@ -19,10 +16,10 @@
   }
 }
 
-.row--l {
+.grid--l {
   display: block;
 
-  @include breakpoint($screen--m) {
+  @include breakpoint($screen--l) {
     display: flex;
   }
 }
@@ -33,8 +30,28 @@
 .col {
   order: 1;
   min-width: 0;
+  padding-right: $gutter;
+  padding-left: $gutter;
+
+  @include breakpoint($screen--m) {
+    padding-right: $gutter--m;
+    padding-left: $gutter--m;
+  }
+
+  @include breakpoint($screen--l) {
+    padding-right: $gutter--l;
+    padding-left: $gutter--l;
+  }
 }
 
+.col--no-pad {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+//////////////////////////////
+// # grid generator
+//////////////////////////////
 // *
 // small screen (default)
 $i: 1;
@@ -42,6 +59,7 @@ $i: 1;
   $flex-basis: unquote((100 / ($col-count / $i)) + "%");
   .col--#{$i} {
     flex: 0 1 $flex-basis;
+    max-width: $flex-basis; // hot fix: `flex-basis` doesn't account for `box-sizing: border-box`
   }
   .col--order-#{$i} {
     order: $i;
@@ -57,11 +75,11 @@ $i: 1;
     $flex-basis: unquote((100 / ($col-count / $i)) + "%");
     .col--m-#{$i} {
       flex: 0 1 $flex-basis;
+      max-width: $flex-basis; // hot fix: see line 70
     }
-    .col--order-m#{$i} {
+    .col--order-m-#{$i} {
       order: $i;
     }
-
     $i: $i + 1;
   }
 }
@@ -74,34 +92,11 @@ $i: 1;
     $flex-basis: unquote((100 / ($col-count / $i)) + "%");
     .col--l-#{$i} {
       flex: 0 1 $flex-basis;
+      max-width: $flex-basis; // hot fix: see line 70
     }
-    .col--order-l#{$i} {
+    .col--order-l-#{$i} {
       order: $i;
     }
     $i: $i + 1;
   }
-}
-
-//////////////////////////////
-// # core
-//////////////////////////////
-.col__core {
-  height: 100%;
-  padding-right: $gutter;
-  padding-left: $gutter;
-
-  @include breakpoint($screen--m) {
-    padding-right: $gutter--m;
-    padding-left: $gutter--m;
-  }
-
-  @include breakpoint($screen--l) {
-    padding-right: $gutter--l;
-    padding-left: $gutter--l;
-  }
-}
-
-.col__core--no-pad {
-  padding-right: 0;
-  padding-left: 0;
 }
