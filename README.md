@@ -171,5 +171,5 @@ Grunt task runner for rapid deployment of static PHP sites by:
 | `grunt watch`              | Watches for changes to listed scope (templates, images, SVG files, Sass files, scripts) and fires LiveReload if available.                                                        |
 | `grunt build-favicons`     | Generate favicon images and HTML. * Subsequent generations create blank lines in place of previously generated HTML, refactor as required.                                        |
 | `grunt build-critical-css` | Generate critical CSS for various template files. * Not included in watch due to manual aspect of listing template files and long processing time for generating critical styles. |
-| `grunt deploy`             | Generate a build copy of the files (not listing source and temporarily generated files)                                                                                           |
+| `grunt build`              | Generate a build copy of the files (not listing source and temporarily generated files)                                                                                           |
 | `grunt`                    | Full build of site, useful for initial deployment.                                                                                                                                |
