@@ -89,13 +89,9 @@ function DomComplete() {
 //////////////////////////////
 // # listener
 //////////////////////////////
-if (document.readyState === 'complete') {
-  complete();
-}
-
 var interval = setInterval(function() {
   if(document.readyState === 'complete') {
     clearInterval(interval);
-    complete();
+    DomComplete();
   }
 }, 100);
