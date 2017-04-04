@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <title><?= $page; ?></title>
+  <title><?php echo $page; ?></title>
 
   <!-- # og tags -->
   <meta property="og:url" content="">
@@ -14,10 +14,10 @@
   <meta property="og:description" content="">
   <meta property="og:image" content="">
 
-  <!-- # stylesheets -->
+  <!-- # styles -->
   <!-- load critical inline styles -->
   <style type="text/css">
-    <?
+    <?php
     $file = 'stylesheets/build/critical/'.$page.'.css';
     file_exists($file) AND include $file;
     ?>
@@ -28,13 +28,24 @@
     <link href="stylesheets/build/style.css" rel="stylesheet" type="text/css">
   </noscript>
 
+  <!-- hide preloader if javascript is disabled -->
+  <noscript>
+    <style type="text/css">
+      .preloader {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+      }
+    </style>
+  </noscript>
+
   <!-- load non-critical styles -->
   <script>
     var loadDeferredStyles = function() {
-      var addStylesNode = document.getElementById("deferred-styles");
-      var replacement = document.createElement("div");
+      var addStylesNode = document.getElementById('deferred-styles');
+      var replacement = document.createElement('div');
       replacement.innerHTML = addStylesNode.textContent;
-      document.body.appendChild(replacement)
+      document.body.appendChild(replacement);
       addStylesNode.parentElement.removeChild(addStylesNode);
     };
     var raf = requestAnimationFrame || mozRequestAnimationFrame ||
