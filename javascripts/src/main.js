@@ -198,5 +198,3 @@ var interval = setInterval(function() {
     DomComplete();
   }
 }, 100);
-
-
