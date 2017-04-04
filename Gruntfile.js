@@ -303,11 +303,20 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
+          // *
+          // polyfills scripts
           '<%= config.jsDir %>/<%= config.src %>/picturefill.js',
           '<%= config.jsDir %>/<%= config.src %>/svg4everybody.js',
-          // '<%= config.jsDir %>/<%= config.src %>/eq.js', // element query not required in default build
+          // *
+          // feature library scripts
           '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
-          '<%= config.jsDir %>/<%= config.src %>/velocity.js',
+          // *
+          // animation library scripts
+          '<%= config.jsDir %>/<%= config.src %>/TweenLite.js',
+          '<%= config.jsDir %>/<%= config.src %>/CSSPlugin.js',
+          '<%= config.jsDir %>/<%= config.src %>/ScrollToPlugin.js',
+          // *
+          // project scripts
           '<%= config.jsDir %>/<%= config.src %>/main.js'],
         dest: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
       },

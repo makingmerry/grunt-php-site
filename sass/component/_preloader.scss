@@ -14,7 +14,7 @@
   padding-left: $gutter;
   padding-bottom: $gutter;
   padding-right: $gutter;
-  background: lightblue;
+  background: $white;
 
   @include breakpoint($screen--m) {
     padding-top: $gutter--m;
@@ -35,7 +35,6 @@
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  background: purple;
 }
 
 .preloader__whirligig {
@@ -49,6 +48,8 @@ body {
   // *
   // js enhancement
   .js & {
+    position: relative;
+    z-index: 1000;
     overflow: hidden;
   }
 }

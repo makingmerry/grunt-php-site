@@ -114,7 +114,6 @@ function DomComplete() {
     //////////////////////////////
     this.stopScroll = function() {
       var obj = this;
-
       obj.body.css('overflow', 'hidden');
     };
 
@@ -123,7 +122,6 @@ function DomComplete() {
     //////////////////////////////
     this.startScroll = function() {
       var obj = this;
-
       obj.body.css('overflow', 'auto');
     };
 
@@ -132,9 +130,19 @@ function DomComplete() {
     //////////////////////////////
     this.open = function() {
       var obj = this;
-
+      // cease page scrolling
       obj.stopScroll();
+      // update object state
       obj.state.active = true;
+      // transit in preloader
+      TweenLite.set(obj.el, {
+        display   : 'table',
+        visibility: 'visible',
+        opacity   : 0
+      });
+      TweenLite.to(obj.el, obj.option.transitionDuration, {
+        opacity: 1
+      });
     };
 
     //////////////////////////////
@@ -142,17 +150,28 @@ function DomComplete() {
     //////////////////////////////
     this.close = function() {
       var obj = this;
-
-      obj.startScroll();
-      obj.state.active = false;
+      // transit out preloader
+      TweenLite.to(obj.el, obj.option.transitionDuration, {
+        opacity: 0,
+        onComplete: function() {
+          // update element attributes
+          obj.el.css({
+            display   : 'none',
+            visibility: 'hidden'
+          });
+          // allow page scrolling
+          obj.startScroll();
+          // update object state
+          obj.state.active = false;
+        }
+      });
     };
 
     //////////////////////////////
-    // # toggle preloader
+    // # toggle preloader based on state
     //////////////////////////////
     this.toggle = function() {
       var obj = this;
-
       if (obj.state.active) {
         obj.close();
       } else {

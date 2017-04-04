@@ -6,7 +6,7 @@
     "url" : "https://github.com/makingmerry/base-site"
   },
   "license": "UNLICENSED",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "dependencies": {
     "autoprefixer": "^6.5.1",
     "breakpoint-sass": "^2.7.1",
