@@ -17,7 +17,6 @@ module.exports = function(grunt) {
       // *
       // models
       snipDir: 'snippets',
-      tplDir : 'templates',
 
       // *
       // media
@@ -360,8 +359,6 @@ module.exports = function(grunt) {
 
           // models
           '<%= config.snipDir %>/*.{html,php}',
-          '<%= config.tplDir %>/*.{html,php}',
-          '<%= config.tplDir %>/*/*.{html,php}',
           '*.{html,php}',
         ],
         dest: 'build/'
