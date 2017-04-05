@@ -9,21 +9,26 @@ module.exports = function(grunt) {
     config: {
       // *
       // general
-      siteFullPath: 'http://localhost:8888/',
-      src: 'src',
-      tmp: 'tmp',
-      build: 'build',
+      fullPath: 'http://localhost:8888/',
+      src     : 'src',
+      tmp     : 'tmp',
+      build   : 'build',
+
+      // *
+      // models
+      snipDir: 'snippets',
+      tplDir : 'templates',
 
       // *
       // media
-      svgDir: 'svgs',
+      svgDir : 'svgs',
       faviDir: 'favicons',
-      imgDir: 'images',
+      imgDir : 'images',
 
       // *
       // css
       sassDir: 'sass',
-      cssDir: 'stylesheets',
+      cssDir : 'stylesheets',
       fontDir: 'fonts',
 
       // *
@@ -41,12 +46,12 @@ module.exports = function(grunt) {
     // ID cleanup: performs a manual ID cleanup as Illustrator exports a mess
     replace: {
       svgclass: {
-        src: ['<%= config.svgDir %>/<%= config.src %>/*.svg'],
-        dest: '<%= config.svgDir %>/<%= config.tmp %>/',
+        src         : ['<%= config.svgDir %>/<%= config.src %>/*.svg'],
+        dest        : '<%= config.svgDir %>/<%= config.tmp %>/',
         replacements: [{
           // Remove escaped underscore character
           from: '_x5F_',
-          to: '-'
+          to  : '-'
         }, {
           // replace class names with proper classes
           //class_x3D__x22_tank-option_x22__2_
@@ -88,16 +93,16 @@ module.exports = function(grunt) {
       icons: {
         files: [{
           expand: true,
-          cwd: '<%= config.svgDir %>/<%= config.tmp %>/',
-          src: ['*.svg'],
-          dest: '<%= config.svgDir %>/<%= config.tmp %>/'
+          cwd   : '<%= config.svgDir %>/<%= config.tmp %>/',
+          src   : ['*.svg'],
+          dest  : '<%= config.svgDir %>/<%= config.tmp %>/'
         }]
       },
       options: {
         plugins: [
-          { removeViewBox: false },
+          { removeViewBox   : false },
           { removeEmptyAttrs: false },
-          { removeAttrs: {
+          { removeAttrs     : {
             attrs: ['fill']
           }}
         ]
@@ -114,7 +119,7 @@ module.exports = function(grunt) {
       },
       options: {
         cleanup: true,
-        prefix: 'shape-'
+        prefix : 'shape-'
       }
     },
 
@@ -124,18 +129,18 @@ module.exports = function(grunt) {
       staticSvgs: {
         files: [{ 
           flatten: true,
-          cwd: '<%= config.imgDir %>/<%= config.src %>/', 
-          src: ['*.svg'], 
-          dest: '<%= config.imgDir %>/<%= config.tmp %>/'
+          cwd    : '<%= config.imgDir %>/<%= config.src %>/', 
+          src    : ['*.svg'], 
+          dest   : '<%= config.imgDir %>/<%= config.tmp %>/'
         }]
       },
 
       icons: {
         files: [{ 
           flatten: true,
-          cwd: '<%= config.svgDir %>/<%= config.src %>/', 
-          src: ['*.svg'], 
-          dest: '<%= config.svgDir %>/<%= config.tmp %>/'
+          cwd    : '<%= config.svgDir %>/<%= config.src %>/', 
+          src    : ['*.svg'], 
+          dest   : '<%= config.svgDir %>/<%= config.tmp %>/'
         }]
       }
     },
@@ -147,11 +152,14 @@ module.exports = function(grunt) {
     // generate favicons for various platforms
     favicons: {
       options: {
-        html: 'header.php',
-        HTMLPrefix: '<%= config.faviDir %>/<%= config.build %>/'
+        html                     : '<%= config.snipDir %>/header.php',
+        HTMLPrefix               : '<%= config.faviDir %>/<%= config.build %>/',
+        appleTouchBackgroundColor: 'none',
+        tileColor                : 'none',
+        indent                   : "  "
       },
       icons: {
-        src: '<%= config.faviDir %>/<%= config.src %>/favicon.png',
+        src : '<%= config.faviDir %>/<%= config.src %>/favicon.png',
         dest: '<%= config.faviDir %>/<%= config.build %>/'
       }
     },
@@ -165,19 +173,19 @@ module.exports = function(grunt) {
       statics: {
         options: {
           optimizationLevel: 3,
-          svgoPlugins: [
-            { cleanupIDs: false },
+          svgoPlugins      : [
+            { cleanupIDs      : false },
             { removeDimensions: true },
-            { removeAttrs: {
+            { removeAttrs     : {
               attrs: ['fill']
             }}
           ]
         },
         files: [{
           expand: true,
-          cwd: '<%= config.imgDir %>/<%= config.src %>/',
-          src: ['**/*.{png,jpg,gif,svg}'],
-          dest: '<%= config.imgDir %>/<%= config.build %>/'
+          cwd   : '<%= config.imgDir %>/<%= config.src %>/',
+          src   : ['**/*.{png,jpg,gif,svg}'],
+          dest  : '<%= config.imgDir %>/<%= config.build %>/'
         }]
       },
 
@@ -187,9 +195,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= config.imgDir %>/<%= config.tmp %>/',
-          src: ['**/*.{png,jpg,gif}'],
-          dest: '<%= config.imgDir %>/<%= config.build %>/'
+          cwd   : '<%= config.imgDir %>/<%= config.tmp %>/',
+          src   : ['**/*.{png,jpg,gif}'],
+          dest  : '<%= config.imgDir %>/<%= config.build %>/'
         }]
       },
 
@@ -199,9 +207,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= config.svgDir %>/<%= config.tmp %>/',
-          src: ['**/*.{png,jpg,gif}'],
-          dest: '<%= config.svgDir %>/<%= config.build %>/'
+          cwd   : '<%= config.svgDir %>/<%= config.tmp %>/',
+          src   : ['**/*.{png,jpg,gif}'],
+          dest  : '<%= config.svgDir %>/<%= config.build %>/'
         }]
       },
 
@@ -211,9 +219,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= config.faviDir %>/<%= config.build %>/',
-          src: ['**/*.{png,jpg,gif}'],
-          dest: '<%= config.faviDir %>/<%= config.build %>/'
+          cwd   : '<%= config.faviDir %>/<%= config.build %>/',
+          src   : ['**/*.{png,jpg,gif}'],
+          dest  : '<%= config.faviDir %>/<%= config.build %>/'
         }]
       },
     },
@@ -226,7 +234,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          style: 'expanded',
+          style  : 'expanded',
           require: 'breakpoint'
         },
         files: {
@@ -243,7 +251,7 @@ module.exports = function(grunt) {
       // base css
       base: {
         options: {
-          map: true,
+          map       : true,
           processors: [
             require('pixrem')(),
             require('autoprefixer')({ browsers: 'last 2 versions' }),
@@ -257,7 +265,7 @@ module.exports = function(grunt) {
       // critical inline css
       critical: {
         options: {
-          map: false,
+          map       : false,
           processors: [
             require('pixrem')(),
             require('autoprefixer')({ browsers: 'last 2 versions' }),
@@ -265,9 +273,9 @@ module.exports = function(grunt) {
           ]
         },
         expand: true,
-        cwd: '<%= config.cssDir %>/<%= config.tmp %>/critical/',
-        src: ['**/*.css'],
-        dest: '<%= config.cssDir %>/<%= config.build %>/critical/'
+        cwd   : '<%= config.cssDir %>/<%= config.tmp %>/critical/',
+        src   : ['**/*.css'],
+        dest  : '<%= config.cssDir %>/<%= config.build %>/critical/'
       }
     },
 
@@ -277,11 +285,11 @@ module.exports = function(grunt) {
       // index page template
       index: {
         options: {
-          url: '<%= config.siteFullPath %>',
-          filename: '<%= config.cssDir %>/<%= config.tmp %>/style.css',
-          width: 1280,
-          height: 720,
-          outputfile: '<%= config.cssDir %>/<%= config.tmp %>/critical/index.css',
+          url         : '<%= config.fullPath %>',
+          filename    : '<%= config.cssDir %>/<%= config.tmp %>/style.css',
+          width       : 1280,
+          height      : 720,
+          outputfile  : '<%= config.cssDir %>/<%= config.tmp %>/critical/index.css',
           forceInclude: []
         }
       },
@@ -295,11 +303,20 @@ module.exports = function(grunt) {
     concat: {
       dist: {
         src: [
+          // *
+          // polyfills scripts
           '<%= config.jsDir %>/<%= config.src %>/picturefill.js',
           '<%= config.jsDir %>/<%= config.src %>/svg4everybody.js',
-          // '<%= config.jsDir %>/<%= config.src %>/eq.js', // element query not required in default build
+          // *
+          // feature library scripts
           '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
-          '<%= config.jsDir %>/<%= config.src %>/velocity.js',
+          // *
+          // animation library scripts
+          '<%= config.jsDir %>/<%= config.src %>/TweenLite.js',
+          '<%= config.jsDir %>/<%= config.src %>/CSSPlugin.js',
+          '<%= config.jsDir %>/<%= config.src %>/ScrollToPlugin.js',
+          // *
+          // project scripts
           '<%= config.jsDir %>/<%= config.src %>/main.js'],
         dest: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
       },
@@ -315,7 +332,7 @@ module.exports = function(grunt) {
     // compress global javascript file
     uglify: {
       build: {
-        src: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
+        src : '<%= config.jsDir %>/<%= config.tmp %>/global.js',
         dest: '<%= config.jsDir %>/<%= config.build %>/global.min.js'
       }
     },
@@ -328,7 +345,7 @@ module.exports = function(grunt) {
     copy: {
       build: {
         expand: true,
-        src: [
+        src   : [
           // media
           '<%= config.svgDir %>/<%= config.build %>/*',
           '<%= config.faviDir %>/<%= config.build %>/*',
@@ -341,8 +358,11 @@ module.exports = function(grunt) {
           // javascript
           '<%= config.jsDir %>/<%= config.build %>/*',
 
-          // template
-          '*.{html,php}'
+          // models
+          '<%= config.snipDir %>/*.{html,php}',
+          '<%= config.tplDir %>/*.{html,php}',
+          '<%= config.tplDir %>/*/*.{html,php}',
+          '*.{html,php}',
         ],
         dest: 'build/'
       }
@@ -352,8 +372,8 @@ module.exports = function(grunt) {
     // watch files for changes
     watch: {
       options: {
-        event: ['changed', 'added', 'deleted'],
-        spawn: false,
+        event     : ['changed', 'added', 'deleted'],
+        spawn     : false,
         livereload: {
           host: '127.0.0.1', // livereload IP
           port: 35729 // livereload port

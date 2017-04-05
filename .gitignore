@@ -1,13 +1,104 @@
-node_modules/
-svgs/build/
-svgs/tmp/
-favicons/build/
-images/build/
-images/tmp/
-.sass-cache/
-stylesheets/
-javascripts/build/
-javascripts/tmp/
-build/
-.DS_Store
-*/.DS_Store
+# --------------------------------------------------------------------------------
+# .gitignore
+# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
+
+# ----------------------------------------
+# Project
+# ----------------------------------------
+# ----------------------------------------
+  # --------------------
+  # Blacklist
+  # --------------------
+
+  # blanket blacklist
+  ----------
+  *
+
+  # --------------------
+  # Whitelist
+  # --------------------
+
+  # track source assets and templates
+  ----------
+  !fonts/*
+  !sass/*
+  !javascripts/
+    javascripts/*
+    !javascripts/src/
+  !images/
+    images/*
+    !images/src/
+  !svgs/
+    svgs/*
+    !svgs/src/
+  !favicons/
+    favicons/*
+    !favicons/src/
+  !*.php
+  !snippets/
+  !templates/
+    !templates/*
+
+  # track taskrunner(Grunt) configurations
+  ----------
+  !package.json
+  !Gruntfile.js
+
+
+# ----------------------------------------
+# General
+# ----------------------------------------
+# ----------------------------------------
+  # --------------------
+  # Blacklist
+  # --------------------
+
+  # ignore all files starting with . or ~
+  ----------
+  .*
+  ~*
+
+  # ignore OS generated files
+  ----------
+  ehthumbs.db
+  Thumbs.db
+  Icon*
+
+   # ignore log files and databases
+  ----------
+  *.log
+  *.sql
+  *.sqlite
+
+  # ignore compiled files
+  ----------
+  *.com
+  *.class
+  *.dll
+  *.exe
+  *.o
+  *.so
+
+  # ignore packaged files
+  ----------
+  *.7z
+  *.dmg
+  *.gz
+  *.iso
+  *.jar
+  *.rar
+  *.tar
+  *.zip
+
+  # --------------------
+  # Whitelist
+  # --------------------
+  # track code configurations and documentations
+  ----------
+  !.gitignore
+  !.gitkeep
+  !.editorconfig
+  !README.md
+  !CHANGELOG.md
