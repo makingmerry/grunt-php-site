@@ -309,6 +309,7 @@ module.exports = function(grunt) {
           // *
           // feature library scripts
           '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
+          '<%= config.jsDir %>/<%= config.src %>/barba.js',
           // *
           // animation library scripts
           '<%= config.jsDir %>/<%= config.src %>/TweenLite.js',
