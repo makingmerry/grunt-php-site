@@ -313,6 +313,7 @@ module.exports = function(grunt) {
           // *
           // animation library scripts
           '<%= config.jsDir %>/<%= config.src %>/TweenLite.js',
+          '<%= config.jsDir %>/<%= config.src %>/jquery.gsap.js',
           '<%= config.jsDir %>/<%= config.src %>/CSSPlugin.js',
           '<%= config.jsDir %>/<%= config.src %>/ScrollToPlugin.js',
           // *
