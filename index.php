@@ -1,6 +1,5 @@
 <?php
   $page    = 'index';
-  $preload = true;
 
   include 'snippets/header.php';
   include 'snippets/preloader.php';

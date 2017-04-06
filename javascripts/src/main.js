@@ -72,28 +72,9 @@
   }
 
 
-  // # instances
-  ////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////
-
-  //////////////////////////////
-  // # web font loader
-  //////////////////////////////
-  initWebFonts();
-
-})();
-
-
-
-// # scope: document complete
-//
-// Post-CSSOM load – ensures styles are applied first before executing functions
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-function DomComplete() {
-
   // # preloader
+  //
+  // Ease in initial page content
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
   function Preloader(El) {
@@ -102,9 +83,6 @@ function DomComplete() {
     //////////////////////////////
     this.el     = $(El);
     this.body   = $('body');
-    this.option = {
-      'transitionDuration': 0.5
-    };
     this.state  = {
       active: true
     };
@@ -135,14 +113,13 @@ function DomComplete() {
       // update object state
       obj.state.active = true;
       // transit in preloader
-      TweenLite.set(obj.el, {
+      obj.el.css({
         display   : 'table',
         visibility: 'visible',
         opacity   : 0
-      });
-      TweenLite.to(obj.el, obj.option.transitionDuration, {
+      }).animate({
         opacity: 1
-      });
+      }, 350);
     };
 
     //////////////////////////////
@@ -151,19 +128,18 @@ function DomComplete() {
     this.close = function() {
       var obj = this;
       // transit out preloader
-      TweenLite.to(obj.el, obj.option.transitionDuration, {
-        opacity: 0,
-        onComplete: function() {
-          // update element attributes
-          obj.el.css({
-            display   : 'none',
-            visibility: 'hidden'
-          });
-          // allow page scrolling
-          obj.startScroll();
-          // update object state
-          obj.state.active = false;
-        }
+      obj.el.animate({
+        opacity: 0
+      }, 500, function() {
+        // update element attributes
+        obj.el.css({
+          display   : 'none',
+          visibility: 'hidden'
+        });
+        // allow page scrolling
+        obj.startScroll();
+        // update object state
+        obj.state.active = false;
       });
     };
 
@@ -179,6 +155,34 @@ function DomComplete() {
       }
     };
   }
+
+
+  // # instances
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  //////////////////////////////
+  // # web font loader
+  //////////////////////////////
+  initWebFonts();
+
+  //////////////////////////////
+  // # preloader
+  //////////////////////////////
+  var preloader = new Preloader('.preloader');
+  preloader.toggle();
+
+})();
+
+
+
+// # scope: document complete
+//
+// Post-CSSOM load – ensures styles are applied first before executing functions
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+function DomComplete() {
 
   // # page transitions
   // - Barba.js utility
@@ -253,12 +257,6 @@ function DomComplete() {
   // # instances
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-
-  //////////////////////////////
-  // # preloader
-  //////////////////////////////
-  var preloader = new Preloader('.preloader');
-  preloader.toggle();
 
   //////////////////////////////
   // # page transitions
