@@ -205,6 +205,9 @@ function DomComplete() {
   var FadeTransition = Barba.BaseTransition.extend({
     //////////////////////////////
     // # initialise
+    //
+    // required, controller for managing content from
+    // fetching, rendering and adding new content
     //////////////////////////////
     start: function() {
       Promise
@@ -216,7 +219,6 @@ function DomComplete() {
     // # fade in transition panel to hide current content
     //////////////////////////////
     hideOld: function() {
-      // *
       // animate out current content and fulfill promise
       return $(this.oldContainer).animate({
         opacity: 0
@@ -229,12 +231,8 @@ function DomComplete() {
     showNew: function() {
       var obj = this;
       var el  = $(this.newContainer);
-
-      // *
       // hide old content
       $(this.oldContainer).hide();
-
-      // *
       // animate in new content and fulfill promise
       el.css({
         visibility: 'visible',
