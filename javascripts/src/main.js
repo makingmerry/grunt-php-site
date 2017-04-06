@@ -189,6 +189,12 @@ function DomComplete() {
   ////////////////////////////////////////////////////////////
 
   //////////////////////////////
+  // # update DOM parsing variables
+  //////////////////////////////
+  Barba.Pjax.Dom.wrapperId = 'mainframe-wrap';
+  Barba.Pjax.Dom.containerClass = 'mainframe';
+
+  //////////////////////////////
   // # define fade transition (default)
   // - http://barbajs.org/transition.html
   //////////////////////////////
@@ -210,7 +216,7 @@ function DomComplete() {
       // animate out current content and fulfill promise
       return $(this.oldContainer).animate({
         opacity: 0
-      }, 200).promise();
+      }, 150).promise();
     },
 
     //////////////////////////////
@@ -229,7 +235,7 @@ function DomComplete() {
       el.css({
         visibility: 'visible',
         opacity   : 0
-      }).animate({ opacity: 1 }, 200, function() {
+      }).animate({ opacity: 1 }, 150, function() {
         obj.done();
       });
     }

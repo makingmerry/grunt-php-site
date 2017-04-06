@@ -37,8 +37,15 @@
 .frame__mast-wrap {
   position: relative;
   z-index: 1230;
-  margin-bottom: 40px; // TEMP
-  background: white; // TEMP
+  margin-bottom: $gutter;
+
+  @include breakpoint($screen--m) {
+    margin-bottom: $gutter--m;
+  }
+
+  @include breakpoint($screen--l) {
+    margin-bottom: $gutter--l;
+  }
 }
 
 //////////////////////////////
@@ -47,8 +54,6 @@
 .frame__main-wrap {
   position: relative;
   z-index: 1210;
-  background: pink; // TEMP
-  // height: 150vh; // TEMP
 }
 
 
@@ -60,48 +65,13 @@
 // # base
 //////////////////////////////
 .frame__base-wrap {
-  margin-top: 40px; // TEMP
-  background: white; // TEMP
+  margin-top: $gutter;
+
+  @include breakpoint($screen--m) {
+    margin-top: $gutter--m;
+  }
+
+  @include breakpoint($screen--l) {
+    margin-top: $gutter--l;
+  }
 }
-
-
-
-
-
-
-// // # transition set
-// ////////////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////////////
-// .frame__tx-set {
-//   position: relative;
-//   z-index: 1300;
-// }
-
-// //////////////////////////////
-// // # transitions
-// //////////////////////////////
-// .frame__tx {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-// }
-
-
-// // # main content area
-// ////////////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////////////
-// .frame__main-wrap {
-//   position: relative;
-//   z-index: 1100;
-// }
-
-
-// // # base area
-// ////////////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////////////
-// .frame__base-wrap {
-//   position: relative;
-//   z-index: 1200;
-// }

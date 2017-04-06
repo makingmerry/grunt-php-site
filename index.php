@@ -13,12 +13,9 @@
       <?php include 'snippets/mast.php'; ?>
     </div>
 
-    <!-- frame transitions -->
-    <div class="frame__tx frame__tx--fade"></div>
-
     <!-- main -->
-    <div class="frame__main-wrap" id="barba-wrapper">
-      <main class="barba-container">
+    <div class="frame__main-wrap" id="mainframe-wrap">
+      <main class="mainframe">
         <ul>
           <li><a href="/test.php">TEST: Relative internal link</a></li>
           <li><a href="http://localhost:8888/test.php">TEST: Absolute internal link</a></li>

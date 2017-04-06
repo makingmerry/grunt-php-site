@@ -14,8 +14,8 @@
     </div>
 
     <!-- main -->
-    <div class="frame__main-wrap" id="barba-wrapper">
-      <main class="barba-container">
+    <div class="frame__main-wrap" id="mainframe-wrap">
+      <main class="mainframe">
         test<br>
         <a href="http://localhost:8888/">Back home</a>
       </main>
