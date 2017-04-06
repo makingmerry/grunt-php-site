@@ -17,7 +17,6 @@ module.exports = function(grunt) {
       // *
       // models
       snipDir: 'snippets',
-      tplDir : 'templates',
 
       // *
       // media
@@ -310,9 +309,11 @@ module.exports = function(grunt) {
           // *
           // feature library scripts
           '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
+          '<%= config.jsDir %>/<%= config.src %>/barba.js',
           // *
           // animation library scripts
           '<%= config.jsDir %>/<%= config.src %>/TweenLite.js',
+          '<%= config.jsDir %>/<%= config.src %>/jquery.gsap.js',
           '<%= config.jsDir %>/<%= config.src %>/CSSPlugin.js',
           '<%= config.jsDir %>/<%= config.src %>/ScrollToPlugin.js',
           // *
@@ -360,8 +361,6 @@ module.exports = function(grunt) {
 
           // models
           '<%= config.snipDir %>/*.{html,php}',
-          '<%= config.tplDir %>/*.{html,php}',
-          '<%= config.tplDir %>/*/*.{html,php}',
           '*.{html,php}',
         ],
         dest: 'build/'

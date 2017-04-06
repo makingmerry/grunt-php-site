@@ -36,10 +36,8 @@
   !favicons/
     favicons/*
     !favicons/src/
-  !*.php
   !snippets/
-  !templates/
-    !templates/*
+  !*.php
 
   # track taskrunner(Grunt) configurations
   ----------

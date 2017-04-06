@@ -180,6 +180,76 @@ function DomComplete() {
     };
   }
 
+  // # page transitions
+  // - Barba.js utility
+  // - http://barbajs.org/
+  //
+  // Utilising Pushstate AJAX (or PJAX) to simuluate a SPA-type navigation
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  //////////////////////////////
+  // # update DOM parsing variables
+  //////////////////////////////
+  Barba.Pjax.Dom.wrapperId = 'mainframe-wrap';
+  Barba.Pjax.Dom.containerClass = 'mainframe';
+
+  //////////////////////////////
+  // # define fade transition (default)
+  // - http://barbajs.org/transition.html
+  //////////////////////////////
+  var FadeTransition = Barba.BaseTransition.extend({
+    //////////////////////////////
+    // # initialise
+    //////////////////////////////
+    start: function() {
+      Promise
+        .all([this.newContainerLoading, this.hideOld()])
+        .then(this.showNew.bind(this));
+    },
+
+    //////////////////////////////
+    // # fade in transition panel to hide current content
+    //////////////////////////////
+    hideOld: function() {
+      // *
+      // animate out current content and fulfill promise
+      return $(this.oldContainer).animate({
+        opacity: 0
+      }, 150).promise();
+    },
+
+    //////////////////////////////
+    // # fade out transition panel to show new content
+    //////////////////////////////
+    showNew: function() {
+      var obj = this;
+      var el  = $(this.newContainer);
+
+      // *
+      // hide old content
+      $(this.oldContainer).hide();
+
+      // *
+      // animate in new content and fulfill promise
+      el.css({
+        visibility: 'visible',
+        opacity   : 0
+      }).animate({ opacity: 1 }, 150, function() {
+        obj.done();
+      });
+    }
+  });
+
+  //////////////////////////////
+  // # hook up custom transitions
+  //////////////////////////////
+  Barba.Pjax.getTransition = function() {
+    // define transition logics
+    return FadeTransition;
+  };
+
+
   // # instances
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
@@ -189,6 +259,11 @@ function DomComplete() {
   //////////////////////////////
   var preloader = new Preloader('.preloader');
   preloader.toggle();
+
+  //////////////////////////////
+  // # page transitions
+  //////////////////////////////
+  Barba.Pjax.start();
 
 }
 
