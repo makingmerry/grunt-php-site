@@ -195,8 +195,17 @@ function DomComplete() {
   //////////////////////////////
   // # update DOM parsing variables
   //////////////////////////////
-  Barba.Pjax.Dom.wrapperId = 'mainframe-wrap';
+  Barba.Pjax.Dom.wrapperId      = 'mainframe-wrap';
   Barba.Pjax.Dom.containerClass = 'mainframe';
+  Barba.Pjax.ignoreClassLink    = 'no-frame-load';
+
+  //////////////////////////////
+  // # get current frame namespace
+  // ! utility extension: method
+  //////////////////////////////
+  Barba.Utils.getCurrentNamespace = function() {
+    return $('.' + Barba.Pjax.Dom.containerClass).data(Barba.Pjax.Dom.dataNamespace);
+  };
 
   //////////////////////////////
   // # define fade transition (default)
@@ -247,8 +256,41 @@ function DomComplete() {
   // # hook up custom transitions
   //////////////////////////////
   Barba.Pjax.getTransition = function() {
-    // define transition logics
-    return FadeTransition;
+    // get transition based on current namespace
+    switch(Barba.Utils.getCurrentNamespace()) {
+      case 'index': return FadeTransition;
+      default:      return FadeTransition;
+    }
+  };
+
+  //////////////////////////////
+  // # Initialise frame views
+  // - http://barbajs.org/views.html
+  //////////////////////////////
+  // list views
+  var FrameViews = {
+    index: Barba.BaseView.extend({
+      namespace: 'index',
+      onEnter: function() {
+        // new container is ready and attached to DOM
+      },
+      onEnterCompleted: function() {
+        // transition is complete
+      },
+      onLeave: function() {
+        // new transition to a new page has started
+      },
+      onLeaveCompleted: function() {
+        // current container removed from DOM
+      }
+    })
+  };
+  // loop and initialise listed views
+  // ! utility extension: method
+  Barba.Utils.initFrameViews = function() {
+    $.each(FrameViews, function(key, view) {
+      view.init();
+    });
   };
 
 
@@ -259,6 +301,7 @@ function DomComplete() {
   //////////////////////////////
   // # page transitions
   //////////////////////////////
+  Barba.Utils.initFrameViews();
   Barba.Pjax.start();
 
 }
