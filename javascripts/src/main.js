@@ -200,66 +200,75 @@ function DomComplete() {
   Barba.Pjax.ignoreClassLink    = 'no-frame-load';
 
   //////////////////////////////
-  // # get current frame namespace
-  // ! utility extension: method
+  // # set up analytics tracking
+  //
+  // track new pages loaded in timeline
   //////////////////////////////
-  Barba.Utils.getCurrentNamespace = function() {
-    return $('.' + Barba.Pjax.Dom.containerClass).data(Barba.Pjax.Dom.dataNamespace);
-  };
-
-  //////////////////////////////
-  // # define fade transition (default)
-  // - http://barbajs.org/transition.html
-  //////////////////////////////
-  var FadeTransition = Barba.BaseTransition.extend({
-    //////////////////////////////
-    // # initialise
-    //
-    // required, controller for managing content from
-    // fetching, rendering and adding new content
-    //////////////////////////////
-    start: function() {
-      Promise
-        .all([this.newContainerLoading, this.hideOld()])
-        .then(this.showNew.bind(this));
-    },
-
-    //////////////////////////////
-    // # fade in transition panel to hide current content
-    //////////////////////////////
-    hideOld: function() {
-      // animate out current content and fulfill promise
-      return $(this.oldContainer).animate({
-        opacity: 0
-      }, 150).promise();
-    },
-
-    //////////////////////////////
-    // # fade out transition panel to show new content
-    //////////////////////////////
-    showNew: function() {
-      var obj = this;
-      var el  = $(this.newContainer);
-      // hide old content
-      $(this.oldContainer).hide();
-      // animate in new content and fulfill promise
-      el.css({
-        visibility: 'visible',
-        opacity   : 0
-      }).animate({ opacity: 1 }, 150, function() {
-        obj.done();
-      });
+  Barba.Dispatcher.on('initStateChange', function() {
+    if (Barba.HistoryManager.prevStatus() === null) {
+      // google analytics SPA tracking
+      // - https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+      // ga('set', 'page', Barba.Pjax.getCurrentUrl());
+      // ga('send', 'pageview');
     }
   });
+
+  //////////////////////////////
+  // # define transitions
+  // - http://barbajs.org/transition.html
+  //////////////////////////////
+  var pgFrameTransitions = {
+    // fade out-in
+    fade: Barba.BaseTransition.extend({
+      //////////////////////////////
+      // # initialise
+      //
+      // required, controller for managing content from
+      // fetching, rendering and adding new content
+      //////////////////////////////
+      start: function() {
+        Promise
+          .all([this.newContainerLoading, this.hideOld()])
+          .then(this.showNew.bind(this));
+      },
+
+      //////////////////////////////
+      // # fade in transition panel to hide current content
+      //////////////////////////////
+      hideOld: function() {
+        // animate out current content and fulfill promise
+        return $(this.oldContainer).animate({
+          opacity: 0
+        }, 150).promise();
+      },
+
+      //////////////////////////////
+      // # fade out transition panel to show new content
+      //////////////////////////////
+      showNew: function() {
+        var obj = this;
+        var el  = $(this.newContainer);
+        // hide old content
+        $(this.oldContainer).hide();
+        // animate in new content and fulfill promise
+        el.css({
+          visibility: 'visible',
+          opacity   : 0
+        }).animate({ opacity: 1 }, 150, function() {
+          obj.done();
+        });
+      }
+    })
+  };
 
   //////////////////////////////
   // # hook up custom transitions
   //////////////////////////////
   Barba.Pjax.getTransition = function() {
     // get transition based on current namespace
-    switch(Barba.Utils.getCurrentNamespace()) {
-      case 'index': return FadeTransition;
-      default:      return FadeTransition;
+    switch(Barba.HistoryManager.prevStatus().namespace) {
+      case 'index': return pgFrameTransitions.fade;
+      default:      return pgFrameTransitions.fade;
     }
   };
 
@@ -268,7 +277,8 @@ function DomComplete() {
   // - http://barbajs.org/views.html
   //////////////////////////////
   // list views
-  var FrameViews = {
+  var pgFrameViews = {
+    // index
     index: Barba.BaseView.extend({
       namespace: 'index',
       onEnter: function() {
@@ -286,9 +296,8 @@ function DomComplete() {
     })
   };
   // loop and initialise listed views
-  // ! utility extension: method
-  Barba.Utils.initFrameViews = function() {
-    $.each(FrameViews, function(key, view) {
+  var initPgFrameViews = function() {
+    $.each(pgFrameViews, function(key, view) {
       view.init();
     });
   };
@@ -301,7 +310,7 @@ function DomComplete() {
   //////////////////////////////
   // # page transitions
   //////////////////////////////
-  Barba.Utils.initFrameViews();
+  initPgFrameViews();
   Barba.Pjax.start();
 
 }
