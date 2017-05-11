@@ -298,6 +298,20 @@ module.exports = function(grunt) {
     // # javascript
     //////////////////////////////
     // *
+    // transpile es6
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      dist: {
+        files: {
+          '<%= config.jsDir %>/<%= config.tmp %>/main.js': '<%= config.jsDir %>/<%= config.src %>/main.js'
+        }
+      }
+    },
+
+    // *
     // concat javascript files
     concat: {
       dist: {
@@ -308,17 +322,18 @@ module.exports = function(grunt) {
           '<%= config.jsDir %>/<%= config.src %>/svg4everybody.js',
           // *
           // feature library scripts
-          '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
+          // '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
           '<%= config.jsDir %>/<%= config.src %>/barba.js',
           // *
           // animation library scripts
           '<%= config.jsDir %>/<%= config.src %>/TweenLite.js',
-          '<%= config.jsDir %>/<%= config.src %>/jquery.gsap.js',
+          // '<%= config.jsDir %>/<%= config.src %>/jquery.gsap.js',
           '<%= config.jsDir %>/<%= config.src %>/CSSPlugin.js',
           '<%= config.jsDir %>/<%= config.src %>/ScrollToPlugin.js',
           // *
           // project scripts
-          '<%= config.jsDir %>/<%= config.src %>/main.js'],
+          '<%= config.jsDir %>/<%= config.tmp %>/main.js'
+        ],
         dest: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
       },
     },
@@ -326,6 +341,9 @@ module.exports = function(grunt) {
     // *
     // hint for javascript errors
     jshint: {
+      options: {
+        esversion: 6
+      },
       all: '<%= config.jsDir %>/<%= config.src %>/main.js',
     },
 
@@ -437,6 +455,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # javascript
   //////////////////////////////
+  grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -472,7 +491,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # javascript
   //////////////////////////////
-  grunt.registerTask('build-js', ['concat', 'jshint', 'uglify']);
+  grunt.registerTask('build-js', ['babel', 'concat', 'jshint', 'uglify']);
 
   //////////////////////////////
   // # core
