@@ -67,5 +67,6 @@
   </script>
 
   <!-- # favicons -->
+  <?php include 'favicons/build/favicons.html'; ?>
 </head>
 <body>
