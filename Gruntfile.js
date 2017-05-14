@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    // # configuration
+    // # configurations
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
     config: {
@@ -45,15 +45,16 @@ module.exports = function(grunt) {
       jsDir: 'javascripts'
     },
 
+
     // # media
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
 
     //////////////////////////////
-    // # svg
+    // # replace
+    // svg ID cleanup
+    // performs a manual ID cleanup as Illustrator exports a mess
     //////////////////////////////
-    // *
-    // ID cleanup: performs a manual ID cleanup as Illustrator exports a mess
     replace: {
       svgclass: {
         src         : ['<%= config.svgDir %>/<%= config.src %>/*.svg'],
@@ -97,8 +98,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // *
+    //////////////////////////////
+    // # svgmin
     // minify individual svgs
+    //////////////////////////////
     svgmin: {
       icons: {
         files: [{
@@ -119,8 +122,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // *
+    //////////////////////////////
+    // # svgstore
     // merge svgs to a spritesheet
+    //////////////////////////////
     svgstore: {
       icons: {
         files: {
@@ -133,8 +138,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // *
+    //////////////////////////////
+    // # svg2png
     // build png fallbacks from svg
+    //////////////////////////////
     svg2png: {
       staticSvgs: {
         files: [{ 
@@ -155,12 +162,12 @@ module.exports = function(grunt) {
       }
     },
 
-    // # favicons
+    //////////////////////////////
+    // # real favicons
     // generate favicons for various platforms
     // use interface to set properties
     // https://github.com/RealFaviconGenerator/grunt-real-favicon
-    ////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////
+    //////////////////////////////
     realFavicon: {
       favicons: {
         src : '<%= config.faviDir %>/<%= config.src %>/favicon.png',
@@ -222,11 +229,10 @@ module.exports = function(grunt) {
       }
     },
 
-    ///////////////
-    // # general
-    ///////////////
-    // *
-    // minifying image
+    //////////////////////////////
+    // # imagemin
+    // minifying image file sizes
+    //////////////////////////////
     imagemin: {
       statics: {
         options: {
@@ -284,11 +290,15 @@ module.exports = function(grunt) {
       },
     },
 
-    //////////////////////////////
+
     // # css
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    
     //////////////////////////////
-    // *
+    // # sass
     // compile sass to css
+    //////////////////////////////
     sass: {
       dist: {
         options: {
@@ -301,12 +311,13 @@ module.exports = function(grunt) {
       }
     },
 
-    // *
+    //////////////////////////////
+    // # postcss
     // add fallbacks for rem units,
     // add vendor prefixes,
     // minify the result
+    //////////////////////////////
     postcss: {
-      // base css
       base: {
         options: {
           map       : true,
@@ -320,7 +331,6 @@ module.exports = function(grunt) {
         dest: '<%= config.cssDir %>/<%= config.build %>/style.css'
       },
 
-      // critical inline css
       critical: {
         options: {
           map       : false,
@@ -337,8 +347,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // *
-    // build critical inline stylesheets
+    //////////////////////////////
+    // # critical css
+    // build critical inline stylesheets from main stylesheet
+    //////////////////////////////
     criticalcss: {
       // index page template
       index: {
@@ -353,11 +365,15 @@ module.exports = function(grunt) {
       },
     },
 
-    //////////////////////////////
+
     // # javascript
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    
     //////////////////////////////
-    // *
-    // transpile es6
+    // # babel
+    // transpile es2015 syntax to older standards for browser support
+    //////////////////////////////
     babel: {
       options: {
         sourceMap: true,
@@ -369,33 +385,33 @@ module.exports = function(grunt) {
       }
     },
 
-    // *
-    // concat javascript files
+    //////////////////////////////
+    // # concat
+    // concatenate javascript files
+    //////////////////////////////
     concat: {
       dist: {
         src: [
-          // *
-          // polyfills scripts
+          // polyfills
           '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/picturefill.js',
           '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/svg4everybody.js',
-          // *
-          // feature library scripts
+          // features
           '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/barba.js',
-          // *
-          // animation library scripts
+          // animations
           '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/TweenLite.js',
           '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/CSSPlugin.js',
           '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/ScrollToPlugin.js',
-          // *
-          // project scripts
+          // project
           '<%= config.jsDir %>/<%= config.tmp %>/main.js'
         ],
         dest: '<%= config.jsDir %>/<%= config.tmp %>/global.js',
       },
     },
 
-    // *
-    // hint for javascript errors
+    //////////////////////////////
+    // # jshint
+    // javascript linter
+    //////////////////////////////
     jshint: {
       options: {
         esversion: 6
@@ -403,8 +419,10 @@ module.exports = function(grunt) {
       all: '<%= config.jsDir %>/<%= config.src %>/main.js',
     },
 
-    // *
-    // compress global javascript file
+    //////////////////////////////
+    // # uglify
+    // compress javscript files
+    //////////////////////////////
     uglify: {
       build: {
         src : '<%= config.jsDir %>/<%= config.tmp %>/global.js',
@@ -412,11 +430,15 @@ module.exports = function(grunt) {
       }
     },
 
-    //////////////////////////////
+
     // # core
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    
     //////////////////////////////
-    // *
+    // # copy
     // copy build files for deployment
+    //////////////////////////////
     copy: {
       build: {
         expand: true,
@@ -425,14 +447,11 @@ module.exports = function(grunt) {
           '<%= config.svgDir %>/<%= config.build %>/*',
           '<%= config.faviDir %>/<%= config.build %>/*',
           '<%= config.imgDir %>/<%= config.build %>/*',
-
           // css
           '<%= config.cssDir %>/<%= config.build %>/**',
           '<%= config.fontDir %>/*',
-
           // javascript
           '<%= config.jsDir %>/<%= config.build %>/*',
-
           // models
           '<%= config.snipDir %>/*.{html,php}',
           '*.{html,php}',
@@ -441,8 +460,10 @@ module.exports = function(grunt) {
       }
     },
 
-    // *
+    //////////////////////////////
+    // # watch
     // watch files for changes
+    //////////////////////////////
     watch: {
       options: {
         event     : ['changed', 'added', 'deleted'],
@@ -482,7 +503,6 @@ module.exports = function(grunt) {
         tasks: ['build-js'],
       }
     },
-
   });
 
 
