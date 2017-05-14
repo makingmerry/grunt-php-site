@@ -6,42 +6,52 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    // # configuration
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
     config: {
-      // *
-      // general
+      //////////////////////////////
+      // # general
+      //////////////////////////////
       fullPath: 'http://localhost:8888/',
       src     : 'src',
       tmp     : 'tmp',
       build   : 'build',
       lib     : 'lib',
 
-      // *
-      // models
+      //////////////////////////////
+      // # models
+      //////////////////////////////
       snipDir: 'snippets',
 
-      // *
-      // media
+      //////////////////////////////
+      // # media
+      //////////////////////////////
       svgDir : 'svgs',
       faviDir: 'favicons',
       imgDir : 'images',
 
-      // *
-      // css
+      //////////////////////////////
+      // # css
+      //////////////////////////////
       sassDir: 'sass',
       cssDir : 'stylesheets',
       fontDir: 'fonts',
 
-      // *
-      // javascript
+      //////////////////////////////
+      // # javascript
+      //////////////////////////////
       jsDir: 'javascripts'
     },
 
-    //////////////////////////////
     // # media
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+
     //////////////////////////////
-    ///////////////
     // # svg
-    ///////////////
+    //////////////////////////////
     // *
     // ID cleanup: performs a manual ID cleanup as Illustrator exports a mess
     replace: {
@@ -145,22 +155,70 @@ module.exports = function(grunt) {
       }
     },
 
-    ///////////////
-    // # favicon
-    ///////////////
-    // *
+    // # favicons
     // generate favicons for various platforms
-    favicons: {
-      options: {
-        html                     : '<%= config.snipDir %>/header.php',
-        HTMLPrefix               : '<%= config.faviDir %>/<%= config.build %>/',
-        appleTouchBackgroundColor: 'none',
-        tileColor                : 'none',
-        indent                   : "  "
-      },
-      icons: {
+    // use interface to set properties
+    // https://github.com/RealFaviconGenerator/grunt-real-favicon
+    ////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    realFavicon: {
+      favicons: {
         src : '<%= config.faviDir %>/<%= config.src %>/favicon.png',
-        dest: '<%= config.faviDir %>/<%= config.build %>/'
+        dest: '<%= config.faviDir %>/<%= config.build %>/',
+        options: {
+          iconsPath: '<%= config.faviDir %>/<%= config.build %>/',
+          html     : ['<%= config.faviDir %>/<%= config.build %>/favicons.html'],
+          design: {
+            ios: {
+              pictureAspect  : 'backgroundAndMargin',
+              backgroundColor: '#ffffff',
+              margin         : '14%',
+              assets: {
+                ios6AndPriorIcons     : false,
+                ios7AndLaterIcons     : false,
+                precomposedIcons      : false,
+                declareOnlyDefaultIcon: true
+              }
+            },
+            desktopBrowser: {},
+            windows: {
+              pictureAspect  : 'whiteSilhouette',
+              backgroundColor: '#ffffff',
+              onConflict     : 'override',
+              assets: {
+                windows80Ie10Tile     : false,
+                windows10Ie11EdgeTiles: {
+                  small    : false,
+                  medium   : true,
+                  big      : false,
+                  rectangle: false
+                }
+              }
+            },
+            androidChrome: {
+              pictureAspect: 'noChange',
+              themeColor   : '#ffffff',
+              manifest: {
+                display    : 'standalone',
+                orientation: 'notSet',
+                onConflict : 'override',
+                declared   : true
+              },
+              assets: {
+                legacyIcon: false,
+                lowResolutionIcons: false
+              }
+            },
+            safariPinnedTab: {
+              pictureAspect: 'silhouette',
+              themeColor   : '#ffffff'
+            }
+          },
+          settings: {
+            scalingAlgorithm    : 'Mitchell',
+            errorOnImageTooSmall: false
+          }
+        }
       }
     },
 
@@ -440,7 +498,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-svg2png');
-  grunt.loadNpmTasks('grunt-favicons');
+  grunt.loadNpmTasks('grunt-real-favicon');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
 
   //////////////////////////////
@@ -476,7 +534,7 @@ module.exports = function(grunt) {
   // # media
   //////////////////////////////
   grunt.registerTask('build-icons', ['replace:icons', 'svgmin:icons', 'svgstore:icons', 'svg2png:icons', 'imagemin:icons']);
-  grunt.registerTask('build-favicons', ['favicons', 'imagemin:favicons']);
+  grunt.registerTask('build-favicons', ['realFavicon', 'imagemin:favicons']);
   grunt.registerTask('build-img', ['imagemin:statics', 'svg2png:staticSvgs', 'imagemin:staticSvgs']);
 
   //////////////////////////////
