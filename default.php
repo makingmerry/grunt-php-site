@@ -1,5 +1,5 @@
 <?php
-  $page = 'index';
+  $page = 'default';
   include 'snippets/header.php';
   include 'snippets/preloader.php';
 ?>
@@ -14,8 +14,8 @@
     <!-- main -->
     <div class="frame__main-wrap" id="mainframe-wrap">
       <main class="mainframe" data-namespace="<?php echo $page; ?>">
-        index<br>
-        <a href="/default.php">go to default page</a>
+        default<br>
+        <a href="/">go to home page</a>
       </main>
     </div>
   </div>
