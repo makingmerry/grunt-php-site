@@ -13,6 +13,7 @@ module.exports = function(grunt) {
       src     : 'src',
       tmp     : 'tmp',
       build   : 'build',
+      lib     : 'lib',
 
       // *
       // models
@@ -317,18 +318,16 @@ module.exports = function(grunt) {
         src: [
           // *
           // polyfills scripts
-          '<%= config.jsDir %>/<%= config.src %>/picturefill.js',
-          '<%= config.jsDir %>/<%= config.src %>/svg4everybody.js',
+          '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/picturefill.js',
+          '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/svg4everybody.js',
           // *
           // feature library scripts
-          // '<%= config.jsDir %>/<%= config.src %>/jquery-3.1.1.js',
-          '<%= config.jsDir %>/<%= config.src %>/barba.js',
+          '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/barba.js',
           // *
           // animation library scripts
-          '<%= config.jsDir %>/<%= config.src %>/TweenLite.js',
-          // '<%= config.jsDir %>/<%= config.src %>/jquery.gsap.js',
-          '<%= config.jsDir %>/<%= config.src %>/CSSPlugin.js',
-          '<%= config.jsDir %>/<%= config.src %>/ScrollToPlugin.js',
+          '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/TweenLite.js',
+          '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/CSSPlugin.js',
+          '<%= config.jsDir %>/<%= config.src %>/<%= config.lib %>/ScrollToPlugin.js',
           // *
           // project scripts
           '<%= config.jsDir %>/<%= config.tmp %>/main.js'
