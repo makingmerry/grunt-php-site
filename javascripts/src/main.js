@@ -112,71 +112,56 @@
   };
 
 
-  // # instances
-  ////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////
-
-  //////////////////////////////
-  // # web font loader
-  //////////////////////////////
-  initWebFonts();
-
-  //////////////////////////////
-  // # preloader
-  //////////////////////////////
-  Preloader.toggle();
-
-
-
-  // # on complete
+  // # page transitions
+  // - Barba.js utility
+  // - http://barbajs.org/
   //
-  // Post-CSSOM load – ensures styles are applied first before executing functions
-  ////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////
-  function DomComplete() {
-
-    // # page transitions
-    // - Barba.js utility
-    // - http://barbajs.org/
-    //
-    // Utilising Pushstate AJAX (or PJAX) to simuluate a SPA-type navigation
-    ////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////
-
+  // Utilising Pushstate AJAX (or PJAX) to simuluate a SPA-type navigation
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  const PageTransitions = {
     //////////////////////////////
-    // # update DOM parsing variables
+    // # initialise
     //////////////////////////////
-    Barba.Pjax.Dom.wrapperId      = 'mainframe-wrap';
-    Barba.Pjax.Dom.containerClass = 'mainframe';
-    Barba.Pjax.ignoreClassLink    = 'no-frame-load';
+    init() {
+      // Update DOM parsing variables
+      Barba.Pjax.Dom.wrapperId      = 'mainframe-wrap';
+      Barba.Pjax.Dom.containerClass = 'mainframe';
+      Barba.Pjax.ignoreClassLink    = 'no-frame-load';
+
+      // Processes
+      const obj = this;
+      obj.startAnalytics();
+      obj.startTransitions();
+      obj.startViews();
+    },
 
     //////////////////////////////
     // # set up analytics tracking
     //
     // track new pages loaded in timeline
     //////////////////////////////
-    Barba.Dispatcher.on('initStateChange', function() {
-      if (Barba.HistoryManager.prevStatus() === null) {
-        // google analytics SPA tracking
-        // - https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
-        // ga('set', 'page', Barba.Pjax.getCurrentUrl());
-        // ga('send', 'pageview');
-      }
-    });
+    startAnalytics() {
+      Barba.Dispatcher.on('initStateChange', function() {
+        if (Barba.HistoryManager.prevStatus() === null) {
+          // google analytics SPA tracking
+          // - https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+          // ga('set', 'page', Barba.Pjax.getCurrentUrl());
+          // ga('send', 'pageview');
+        }
+      });
+    },
 
     //////////////////////////////
-    // # define transitions
-    // - http://barbajs.org/transition.html
+    // # transitions
     //////////////////////////////
-    const pgFrameTransitions = {
-      // fade out-in
+    transitions: {
+      //////////////////////////////
+      // # fade in-out
+      //////////////////////////////
       fade: Barba.BaseTransition.extend({
         //////////////////////////////
         // # initialise
-        //
-        // required, controller for managing content from
-        // fetching, rendering and adding new content
         //////////////////////////////
         start: function() {
           const obj = this;
@@ -221,65 +206,84 @@
           });
         }
       })
-    };
+    },
 
     //////////////////////////////
     // # hook up custom transitions
     //////////////////////////////
-    Barba.Pjax.getTransition = function() {
-      // get transition based on current namespace
-      switch(Barba.HistoryManager.prevStatus().namespace) {
-        case 'index': return pgFrameTransitions.fade;
-        default:      return pgFrameTransitions.fade;
-      }
-    };
+    startTransitions() {
+      const obj = this;
+      Barba.Pjax.getTransition = function() {
+        // get transition based on current namespace
+        switch(Barba.HistoryManager.prevStatus().namespace) {
+          case 'index': return obj.transitions.fade;
+          default:      return obj.transitions.fade;
+        }
+      };
+    },
 
     //////////////////////////////
     // # Initialise frame views
     // - http://barbajs.org/views.html
     //////////////////////////////
-    // list views
-    const pgFrameViews = {
-      // index
-      index: Barba.BaseView.extend({
-        namespace: 'index',
-        onEnter: function() {
-          // new container is ready and attached to DOM
-        },
-        onEnterCompleted: function() {
-          // transition is complete
-        },
-        onLeave: function() {
-          // new transition to a new page has started
-        },
-        onLeaveCompleted: function() {
-          // current container removed from DOM
-        }
-      })
-    };
-    // loop and initialise listed views
-    const initPgFrameViews = function() {
-      for (let key in pgFrameViews) {
-        pgFrameViews[key].init();
+    startViews() {
+      const list = {
+        // index
+        index: Barba.BaseView.extend({
+          namespace: 'index',
+          onEnter: function() {
+            // new container is ready and attached to DOM
+          },
+          onEnterCompleted: function() {
+            // transition is complete
+          },
+          onLeave: function() {
+            // new transition to a new page has started
+          },
+          onLeaveCompleted: function() {
+            // current container removed from DOM
+          }
+        })
+      };
+
+      for (let view in list) {
+        list[view].init();
       }
-    };
-
-
-    // # instances
-    ////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////
-
-    //////////////////////////////
-    // # page transitions
-    //////////////////////////////
-    initPgFrameViews();
-    Barba.Pjax.start();
-  }
-
-  const completeInterval = setInterval(function() {
-    if(document.readyState === 'complete') {
-      clearInterval(completeInterval);
-      DomComplete();
     }
-  }, 100);
+  };
+
+  // # instances
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  //////////////////////////////
+  // # web font loader
+  //////////////////////////////
+  initWebFonts();
+
+
+  //////////////////////////////
+  // # preloader
+  //////////////////////////////
+  Preloader.toggle();
+
+  //////////////////////////////
+  // # page transitions
+  //////////////////////////////
+  PageTransitions.init();
+  Barba.Pjax.start();
+
+
+  // # on complete
+  //
+  // Post-CSSOM load – ensures styles are applied first before executing functions
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // const completeInterval = setInterval(function() {
+  //   if(document.readyState === 'complete') {
+  //     clearInterval(completeInterval);
+  //   }
+  // }, 100);
 })();
