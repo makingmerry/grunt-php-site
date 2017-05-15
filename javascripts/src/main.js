@@ -1,13 +1,12 @@
 (function () {
   'use strict';
 
-  // # on load
+  // # modules
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // # web font loader
-  //
+  // # Web Font Loader
   // Load linked fonts using @font-face with added control – Web Font Loader, Typekit & Google
   // https://github.com/typekit/webfontloader
   ////////////////////////////////////////////////////////////
@@ -24,14 +23,13 @@
     const wf = document.createElement('script');
     const s  = document.scripts[0];
 
-    // link to CDN for for script source,
+    // Link to CDN for for script source,
     // documentation recommends using explicit version numbers for performance reason
     wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
     s.parentNode.insertBefore(wf, s);
   }
 
-
-  // # preloader
+  // # Preloader
   //
   // Ease in initial page content
   ////////////////////////////////////////////////////////////
@@ -44,7 +42,7 @@
     },
 
     //////////////////////////////
-    // # stop page scrolling
+    // # Stop page scrolling
     //////////////////////////////
     stopScroll() {
       const obj = this;
@@ -52,7 +50,7 @@
     },
 
     //////////////////////////////
-    // # start page scrolling
+    // # Start (allow) page scrolling
     //////////////////////////////
     startScroll() {
       const obj = this;
@@ -60,14 +58,14 @@
     },
 
     //////////////////////////////
-    // # open preloader
+    // # Open
     //////////////////////////////
     open() {
       const obj = this;
-      // restrict page content viewing
+      // Restrict page content viewing
       obj.stopScroll();
       obj.state.active = true;
-      // transit in preloader
+      // Transit in preloader
       TweenLite.set(obj.el, {
         display   : 'table',
         visibility: 'visible',
@@ -79,11 +77,11 @@
     },
 
     //////////////////////////////
-    // # close preloader
+    // # Close
     //////////////////////////////
     close() {
       const obj = this;
-      // transit out preloader
+      // Transit out preloader
       TweenLite.to(obj.el, 0.5, {
         opacity   : 0,
         onComplete: function() {
@@ -91,7 +89,7 @@
             display   : 'none',
             visibility: 'hidden'
           });
-          // allow page content viewing
+          // Allow page content viewing
           obj.startScroll();
           obj.state.active = false;
         }
@@ -99,7 +97,7 @@
     },
 
     //////////////////////////////
-    // # toggle preloader
+    // # Toggle
     //////////////////////////////
     toggle() {
       const obj = this;
@@ -111,40 +109,37 @@
     }
   };
 
-
-  // # page transitions
+  // # View Controller
   // - Barba.js utility
   // - http://barbajs.org/
   //
   // Utilising Pushstate AJAX (or PJAX) to simuluate a SPA-type navigation
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-  const PageTransitions = {
+  const ViewController = {
     //////////////////////////////
-    // # initialise
+    // # Initialise
     //////////////////////////////
     init() {
       // Update DOM parsing variables
       Barba.Pjax.Dom.wrapperId      = 'mainframe-wrap';
       Barba.Pjax.Dom.containerClass = 'mainframe';
       Barba.Pjax.ignoreClassLink    = 'no-frame-load';
-
       // Processes
       const obj = this;
-      obj.startAnalytics();
-      obj.startTransitions();
-      obj.startViews();
+      obj.initAnalytics();
+      obj.initTransitions();
+      obj.initActions();
     },
 
     //////////////////////////////
-    // # set up analytics tracking
-    //
-    // track new pages loaded in timeline
+    // # Initialise analytics
+    // Track new pages loaded in timeline
     //////////////////////////////
-    startAnalytics() {
+    initAnalytics() {
       Barba.Dispatcher.on('initStateChange', function() {
         if (Barba.HistoryManager.prevStatus() === null) {
-          // google analytics SPA tracking
+          // Google analytics SPA tracking
           // - https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
           // ga('set', 'page', Barba.Pjax.getCurrentUrl());
           // ga('send', 'pageview');
@@ -153,15 +148,16 @@
     },
 
     //////////////////////////////
-    // # transitions
+    // # Transitions
+    // Custom transitions
     //////////////////////////////
     transitions: {
       //////////////////////////////
-      // # fade in-out
+      // # Fade in-out
       //////////////////////////////
       fade: Barba.BaseTransition.extend({
         //////////////////////////////
-        // # initialise
+        // # Start
         //////////////////////////////
         start: function() {
           const obj = this;
@@ -171,10 +167,10 @@
         },
 
         //////////////////////////////
-        // # fade in transition panel to hide current content
+        // # Hide old content
         //////////////////////////////
         hideOld: function() {
-          // animate out current content and fulfill promise
+          // Animate out current content and fulfill promise
           const obj = this;
           return new Promise((resolve, reject) => {
             TweenLite.to(obj.oldContainer, 0.15, {
@@ -187,13 +183,13 @@
         },
 
         //////////////////////////////
-        // # fade out transition panel to show new content
+        // # Show new content
         //////////////////////////////
         showNew: function() {
           const obj = this;
-          // hide old content
+          // Hide old content
           obj.oldContainer.style.display = 'none';
-          // animate in new content and fulfill promise
+          // Animate in new content and fulfill promise
           TweenLite.set(obj.newContainer, {
             visibility: 'visible',
             opacity   : 0
@@ -209,12 +205,14 @@
     },
 
     //////////////////////////////
-    // # hook up custom transitions
+    // # Initialise transitions
+    // Process view-specific transitions if required,
+    // defaults to fade in-out
     //////////////////////////////
-    startTransitions() {
+    initTransitions() {
       const obj = this;
       Barba.Pjax.getTransition = function() {
-        // get transition based on current namespace
+        // Get transition based on current namespace
         switch(Barba.HistoryManager.prevStatus().namespace) {
           case 'index': return obj.transitions.fade;
           default:      return obj.transitions.fade;
@@ -223,25 +221,26 @@
     },
 
     //////////////////////////////
-    // # Initialise frame views
+    // # Initialise actions
+    // Process view-specific and step-specific actions
     // - http://barbajs.org/views.html
     //////////////////////////////
-    startViews() {
+    initActions() {
       const list = {
-        // index
+        // Index view
         index: Barba.BaseView.extend({
           namespace: 'index',
           onEnter: function() {
-            // new container is ready and attached to DOM
+            // New container is ready and attached to DOM
           },
           onEnterCompleted: function() {
-            // transition is complete
+            // Transition is complete
           },
           onLeave: function() {
-            // new transition to a new page has started
+            // New transition to a new page has started
           },
           onLeaveCompleted: function() {
-            // current container removed from DOM
+            // Current container removed from DOM
           }
         })
       };
@@ -252,38 +251,32 @@
     }
   };
 
-  // # instances
-  ////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////
 
-  //////////////////////////////
-  // # web font loader
-  //////////////////////////////
+  // # PROCESS: on load
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // Web Font Loader
   initWebFonts();
-
-
-  //////////////////////////////
-  // # preloader
-  //////////////////////////////
+  // Preloader
   Preloader.toggle();
 
-  //////////////////////////////
-  // # page transitions
-  //////////////////////////////
-  PageTransitions.init();
-  Barba.Pjax.start();
 
-
-  // # on complete
+  // # PROCESS: on complete
   //
   // Post-CSSOM load – ensures styles are applied first before executing functions
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // const completeInterval = setInterval(function() {
-  //   if(document.readyState === 'complete') {
-  //     clearInterval(completeInterval);
-  //   }
-  // }, 100);
+  const complete = setInterval(function() {
+    if(document.readyState === 'complete') {
+      // View Controller
+      ViewController.init();
+      Barba.Pjax.start();
+
+      clearInterval(complete);
+    }
+  }, 100);
 })();
