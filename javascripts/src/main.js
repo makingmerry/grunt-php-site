@@ -36,63 +36,58 @@
   // Ease in initial page content
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-  function Preloader(El) {
-    //////////////////////////////
-    // # variables
-    //////////////////////////////
-    this.el     = document.getElementsByClassName(El)[0];
-    this.body   = document.getElementsByTagName('body')[0];
-    this.state  = {
+  const Preloader = {
+    el   : document.getElementsByClassName('preloader')[0],
+    body : document.getElementsByTagName('body')[0],
+    state: {
       active: true
-    };
+    },
 
     //////////////////////////////
     // # stop page scrolling
     //////////////////////////////
-    this.stopScroll = function() {
+    stopScroll() {
       const obj = this;
       obj.body.style.overflow = 'hidden';
-    };
+    },
 
     //////////////////////////////
     // # start page scrolling
     //////////////////////////////
-    this.startScroll = function() {
+    startScroll() {
       const obj = this;
       obj.body.style.overflow = 'auto';
-    };
+    },
 
     //////////////////////////////
     // # open preloader
     //////////////////////////////
-    this.open = function() {
+    open() {
       const obj = this;
-      const el  = obj.el;
       // restrict page content viewing
       obj.stopScroll();
       obj.state.active = true;
       // transit in preloader
-      TweenLite.set(el, {
+      TweenLite.set(obj.el, {
         display   : 'table',
         visibility: 'visible',
         opacity   : 0
       });
-      TweenLite.to(el, 0.35, {
+      TweenLite.to(obj.el, 0.35, {
         opacity: 1
       });
-    };
+    },
 
     //////////////////////////////
     // # close preloader
     //////////////////////////////
-    this.close = function() {
+    close() {
       const obj = this;
-      const el  = obj.el;
       // transit out preloader
-      TweenLite.to(el, 0.5, {
+      TweenLite.to(obj.el, 0.5, {
         opacity   : 0,
         onComplete: function() {
-          TweenLite.set(el, {
+          TweenLite.set(obj.el, {
             display   : 'none',
             visibility: 'hidden'
           });
@@ -101,20 +96,20 @@
           obj.state.active = false;
         }
       });
-    };
+    },
 
     //////////////////////////////
-    // # toggle preloader based on state
+    // # toggle preloader
     //////////////////////////////
-    this.toggle = function() {
+    toggle() {
       const obj = this;
       if (obj.state.active) {
         obj.close();
       } else {
         obj.open();
       }
-    };
-  }
+    }
+  };
 
 
   // # instances
@@ -129,8 +124,7 @@
   //////////////////////////////
   // # preloader
   //////////////////////////////
-  const preloader = new Preloader('preloader');
-  preloader.toggle();
+  Preloader.toggle();
 
 
 
