@@ -408,15 +408,28 @@ module.exports = function(grunt) {
       },
     },
 
+
+
+
+    // //////////////////////////////
+    // // # jshint
+    // // javascript linter
+    // //////////////////////////////
+    // jshint: {
+    //   options: {
+    //     esversion: 6
+    //   },
+    //   all: '<%= config.jsDir %>/<%= config.src %>/main.js',
+    // },
+
     //////////////////////////////
-    // # jshint
+    // # eslint
     // javascript linter
     //////////////////////////////
-    jshint: {
-      options: {
-        esversion: 6
-      },
-      all: '<%= config.jsDir %>/<%= config.src %>/main.js',
+    eslint: {
+      target: [
+        '<%= config.jsDir %>/<%= config.src %>/main.js'
+      ]
     },
 
     //////////////////////////////
@@ -532,7 +545,10 @@ module.exports = function(grunt) {
   // # javascript
   //////////////////////////////
   grunt.loadNpmTasks('grunt-babel');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+
+  // grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-eslint');
+
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
@@ -567,7 +583,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # javascript
   //////////////////////////////
-  grunt.registerTask('build-js', ['babel', 'concat', 'jshint', 'uglify']);
+  grunt.registerTask('build-js', ['babel', 'concat', 'eslint', 'uglify']);
 
   //////////////////////////////
   // # core
