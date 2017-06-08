@@ -30,9 +30,9 @@
   !images/
     images/*
     !images/src/
-  !svgs/
-    svgs/*
-    !svgs/src/
+  !icons/
+    icons/*
+    !icons/src/
   !favicons/
     favicons/*
     !favicons/src/

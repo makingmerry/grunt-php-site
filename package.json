@@ -6,9 +6,11 @@
     "url": "https://github.com/makingmerry/base-site"
   },
   "license": "UNLICENSED",
-  "version": "1.1.10",
+  "version": "1.1.12",
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "eslintConfig": {
     "extends": "airbnb",
@@ -17,10 +19,18 @@
       "es6": true
     },
     "rules": {
-      "spaced-comment": ["error", "always", {
-        "markers": ["/"],
-        "exceptions": ["///"]
-      }]
+      "spaced-comment": [
+        "error",
+        "always",
+        {
+          "markers": [
+            "/"
+          ],
+          "exceptions": [
+            "///"
+          ]
+        }
+      ]
     }
   },
   "devDependencies": {
@@ -46,10 +56,8 @@
     "grunt-eslint": "^19.0.0",
     "grunt-postcss": "^0.8.0",
     "grunt-real-favicon": "^0.2.0",
+    "grunt-svg-sprite": "^1.3.7",
     "grunt-svg2png": "^0.2.7",
-    "grunt-svgmin": "^4.0.0",
-    "grunt-svgstore": "^1.0.0",
-    "grunt-text-replace": "^0.4.0",
     "pixrem": "^3.0.2"
   }
 }
