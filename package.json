@@ -3,34 +3,28 @@
   "description": "Grunt task runner for rapid deployment of static PHP sites",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makingmerry/base-site",
+    "url": "https://github.com/makingmerry/base-site"
   },
   "license": "UNLICENSED",
   "version": "1.1.10",
   "babel": {
-    "presets": [
-      "es2015" 
-    ],
-    "plugins": [
-      "transform-remove-strict-mode"
-    ],
+    "presets": ["es2015"]
   },
   "eslintConfig": {
     "extends": "airbnb",
     "env": {
       "browser": true,
-      "es6": true,
+      "es6": true
     },
     "rules": {
       "spaced-comment": ["error", "always", {
         "markers": ["/"],
-        "exceptions": ["///"],
+        "exceptions": ["///"]
       }]
     }
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
-    "babel-plugin-transform-remove-strict-mode": "0.0.2",
     "babel-preset-es2015": "^6.24.1",
     "breakpoint-sass": "^2.7.1",
     "cssnano": "^3.7.7",
@@ -56,6 +50,6 @@
     "grunt-svgmin": "^4.0.0",
     "grunt-svgstore": "^1.0.0",
     "grunt-text-replace": "^0.4.0",
-    "pixrem": "^3.0.2",
+    "pixrem": "^3.0.2"
   }
 }

@@ -50,117 +50,117 @@ module.exports = function(grunt) {
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
 
-    //////////////////////////////
-    // # replace
-    // svg ID cleanup
-    // performs a manual ID cleanup as Illustrator exports a mess
-    //////////////////////////////
-    replace: {
-      svgclass: {
-        src         : ['<%= config.svgDir %>/<%= config.src %>/*.svg'],
-        dest        : '<%= config.svgDir %>/<%= config.tmp %>/',
-        replacements: [{
-          // Remove escaped underscore character
-          from: '_x5F_',
-          to  : '-'
-        }, {
-          // replace class names with proper classes
-          //class_x3D__x22_tank-option_x22__2_
-          from: /id\=\"class_x3D__x22_(.+?)_x22_(.*?)\"/gi,
-          to: function(matchedWord, index, fullText, regexMatches) {
-            return 'class="'+ regexMatches[0].toLowerCase()+'"';
-          }
-        }, {
-          // lowercase all ids
-          from: /id\=\"(.+?)\"/gi,
-          to: function(matchedWord, index, fullText, regexMatches) {
-            return 'id="'+ regexMatches[0].toLowerCase()+'"';
-          }
-        }, {
-          // lowercase all id references to match the previous replace rule
-          from: /url\(\#(.+?)\)/gi,
-          to: function(matchedWord, index, fullText, regexMatches) {
-            return 'url(#'+ regexMatches[0].toLowerCase() +')';
-          }
-        }, {
-          // lowercase all id href to match the previous replace rule
-          from: /href\=\"\#(.+?)\"/gi,
-          to: function(matchedWord, index, fullText, regexMatches) {
-            return 'href="#'+ regexMatches[0].toLowerCase() +'"';
-          }
-        }, {
-          // remove all font references as we will use CSS for this
-          from: /font\-family\=\"(.+?)\"/gi,
-          to: function(matchedWord, index, fullText, regexMatches) {
-            return '';
-          }
-        }]
-      }
-    },
+    // //////////////////////////////
+    // // # replace
+    // // svg ID cleanup
+    // // performs a manual ID cleanup as Illustrator exports a mess
+    // //////////////////////////////
+    // replace: {
+    //   svgclass: {
+    //     src         : ['<%= config.svgDir %>/<%= config.src %>/*.svg'],
+    //     dest        : '<%= config.svgDir %>/<%= config.tmp %>/',
+    //     replacements: [{
+    //       // Remove escaped underscore character
+    //       from: '_x5F_',
+    //       to  : '-'
+    //     }, {
+    //       // replace class names with proper classes
+    //       //class_x3D__x22_tank-option_x22__2_
+    //       from: /id\=\"class_x3D__x22_(.+?)_x22_(.*?)\"/gi,
+    //       to: function(matchedWord, index, fullText, regexMatches) {
+    //         return 'class="'+ regexMatches[0].toLowerCase()+'"';
+    //       }
+    //     }, {
+    //       // lowercase all ids
+    //       from: /id\=\"(.+?)\"/gi,
+    //       to: function(matchedWord, index, fullText, regexMatches) {
+    //         return 'id="'+ regexMatches[0].toLowerCase()+'"';
+    //       }
+    //     }, {
+    //       // lowercase all id references to match the previous replace rule
+    //       from: /url\(\#(.+?)\)/gi,
+    //       to: function(matchedWord, index, fullText, regexMatches) {
+    //         return 'url(#'+ regexMatches[0].toLowerCase() +')';
+    //       }
+    //     }, {
+    //       // lowercase all id href to match the previous replace rule
+    //       from: /href\=\"\#(.+?)\"/gi,
+    //       to: function(matchedWord, index, fullText, regexMatches) {
+    //         return 'href="#'+ regexMatches[0].toLowerCase() +'"';
+    //       }
+    //     }, {
+    //       // remove all font references as we will use CSS for this
+    //       from: /font\-family\=\"(.+?)\"/gi,
+    //       to: function(matchedWord, index, fullText, regexMatches) {
+    //         return '';
+    //       }
+    //     }]
+    //   }
+    // },
 
-    //////////////////////////////
-    // # svgmin
-    // minify individual svgs
-    //////////////////////////////
-    svgmin: {
-      icons: {
-        files: [{
-          expand: true,
-          cwd   : '<%= config.svgDir %>/<%= config.tmp %>/',
-          src   : ['*.svg'],
-          dest  : '<%= config.svgDir %>/<%= config.tmp %>/'
-        }]
-      },
-      options: {
-        plugins: [
-          { removeViewBox   : false },
-          { removeEmptyAttrs: false },
-          { removeAttrs     : {
-            attrs: ['fill']
-          }}
-        ]
-      }
-    },
+    // //////////////////////////////
+    // // # svgmin
+    // // minify individual svgs
+    // //////////////////////////////
+    // svgmin: {
+    //   icons: {
+    //     files: [{
+    //       expand: true,
+    //       cwd   : '<%= config.svgDir %>/<%= config.tmp %>/',
+    //       src   : ['*.svg'],
+    //       dest  : '<%= config.svgDir %>/<%= config.tmp %>/'
+    //     }]
+    //   },
+    //   options: {
+    //     plugins: [
+    //       { removeViewBox   : false },
+    //       { removeEmptyAttrs: false },
+    //       { removeAttrs     : {
+    //         attrs: ['fill']
+    //       }}
+    //     ]
+    //   }
+    // },
 
-    //////////////////////////////
-    // # svgstore
-    // merge svgs to a spritesheet
-    //////////////////////////////
-    svgstore: {
-      icons: {
-        files: {
-          '<%= config.svgDir %>/<%= config.build %>/svg-defs.svg': ['<%= config.svgDir %>/<%= config.tmp %>/*.svg']
-        },
-      },
-      options: {
-        cleanup: true,
-        prefix : 'shape-'
-      }
-    },
+    // //////////////////////////////
+    // // # svgstore
+    // // merge svgs to a spritesheet
+    // //////////////////////////////
+    // svgstore: {
+    //   icons: {
+    //     files: {
+    //       '<%= config.svgDir %>/<%= config.build %>/svg-defs.svg': ['<%= config.svgDir %>/<%= config.tmp %>/*.svg']
+    //     },
+    //   },
+    //   options: {
+    //     cleanup: true,
+    //     prefix : 'shape-'
+    //   }
+    // },
 
-    //////////////////////////////
-    // # svg2png
-    // build png fallbacks from svg
-    //////////////////////////////
-    svg2png: {
-      staticSvgs: {
-        files: [{ 
-          flatten: true,
-          cwd    : '<%= config.imgDir %>/<%= config.src %>/', 
-          src    : ['*.svg'], 
-          dest   : '<%= config.imgDir %>/<%= config.tmp %>/'
-        }]
-      },
+    // //////////////////////////////
+    // // # svg2png
+    // // build png fallbacks from svg
+    // //////////////////////////////
+    // svg2png: {
+    //   staticSvgs: {
+    //     files: [{ 
+    //       flatten: true,
+    //       cwd    : '<%= config.imgDir %>/<%= config.src %>/', 
+    //       src    : ['*.svg'], 
+    //       dest   : '<%= config.imgDir %>/<%= config.tmp %>/'
+    //     }]
+    //   },
 
-      icons: {
-        files: [{ 
-          flatten: true,
-          cwd    : '<%= config.svgDir %>/<%= config.src %>/', 
-          src    : ['*.svg'], 
-          dest   : '<%= config.svgDir %>/<%= config.tmp %>/'
-        }]
-      }
-    },
+    //   icons: {
+    //     files: [{ 
+    //       flatten: true,
+    //       cwd    : '<%= config.svgDir %>/<%= config.src %>/', 
+    //       src    : ['*.svg'], 
+    //       dest   : '<%= config.svgDir %>/<%= config.tmp %>/'
+    //     }]
+    //   }
+    // },
 
     //////////////////////////////
     // # real favicons
@@ -253,29 +253,29 @@ module.exports = function(grunt) {
         }]
       },
 
-      staticSvgs: {
-        options: {
-          optimizationLevel: 3
-        },
-        files: [{
-          expand: true,
-          cwd   : '<%= config.imgDir %>/<%= config.tmp %>/',
-          src   : ['**/*.{png,jpg,gif}'],
-          dest  : '<%= config.imgDir %>/<%= config.build %>/'
-        }]
-      },
+      // staticSvgs: {
+      //   options: {
+      //     optimizationLevel: 3
+      //   },
+      //   files: [{
+      //     expand: true,
+      //     cwd   : '<%= config.imgDir %>/<%= config.tmp %>/',
+      //     src   : ['**/*.{png,jpg,gif}'],
+      //     dest  : '<%= config.imgDir %>/<%= config.build %>/'
+      //   }]
+      // },
 
-      icons: {
-        options: {
-          optimizationLevel: 3
-        },
-        files: [{
-          expand: true,
-          cwd   : '<%= config.svgDir %>/<%= config.tmp %>/',
-          src   : ['**/*.{png,jpg,gif}'],
-          dest  : '<%= config.svgDir %>/<%= config.build %>/'
-        }]
-      },
+      // icons: {
+      //   options: {
+      //     optimizationLevel: 3
+      //   },
+      //   files: [{
+      //     expand: true,
+      //     cwd   : '<%= config.svgDir %>/<%= config.tmp %>/',
+      //     src   : ['**/*.{png,jpg,gif}'],
+      //     dest  : '<%= config.svgDir %>/<%= config.build %>/'
+      //   }]
+      // },
 
       favicons: {
         options: {
@@ -427,6 +427,10 @@ module.exports = function(grunt) {
     // javascript linter
     //////////////////////////////
     eslint: {
+      options: {
+        configFile: '',
+        rulePaths: ''
+      },
       target: [
         '<%= config.jsDir %>/<%= config.src %>/main.js'
       ]
@@ -569,9 +573,9 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # media
   //////////////////////////////
-  grunt.registerTask('build-icons', ['replace:icons', 'svgmin:icons', 'svgstore:icons', 'svg2png:icons', 'imagemin:icons']);
+  // grunt.registerTask('build-icons', ['replace:icons', 'svgmin:icons', 'svgstore:icons', 'svg2png:icons', 'imagemin:icons']);
   grunt.registerTask('build-favicons', ['realFavicon', 'imagemin:favicons']);
-  grunt.registerTask('build-img', ['imagemin:statics', 'svg2png:staticSvgs', 'imagemin:staticSvgs']);
+  // grunt.registerTask('build-img', ['imagemin:statics', 'svg2png:staticSvgs', 'imagemin:staticSvgs']);
 
   //////////////////////////////
   // # css

@@ -1,5 +1,8 @@
-/* global TweenLite, Barba */
-/* eslint no-unused-vars: [2, {"args": "after-used", "varsIgnorePattern": "WebFontConfig"}] */
+/* global TweenLite Barba */
+/* eslint no-unused-vars: [2, {
+  "args": "after-used",
+  "varsIgnorePattern": "WebFontConfig"
+}] */
 
 (() => {
   // 'use strict'; // 'use strict' is unnecessary inside of modules — ESLint
