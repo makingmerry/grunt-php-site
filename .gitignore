@@ -29,6 +29,9 @@
     !assets/favicons/
       assets/favicons/*
       !assets/favicons/src/
+    !assets/symbols/
+      assets/symbols/*
+      !assets/symbols/src/
     !assets/images/
       assets/images/*
       !assets/images/src/
