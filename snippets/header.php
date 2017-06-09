@@ -18,14 +18,14 @@
   <!-- load critical inline styles -->
   <style type="text/css">
     <?php
-      $file = 'stylesheets/build/critical/'.$page.'.css';
+      $file = 'assets/stylesheets/build/critical/'.$page.'.css';
       file_exists($file) AND include $file;
     ?>
   </style>
 
   <!-- defer loading of non-critical styles -->
   <noscript id="deferred-styles">
-    <link href="stylesheets/build/style.css" rel="stylesheet" type="text/css">
+    <link href="assets/stylesheets/build/style.css" rel="stylesheet" type="text/css">
   </noscript>
 
   <!-- hide preloader if javascript is disabled -->
@@ -67,6 +67,6 @@
   </script>
 
   <!-- # favicons -->
-  <?php include 'favicons/build/favicons.html'; ?>
+  <?php include 'assets/favicons/build/favicons.html'; ?>
 </head>
 <body>

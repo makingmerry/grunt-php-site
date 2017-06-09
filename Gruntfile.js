@@ -59,11 +59,11 @@ module.exports = function(grunt) {
     //////////////////////////////
     realFavicon: {
       favicons: {
-        src : '<%= config.faviconDirectory %>/<%= config.source %>/favicon.png',
-        dest: '<%= config.faviconDirectory %>/<%= config.build %>/',
+        src : '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.source %>/favicon.png',
+        dest: '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/',
         options: {
-          iconsPath: '<%= config.faviconDirectory %>/<%= config.build %>/',
-          html     : ['<%= config.faviconDirectory %>/<%= config.build %>/favicons.html'],
+          iconsPath: '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/',
+          html     : ['<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/favicons.html'],
           design: {
             ios: {
               pictureAspect  : 'backgroundAndMargin',
@@ -125,9 +125,9 @@ module.exports = function(grunt) {
     svg_sprite: {
       icons: {
         expand : true,
-        cwd    : '<%= config.iconDirectory %>/<%= config.source %>/',
+        cwd    : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.source %>/',
         src    : ['*.svg'],
-        dest   : '<%= config.iconDirectory %>/<%= config.build %>/',
+        dest   : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.build %>/',
         options: {
           mode: {
             symbol: {
@@ -147,18 +147,18 @@ module.exports = function(grunt) {
       icons: {
         files: [{ 
           flatten: true,
-          cwd    : '<%= config.iconDirectory %>/<%= config.source %>/', 
+          cwd    : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.source %>/', 
           src    : ['*.svg'], 
-          dest   : '<%= config.iconDirectory %>/<%= config.temporary %>/',
+          dest   : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.temporary %>/',
         }]
       },
 
       graphics: {
         files: [{ 
           flatten: true,
-          cwd    : '<%= config.imgDirectory %>/<%= config.source %>/', 
+          cwd    : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/', 
           src    : ['*.svg'], 
-          dest   : '<%= config.imgDirectory %>/<%= config.temporary %>/',
+          dest   : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.temporary %>/',
         }]
       },
     },
@@ -174,9 +174,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.imgDirectory %>/<%= config.source %>/',
+          cwd   : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/',
           src   : ['*.{png,jpg,gif,}'],
-          dest  : '<%= config.imgDirectory %>/<%= config.build %>/'
+          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/'
         }]
       },
 
@@ -193,9 +193,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.imgDirectory %>/<%= config.source %>/',
+          cwd   : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/',
           src   : ['*.{svg}'],
-          dest  : '<%= config.imgDirectory %>/<%= config.build %>/'
+          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/'
         }]
       },
 
@@ -205,9 +205,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.imgDirectory %>/<%= config.temporary %>/',
+          cwd   : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.temporary %>/',
           src   : ['*.{png,jpg,gif,}'],
-          dest  : '<%= config.imgDirectory %>/<%= config.build %>/'
+          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/'
         }]
       },
 
@@ -217,9 +217,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.iconDirectory %>/<%= config.temporary %>/',
+          cwd   : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.temporary %>/',
           src   : ['*.{png,jpg,gif}'],
-          dest  : '<%= config.iconDirectory %>/<%= config.build %>/'
+          dest  : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.build %>/'
         }]
       },
 
@@ -229,9 +229,9 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.faviconDirectory %>/<%= config.build %>/',
+          cwd   : '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/',
           src   : ['*.{png,jpg,gif}'],
-          dest  : '<%= config.faviconDirectory %>/<%= config.build %>/'
+          dest  : '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/'
         }]
       },
     },
@@ -252,7 +252,7 @@ module.exports = function(grunt) {
           require: 'breakpoint'
         },
         files: {
-          '<%= config.cssDirectory %>/<%= config.temporary %>/style.css': '<%= config.sassDirectory %>/style.scss'
+          '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/style.css': '<%= config.assets %>/<%= config.sassDirectory %>/style.scss'
         }
       }
     },
@@ -273,8 +273,8 @@ module.exports = function(grunt) {
             require('cssnano')()
           ]
         },
-        src: '<%= config.cssDirectory %>/<%= config.temporary %>/style.css',
-        dest: '<%= config.cssDirectory %>/<%= config.build %>/style.css'
+        src: '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/style.css',
+        dest: '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/style.css'
       },
 
       critical: {
@@ -287,9 +287,9 @@ module.exports = function(grunt) {
           ]
         },
         expand: true,
-        cwd   : '<%= config.cssDirectory %>/<%= config.temporary %>/critical/',
+        cwd   : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/critical/',
         src   : ['**/*.css'],
-        dest  : '<%= config.cssDirectory %>/<%= config.build %>/critical/'
+        dest  : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/critical/'
       }
     },
 
@@ -299,13 +299,13 @@ module.exports = function(grunt) {
     //////////////////////////////
     criticalcss: {
       // index page template
-      index: {
+      indexPage: {
         options: {
           url         : '<%= config.fullPath %>',
-          filename    : '<%= config.cssDirectory %>/<%= config.temporary %>/style.css',
+          filename    : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/style.css',
           width       : 1280,
           height      : 720,
-          outputfile  : '<%= config.cssDirectory %>/<%= config.temporary %>/critical/index.css',
+          outputfile  : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/critical/index.css',
           forceInclude: []
         }
       },
@@ -326,7 +326,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          '<%= config.jsDirectory %>/<%= config.temporary %>/main.js': '<%= config.jsDirectory %>/<%= config.source %>/main.js'
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/main.js': '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/main.js'
         }
       }
     },
@@ -339,18 +339,18 @@ module.exports = function(grunt) {
       dist: {
         src: [
           // polyfills
-          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/picturefill.js',
-          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/svg4everybody.js',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/picturefill.js',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/svg4everybody.js',
           // features
-          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/barba.js',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/barba.js',
           // animations
-          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/TweenLite.js',
-          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/CSSPlugin.js',
-          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/ScrollToPlugin.js',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/TweenLite.js',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/CSSPlugin.js',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/ScrollToPlugin.js',
           // project
-          '<%= config.jsDirectory %>/<%= config.temporary %>/main.js'
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/main.js'
         ],
-        dest: '<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
+        dest: '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
       },
     },
 
@@ -378,7 +378,7 @@ module.exports = function(grunt) {
         rulePaths: ''
       },
       target: [
-        '<%= config.jsDirectory %>/<%= config.source %>/main.js'
+        '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/main.js'
       ]
     },
 
@@ -388,8 +388,8 @@ module.exports = function(grunt) {
     //////////////////////////////
     uglify: {
       build: {
-        src : '<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
-        dest: '<%= config.jsDirectory %>/<%= config.build %>/global.min.js'
+        src : '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
+        dest: '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.build %>/global.min.js'
       }
     },
 
@@ -407,14 +407,14 @@ module.exports = function(grunt) {
         expand: true,
         src   : [
           // media
-          '<%= config.iconDirectory %>/<%= config.build %>/*',
-          '<%= config.faviconDirectory %>/<%= config.build %>/*',
-          '<%= config.imgDirectory %>/<%= config.build %>/*',
+          '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/*',
+          '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.build %>/*',
+          '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/*',
           // css
-          '<%= config.cssDirectory %>/<%= config.build %>/**',
-          '<%= config.fontDirectory %>/*',
+          '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/**',
+          '<%= config.assets %>/<%= config.fontDirectory %>/*',
           // javascript
-          '<%= config.jsDirectory %>/<%= config.build %>/*',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.build %>/*',
           // models
           '<%= config.snippetDirectory %>/*.{html,php}',
           '*.{html,php}',
@@ -436,23 +436,23 @@ module.exports = function(grunt) {
           port: 35729 // livereload port
         }
       },
-      template: {
-        files: ['**/*.{html,php}'],
+      templates: {
+        files: ['*.{html,php}', 'snippets/*.{html,php}'],
       },
-      img: {
-        files: ['<%= config.imgDirectory %>/<%= config.source %>/**'],
-        tasks: ['build-img'],
+      images: {
+        files: ['<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/**'],
+        tasks: ['build-img', 'build-graphics'],
       },
-      svgs: {
-        files: ['<%= config.iconDirectory %>/<%= config.source %>/**'],
-        tasks: ['build-svg'],
+      icons: {
+        files: ['<%= config.assets %>/<%= config.iconDirectory %>/<%= config.source %>/**'],
+        tasks: ['build-icons'],
       },
       css: {
-        files: ['<%= config.sassDirectory %>/**/*.scss'],
+        files: ['<%= config.assets %>/<%= config.sassDirectory %>/**/*.scss'],
         tasks: ['build-base-css'],
       },
       js: {
-        files: ['<%= config.jsDirectory %>/<%= config.source %>/**/*.js'],
+        files: ['<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/**/*.js'],
         tasks: ['build-js'],
       },
     },
@@ -528,5 +528,5 @@ module.exports = function(grunt) {
   // # core
   //////////////////////////////
   grunt.registerTask('build', 'copy:build');
-  grunt.registerTask('default', ['build-svg', 'build-favicons', 'build-img', 'build-css', 'build-js', 'build']);
+  grunt.registerTask('default', ['build-favicons', 'build-icons', 'build-graphics', 'build-img', 'build-css', 'build-js', 'build']);
 };
