@@ -354,20 +354,6 @@ module.exports = function(grunt) {
       },
     },
 
-
-
-
-    // //////////////////////////////
-    // // # jshint
-    // // javascript linter
-    // //////////////////////////////
-    // jshint: {
-    //   options: {
-    //     esversion: 6
-    //   },
-    //   all: '<%= config.jsDirectory %>/<%= config.source %>/main.js',
-    // },
-
     //////////////////////////////
     // # eslint
     // javascript linter
@@ -484,10 +470,7 @@ module.exports = function(grunt) {
   // # javascript
   //////////////////////////////
   grunt.loadNpmTasks('grunt-babel');
-
-  // grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-eslint');
-
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
