@@ -26,19 +26,17 @@
     assets/*
     !assets/fonts/*
     !assets/sass/*
-    !assets/javascripts/
-      assets/javascripts/*
-      !assets/javascripts/src/
-    !assets/images/
-      assets/images/*
-      !assets/images/src/
-    !assets/icons/
-      assets/icons/*
-      !assets/icons/src/
     !assets/favicons/
       assets/favicons/*
       !assets/favicons/src/
+    !assets/images/
+      assets/images/*
+      !assets/images/src/
+    !assets/javascripts/
+      assets/javascripts/*
+      !assets/javascripts/src/
   !snippets/
+  !test/
   !*.php
 
   # track taskrunner(Grunt) configurations
