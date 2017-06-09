@@ -36,7 +36,6 @@
       assets/javascripts/*
       !assets/javascripts/src/
   !snippets/
-  !test/
   !*.php
 
   # track taskrunner(Grunt) configurations

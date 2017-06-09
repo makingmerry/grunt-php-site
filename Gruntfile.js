@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       // # media
       //////////////////////////////
       faviconDirectory: 'favicons',
-      iconDirectory   : 'icons',
+      symbolDirectory : 'symbols',
       imgDirectory    : 'images',
 
       //////////////////////////////
@@ -120,19 +120,19 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # svg sprite
-    // generate svg iconsheet from individual files
+    // generate svg symbolsheet from individual files
     //////////////////////////////
     svg_sprite: {
-      icons: {
+      symbols: {
         expand : true,
-        cwd    : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.source %>/',
+        cwd    : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.source %>/',
         src    : ['*.svg'],
-        dest   : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.build %>/',
+        dest   : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.build %>/',
         options: {
           mode: {
             symbol: {
               dest: '.',
-              sprite: 'iconsheet.svg',
+              sprite: 'symbolsheet.svg',
             },
           },
         },
@@ -144,12 +144,12 @@ module.exports = function(grunt) {
     // build png fallbacks from svg
     //////////////////////////////
     svg2png: {
-      icons: {
+      symbols: {
         files: [{ 
           flatten: true,
-          cwd    : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.source %>/', 
+          cwd    : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.source %>/', 
           src    : ['*.svg'], 
-          dest   : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.temporary %>/',
+          dest   : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.temporary %>/',
         }]
       },
 
@@ -211,15 +211,15 @@ module.exports = function(grunt) {
         }]
       },
 
-      icons: {
+      symbols: {
         options: {
           optimizationLevel: 3
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.temporary %>/',
+          cwd   : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.temporary %>/',
           src   : ['*.{png,jpg,gif}'],
-          dest  : '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.build %>/'
+          dest  : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.build %>/'
         }]
       },
 
@@ -394,7 +394,7 @@ module.exports = function(grunt) {
         src   : [
           // media
           '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/*',
-          '<%= config.assets %>/<%= config.iconDirectory %>/<%= config.build %>/*',
+          '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.build %>/*',
           '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/*',
           // css
           '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/**',
@@ -429,9 +429,9 @@ module.exports = function(grunt) {
         files: ['<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/**'],
         tasks: ['build-img', 'build-graphics'],
       },
-      icons: {
-        files: ['<%= config.assets %>/<%= config.iconDirectory %>/<%= config.source %>/**'],
-        tasks: ['build-icons'],
+      symbols: {
+        files: ['<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.source %>/**'],
+        tasks: ['build-symbols'],
       },
       css: {
         files: ['<%= config.assets %>/<%= config.sassDirectory %>/**/*.scss'],
@@ -491,7 +491,7 @@ module.exports = function(grunt) {
   // # media
   //////////////////////////////
   grunt.registerTask('build-favicons', ['realFavicon:favicons', 'imagemin:favicons']);
-  grunt.registerTask('build-icons', ['svg_sprite:icons', 'svg2png:icons', 'imagemin:icons']);
+  grunt.registerTask('build-symbols', ['svg_sprite:symbols', 'svg2png:symbols', 'imagemin:symbols']);
   grunt.registerTask('build-graphics', ['svg2png:graphics', 'imagemin:graphics', 'imagemin:graphicsFallback']);
   grunt.registerTask('build-img', ['imagemin:images']);
 
@@ -511,5 +511,5 @@ module.exports = function(grunt) {
   // # core
   //////////////////////////////
   grunt.registerTask('build', 'copy:build');
-  grunt.registerTask('default', ['build-favicons', 'build-icons', 'build-graphics', 'build-img', 'build-css', 'build-js', 'build']);
+  grunt.registerTask('default', ['build-favicons', 'build-symbols', 'build-graphics', 'build-img', 'build-css', 'build-js', 'build']);
 };
