@@ -42,6 +42,7 @@
   # track taskrunner(Grunt) configurations
   ----------
   !package.json
+  !package-lock.json
   !Gruntfile.js
 
 

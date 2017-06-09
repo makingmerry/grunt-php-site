@@ -14,11 +14,12 @@ module.exports = function(grunt) {
       //////////////////////////////
       // # general
       //////////////////////////////
-      fullPath: 'http://localhost:8888/',
-      src     : 'src',
-      tmp     : 'tmp',
-      build   : 'build',
-      lib     : 'lib',
+      fullPath : 'http://localhost:8888/',
+      assets   : 'assets',
+      source   : 'src',
+      temporary: 'tmp',
+      build    : 'build',
+      library  : 'lib',
 
       //////////////////////////////
       // # models
@@ -58,7 +59,7 @@ module.exports = function(grunt) {
     //////////////////////////////
     realFavicon: {
       favicons: {
-        src : '<%= config.faviconDirectory %>/<%= config.src %>/favicon.png',
+        src : '<%= config.faviconDirectory %>/<%= config.source %>/favicon.png',
         dest: '<%= config.faviconDirectory %>/<%= config.build %>/',
         options: {
           iconsPath: '<%= config.faviconDirectory %>/<%= config.build %>/',
@@ -124,7 +125,7 @@ module.exports = function(grunt) {
     svg_sprite: {
       icons: {
         expand : true,
-        cwd    : '<%= config.iconDirectory %>/<%= config.src %>/',
+        cwd    : '<%= config.iconDirectory %>/<%= config.source %>/',
         src    : ['*.svg'],
         dest   : '<%= config.iconDirectory %>/<%= config.build %>/',
         options: {
@@ -146,18 +147,18 @@ module.exports = function(grunt) {
       icons: {
         files: [{ 
           flatten: true,
-          cwd    : '<%= config.iconDirectory %>/<%= config.src %>/', 
+          cwd    : '<%= config.iconDirectory %>/<%= config.source %>/', 
           src    : ['*.svg'], 
-          dest   : '<%= config.iconDirectory %>/<%= config.tmp %>/',
+          dest   : '<%= config.iconDirectory %>/<%= config.temporary %>/',
         }]
       },
 
       graphics: {
         files: [{ 
           flatten: true,
-          cwd    : '<%= config.imgDirectory %>/<%= config.src %>/', 
+          cwd    : '<%= config.imgDirectory %>/<%= config.source %>/', 
           src    : ['*.svg'], 
-          dest   : '<%= config.imgDirectory %>/<%= config.tmp %>/',
+          dest   : '<%= config.imgDirectory %>/<%= config.temporary %>/',
         }]
       },
     },
@@ -173,7 +174,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.imgDirectory %>/<%= config.src %>/',
+          cwd   : '<%= config.imgDirectory %>/<%= config.source %>/',
           src   : ['*.{png,jpg,gif,}'],
           dest  : '<%= config.imgDirectory %>/<%= config.build %>/'
         }]
@@ -192,7 +193,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.imgDirectory %>/<%= config.src %>/',
+          cwd   : '<%= config.imgDirectory %>/<%= config.source %>/',
           src   : ['*.{svg}'],
           dest  : '<%= config.imgDirectory %>/<%= config.build %>/'
         }]
@@ -204,7 +205,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.imgDirectory %>/<%= config.tmp %>/',
+          cwd   : '<%= config.imgDirectory %>/<%= config.temporary %>/',
           src   : ['*.{png,jpg,gif,}'],
           dest  : '<%= config.imgDirectory %>/<%= config.build %>/'
         }]
@@ -216,7 +217,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd   : '<%= config.iconDirectory %>/<%= config.tmp %>/',
+          cwd   : '<%= config.iconDirectory %>/<%= config.temporary %>/',
           src   : ['*.{png,jpg,gif}'],
           dest  : '<%= config.iconDirectory %>/<%= config.build %>/'
         }]
@@ -251,7 +252,7 @@ module.exports = function(grunt) {
           require: 'breakpoint'
         },
         files: {
-          '<%= config.cssDirectory %>/<%= config.tmp %>/style.css': '<%= config.sassDirectory %>/style.scss'
+          '<%= config.cssDirectory %>/<%= config.temporary %>/style.css': '<%= config.sassDirectory %>/style.scss'
         }
       }
     },
@@ -272,7 +273,7 @@ module.exports = function(grunt) {
             require('cssnano')()
           ]
         },
-        src: '<%= config.cssDirectory %>/<%= config.tmp %>/style.css',
+        src: '<%= config.cssDirectory %>/<%= config.temporary %>/style.css',
         dest: '<%= config.cssDirectory %>/<%= config.build %>/style.css'
       },
 
@@ -286,7 +287,7 @@ module.exports = function(grunt) {
           ]
         },
         expand: true,
-        cwd   : '<%= config.cssDirectory %>/<%= config.tmp %>/critical/',
+        cwd   : '<%= config.cssDirectory %>/<%= config.temporary %>/critical/',
         src   : ['**/*.css'],
         dest  : '<%= config.cssDirectory %>/<%= config.build %>/critical/'
       }
@@ -301,10 +302,10 @@ module.exports = function(grunt) {
       index: {
         options: {
           url         : '<%= config.fullPath %>',
-          filename    : '<%= config.cssDirectory %>/<%= config.tmp %>/style.css',
+          filename    : '<%= config.cssDirectory %>/<%= config.temporary %>/style.css',
           width       : 1280,
           height      : 720,
-          outputfile  : '<%= config.cssDirectory %>/<%= config.tmp %>/critical/index.css',
+          outputfile  : '<%= config.cssDirectory %>/<%= config.temporary %>/critical/index.css',
           forceInclude: []
         }
       },
@@ -325,7 +326,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          '<%= config.jsDirectory %>/<%= config.tmp %>/main.js': '<%= config.jsDirectory %>/<%= config.src %>/main.js'
+          '<%= config.jsDirectory %>/<%= config.temporary %>/main.js': '<%= config.jsDirectory %>/<%= config.source %>/main.js'
         }
       }
     },
@@ -338,18 +339,18 @@ module.exports = function(grunt) {
       dist: {
         src: [
           // polyfills
-          '<%= config.jsDirectory %>/<%= config.src %>/<%= config.lib %>/picturefill.js',
-          '<%= config.jsDirectory %>/<%= config.src %>/<%= config.lib %>/svg4everybody.js',
+          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/picturefill.js',
+          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/svg4everybody.js',
           // features
-          '<%= config.jsDirectory %>/<%= config.src %>/<%= config.lib %>/barba.js',
+          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/barba.js',
           // animations
-          '<%= config.jsDirectory %>/<%= config.src %>/<%= config.lib %>/TweenLite.js',
-          '<%= config.jsDirectory %>/<%= config.src %>/<%= config.lib %>/CSSPlugin.js',
-          '<%= config.jsDirectory %>/<%= config.src %>/<%= config.lib %>/ScrollToPlugin.js',
+          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/TweenLite.js',
+          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/CSSPlugin.js',
+          '<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/ScrollToPlugin.js',
           // project
-          '<%= config.jsDirectory %>/<%= config.tmp %>/main.js'
+          '<%= config.jsDirectory %>/<%= config.temporary %>/main.js'
         ],
-        dest: '<%= config.jsDirectory %>/<%= config.tmp %>/global.js',
+        dest: '<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
       },
     },
 
@@ -364,7 +365,7 @@ module.exports = function(grunt) {
     //   options: {
     //     esversion: 6
     //   },
-    //   all: '<%= config.jsDirectory %>/<%= config.src %>/main.js',
+    //   all: '<%= config.jsDirectory %>/<%= config.source %>/main.js',
     // },
 
     //////////////////////////////
@@ -377,7 +378,7 @@ module.exports = function(grunt) {
         rulePaths: ''
       },
       target: [
-        '<%= config.jsDirectory %>/<%= config.src %>/main.js'
+        '<%= config.jsDirectory %>/<%= config.source %>/main.js'
       ]
     },
 
@@ -387,7 +388,7 @@ module.exports = function(grunt) {
     //////////////////////////////
     uglify: {
       build: {
-        src : '<%= config.jsDirectory %>/<%= config.tmp %>/global.js',
+        src : '<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
         dest: '<%= config.jsDirectory %>/<%= config.build %>/global.min.js'
       }
     },
@@ -439,11 +440,11 @@ module.exports = function(grunt) {
         files: ['**/*.{html,php}'],
       },
       img: {
-        files: ['<%= config.imgDirectory %>/<%= config.src %>/**'],
+        files: ['<%= config.imgDirectory %>/<%= config.source %>/**'],
         tasks: ['build-img'],
       },
       svgs: {
-        files: ['<%= config.iconDirectory %>/<%= config.src %>/**'],
+        files: ['<%= config.iconDirectory %>/<%= config.source %>/**'],
         tasks: ['build-svg'],
       },
       css: {
@@ -451,7 +452,7 @@ module.exports = function(grunt) {
         tasks: ['build-base-css'],
       },
       js: {
-        files: ['<%= config.jsDirectory %>/<%= config.src %>/**/*.js'],
+        files: ['<%= config.jsDirectory %>/<%= config.source %>/**/*.js'],
         tasks: ['build-js'],
       },
     },
