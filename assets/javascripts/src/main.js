@@ -1,8 +1,28 @@
+// # global configurations
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// # ESLint
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 /* global TweenLite Barba */
 /* eslint no-unused-vars: [2, {
   "args": "after-used",
   "varsIgnorePattern": "WebFontConfig"
 }] */
+
+// # Web Font Loader configurations
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+const WebFontConfig = {
+  custom: {
+    families: [
+      // '',
+    ],
+  },
+  timeout: 2000,
+};
 
 (() => {
   // 'use strict'; // 'use strict' is unnecessary inside of modules — ESLint
@@ -17,21 +37,13 @@
   // https://github.com/typekit/webfontloader
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-  const WebFontConfig = {
-    custom: {
-      families: [
-        // '',
-      ],
-    },
-  };
-
   function initWebFonts() {
     const wf = document.createElement('script');
     const s = document.scripts[0];
 
     // Link to CDN for for script source,
     // documentation recommends using explicit version numbers for performance reason
-    wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
+    wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
     s.parentNode.insertBefore(wf, s);
   }
 
