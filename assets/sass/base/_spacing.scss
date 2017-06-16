@@ -1,0 +1,57 @@
+// # spacing
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+$spacing-value-list: map-values($spacing);
+@mixin spacing($prefix, $index, $spacing-type, $spacing-value, $modifier: "") {
+  .#{$prefix}-all-#{$index}#{unquote($modifier)} { #{$spacing-type}: $spacing-value; }
+  .#{$prefix}-top-#{$index}#{unquote($modifier)} { #{$spacing-type}-top: $spacing-value; }
+  .#{$prefix}-rgt-#{$index}#{unquote($modifier)} { #{$spacing-type}-right: $spacing-value; }
+  .#{$prefix}-bot-#{$index}#{unquote($modifier)} { #{$spacing-type}-bottom: $spacing-value; }
+  .#{$prefix}-lft-#{$index}#{unquote($modifier)} { #{$spacing-type}-left: $spacing-value; }
+  .#{$prefix}-hor-#{$index}#{unquote($modifier)} {
+    #{$spacing-type}-right: $spacing-value;
+    #{$spacing-type}-left: $spacing-value;
+  }
+  .#{$prefix}-ver-#{$index} {
+    #{$spacing-type}-top: $spacing-value;
+    #{$spacing-type}-bottom: $spacing-value;
+  }
+}
+
+// # padding
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+@each $spacing-value in $spacing-value-list {
+  $i: index($spacing-value-list, $spacing-value);
+  @include spacing(p, $i, padding, $spacing-value);
+}
+
+@each $screen-size-name, $screen-size-value in $screen-sizes {
+  @include breakpoint($screen-size-value) {
+    @each $spacing-value in $spacing-value-list {
+      $i: index($spacing-value-list, $spacing-value);
+      @include spacing(p, $i, padding, $spacing-value, --$screen-size-name);
+    }
+  }
+}
+
+// # margin
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+@each $spacing-value in $spacing-value-list {
+  $i: index($spacing-value-list, $spacing-value);
+  @include spacing(m, $i, margin, $spacing-value);
+}
+
+@each $screen-size-name, $screen-size-value in $screen-sizes {
+  @include breakpoint($screen-size-value) {
+    @each $spacing-value in $spacing-value-list {
+      $i: index($spacing-value-list, $spacing-value);
+      @include spacing(m, $i, margin, $spacing-value, --$screen-size-name);
+    }
+  }
+}

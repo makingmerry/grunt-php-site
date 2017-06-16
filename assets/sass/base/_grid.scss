@@ -1,102 +1,93 @@
 // # grid
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-.grid {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
-.grid--m {
-  display: block;
-
-  @include breakpoint($screen--m) {
+// # generator
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+@mixin grid($column-count) {
+  .g-#{$column-count} {
     display: flex;
-  }
-}
+    flex-flow: row wrap;
 
-.grid--l {
-  display: block;
+    //////////////////////////////
+    // # map widths
+    //////////////////////////////
+    $widths: ();
+    @for $i from 1 through $column-count {
+      $width: unquote((100 / ($column-count / $i)) + "%");
+      $widths: append($widths, $width);
+    }
 
-  @include breakpoint($screen--l) {
-    display: flex;
+    //////////////////////////////
+    // # default screen size
+    //////////////////////////////
+    @for $i from 1 through $column-count {
+      .col-#{$i} {
+        flex: 0 1 nth($widths, $i);
+        max-width: nth($widths, $i);
+      }
+    }
+
+    //////////////////////////////
+    // # screen size variants
+    //////////////////////////////
+    @each $size-name, $size-value in $screen-sizes {
+      @include breakpoint($size-value) {
+        @for $i from 1 through $column-count {
+          .col-#{$i}--#{$size-name} {
+            flex: 0 1 nth($widths, $i);
+            max-width: nth($widths, $i);
+          }
+        }
+      }
+    }
   }
 }
 
 //////////////////////////////
-// # column
+// # generation
 //////////////////////////////
-.col {
-  order: 1;
-  min-width: 0;
-  padding-right: $gutter;
-  padding-left: $gutter;
+@include grid(12);
 
-  @include breakpoint($screen--m) {
-    padding-right: $gutter--m;
-    padding-left: $gutter--m;
-  }
 
-  @include breakpoint($screen--l) {
-    padding-right: $gutter--l;
-    padding-left: $gutter--l;
-  }
-}
-
-.col--no-pad {
-  padding-left: 0;
-  padding-right: 0;
-}
+// # modifiers
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 //////////////////////////////
-// # grid generator
+// # justify-content
 //////////////////////////////
-// *
-// small screen (default)
-$i: 1;
-@while $i <= $col-count {
-  $flex-basis: unquote((100 / ($col-count / $i)) + "%");
-  .col--#{$i} {
-    flex: 0 1 $flex-basis;
-    max-width: $flex-basis; // hot fix: `flex-basis` doesn't account for `box-sizing: border-box`
-  }
-  .col--order-#{$i} {
-    order: $i;
-  }
-  $i: $i + 1;
+@mixin justify-content($modifier: "") {
+  .g-justify-stt#{$modifier} { justify-content: flex-start; }
+  .g-justify-end#{$modifier} { justify-content: flex-end; }
+  .g-justify-ctr#{$modifier} { justify-content: center; }
+  .g-justify-btw#{$modifier} { justify-content: space-between; }
+  .g-justify-ard#{$modifier} { justify-content: space-around; }
 }
 
-// *
-// medium screen
-@include breakpoint($screen--m) {
-  $i: 1;
-  @while $i <= $col-count {
-    $flex-basis: unquote((100 / ($col-count / $i)) + "%");
-    .col--m-#{$i} {
-      flex: 0 1 $flex-basis;
-      max-width: $flex-basis; // hot fix: see line 70
-    }
-    .col--order-m-#{$i} {
-      order: $i;
-    }
-    $i: $i + 1;
+@include justify-content();
+@each $screen-size-name, $screen-size-value in $screen-sizes {
+  @include breakpoint($screen-size-value) {
+    @include justify-content(--$screen-size-name);
   }
 }
 
-// *
-// large screen
-@include breakpoint($screen--l) {
-  $i: 1;
-  @while $i <= $col-count {
-    $flex-basis: unquote((100 / ($col-count / $i)) + "%");
-    .col--l-#{$i} {
-      flex: 0 1 $flex-basis;
-      max-width: $flex-basis; // hot fix: see line 70
-    }
-    .col--order-l-#{$i} {
-      order: $i;
-    }
-    $i: $i + 1;
+//////////////////////////////
+// # align-items
+//////////////////////////////
+@mixin align-items($modifier: "") {
+  .g-align-stt#{$modifier} { align-items: flex-start; }
+  .g-align-end#{$modifier} { align-items: flex-end; }
+  .g-align-ctr#{$modifier} { align-items: center; }
+  .g-align-str#{$modifier} { align-items: stretch; }
+  .g-align-bse#{$modifier} { align-items: baseline; }
+}
+
+@include align-items();
+@each $screen-size-name, $screen-size-value in $screen-sizes {
+  @include breakpoint($screen-size-value) {
+    @include align-items(--$screen-size-name);
   }
 }
