@@ -4,13 +4,14 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 $screen-sizes: (
+  base: 0,
   s: 40em,
   m: 70em,
   l: 90em
 );
 
-$spacing: (
-  none: 0,
+$spacing-sizes: (
+  base: 0,
   xs: 0.25em,
   s: 0.5em,
   m: 1em,
@@ -20,9 +21,21 @@ $spacing: (
   xxxl: 16em
 );
 
+$type-scale: (
+  s: 0.875em,
+  base: 1em,
+  m: 1.25em,
+  l: 1.5em,
+  xl: 2.25em,
+  xxl: 3em
+);
+
 //////////////////////////////
 // # layout
 //////////////////////////////
+
+// ! redundant, swap out values in skeleton into flat values.
+// we will be overriding with functional classes
 $gutter: 1em;
 $gutter--m: 1.5em;
 $gutter--l: 2em;
@@ -30,6 +43,8 @@ $gutter--l: 2em;
 //////////////////////////////
 // # media size
 //////////////////////////////
+
+// ! redundant, encapsulate these within a 'wrap' generator
 $max-width: 100em;
 
 $screen--m: 40em;

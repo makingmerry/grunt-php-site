@@ -6,6 +6,13 @@
 // # generator
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
+@mixin column($index, $width, $modifier: "") {
+  .col-#{$index}#{$modifier} {
+    flex: 0 1 $width;
+    max-width: $width;
+  }
+}
+
 @mixin grid($column-count) {
   .g-#{$column-count} {
     display: flex;
@@ -24,10 +31,7 @@
     // # default screen size
     //////////////////////////////
     @for $i from 1 through $column-count {
-      .col-#{$i} {
-        flex: 0 1 nth($widths, $i);
-        max-width: nth($widths, $i);
-      }
+      @include column($i, nth($widths, $i));
     }
 
     //////////////////////////////
@@ -36,10 +40,7 @@
     @each $size-name, $size-value in $screen-sizes {
       @include breakpoint($size-value) {
         @for $i from 1 through $column-count {
-          .col-#{$i}--#{$size-name} {
-            flex: 0 1 nth($widths, $i);
-            max-width: nth($widths, $i);
-          }
+          @include column($i, nth($widths, $i), --#{$size-name});
         }
       }
     }
@@ -49,6 +50,7 @@
 //////////////////////////////
 // # generation
 //////////////////////////////
+// unsure if this is the right place to determine this
 @include grid(12);
 
 
