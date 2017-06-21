@@ -3,93 +3,74 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-// # generator
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@mixin column($index, $width, $modifier: "") {
-  .col-#{$index}#{$modifier} {
-    flex: 0 1 $width;
-    max-width: $width;
+@function generate-column-selectors($column-count) {
+  $result: ();
+  @for $i from 1 through $column-count {
+    $result: append($result, 'col-#{$i}', 'comma');
   }
+  @return $result;
+}
+
+@function generate-column-declarations($column-count) {
+  $result: ();
+  @for $i from 1 through $column-count {
+    $width: unquote((100 / ($column-count / $i)) + "%");
+    $result: append($result, (
+      flex: 0 1 $width,
+      max-width: $width,
+    ), 'comma');
+  }
+  @return $result;
 }
 
 @mixin grid($column-count) {
+  $column-selectors: generate-column-selectors($column-count);
+  $column-declarations: generate-column-declarations($column-count);
+
   .g-#{$column-count} {
     display: flex;
     flex-flow: row wrap;
 
-    //////////////////////////////
-    // # map widths
-    //////////////////////////////
-    $widths: ();
-    @for $i from 1 through $column-count {
-      $width: unquote((100 / ($column-count / $i)) + "%");
-      $widths: append($widths, $width);
-    }
-
-    //////////////////////////////
-    // # default screen size
-    //////////////////////////////
-    @for $i from 1 through $column-count {
-      @include column($i, nth($widths, $i));
-    }
-
-    //////////////////////////////
-    // # screen size variants
-    //////////////////////////////
-    @each $size-name, $size-value in $screen-sizes {
-      @include breakpoint($size-value) {
-        @for $i from 1 through $column-count {
-          @include column($i, nth($widths, $i), --#{$size-name});
-        }
-      }
-    }
+    @include responsive-rule-set($column-selectors, $column-declarations);
   }
 }
 
-//////////////////////////////
-// # generation
-//////////////////////////////
-// unsure if this is the right place to determine this
-@include grid(12);
-
+@include grid(10);
 
 // # modifiers
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
 //////////////////////////////
-// # justify-content
+// # justify content
 //////////////////////////////
-@mixin justify-content($modifier: "") {
-  .g-justify-stt#{$modifier} { justify-content: flex-start; }
-  .g-justify-end#{$modifier} { justify-content: flex-end; }
-  .g-justify-ctr#{$modifier} { justify-content: center; }
-  .g-justify-btw#{$modifier} { justify-content: space-between; }
-  .g-justify-ard#{$modifier} { justify-content: space-around; }
-}
-
-@include justify-content();
-@each $screen-size-name, $screen-size-value in $screen-sizes {
-  @include breakpoint($screen-size-value) {
-    @include justify-content(--$screen-size-name);
-  }
-}
+@include responsive-rule-set((
+  'g-justify-start',
+  'g-justify-end',
+  'g-justify-center',
+  'g-justify-s-between',
+  'g-justify-s-around',
+), (
+  (justify-content: flex-start),
+  (justify-content: flex-end),
+  (justify-content: center),
+  (justify-content: space-between),
+  (justify-content: space-around),
+));
 
 //////////////////////////////
-// # align-items
+// # align items
 //////////////////////////////
-@mixin align-items($modifier: "") {
-  .g-align-stt#{$modifier} { align-items: flex-start; }
-  .g-align-end#{$modifier} { align-items: flex-end; }
-  .g-align-ctr#{$modifier} { align-items: center; }
-  .g-align-str#{$modifier} { align-items: stretch; }
-  .g-align-bse#{$modifier} { align-items: baseline; }
-}
-
-@include align-items();
-@each $screen-size-name, $screen-size-value in $screen-sizes {
-  @include breakpoint($screen-size-value) {
-    @include align-items(--$screen-size-name);
-  }
-}
+@include responsive-rule-set((
+  'g-align-start',
+  'g-align-end',
+  'g-align-center',
+  'g-align-stretch',
+  'g-align-baseline',
+), (
+  (align-items: flex-start),
+  (align-items: flex-end),
+  (align-items: center),
+  (align-items: stretch),
+  (align-items: baseline),
+));

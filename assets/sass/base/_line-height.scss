@@ -3,16 +3,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@mixin line-height($modifier: "") {
-  .lh-solid#{$modifier} { line-height: 1; }
-  .lh-title#{$modifier} { line-height: 1.25; }
-  .lh-copy#{$modifier} { line-height: 1.45; }
-}
-
-@include line-height();
-
-@each $screen-size-name, $screen-size-value in $screen-sizes {
-  @include breakpoint($screen-size-value) {
-    @include line-height(--$screen-size-name);
-  }
-}
+@include responsive-rule-set((
+  'lh-copy',
+  'lh-title',
+  'lh-solid',
+), (
+  (line-height: map-get($line-heights, copy)),
+  (line-height: map-get($line-heights, title)),
+  (line-height: map-get($line-heights, solid)),
+));

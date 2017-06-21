@@ -3,10 +3,26 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$selectors: order-selectors('f', length($type-scale), true);
-$declarations: zip-declarations((
-  'font-size',
-), (
-  map-values($type-scale),
-));
-@include responsive-rule-set($selectors, $declarations);
+@function generate-type-scale-selectors($type-scale) {
+  $length: length($type-scale);
+  $result: ();
+  @for $i from $length through 1 {
+    $result: append($result, 'f-#{$i}', 'comma');
+  }
+  @return $result;
+}
+
+@function generate-type-scale-declarations($type-scale) {
+  $values: map-values($type-scale);
+  $result: ();
+  @each $value in $values {
+    $result: append($result, (
+      font-size: $value,
+    ), 'comma');
+  }
+  @return $result;
+}
+
+$type-scale-selectors: generate-type-scale-selectors($type-scale);
+$type-scale-declarations: generate-type-scale-declarations($type-scale);
+@include responsive-rule-set($type-scale-selectors, $type-scale-declarations);

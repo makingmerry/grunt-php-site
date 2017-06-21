@@ -1,14 +1,26 @@
-// # measure
+// # font weight
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include responsive-rule-set((
-  'measure',
-  'measure-narrow',
-  'measure-wide',
+  'fw-1',
+  'fw-2',
+  'fw-3',
+  'fw-4',
+  'fw-5',
+  'fw-6',
+  'fw-7',
+  'fw-8',
+  'fw-9',
 ), (
-  (max-width: 30em),
-  (max-width: 20em),
-  (max-width: 34em),
+  (font-weight: 100),
+  (font-weight: 200),
+  (font-weight: 300),
+  (font-weight: 400),
+  (font-weight: 500),
+  (font-weight: 600),
+  (font-weight: 700),
+  (font-weight: 800),
+  (font-weight: 900),
 ));

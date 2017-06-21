@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@each $size, $value in $spacing-sizes {
-  $i: index($spacing-sizes, ($size $value)) - 1;
+@each $size, $value in $spacings {
+  $i: index($spacings, ($size $value)) - 1;
 
   // # paddings
   ////////////////////////////////////////////////////////////
@@ -16,7 +16,7 @@
     'pt-#{$i}',
     'pr-#{$i}',
     'pb-#{$i}',
-    'pl-#{$i}'
+    'pl-#{$i}',
   ), (
     (padding: $value),
     (padding-top: $value, padding-bottom: $value),
@@ -24,7 +24,7 @@
     (padding-top: $value),
     (padding-right: $value),
     (padding-bottom: $value),
-    (padding-left: $value)
+    (padding-left: $value),
   ));
 
   // # margins
@@ -37,7 +37,7 @@
     'mt-#{$i}',
     'mr-#{$i}',
     'mb-#{$i}',
-    'ml-#{$i}'
+    'ml-#{$i}',
   ), (
     (margin: $value),
     (margin-top: $value, margin-bottom: $value),
@@ -45,6 +45,6 @@
     (margin-top: $value),
     (margin-right: $value),
     (margin-bottom: $value),
-    (margin-left: $value)
+    (margin-left: $value),
   ));
 }

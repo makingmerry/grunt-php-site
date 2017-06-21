@@ -1,0 +1,24 @@
+// # vertical align
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include responsive-rule-set((
+  'va-top',
+  'va-middle',
+  'va-bottom',
+  'va-t-top',
+  'va-t-bottom',
+  'va-sub',
+  'va-super',
+  'va-baseline',
+), (
+  (vertical-align: top),
+  (vertical-align: middle),
+  (vertical-align: bottom),
+  (vertical-align: text-top),
+  (vertical-align: text-bottom),
+  (vertical-align: sub),
+  (vertical-align: super),
+  (vertical-align: baseline),
+));

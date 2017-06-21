@@ -2,6 +2,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 .preloader {
   position: fixed;
   z-index: 2000;
@@ -10,25 +11,26 @@
   display: table;
   width: 100%;
   height: 100%;
-  padding-top: $gutter;
-  padding-left: $gutter;
-  padding-bottom: $gutter;
-  padding-right: $gutter;
-  background: $white;
+  // padding-top: $gutter;
+  // padding-left: $gutter;
+  // padding-bottom: $gutter;
+  // padding-right: $gutter;
+  // background: $white;
+  background: #fff;
 
-  @include breakpoint($screen--m) {
-    padding-top: $gutter--m;
-    padding-left: $gutter--m;
-    padding-bottom: $gutter--m;
-    padding-right: $gutter--m;
-  }
+  // @include breakpoint($screen--m) {
+  //   padding-top: $gutter--m;
+  //   padding-left: $gutter--m;
+  //   padding-bottom: $gutter--m;
+  //   padding-right: $gutter--m;
+  // }
 
-  @include breakpoint($screen--l) {
-    padding-top: $gutter--l;
-    padding-left: $gutter--l;
-    padding-bottom: $gutter--l;
-    padding-right: $gutter--l;
-  }
+  // @include breakpoint($screen--l) {
+  //   padding-top: $gutter--l;
+  //   padding-left: $gutter--l;
+  //   padding-bottom: $gutter--l;
+  //   padding-right: $gutter--l;
+  // }
 }
 
 .preloader__icon {
