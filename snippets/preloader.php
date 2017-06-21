@@ -1,4 +1,4 @@
-<div class="preloader">
+<div class="pa-4 preloader">
   <div class="preloader__icon">
     <div class="whirligig">
       <div class="whirligig__side"></div>

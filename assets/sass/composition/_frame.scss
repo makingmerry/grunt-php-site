@@ -38,15 +38,6 @@
 .frame__mast-wrap {
   position: relative;
   z-index: 1230;
-  // margin-bottom: $gutter;
-
-  // @include breakpoint($screen--m) {
-  //   margin-bottom: $gutter--m;
-  // }
-
-  // @include breakpoint($screen--l) {
-  //   margin-bottom: $gutter--l;
-  // }
 }
 
 //////////////////////////////
@@ -65,14 +56,4 @@
 //////////////////////////////
 // # base
 //////////////////////////////
-.frame__base-wrap {
-  // margin-top: $gutter;
-
-  // @include breakpoint($screen--m) {
-  //   margin-top: $gutter--m;
-  // }
-
-  // @include breakpoint($screen--l) {
-  //   margin-top: $gutter--l;
-  // }
-}
+.frame__base-wrap {}

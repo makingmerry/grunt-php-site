@@ -20,7 +20,7 @@
   background-color: #000;
   // background-color: $base;
   float: left;
-  animation: gridScaleDelay 1.3s infinite ease-in-out;
+  animation: grid-scale-delay 1.3s infinite ease-in-out;
 
   &:nth-child(4),
   &:nth-child(8) {
@@ -43,7 +43,7 @@
   }
 }
 
-@keyframes gridScaleDelay {
+@keyframes grid-scale-delay {
   0%, 70%, 100% {
     transform: scale3D(1, 1, 1);
   } 35% {

@@ -18,13 +18,13 @@
     'pb-#{$i}',
     'pl-#{$i}',
   ), (
-    (padding: $value),
-    (padding-top: $value, padding-bottom: $value),
-    (padding-right: $value, padding-left: $value),
-    (padding-top: $value),
-    (padding-right: $value),
-    (padding-bottom: $value),
-    (padding-left: $value),
+    ('padding': $value),
+    ('padding-top': $value, 'padding-bottom': $value),
+    ('padding-right': $value, 'padding-left': $value),
+    ('padding-top': $value),
+    ('padding-right': $value),
+    ('padding-bottom': $value),
+    ('padding-left': $value),
   ));
 
   // # margins
@@ -39,12 +39,12 @@
     'mb-#{$i}',
     'ml-#{$i}',
   ), (
-    (margin: $value),
-    (margin-top: $value, margin-bottom: $value),
-    (margin-right: $value, margin-left: $value),
-    (margin-top: $value),
-    (margin-right: $value),
-    (margin-bottom: $value),
-    (margin-left: $value),
+    ('margin': $value),
+    ('margin-top': $value, 'margin-bottom': $value),
+    ('margin-right': $value, 'margin-left': $value),
+    ('margin-top': $value),
+    ('margin-right': $value),
+    ('margin-bottom': $value),
+    ('margin-left': $value),
   ));
 }

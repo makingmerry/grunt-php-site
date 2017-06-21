@@ -1,0 +1,19 @@
+// # colors
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@function generate-color-declarations($values) {
+  $result: ();
+  @each $value in $values {
+    $result: append($result, (
+      'color': $value
+    ), 'comma');
+  }
+  @return $result;
+}
+
+$color-selectors: map-keys($colors);
+$color-values: map-values($colors);
+$color-declarations: generate-color-declarations($color-values);
+@include responsive-rule-set($color-selectors, $color-declarations);

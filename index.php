@@ -7,7 +7,7 @@
 <div class="frame">
   <div class="frame__top">
     <!-- mast -->
-    <div class="frame__mast-wrap">
+    <div class="mb-4 frame__mast-wrap">
       <?php include 'snippets/mast.php'; ?>
     </div>
 
@@ -22,7 +22,7 @@
 
   <!-- base -->
   <div class="frame__bot">
-    <div class="frame__base-wrap">
+    <div class="mt-4 frame__base-wrap">
       <?php include 'snippets/base.php'; ?>
     </div>
   </div>

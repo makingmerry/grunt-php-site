@@ -1,0 +1,120 @@
+// # border
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include responsive-rule-set((
+  'ba',
+  'bt',
+  'br',
+  'bb',
+  'bl',
+  'bn'
+), (
+  ('border': 1px solid),
+  ('border-top': 1px solid),
+  ('border-right': 1px solid),
+  ('border-bottom': 1px solid),
+  ('border-left': 1px solid),
+  ('border': 0),
+));
+
+//////////////////////////////
+// # border style
+//////////////////////////////
+@include responsive-rule-set((
+  'bs-none',
+  'bs-solid',
+  'bs-dot',
+  'bs-dash',
+), (
+  ('border-style': none),
+  ('border-style': solid),
+  ('border-style': dotted),
+  ('border-style': dashed),
+));
+
+//////////////////////////////
+// # border width
+//////////////////////////////
+@include responsive-rule-set((
+  'bw-0',
+  'bw-1',
+  'bw-2',
+  'bw-3',
+  'bw-4',
+  'bw-5',
+  'bt-0',
+  'br-0',
+  'bb-0',
+  'bl-0',
+), (
+  ('border-width': 0),
+  ('border-width': 0.125em),
+  ('border-width': 0.25em),
+  ('border-width': 0.5em),
+  ('border-width': 1em),
+  ('border-width': 2em),
+  ('border-top-width': 0),
+  ('border-right-width': 0),
+  ('border-bottom-width': 0),
+  ('border-left-width': 0),
+));
+
+//////////////////////////////
+// # border color
+//////////////////////////////
+@function generate-border-color-selectors($keys) {
+  $result: ();
+  @each $key in $keys {
+    $result: append($result, (
+      'b-#{$key}'
+    ), 'comma');
+  }
+  @return $result;
+}
+
+@function generate-border-color-declarations($values) {
+  $result: ();
+  @each $value in $values {
+    $result: append($result, (
+      'border-color': $value
+    ), 'comma');
+  }
+  @return $result;
+}
+
+$border-color-selectors: generate-border-color-selectors(map-keys($colors));
+$border-color-values: map-values($colors);
+$border-color-declarations: generate-border-color-declarations($border-color-values);
+@include responsive-rule-set($border-color-selectors, $border-color-declarations);
+
+
+//////////////////////////////
+// # border radius
+//////////////////////////////
+@include responsive-rule-set((
+  'brd-0',
+  'brd-1',
+  'brd-2',
+  'brd-3',
+  'brd-4',
+  'brd-100',
+  'brd-pill',
+  'brd-top',
+  'brd-right',
+  'brd-bottom',
+  'brd-left'
+), (
+  ('border-radius': 0),
+  ('border-radius': 0.125em),
+  ('border-radius': 0.25em),
+  ('border-radius': 0.5em),
+  ('border-radius': 1em),
+  ('border-radius': 100%),
+  ('border-radius': 9999px),
+  ('border-bottom-left-radius': 0, 'border-bottom-right-radius': 0),
+  ('border-top-left-radius': 0, 'border-bottom-left-radius': 0),
+  ('border-top-left-radius': 0, 'border-top-right-radius': 0),
+  ('border-top-right-radius': 0, 'border-bottom-right-radius': 0),
+));

@@ -8,7 +8,7 @@
   'track-tight',
   'track-wide',
 ), (
-  (letter-spacing: map-get($trackings, track)),
-  (letter-spacing: map-get($trackings, tight)),
-  (letter-spacing: map-get($trackings, wide)),
+  ('letter-spacing': map-get($trackings, track)),
+  ('letter-spacing': map-get($trackings, tight)),
+  ('letter-spacing': map-get($trackings, wide)),
 ));

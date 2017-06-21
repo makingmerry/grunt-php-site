@@ -16,8 +16,8 @@
   @for $i from 1 through $column-count {
     $width: unquote((100 / ($column-count / $i)) + "%");
     $result: append($result, (
-      flex: 0 1 $width,
-      max-width: $width,
+      'flex': 0 1 $width,
+      'max-width': $width,
     ), 'comma');
   }
   @return $result;
@@ -51,11 +51,11 @@
   'g-justify-s-between',
   'g-justify-s-around',
 ), (
-  (justify-content: flex-start),
-  (justify-content: flex-end),
-  (justify-content: center),
-  (justify-content: space-between),
-  (justify-content: space-around),
+  ('justify-content': flex-start),
+  ('justify-content': flex-end),
+  ('justify-content': center),
+  ('justify-content': space-between),
+  ('justify-content': space-around),
 ));
 
 //////////////////////////////
@@ -68,9 +68,9 @@
   'g-align-stretch',
   'g-align-baseline',
 ), (
-  (align-items: flex-start),
-  (align-items: flex-end),
-  (align-items: center),
-  (align-items: stretch),
-  (align-items: baseline),
+  ('align-items': flex-start),
+  ('align-items': flex-end),
+  ('align-items': center),
+  ('align-items': stretch),
+  ('align-items': baseline),
 ));

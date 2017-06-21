@@ -7,63 +7,76 @@
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 $screen-sizes: (
-  base: 0,
-  s: 40em,
-  m: 70em,
-  l: 90em,
+  'base': 0,
+  's': 40em,
+  'm': 70em,
+  'l': 90em,
 );
 
 $spacings: (
-  none: 0,
-  xs: 0.25em,
-  s: 0.5em,
-  m: 1em,
-  l: 2em,
-  xl: 4em,
-  xxl: 8em,
-  xxxl: 16em,
+  'none': 0,
+  'xs': 0.25em,
+  's': 0.5em,
+  'm': 1em,
+  'l': 2em,
+  'xl': 4em,
+  'xxl': 8em,
+  'xxxl': 16em,
 );
 
 // # typography
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 $type-scale: (
-  s: 0.875em,
-  base: 1em,
-  m: 1.25em,
-  l: 1.5em,
-  xl: 2.25em,
-  xxl: 3em,
+  's': 0.875em,
+  'base': 1em,
+  'm': 1.25em,
+  'l': 1.5em,
+  'xl': 2.25em,
+  'xxl': 3em,
 );
 
 $line-heights: (
-  copy: 1.45,
-  title: 1.25,
-  solid: 1,
+  'copy': 1.45,
+  'title': 1.25,
+  'solid': 1,
 );
 
 $trackings: (
-  track: 0.1em,
-  tight: -0.5em,
-  wide: 0.25em,
+  'track': 0.1em,
+  'tight': -0.5em,
+  'wide': 0.25em,
 );
 
-// //////////////////////////////
-// // # typography
-// //////////////////////////////
-// $font-pri: helvetica, arial, sans-serif;
+// # theme-ing
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
-// $font-size--s: 0.85em;
-// $font-size--m: 1.125em;
-// $font-size--l: 1.35em;
-// $font-size--xl: 1.55em;
+//////////////////////////////
+// # colors
+//////////////////////////////
+$neutral-colors: (
+  'black': #000,
+  'near-black': #111,
+  'dark-grey': #333,
+  'mid-grey': #555,
+  'grey': #777,
+  'silver': #999,
+  'light-silver': #aaa,
+  'moon-grey': #ccc,
+  'light-grey': #eee,
+  'near-white': #f4f4f4,
+  'white': #fff,
+  'transparent': transparent,
+);
 
-// //////////////////////////////
-// // # color swatches
-// //////////////////////////////
-// $base: #111;
-// $neutral-1: #333;
-// $neutral-2: #777;
-// $neutral-3: #ddd;
-// $neutral-4: #eee;
-// $white: #fff;
+$notification-colors: (
+  'dark-red': #e7040f,
+  'red': #ff4136,
+  'light-red': #ff725c,
+  'dark-green':  #137752,
+  'green': #19a974,
+  'light-green': #9eebcf,
+);
+
+$colors: map-merge($neutral-colors, $notification-colors);

@@ -8,7 +8,7 @@
   'lh-title',
   'lh-solid',
 ), (
-  (line-height: map-get($line-heights, copy)),
-  (line-height: map-get($line-heights, title)),
-  (line-height: map-get($line-heights, solid)),
+  ('line-height': map-get($line-heights, copy)),
+  ('line-height': map-get($line-heights, title)),
+  ('line-height': map-get($line-heights, solid)),
 ));
