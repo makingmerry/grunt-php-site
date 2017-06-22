@@ -6,7 +6,7 @@
 @function generate-column-selectors($column-count) {
   $result: ();
   @for $i from 1 through $column-count {
-    $result: append($result, 'col-#{$i}', 'comma');
+    $result: append($result, 'g-#{$column-count}__col-#{$i}', 'comma');
   }
   @return $result;
 }
@@ -30,12 +30,12 @@
   .g-#{$column-count} {
     display: flex;
     flex-flow: row wrap;
-
-    @include responsive-rule-set($column-selectors, $column-declarations);
   }
+
+  @include responsive-rule-set($column-selectors, $column-declarations);
 }
 
-@include grid(10);
+@include grid(12);
 
 // # modifiers
 ////////////////////////////////////////////////////////////
@@ -45,11 +45,11 @@
 // # justify content
 //////////////////////////////
 @include responsive-rule-set((
-  'g-justify-start',
-  'g-justify-end',
-  'g-justify-center',
-  'g-justify-s-between',
-  'g-justify-s-around',
+  'g-jc-start',
+  'g-jc-end',
+  'g-jc-center',
+  'g-jc-s-between',
+  'g-jc-s-around',
 ), (
   ('justify-content': flex-start),
   ('justify-content': flex-end),
@@ -62,15 +62,34 @@
 // # align items
 //////////////////////////////
 @include responsive-rule-set((
-  'g-align-start',
-  'g-align-end',
-  'g-align-center',
-  'g-align-stretch',
-  'g-align-baseline',
+  'g-ai-start',
+  'g-ai-end',
+  'g-ai-center',
+  'g-ai-stretch',
+  'g-ai-baseline',
 ), (
   ('align-items': flex-start),
   ('align-items': flex-end),
   ('align-items': center),
   ('align-items': stretch),
   ('align-items': baseline),
+));
+
+//////////////////////////////
+// # align content
+//////////////////////////////
+@include responsive-rule-set((
+  'g-ac-start',
+  'g-ac-end',
+  'g-ac-center',
+  'g-ac-stretch',
+  'g-ac-s-between',
+  'g-ac-s-around',
+), (
+  ('align-content': flex-start),
+  ('align-content': flex-end),
+  ('align-content': center),
+  ('align-content': stretch),
+  ('align-content': space-between),
+  ('align-content': space-around),
 ));

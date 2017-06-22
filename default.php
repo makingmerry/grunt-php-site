@@ -4,8 +4,8 @@
   include 'snippets/preloader.php';
 ?>
 
-<div class="frame">
-  <div class="frame__top">
+<div class="g-12 g-ac-s-between frame">
+  <div class="g-12__col-12 frame__top">
     <!-- mast -->
     <div class="mb-4 frame__mast-wrap">
       <?php include 'snippets/mast.php'; ?>
@@ -21,7 +21,7 @@
   </div>
 
   <!-- base -->
-  <div class="frame__bot">
+  <div class="g-12__col-12 frame__bot">
     <div class="mt-4 frame__base-wrap">
       <?php include 'snippets/base.php'; ?>
     </div>

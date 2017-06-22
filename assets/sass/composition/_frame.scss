@@ -6,27 +6,18 @@
 .frame {
   position: relative;
   z-index: 1000;
-  display: flex;
-  flex-flow: row wrap;
-  align-content: space-between;
   min-height: 100vh;
 }
 
-.frame__top,
-.frame__bot {
-  position: relative;
-  flex: 0 0 100%;
-  min-width: 100%;
-}
-
 .frame__top {
+  position: relative;
   z-index: 1100;
 }
 
 .frame__bot {
+  position: relative;
   z-index: 1200;
 }
-
 
 // # top section
 ////////////////////////////////////////////////////////////
@@ -47,7 +38,6 @@
   position: relative;
   z-index: 1210;
 }
-
 
 // # bottom section
 ////////////////////////////////////////////////////////////
