@@ -1,0 +1,31 @@
+// # display
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include responsive-rule-set((
+  'd-none',
+  'd-block',
+  'd-inline',
+  'd-i-block',
+  'd-i-table',
+  'd-table',
+  'd-t-cell',
+  'd-t-row',
+  'd-t-col',
+  'd-t-colgroup',
+  'd-table-fix',
+), (
+  ('display': none),
+  ('display': inline),
+  ('display': block),
+  ('display': inline-block),
+  ('display': inline-table),
+  ('display': table),
+  ('display': table-cell),
+  ('display': table-row),
+  ('display': table-row-group),
+  ('display': table-column),
+  ('display': table-column-group),
+  ('table-layout': fixed, 'width': 100%),
+));
