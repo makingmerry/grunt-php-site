@@ -18,6 +18,7 @@
 //////////////////////////////
 // # layout
 //////////////////////////////
+@import "base/wrap";
 @import "base/grid";
 @import "base/display";
 @import "base/spacing";
@@ -40,7 +41,7 @@
 //////////////////////////////
 // # theme-ing
 //////////////////////////////
-@import "base/colors";
+@import "base/color";
 @import "base/background-color";
 @import "base/border";
 

@@ -85,10 +85,8 @@
 }
 
 $border-color-selectors: generate-border-color-selectors(map-keys($colors));
-$border-color-values: map-values($colors);
-$border-color-declarations: generate-border-color-declarations($border-color-values);
+$border-color-declarations: generate-border-color-declarations($color-values); // $color-values from _color
 @include responsive-rule-set($border-color-selectors, $border-color-declarations);
-
 
 //////////////////////////////
 // # border radius

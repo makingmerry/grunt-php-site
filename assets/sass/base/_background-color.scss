@@ -24,6 +24,5 @@
 }
 
 $bg-color-selectors: generate-bg-color-selectors(map-keys($colors));
-$bg-color-values: map-values($colors);
-$bg-color-declarations: generate-bg-color-declarations($bg-color-values);
+$bg-color-declarations: generate-bg-color-declarations($color-values); // $color-values from _color
 @include responsive-rule-set($bg-color-selectors, $bg-color-declarations);
