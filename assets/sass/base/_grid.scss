@@ -3,35 +3,29 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@function generate-column-selectors($column-count) {
+@function list-column-widths($column-count) {
   $result: ();
   @for $i from 1 through $column-count {
-    $result: append($result, 'g-#{$column-count}__col-#{$i}', 'comma');
-  }
-  @return $result;
-}
-
-@function generate-column-declarations($column-count) {
-  $result: ();
-  @for $i from 1 through $column-count {
-    $width: unquote((100 / ($column-count / $i)) + "%");
-    $result: append($result, (
-      'flex': 0 1 $width,
-      'max-width': $width,
-    ), 'comma');
+    $width: 100 / ($column-count / $i) + "%";
+    $result: append($result, $width, 'comma'); 
   }
   @return $result;
 }
 
 @mixin grid($column-count) {
-  $column-selectors: generate-column-selectors($column-count);
-  $column-declarations: generate-column-declarations($column-count);
-
   .g-#{$column-count} {
     display: flex;
     flex-flow: row wrap;
   }
 
+  $column-selectors: list-ordered-selectors('c-#{$column-count}', $column-count);
+  $column-widths: list-column-widths($column-count);
+  $column-flex-basis-declarations: map-declarations('flex-basis', $column-widths);
+  $column-max-width-declarations: map-declarations('max-width', $column-widths);
+  $column-declarations: list-declaration-blocks(zip(
+    $column-flex-basis-declarations,
+    $column-max-width-declarations
+  ));
   @include responsive-rule-set($column-selectors, $column-declarations);
 }
 

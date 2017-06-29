@@ -3,17 +3,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'fw-1',
-  'fw-2',
-  'fw-3',
-  'fw-4',
-  'fw-5',
-  'fw-6',
-  'fw-7',
-  'fw-8',
-  'fw-9',
-), (
+$font-weight-selectors: list-ordered-selectors('fw', 9);
+@include responsive-rule-set($font-weight-selectors, (
   ('font-weight': 100),
   ('font-weight': 200),
   ('font-weight': 300),

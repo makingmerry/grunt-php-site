@@ -64,28 +64,8 @@
 //////////////////////////////
 // # border color
 //////////////////////////////
-@function generate-border-color-selectors($keys) {
-  $result: ();
-  @each $key in $keys {
-    $result: append($result, (
-      'b-#{$key}'
-    ), 'comma');
-  }
-  @return $result;
-}
-
-@function generate-border-color-declarations($values) {
-  $result: ();
-  @each $value in $values {
-    $result: append($result, (
-      'border-color': $value
-    ), 'comma');
-  }
-  @return $result;
-}
-
-$border-color-selectors: generate-border-color-selectors(map-keys($colors));
-$border-color-declarations: generate-border-color-declarations($color-values); // $color-values from _color
+$border-color-selectors: list-quality-selectors('b', map-keys($colors));
+$border-color-declarations: map-declarations('border-color', $color-values); // $color-values from _color
 @include responsive-rule-set($border-color-selectors, $border-color-declarations);
 
 //////////////////////////////

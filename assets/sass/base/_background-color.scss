@@ -3,26 +3,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@function generate-bg-color-selectors($keys) {
-  $result: ();
-  @each $key in $keys {
-    $result: append($result, (
-      'bg-#{$key}'
-    ), 'comma');
-  }
-  @return $result;
-}
-
-@function generate-bg-color-declarations($values) {
-  $result: ();
-  @each $value in $values {
-    $result: append($result, (
-      'background-color': $value
-    ), 'comma');
-  }
-  @return $result;
-}
-
-$bg-color-selectors: generate-bg-color-selectors(map-keys($colors));
-$bg-color-declarations: generate-bg-color-declarations($color-values); // $color-values from _color
+$bg-color-selectors: list-quality-selectors('bg', map-keys($colors));
+$bg-color-declarations: map-declarations('background-color', $color-values); // $color-values from _color
 @include responsive-rule-set($bg-color-selectors, $bg-color-declarations);
