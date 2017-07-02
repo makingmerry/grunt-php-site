@@ -3,12 +3,21 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'track',
-  'track-tight',
-  'track-wide',
-), (
-  ('letter-spacing': map-get($trackings, track)),
-  ('letter-spacing': map-get($trackings, tight)),
-  ('letter-spacing': map-get($trackings, wide)),
+@include make-responsive-rulesets((
+  (
+    'selector': '.track',
+    'declarations': (
+      letter-spacing: map-get($trackings, 'track'),
+    ),
+  ), (
+    'selector': '.track-tight',
+    'declarations': (
+      letter-spacing: map-get($trackings, 'tight'),
+    ),
+  ), (
+    'selector': '.track-wide',
+    'declarations': (
+      letter-spacing: map-get($trackings, 'wide'),
+    ),
+  ),
 ));

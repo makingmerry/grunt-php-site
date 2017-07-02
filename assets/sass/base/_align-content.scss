@@ -1,38 +1,38 @@
-// # border
+// # align content
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.b-none',
+    'selector': '.ac-start',
     'declarations': (
-      border: 0,
+      align-content: flex-start,
     ),
   ), (
-    'selector': '.b-all',
+    'selector': '.ac-end',
     'declarations': (
-      border: 1px solid,
+      align-content: flex-end,
     ),
   ), (
-    'selector': '.b-top',
+    'selector': '.ac-center',
     'declarations': (
-      border-top: 1px solid,
+      align-content: center,
     ),
   ), (
-    'selector': '.b-right',
+    'selector': '.ac-stretch',
     'declarations': (
-      border-right: 1px solid,
+      align-content: stretch,
     ),
   ), (
-    'selector': '.b-bottom',
+    'selector': '.ac-s-between',
     'declarations': (
-      border-bottom: 1px solid,
+      align-content: space-between,
     ),
   ), (
-    'selector': '.b-left',
+    'selector': '.ac-s-around',
     'declarations': (
-      border-left: 1px solid,
+      align-content: space-around,
     ),
   ),
 ));

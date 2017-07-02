@@ -1,28 +1,28 @@
-// # text transform
+// # border style
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.tt-upper',
+    'selector': '.bs-none',
     'declarations': (
-      text-transform: uppercase,
+      border-style: none,
     ),
   ), (
-    'selector': '.tt-lower',
+    'selector': '.bs-solid',
     'declarations': (
-      text-transform: lowercase,
+      border-style: solid,
     ),
   ), (
-    'selector': '.tt-cap',
+    'selector': '.bs-dot',
     'declarations': (
-      text-transform: capitalize,
+      border-style: dotted,
     ),
   ), (
-    'selector': '.tt-none',
+    'selector': '.bs-dash',
     'declarations': (
-      text-transform: none,
+      border-style: dashed,
     ),
   ),
 ));

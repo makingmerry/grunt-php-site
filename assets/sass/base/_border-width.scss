@@ -1,0 +1,34 @@
+// # border width
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+$border-width-config-RSON: make-RSON($border-widths, '.bw', ('border-width'));
+$border-width-static-RSON: (
+  (
+    'selector': '.bw-top-0',
+    'declarations': (
+      border-top-width: 0,
+    ),
+  ), (
+    'selector': '.bw-right-0',
+    'declarations': (
+      border-right-width: 0,
+    ),
+  ), (
+    'selector': '.bw-bottom-0',
+    'declarations': (
+      border-bottom-width: 0,
+    ),
+  ), (
+    'selector': '.bw-left-0',
+    'declarations': (
+      border-left-width: 0,
+    ),
+  ),
+);
+$full-border-width-RSON: concat-lists(
+  $border-width-config-RSON,
+  $border-width-static-RSON
+);
+@include make-responsive-rulesets($full-border-width-RSON);

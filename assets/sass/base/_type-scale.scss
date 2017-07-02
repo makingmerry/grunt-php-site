@@ -3,6 +3,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$type-scale-selectors: list-ordered-selectors('f', length($type-scale), true);
-$type-scale-declarations: map-declarations('font-size', map-values($type-scale));
-@include responsive-rule-set($type-scale-selectors, $type-scale-declarations);
+@include make-responsive-rulesets(
+  make-RSON($type-scale, '.f', 'font-size')
+);

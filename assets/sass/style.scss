@@ -6,6 +6,7 @@
 // # tools
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
+@import "base/list-extension";
 @import "base/map-extension";
 @import "base/rule-set-builder";
 
@@ -25,8 +26,12 @@
 ////////////////////////////////////////////////////////////
 @import "base/wrapper";
 @import "base/grid";
+@import "base/justify-content";
+@import "base/align-items";
+@import "base/align-content";
 @import "base/display";
-@import "base/spacing";
+@import "base/margin";
+@import "base/padding";
 @import "base/measure";
 @import "base/vertical-align";
 
@@ -49,6 +54,10 @@
 @import "base/color";
 @import "base/background-color";
 @import "base/border";
+@import "base/border-style";
+@import "base/border-width";
+@import "base/border-color";
+@import "base/border-radius";
 
 
 // # element

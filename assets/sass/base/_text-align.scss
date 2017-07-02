@@ -3,12 +3,21 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'ta-left',
-  'ta-center',
-  'ta-right',
-), (
-  ('text-align': left),
-  ('text-align': center),
-  ('text-align': right),
+@include make-responsive-rulesets((
+  (
+    'selector': '.ta-left',
+    'declarations': (
+      text-align: left,
+    ),
+  ), (
+    'selector': '.ta-center',
+    'declarations': (
+      text-align: center,
+    ),
+  ), (
+    'selector': '.ta-right',
+    'declarations': (
+      text-align: right,
+    ),
+  ),
 ));

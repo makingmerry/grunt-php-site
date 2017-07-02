@@ -3,87 +3,40 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@function list-column-widths($column-count) {
+// # @function map-column-widths($column-count)
+//
+// Returns a map of index 'key' to percentage width 'value' pairs
+//
+// @param `number`: $column-count: Number to get index and associated widths
+// @return `map`
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+@function map-column-widths($column-count) {
   $result: ();
   @for $i from 1 through $column-count {
-    $width: 100 / ($column-count / $i) + "%";
-    $result: append($result, $width, 'comma'); 
+    $width: 100 / ($column-count / $i) + '%';
+    $result: map-merge($result, ('#{$i}': $width));
   }
   @return $result;
 }
 
+// # @mixin grid($column-count)
+//
+// Forms a grid with accompanying column classes
+//
+// @param `number`: $column-count: Number of columns formed grid will have
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 @mixin grid($column-count) {
   .g-#{$column-count} {
     display: flex;
     flex-flow: row wrap;
   }
 
-  $column-selectors: list-ordered-selectors('c-#{$column-count}', $column-count);
-  $column-widths: list-column-widths($column-count);
-  $column-flex-basis-declarations: map-declarations('flex-basis', $column-widths);
-  $column-max-width-declarations: map-declarations('max-width', $column-widths);
-  $column-declarations: list-declaration-blocks(zip(
-    $column-flex-basis-declarations,
-    $column-max-width-declarations
-  ));
-  @include responsive-rule-set($column-selectors, $column-declarations);
+  $column-widths: map-column-widths($column-count);
+  @include make-responsive-rulesets(
+    make-RSON($column-widths, '.cl-#{$column-count}', ('flex-basis', 'max-width'))
+  );
 }
 
 @include grid(12);
-
-// # modifiers
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-
-//////////////////////////////
-// # justify content
-//////////////////////////////
-@include responsive-rule-set((
-  'g-jc-start',
-  'g-jc-end',
-  'g-jc-center',
-  'g-jc-s-between',
-  'g-jc-s-around',
-), (
-  ('justify-content': flex-start),
-  ('justify-content': flex-end),
-  ('justify-content': center),
-  ('justify-content': space-between),
-  ('justify-content': space-around),
-));
-
-//////////////////////////////
-// # align items
-//////////////////////////////
-@include responsive-rule-set((
-  'g-ai-start',
-  'g-ai-end',
-  'g-ai-center',
-  'g-ai-stretch',
-  'g-ai-baseline',
-), (
-  ('align-items': flex-start),
-  ('align-items': flex-end),
-  ('align-items': center),
-  ('align-items': stretch),
-  ('align-items': baseline),
-));
-
-//////////////////////////////
-// # align content
-//////////////////////////////
-@include responsive-rule-set((
-  'g-ac-start',
-  'g-ac-end',
-  'g-ac-center',
-  'g-ac-stretch',
-  'g-ac-s-between',
-  'g-ac-s-around',
-), (
-  ('align-content': flex-start),
-  ('align-content': flex-end),
-  ('align-content': center),
-  ('align-content': stretch),
-  ('align-content': space-between),
-  ('align-content': space-around),
-));

@@ -1,3 +1,3 @@
-<footer class="mb-0">
+<footer class="m-bottom-0">
   base
 </footer>

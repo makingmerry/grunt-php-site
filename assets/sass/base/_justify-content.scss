@@ -1,28 +1,33 @@
-// # text transform
+// # justify content
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.tt-upper',
+    'selector': '.jc-start',
     'declarations': (
-      text-transform: uppercase,
+      justify-content: flex-start,
     ),
   ), (
-    'selector': '.tt-lower',
+    'selector': '.jc-end',
     'declarations': (
-      text-transform: lowercase,
+      justify-content: flex-end,
     ),
   ), (
-    'selector': '.tt-cap',
+    'selector': '.jc-center',
     'declarations': (
-      text-transform: capitalize,
+      justify-content: center,
     ),
   ), (
-    'selector': '.tt-none',
+    'selector': '.jc-s-between',
     'declarations': (
-      text-transform: none,
+      justify-content: space-between,
+    ),
+  ), (
+    'selector': '.jc-s-around',
+    'declarations': (
+      justify-content: space-around,
     ),
   ),
 ));

@@ -3,15 +3,51 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$font-weight-selectors: list-ordered-selectors('fw', 9);
-@include responsive-rule-set($font-weight-selectors, (
-  ('font-weight': 100),
-  ('font-weight': 200),
-  ('font-weight': 300),
-  ('font-weight': 400),
-  ('font-weight': 500),
-  ('font-weight': 600),
-  ('font-weight': 700),
-  ('font-weight': 800),
-  ('font-weight': 900),
+@include make-responsive-rulesets((
+  (
+    'selector': '.fw-1',
+    'declarations': (
+      font-weight: 100,
+    ),
+  ), (
+    'selector': '.fw-2',
+    'declarations': (
+      font-weight: 200,
+    ),
+  ), (
+    'selector': '.fw-3',
+    'declarations': (
+      font-weight: 300,
+    ),
+  ), (
+    'selector': '.fw-4',
+    'declarations': (
+      font-weight: 400,
+    ),
+  ), (
+    'selector': '.fw-5',
+    'declarations': (
+      font-weight: 500,
+    ),
+  ), (
+    'selector': '.fw-6',
+    'declarations': (
+      font-weight: 600,
+    ),
+  ), (
+    'selector': '.fw-7',
+    'declarations': (
+      font-weight: 700,
+    ),
+  ), (
+    'selector': '.fw-8',
+    'declarations': (
+      font-weight: 800,
+    ),
+  ), (
+    'selector': '.fw-9',
+    'declarations': (
+      font-weight: 900,
+    ),
+  ),
 ));

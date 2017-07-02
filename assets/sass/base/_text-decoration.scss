@@ -3,12 +3,21 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'td-strike',
-  'td-underline',
-  'td-none',
-), (
-  ('text-decoration': strike),
-  ('text-decoration': underline),
-  ('text-decoration': none),
+@include make-responsive-rulesets((
+  (
+    'selector': '.td-strike',
+    'declarations': (
+      text-decoration: strike,
+    ),
+  ), (
+    'selector': '.td-underline',
+    'declarations': (
+      text-decoration: underline,
+    ),
+  ), (
+    'selector': '.td-none',
+    'declarations': (
+      text-decoration: none,
+    ),
+  ),
 ));

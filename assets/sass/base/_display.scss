@@ -3,29 +3,67 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'd-none',
-  'd-block',
-  'd-inline',
-  'd-i-block',
-  'd-i-table',
-  'd-table',
-  'd-t-cell',
-  'd-t-row',
-  'd-t-col',
-  'd-t-colgroup',
-  'd-table-fix',
-), (
-  ('display': none),
-  ('display': inline),
-  ('display': block),
-  ('display': inline-block),
-  ('display': inline-table),
-  ('display': table),
-  ('display': table-cell),
-  ('display': table-row),
-  ('display': table-row-group),
-  ('display': table-column),
-  ('display': table-column-group),
-  ('table-layout': fixed, 'width': 100%),
+@include make-responsive-rulesets((
+  (
+    'selector': '.d-none',
+    'declarations': (
+      display: none,
+    ),
+  ), (
+    'selector': '.d-block',
+    'declarations': (
+      display: block,
+    ),
+  ), (
+    'selector': '.d-inline',
+    'declarations': (
+      display: inline,
+    ),
+  ), (
+    'selector': '.d-i-block',
+    'declarations': (
+      display: inline-block,
+    ),
+  ), (
+    'selector': '.d-i-table',
+    'declarations': (
+      display: inline-table,
+    ),
+  ), (
+    'selector': '.d-table',
+    'declarations': (
+      display: table,
+    ),
+  ), (
+    'selector': '.d-t-cell',
+    'declarations': (
+      display: table-cell,
+    ),
+  ), (
+    'selector': '.d-t-row',
+    'declarations': (
+      display: table-row,
+    ),
+  ), (
+    'selector': '.d-t-rowgrp',
+    'declarations': (
+      display: table-row-group,
+    ),
+  ), (
+    'selector': '.d-t-col',
+    'declarations': (
+      display: table-column,
+    ),
+  ), (
+    'selector': '.d-t-colgrp',
+    'declarations': (
+      display: table-column-group,
+    ),
+  ), (
+    'selector': '.d-table-fix',
+    'declarations': (
+      table-layout: fixed,
+      width: 100%,
+    ),
+  ),
 ));

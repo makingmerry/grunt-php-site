@@ -1,20 +1,20 @@
-// # map extension
+// # list extension
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-// # @mixin concat-maps($maps...)
+// # @mixin concat-lists($lists...)
 //
-// Returns a new merged map of multiple maps
+// Returns a new merged list of multiple lists
 //
-// @param `arglist`: $maps: List of maps to merge
-// @return `map`
+// @param `arglist`: $lists: Argument list of lists to join
+// @return `list`
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-@function concat-maps($maps...) {
+@function concat-lists($lists...) {
   $result: ();
-  @each $map in $maps {
-    $result: map-merge($result, $map);
+  @each $list in $lists {
+    $result: join($result, $list, 'comma');
   }
   @return $result;
 }

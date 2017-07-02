@@ -1,3 +1,3 @@
-<header class="mb-0">
+<header class="m-bottom-0">
   mast
 </header>

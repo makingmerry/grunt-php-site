@@ -130,15 +130,7 @@ code {
 // # link
 //////////////////////////////
 a {
-  border-bottom: 1px solid;
   color: inherit;
-  text-decoration: none;
-
-  &:hover,
-  &:focus {
-    color: #999;
-    border-bottom-color: #999;
-  }
 }
 
 //////////////////////////////

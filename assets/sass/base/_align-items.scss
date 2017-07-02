@@ -1,28 +1,33 @@
-// # text transform
+// # align items
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.tt-upper',
+    'selector': '.ai-start',
     'declarations': (
-      text-transform: uppercase,
+      align-items: flex-start,
     ),
   ), (
-    'selector': '.tt-lower',
+    'selector': '.ai-end',
     'declarations': (
-      text-transform: lowercase,
+      align-items: flex-end,
     ),
   ), (
-    'selector': '.tt-cap',
+    'selector': '.ai-center',
     'declarations': (
-      text-transform: capitalize,
+      align-items: center,
     ),
   ), (
-    'selector': '.tt-none',
+    'selector': '.ai-stretch',
     'declarations': (
-      text-transform: none,
+      align-items: stretch,
+    ),
+  ), (
+    'selector': '.ai-baseline',
+    'declarations': (
+      align-items: baseline,
     ),
   ),
 ));

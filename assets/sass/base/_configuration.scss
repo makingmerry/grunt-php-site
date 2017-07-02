@@ -7,39 +7,39 @@
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 $screen-sizes: (
-  'base': 0,
   's': 40em,
-  'm': 70em,
-  'l': 90em,
+  'm': 60em,
+  'l': 80em,
+  // ...
 );
 
 $wraps: (
-  's': 60em,
-  'm': 80em,
-  'l': 90em,
+  's': 40em,
+  'm': 60em,
+  // ...
 );
 
 $spacings: (
-  'none': 0,
-  'xs': 0.25em,
-  's': 0.5em,
-  'm': 1em,
-  'l': 2em,
-  'xl': 4em,
-  'xxl': 8em,
-  'xxxl': 16em,
+  '0': 0,
+  '1': 0.25em,
+  '2': 0.5em,
+  '3': 1em,
+  '4': 2em,
+  '5': 4em,
+  '6': 8em,
+  '7': 16em,
 );
 
 // # typography
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 $type-scale: (
-  's': 0.875em,
-  'base': 1em,
-  'm': 1.25em,
-  'l': 1.5em,
-  'xl': 2.25em,
-  'xxl': 3em,
+  '1': 3em,
+  '2': 2.25em,
+  '3': 1.5em,
+  '4': 1.25em,
+  '5': 1em,
+  '6': 0.875em,
 );
 
 $line-heights: (
@@ -49,7 +49,7 @@ $line-heights: (
 );
 
 $trackings: (
-  'track': 0.1em,
+  'track': 0.05em,
   'tight': -0.5em,
   'wide': 0.25em,
 );
@@ -74,6 +74,7 @@ $neutral-colors: (
   'near-white': #f4f4f4,
   'white': #fff,
   'transparent': transparent,
+  // ...
 );
 
 $notification-colors: (
@@ -83,14 +84,40 @@ $notification-colors: (
   'dark-green':  #137752,
   'green': #19a974,
   'light-green': #9eebcf,
+  // ...
 );
 
 $brand-colors: (
-
+  't-gold': #b79a54,
+  't-red': #e73d3d,
+  't-dark-red': #c73131,
+  't-pale-blue': #f6f7f8,
+  // ...
 );
 
-$colors: map-collect(
+$colors: concat-maps(
   $neutral-colors,
   $notification-colors,
   $brand-colors
+  // ...
+);
+
+//////////////////////////////
+// # border
+//////////////////////////////
+$border-widths: (
+  '0': 0,
+  '1': 0.125em,
+  '2': 0.25em,
+  '3': 0.5em,
+  '4': 1em,
+  '5': 2em,
+);
+
+$border-radii: (
+  '0': 0,
+  '1': 0.125em,
+  '2': 0.25em,
+  '3': 0.5em,
+  '4': 1em,
 );

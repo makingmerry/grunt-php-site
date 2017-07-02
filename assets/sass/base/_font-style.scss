@@ -3,10 +3,16 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'fs-normal',
-  'fs-italic',
-), (
-  ('font-style': normal),
-  ('font-style': italic),
+@include make-responsive-rulesets((
+  (
+    'selector': '.fs-normal',
+    'declarations': (
+      font-style: normal,
+    ),
+  ), (
+    'selector': '.fs-italic',
+    'declarations': (
+      font-style: italic,
+    ),
+  ),
 ));

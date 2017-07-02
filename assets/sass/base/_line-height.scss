@@ -3,12 +3,21 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'lh-copy',
-  'lh-title',
-  'lh-solid',
-), (
-  ('line-height': map-get($line-heights, copy)),
-  ('line-height': map-get($line-heights, title)),
-  ('line-height': map-get($line-heights, solid)),
+@include make-responsive-rulesets((
+  (
+    'selector': '.lh-copy',
+    'declarations': (
+      line-height: map-get($line-heights, 'copy'),
+    ),
+  ), (
+    'selector': '.lh-title',
+    'declarations': (
+      line-height: map-get($line-heights, 'title'),
+    ),
+  ), (
+    'selector': '.lh-solid',
+    'declarations': (
+      line-height: map-get($line-heights, 'solid'),
+    ),
+  ),
 ));

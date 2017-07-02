@@ -3,152 +3,108 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-// # @mixin rule-set($selector, $declarations, $selector-modifier: "")
+// # @function make-RSON($config-map, $selector-prefix, $properties)
 // 
-// Form a rule set by adding declarations to a selector
+// Returns an RSON list for generating rulesets
+// with 'ruleset makers'
+// e.g.RSON pattern:
+// (
+//   (
+//     'selector': '.red-box',
+//     'declarations': (
+//       display: block,
+//       background-color: red,
+//     ),
+//   ),
+//   ...
+// )
 // 
-// @param `string`: $selector         : Class name selector
-// @param `map`   : $declarations     : Map containing property to value pairs
-// @param `string`: $selector-modifier: Modifier string to attach to end of selector
+// @param `map`        : $config-map     : Map of modifier keys to declaration value pairs
+// @param `string`     : $selector-prefix: Identity part of selector name,
+//                                         merges with modifier key (from $config-map) to
+//                                         form a full selector string
+// @param `string/list`: $properties     : String or list of property(s) to imbue ruleset:
+//                                         - String pairs with value (from $config-map)
+//                                         - List items are paired with the same value
+//                                         to form declaration blocks
+// @return `list`
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-@mixin rule-set($selector, $declarations, $selector-modifier: "") {
-  // no modifiers (default)
-  @if $selector-modifier == "" {
-    .#{$selector} {
-      @each $property, $value in $declarations {
-        #{$property}: #{$value};
-      }
-    }
-  // modified
-  } @else {
-    .#{$selector}--#{$selector-modifier} {
-      @each $property, $value in $declarations {
-        #{$property}: #{$value};
-      }
-    }
-  }
-}
-
-// # @mixin responsive-rule-set($selector, $declarations)
-// 
-// Form identical rule sets replicated for varying media sizes
-// 
-// @param `list`: $selectors   : List of class name selectors
-// @param `list`: $declarations: List of declaration maps to embed within selectors
-// 
-// * Number of selectors must match number of declarations
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@mixin responsive-rule-set($selectors, $declarations) {
-  @each $size, $breakpoint in $screen-sizes {
-    // base size
-    @if $size == 'base' {
-      @each $selector in $selectors {
-        $i: index($selectors, $selector);
-        @include rule-set($selector, nth($declarations, $i));
-      }
-    // media sizes
-    } @else {
-      @media (min-width: $breakpoint) {
-        @each $selector in $selectors {
-          $i: index($selectors, $selector);
-          @include rule-set($selector, nth($declarations, $i), $size);
-        }
-      }
-    }
-  }
-}
-
-// # @function list-ordered-selectors
-// 
-// Returns an ordered list of selector class names
-// Each selector class name consists of the same prefix indexed with a number
-// 
-// @param  `string`:  $prefix    : Abbreviations for prefixing selector class names
-// @param  `number`:  $length    : List length
-// @param  `boolean`: $reverse   : Ascending(default) or descending order
-// @param  `boolean`: $zero-index: Start at 1 index(default) or 0
-// @return `list` of `string`s
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@function list-ordered-selectors($prefix, $length, $reverse: false, $zero-index: false) {
+@function make-RSON($config-map, $selector-prefix, $properties) {
   $result: ();
-  // descending order
-  @if $reverse == true {
-    @for $i from $length through 1 {
-      $n: $i;
-      @if ($zero-index == true) { $n: $i - 1; }
-      $result: append($result, #{$prefix}-#{$n}, 'comma'); 
-    }
-  // ascending order
-  } @else {
-    @for $i from 1 through $length {
-      $n: $i;
-      @if ($zero-index == true) { $n: $i - 1; }
-      $result: append($result, #{$prefix}-#{$n}, 'comma'); 
-    }
-  }
-  @return $result;
-};
-
-// # @function list-quality-selectors
-// 
-// Returns a list of selector class names
-// consisting of the same prefix modified with a "quality"
-// 
-// @param  `string`:  $prefix   : Abbreviations for prefixing selector class names
-// @param  `list`  :  $qualities: List of qualities to modify prefix with
-// @return `list` of `string`s
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@function list-quality-selectors($prefix, $qualities) {
-  $result: ();
-  @each $quality in $qualities {
-    $result: append($result, (
-      '#{$prefix}-#{$quality}'
-    ), 'comma');
-  }
-  @return $result;
-};
-
-// # @function map-declarations
-//
-// Pairs a defined property with a list of values
-// to form a map of single-line declarations
-//
-// @param  `string`: $property: Property string
-// @param  `list`  : $values  : List of values to attach to property
-// @return `map` of `maps`
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@function map-declarations($property, $values) {
-  $result: ();
-  @each $value in $values {
-    $result: append($result, (
-      $property: $value 
-    ), 'comma');
-  }
-  @return $result;
-};
-
-// # @function list-declaration-blocks
-//
-// Form list of declaration blocks from
-// zipped-lists* of declaration maps
-//
-// @param  `list`: $list  : Zipped-List* of mapped declarations
-// @return `list` of `map`s
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@function list-declaration-blocks($list) {
-  $result: ();
-  @each $declarations in $list {
+  // generate objects from each config line
+  @each $key, $value in $config-map {
+    // generate single object's declaration block by
+    // merging property 'keys' and config 'values'
     $declaration-block: ();
-    @each $declaration in $declarations {
-      $declaration-block: map-merge($declaration-block, $declaration);
+    @each $property in $properties {
+      $declaration-block: map-merge($declaration-block, ($property: $value));
     }
-    $result: append($result, $declaration-block, 'comma');
+    // input arguments into notation and add to list
+    $result: append($result, (
+      'selector': '#{$selector-prefix}-#{$key}',
+      'declarations': $declaration-block,
+    ), 'comma');
   }
   @return $result;
+}
+
+// # @mixin make-ruleset($type-note, $selector, $declarations, $selector-mod: '')
+// 
+// Form a single ruleset by imbueing declarations to a selector name,
+// optional name modifications can be attached to end of selector name
+// 
+// @param `string`: $selector    : Name string prefixed with type-notation
+//                                 (e.g. '.' for Class, '#' for Id)
+// @param `map`   : $declarations: Map containing property to value pairs
+// @param `string`: $selector-mod: (Optional) string to modify selector name
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+@mixin make-ruleset($selector, $declarations, $selector-mod: '') {
+  @if $selector-mod != '' {
+    $selector: $selector + '--' + $selector-mod;
+  }
+  #{$selector} {
+    @each $property, $value in $declarations {
+      #{$property}: #{$value};
+    }
+  }
 };
+
+// # @mixin make-rulesets($RSON, $selector-mod: '')
+// 
+// Form mulitple rulesets from a RSON list
+// - Utilises @mixin make-ruleset
+// 
+// @param `list`  : $RSON: RSON list containing ruleset data to form full rulesets
+// @param `string`: $selector-mod: (Optional) string to modify all selectors in RSON list
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+@mixin make-rulesets($RSON, $selector-mod: '') {
+  @each $obj in $RSON {
+    $i: index($RSON, $obj);
+    $ruleset: nth($RSON, $i);
+    $selector: map-get($ruleset, 'selector');
+    $declarations: map-get($ruleset, 'declarations');
+    @include make-ruleset($selector, $declarations, $selector-mod);
+  }
+}
+
+// # @mixin make-responsive-rulesets($RSON, $screen-sizes: $screen-sizes)
+// 
+// Form a class ruleset by adding declarations or name modifications to a selector name
+// 
+// @param `list`: $RSON: RSON list containing ruleset data to form full rulesets
+// @param `map` : $screen-sizes: (Optional) map of screen-size size to breakpoint pairs
+//                               to generate media query rulesets with,
+//                               defaults to $screen-sizes map listed in _configuration
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+@mixin make-responsive-rulesets($RSON, $screen-sizes: $screen-sizes) {
+  @include make-rulesets($RSON);
+  @each $size, $breakpoint in $screen-sizes {
+    @media (min-width: $breakpoint) {
+      @include make-rulesets($RSON, $size);
+    }
+  }
+}

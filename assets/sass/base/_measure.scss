@@ -3,12 +3,21 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include responsive-rule-set((
-  'measure',
-  'measure-narrow',
-  'measure-wide',
-), (
-  ('max-width': 30em),
-  ('max-width': 20em),
-  ('max-width': 34em),
+@include make-responsive-rulesets((
+  (
+    'selector': '.measure',
+    'declarations': (
+      max-width: 30em,
+    ),
+  ), (
+    'selector': '.measure-narrow',
+    'declarations': (
+      max-width: 20em,
+    ),
+  ), (
+    'selector': '.measure-wide',
+    'declarations': (
+      max-width: 34em,
+    ),
+  ),
 ));
