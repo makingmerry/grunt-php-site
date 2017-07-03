@@ -1,0 +1,28 @@
+// # flex direction
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.fdr-row',
+    'declarations': (
+      flex-direction: row,
+    ),
+  ), (
+    'selector': '.fdr-row-r',
+    'declarations': (
+      flex-direction: row-reverse,
+    ),
+  ), (
+    'selector': '.fdr-col',
+    'declarations': (
+      flex-direction: column,
+    ),
+  ), (
+    'selector': '.fdr-col-r',
+    'declarations': (
+      flex-direction: column-rev
+    ),
+  ),
+));

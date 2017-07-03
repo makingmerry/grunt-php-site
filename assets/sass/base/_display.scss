@@ -25,6 +25,11 @@
       display: inline-block,
     ),
   ), (
+    'selector': '.d-flex',
+    'declarations': (
+      display: flex,
+    ),
+  ), (
     'selector': '.d-i-table',
     'declarations': (
       display: inline-table,

@@ -1,0 +1,28 @@
+// # background repeat
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.bgr-none',
+    'declarations': (
+      background-repeat: no-repeat,
+    ),
+  ), (
+    'selector': '.bgr-repeat',
+    'declarations': (
+      background-repeat: repeat,
+    ),
+  ), (
+    'selector': '.bgr-repeat-x',
+    'declarations': (
+      background-repeat: repeat-x,
+    ),
+  ), (
+    'selector': '.bgr-repeat-y',
+    'declarations': (
+      background-repeat: repeat-y,
+    ),
+  ),
+));

@@ -16,6 +16,7 @@ $screen-sizes: (
 $wraps: (
   's': 40em,
   'm': 60em,
+  'l': 80em,
   // ...
 );
 
@@ -33,6 +34,8 @@ $spacings: (
 // # typography
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
+$base-font-size: 100%;
+
 $type-scale: (
   '1': 3em,
   '2': 2.25em,
@@ -88,10 +91,6 @@ $notification-colors: (
 );
 
 $brand-colors: (
-  't-gold': #b79a54,
-  't-red': #e73d3d,
-  't-dark-red': #c73131,
-  't-pale-blue': #f6f7f8,
   // ...
 );
 

@@ -28,15 +28,22 @@
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 @mixin grid($column-count) {
-  .g-#{$column-count} {
-    display: flex;
-    flex-flow: row wrap;
-  }
-
   $column-widths: map-column-widths($column-count);
-  @include make-responsive-rulesets(
-    make-RSON($column-widths, '.cl-#{$column-count}', ('flex-basis', 'max-width'))
+  $column-RSON: make-RSON($column-widths, '.cl-#{$column-count}', ('flex-basis', 'max-width'));
+  $grid-static-RSON: (
+    (
+      'selector': '.g-#{$column-count}',
+      'declarations': (
+        display: flex,
+        flex-flow: row wrap,
+      ),
+    ),
   );
+  $full-grid-RSON: concat-lists(
+    $grid-static-RSON,
+    $column-RSON
+  );
+  @include make-responsive-rulesets($full-grid-RSON);
 }
 
 @include grid(12);

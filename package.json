@@ -6,7 +6,7 @@
     "url": "https://github.com/makingmerry/base-site"
   },
   "license": "UNLICENSED",
-  "version": "1.1.29",
+  "version": "1.1.30",
   "babel": {
     "presets": [
       "es2015"
