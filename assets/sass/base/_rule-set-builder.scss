@@ -15,6 +15,7 @@
 //       display: block,
 //       background-color: red,
 //     ),
+//     'state': '',
 //   ),
 //   ...
 // )
@@ -27,10 +28,12 @@
 //                                         - String pairs with value (from $config-map)
 //                                         - List items are paired with the same value
 //                                         to form declaration blocks
+// @param `string`     : $state          : (Optional) valid state/attribute string to
+//                                         modify selector (e.g. ':hover', ':focus')
 // @return `list`
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-@function make-RSON($config-map, $selector-prefix, $properties) {
+@function make-RSON($config-map, $selector-prefix, $properties, $state: '') {
   $result: ();
   // generate objects from each config line
   @each $key, $value in $config-map {
@@ -42,8 +45,9 @@
     }
     // input arguments into notation and add to list
     $result: append($result, (
-      'selector': '#{$selector-prefix}-#{$key}',
+      'selector': $selector-prefix + '-' + $key,
       'declarations': $declaration-block,
+      'state': $state,
     ), 'comma');
   }
   @return $result;
@@ -55,16 +59,17 @@
 // optional name modifications can be attached to end of selector name
 // 
 // @param `string`: $selector    : Name string prefixed with type-notation
-//                                 (e.g. '.' for Class, '#' for Id)
+//                                 (i.e. '.' for Class, '#' for Id)
 // @param `map`   : $declarations: Map containing property to value pairs
 // @param `string`: $selector-mod: (Optional) string to modify selector name
+// @param `string`: $state       : (Optional) valid state/attribute string to modify selector
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-@mixin make-ruleset($selector, $declarations, $selector-mod: '') {
+@mixin make-ruleset($selector, $declarations, $selector-mod: '', $state: '') {
   @if $selector-mod != '' {
     $selector: $selector + '--' + $selector-mod;
   }
-  #{$selector} {
+  #{$selector}#{$state} {
     @each $property, $value in $declarations {
       #{$property}: #{$value};
     }
@@ -86,7 +91,8 @@
     $ruleset: nth($RSON, $i);
     $selector: map-get($ruleset, 'selector');
     $declarations: map-get($ruleset, 'declarations');
-    @include make-ruleset($selector, $declarations, $selector-mod);
+    $state: map-get($ruleset, 'state');
+    @include make-ruleset($selector, $declarations, $selector-mod, $state);
   }
 }
 

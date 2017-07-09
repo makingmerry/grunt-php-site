@@ -1,32 +1,26 @@
-// # wrapper
+// # horizontal align
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$wrap-config-RSON: make-RSON($wraps, '.wp', 'max-width');
-$wrap-static-RSON: (
+@include make-responsive-rulesets((
   (
-    'selector': '.wp-right',
+    'selector': '.ha-right',
     'declarations': (
       margin-right: 0,
       margin-left: auto,
     ),
   ), (
-    'selector': '.wp-left',
+    'selector': '.ha-left',
     'declarations': (
       margin-right: auto,
       margin-left: 0,
     ),
   ), (
-    'selector': '.wp-center',
+    'selector': '.ha-center',
     'declarations': (
       margin-right: auto,
       margin-left: auto,
     ),
   ),
-);
-$full-wrap-RSON: concat-lists(
-  $wrap-config-RSON,
-  $wrap-static-RSON
-);
-@include make-responsive-rulesets($full-wrap-RSON);
+));

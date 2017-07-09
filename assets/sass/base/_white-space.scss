@@ -1,0 +1,33 @@
+// # white space
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.ws-normal',
+    'declarations': (
+      white-space: normal,
+    ),
+  ), (
+    'selector': '.ws-nowrap',
+    'declarations': (
+      white-space: nowrap,
+    ),
+  ), (
+    'selector': '.ws-pre',
+    'declarations': (
+      white-space: pre,
+    ),
+  ), (
+    'selector': '.ws-pre-wrap',
+    'declarations': (
+      white-space: pre-wrap,
+    ),
+  ), (
+    'selector': '.ws-pre-line',
+    'declarations': (
+      white-space: pre-line,
+    ),
+  ),
+));

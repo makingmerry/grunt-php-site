@@ -1,12 +1,19 @@
-// # color
+// # counter list
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$color-base-RSON: make-RSON($colors, '.c', 'color');
-$color-hover-RSON: make-RSON($colors, '.hov-c', 'color', ':hover');
-$full-color-RSON: concat-lists(
-  $color-base-RSON,
-  $color-hover-RSON
-);
-@include make-responsive-rulesets($full-color-RSON);
+.ct-list {
+  counter-reset: custom-counter;
+}
+
+.ct-list__li {
+  position: relative;
+
+  &:before {
+    content: counter(custom-counter);
+    counter-increment: custom-counter;
+    position: absolute;
+    left: 0;
+  }
+}

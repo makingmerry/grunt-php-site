@@ -2,6 +2,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @viewport{
   zoom: 1.0;
   width: device-width;
@@ -109,4 +110,20 @@ button:focus {
 input, select, textarea  {
   appearance: none;
   border-radius: 0;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+textarea {
+  resize: vertical;
 }

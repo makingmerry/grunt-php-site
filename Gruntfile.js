@@ -43,7 +43,7 @@ module.exports = function(grunt) {
       //////////////////////////////
       // # javascript
       //////////////////////////////
-      jsDirectory: 'javascripts'
+      jsDirectory: 'javascripts',
     },
 
 
@@ -170,14 +170,14 @@ module.exports = function(grunt) {
     imagemin: {
       images: {
         options: {
-          optimizationLevel: 3
+          optimizationLevel: 3,
         },
         files: [{
           expand: true,
           cwd   : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/',
           src   : ['*.{png,jpg,gif,}'],
-          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/'
-        }]
+          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/',
+        }],
       },
 
       graphics: {
@@ -186,53 +186,50 @@ module.exports = function(grunt) {
           svgoPlugins      : [
             { cleanupIDs      : false },
             { removeDimensions: true },
-            { removeAttrs     : {
-              attrs: ['fill']
-            }}
-          ]
+          ],
         },
         files: [{
           expand: true,
           cwd   : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/',
-          src   : ['*.{svg}'],
-          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/'
-        }]
+          src   : ['*.svg'],
+          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/',
+        }],
       },
 
       graphicsFallback: {
         options: {
-          optimizationLevel: 3
+          optimizationLevel: 3,
         },
         files: [{
           expand: true,
           cwd   : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.temporary %>/',
           src   : ['*.{png,jpg,gif,}'],
-          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/'
-        }]
+          dest  : '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/',
+        }],
       },
 
       symbols: {
         options: {
-          optimizationLevel: 3
+          optimizationLevel: 3,
         },
         files: [{
           expand: true,
           cwd   : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.temporary %>/',
           src   : ['*.{png,jpg,gif}'],
-          dest  : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.build %>/'
-        }]
+          dest  : '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.build %>/',
+        }],
       },
 
       favicons: {
         options: {
-          optimizationLevel: 3
+          optimizationLevel: 3,
         },
         files: [{
           expand: true,
           cwd   : '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/',
           src   : ['*.{png,jpg,gif}'],
-          dest  : '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/'
-        }]
+          dest  : '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/',
+        }],
       },
     },
 
@@ -249,12 +246,11 @@ module.exports = function(grunt) {
       dist: {
         options: {
           style  : 'expanded',
-          require: 'breakpoint'
         },
         files: {
-          '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/style.css': '<%= config.assets %>/<%= config.sassDirectory %>/style.scss'
-        }
-      }
+          '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/style.css': '<%= config.assets %>/<%= config.sassDirectory %>/style.scss',
+        },
+      },
     },
 
     //////////////////////////////
@@ -270,11 +266,11 @@ module.exports = function(grunt) {
           processors: [
             require('pixrem')(),
             require('autoprefixer')({ browsers: 'last 2 versions' }),
-            require('cssnano')()
-          ]
+            require('cssnano')(),
+          ],
         },
         src: '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/style.css',
-        dest: '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/style.css'
+        dest: '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/style.css',
       },
 
       critical: {
@@ -283,14 +279,14 @@ module.exports = function(grunt) {
           processors: [
             require('pixrem')(),
             require('autoprefixer')({ browsers: 'last 2 versions' }),
-            require('cssnano')()
+            require('cssnano')(),
           ]
         },
         expand: true,
         cwd   : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/critical/',
         src   : ['**/*.css'],
-        dest  : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/critical/'
-      }
+        dest  : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.build %>/critical/',
+      },
     },
 
     //////////////////////////////
@@ -306,8 +302,8 @@ module.exports = function(grunt) {
           width       : 1280,
           height      : 720,
           outputfile  : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/critical/index.css',
-          forceInclude: []
-        }
+          forceInclude: [],
+        },
       },
     },
 
@@ -326,9 +322,9 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/main.js': '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/main.js'
-        }
-      }
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/main.js': '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/main.js',
+        },
+      },
     },
 
     //////////////////////////////
@@ -348,7 +344,7 @@ module.exports = function(grunt) {
           '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/CSSPlugin.js',
           '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/ScrollToPlugin.js',
           // project
-          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/main.js'
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/main.js',
         ],
         dest: '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
       },
@@ -361,11 +357,11 @@ module.exports = function(grunt) {
     eslint: {
       options: {
         configFile: '',
-        rulePaths: ''
+        rulePaths: '',
       },
       target: [
-        '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/main.js'
-      ]
+        '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/main.js',
+      ],
     },
 
     //////////////////////////////
@@ -375,8 +371,8 @@ module.exports = function(grunt) {
     uglify: {
       build: {
         src : '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/global.js',
-        dest: '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.build %>/global.min.js'
-      }
+        dest: '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.build %>/global.min.js',
+      },
     },
 
 
@@ -405,8 +401,8 @@ module.exports = function(grunt) {
           '<%= config.snippetDirectory %>/*.{html,php}',
           '*.{html,php}',
         ],
-        dest: 'build/'
-      }
+        dest: 'build/',
+      },
     },
 
     //////////////////////////////
@@ -419,8 +415,8 @@ module.exports = function(grunt) {
         spawn     : false,
         livereload: {
           host: '127.0.0.1', // livereload IP
-          port: 35729 // livereload port
-        }
+          port: 35729, // livereload port
+        },
       },
       templates: {
         files: ['*.{html,php}', 'snippets/*.{html,php}'],
