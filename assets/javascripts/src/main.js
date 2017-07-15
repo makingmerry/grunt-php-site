@@ -140,7 +140,7 @@ const WebFontConfig = {
     //////////////////////////////
     init() {
       // Update DOM parsing variables
-      Barba.Pjax.Dom.wrapperId = 'mainframe-wrap';
+      Barba.Pjax.Dom.wrapperId = 'mainframe-wp';
       Barba.Pjax.Dom.containerClass = 'mainframe';
       Barba.Pjax.ignoreClassLink = 'no-frame-load';
       // Processes

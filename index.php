@@ -4,15 +4,15 @@
   include 'snippets/preloader.php';
 ?>
 
-<div class="g-12 ac-s-between frame">
-  <div class="cl-12-12 frame__top">
+<div class="d-flex fdr-row fwp-wrap ac-s-between frame">
+  <div class="g-12-12 frame__top">
     <!-- mast -->
-    <div class="m-bottom-4 frame__mast-wrap">
+    <div class="m-bottom-4 frame__mast-wp">
       <?php include 'snippets/mast.php'; ?>
     </div>
 
     <!-- main -->
-    <div class="frame__main-wrap" id="mainframe-wrap">
+    <div class="frame__main-wp" id="mainframe-wp">
       <main class="mainframe" data-namespace="<?php echo $page; ?>">
         index<br>
         <a href="/default.php">go to default page</a>
@@ -21,8 +21,8 @@
   </div>
 
   <!-- base -->
-  <div class="cl-12-12 frame__bot">
-    <div class="m-top-4 frame__base-wrap">
+  <div class="g-12-12 frame__bot">
+    <div class="m-top-4 frame__base-wp">
       <?php include 'snippets/base.php'; ?>
     </div>
   </div>

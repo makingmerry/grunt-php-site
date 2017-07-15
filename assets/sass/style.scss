@@ -6,84 +6,95 @@
 // # tools
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-@import "base/list-extension";
-@import "base/map-extension";
-@import "base/rule-set-builder";
-@import "base/debug";
+
+@import "base/tools/list-extension";
+@import "base/tools/map-extension";
+@import "base/tools/rule-set-builder";
+@import "base/tools/debug";
 
 // # configurations
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-@import "base/configuration";
 
+@import "base/configurations/layout";
+@import "base/configurations/typography";
+@import "base/configurations/theme";
+@import "base/configurations/reset";
+
+// # properties
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+//////////////////////////////
 // # layout
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@import "base/reset";
-@import "base/display";
-@import "base/grid";
-@import "base/justify-content";
-@import "base/align-items";
-@import "base/align-content";
-@import "base/flex-direction";
-@import "base/flex-wrap";
-@import "base/order";
-@import "base/wrap";
-@import "base/width";
-@import "base/height";
-@import "base/margin";
-@import "base/padding";
-@import "base/vertical-align";
-@import "base/horizontal-align";
+//////////////////////////////
+@import "base/properties/layout/display";
+@import "base/properties/layout/grid";
+@import "base/properties/layout/justify-content";
+@import "base/properties/layout/align-items";
+@import "base/properties/layout/align-content";
+@import "base/properties/layout/flex-direction";
+@import "base/properties/layout/flex-wrap";
+@import "base/properties/layout/order";
+@import "base/properties/layout/wrap";
+@import "base/properties/layout/width";
+@import "base/properties/layout/height";
+@import "base/properties/layout/margin";
+@import "base/properties/layout/padding";
+@import "base/properties/layout/vertical-align";
+@import "base/properties/layout/horizontal-align";
 
+//////////////////////////////
 // # typography
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@import "base/type-scale";
-@import "base/font-family";
-@import "base/font-weight";
-@import "base/font-style";
-@import "base/font-render";
-@import "base/line-height";
-@import "base/tracking";
-@import "base/text-transform";
-@import "base/text-decoration";
-@import "base/text-align";
-@import "base/white-space";
-@import "base/measure";
+//////////////////////////////
+@import "base/properties/typography/font-family";
+@import "base/properties/typography/font-size";
+@import "base/properties/typography/font-weight";
+@import "base/properties/typography/font-style";
+@import "base/properties/typography/font-render";
+@import "base/properties/typography/line-height";
+@import "base/properties/typography/tracking";
+@import "base/properties/typography/text-align";
+@import "base/properties/typography/text-transform";
+@import "base/properties/typography/text-decoration";
+@import "base/properties/typography/white-space";
+@import "base/properties/typography/measure";
 
-// # theme-ing
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-@import "base/color";
-@import "base/background-color";
-@import "base/background-size";
-@import "base/background-position";
-@import "base/background-repeat";
-@import "base/border";
-@import "base/border-style";
-@import "base/border-width";
-@import "base/border-color";
-@import "base/border-radius";
-@import "base/opacity";
-@import "base/transition-duration";
+//////////////////////////////
+// # theme
+//////////////////////////////
+@import "base/properties/theme/color";
+@import "base/properties/theme/background-color";
+@import "base/properties/theme/background-size";
+@import "base/properties/theme/background-position";
+@import "base/properties/theme/background-repeat";
+@import "base/properties/theme/border";
+@import "base/properties/theme/border-style";
+@import "base/properties/theme/border-width";
+@import "base/properties/theme/border-color";
+@import "base/properties/theme/border-radius";
+@import "base/properties/theme/opacity";
+@import "base/properties/theme/transition-duration";
 
 
 // # element
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @import "element/whirligig";
 @import "element/list";
 @import "element/counter-list";
 @import "element/form-multi-input";
 @import "element/form-select";
+@import "element/tiny-table";
 
 
 // # component
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @import "component/preloader";
 
 
@@ -91,6 +102,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @import "composition/frame";
 
 

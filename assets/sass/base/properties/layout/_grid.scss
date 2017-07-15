@@ -20,30 +20,24 @@
   @return $result;
 }
 
-// # @mixin grid($column-count)
+// # @function make-grid-RSON($column-counts...)
 //
-// Forms a grid with accompanying column classes
+// Returns a RSON list for grid columns ruleset generation
 //
-// @param `number`: $column-count: Number of columns formed grid will have
+// @param `number`(s): $column-counts: Number(s) of columns formed in grid(s)
+// @return `list`
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-@mixin grid($column-count) {
-  $column-widths: map-column-widths($column-count);
-  $column-RSON: make-RSON($column-widths, '.cl-#{$column-count}', ('flex-basis', 'max-width'));
-  $grid-static-RSON: (
-    (
-      'selector': '.g-#{$column-count}',
-      'declarations': (
-        display: flex,
-        flex-flow: row wrap,
-      ),
-    ),
-  );
-  $full-grid-RSON: concat-lists(
-    $grid-static-RSON,
-    $column-RSON
-  );
-  @include make-responsive-rulesets($full-grid-RSON);
+@function make-grid-RSON($column-counts...) {
+  $result: ();
+  @each $column-count in $column-counts {
+    $column-widths: map-column-widths($column-count);
+    $grid-RSON: make-RSON($column-widths, '.g-#{$column-count}', ('flex-basis', 'max-width'));
+    $result: join($result, $grid-RSON, 'comma');
+  }
+  @return $result;
 }
 
-@include grid(12);
+@include make-responsive-rulesets(
+  make-grid-RSON(12)
+);
