@@ -230,14 +230,13 @@
 
     enable() {
       const list = this.links
-        .filter(link => link.dataset.active === 'true');
+        .filter(link => !link.href.length);
       list.forEach((link) => {
         // demote active links to default state
         if (link.dataset.href) {
           link.href = link.dataset.href;
           link.removeAttribute('data-href');
         }
-        link.dataset.active = 'false';
       });
     },
 
@@ -248,7 +247,6 @@
         // promote matched 'named' links to active state
         link.dataset.href = link.href;
         link.removeAttribute('href');
-        link.dataset.active = 'true';
       });
     },
   };
