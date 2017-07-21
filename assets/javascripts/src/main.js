@@ -8,7 +8,7 @@
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  /* global TweenLite Barba ga */
+  /* global Barba TweenLite picturefill ga */
 
   // # modules
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -309,6 +309,8 @@
 
   ViewControl.onReady(() => {
     console.log('view is ready'); // !DEBUG
+    // polyfill <picture> element
+    picturefill();
     // toggle navigation links
     NavControl.enable();
     NavControl.disable(ViewControl.namespaces.getCurrName());
