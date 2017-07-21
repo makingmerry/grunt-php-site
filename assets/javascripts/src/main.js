@@ -9,14 +9,6 @@
   ////////////////////////////////////////////////////////////
 
   /* global TweenLite Barba ga */
-  /* eslint no-unused-vars: [1, {
-    "args": "after-used",
-    "varsIgnorePattern": "WebFontConfig",
-    "argsIgnorePattern": "reject",
-   }] */
-  /* eslint no-param-reassign: ["error", {
-    "props": false,
-  }] */
 
   // # modules
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -60,26 +52,35 @@
     element: document.getElementsByClassName('loader')[0],
 
     show() {
-      TweenLite.set(this.element, {
-        display: 'table',
-        visibility: 'visible',
-        opacity: 0,
-      });
-      TweenLite.to(this.element, 0.35, {
-        opacity: 1,
+      return new Promise((resolve, reject) => {
+        TweenLite.set(this.element, {
+          display: 'table',
+          visibility: 'visible',
+          opacity: 0,
+        });
+        TweenLite.to(this.element, 0.35, {
+          opacity: 1,
+          onCompleteScope: this,
+          onComplete() {
+            resolve(this);
+          },
+        });
       });
     },
 
     hide() {
-      TweenLite.to(this.element, 0.5, {
-        opacity: 0,
-        onCompleteScope: this,
-        onComplete() {
-          TweenLite.set(this.element, {
-            display: 'none',
-            visibility: 'hidden',
-          });
-        },
+      return new Promise((resolve, reject) => {
+        TweenLite.to(this.element, 0.5, {
+          opacity: 0,
+          onCompleteScope: this,
+          onComplete() {
+            TweenLite.set(this.element, {
+              display: 'none',
+              visibility: 'hidden',
+            });
+            resolve(this);
+          },
+        });
       });
     },
   };
@@ -103,9 +104,6 @@
       });
     },
 
-    //////////////////////////////
-    // # utility
-    //////////////////////////////
     isFirst() {
       return Barba.HistoryManager.prevStatus() === null;
     },
@@ -114,22 +112,19 @@
       return Barba.Pjax.getCurrentUrl();
     },
 
-    //////////////////////////////
-    // # event listeners
-    //////////////////////////////
-    viewRequested(callback) {
+    onRequested(callback) {
       Barba.Dispatcher.on('linkClicked', () => { callback(); });
     },
 
-    viewChange(callback) {
+    onChange(callback) {
       Barba.Dispatcher.on('initStateChange', () => { callback(); });
     },
 
-    viewReady(callback) {
+    onReady(callback) {
       Barba.Dispatcher.on('newPageReady', () => { callback(); });
     },
 
-    viewComplete(callback) {
+    onComplete(callback) {
       Barba.Dispatcher.on('transitionCompleted', () => { callback(); });
     },
 
@@ -296,30 +291,33 @@
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  ViewControl.viewRequested(() => {
-    console.log('view is requested');
+  ViewControl.onRequested(() => {
+    console.log('view is requested'); // !DEBUG
   });
 
-  ViewControl.viewChange(() => {
+  ViewControl.onChange(() => {
+    console.log('view is changing'); // !DEBUG
     if (ViewControl.isFirst()) {
       // hide loader
-      Loader.hide();
+      Loader.hide().then(() => {
+        // enable page scroll
+        PageScroll.enable();
+      });
     } else {
       // track new page analytics
       PushPageView(ViewControl.getCurrUrl());
     }
-    console.log('view is changing');
   });
 
-  ViewControl.viewReady(() => {
+  ViewControl.onReady(() => {
+    console.log('view is ready'); // !DEBUG
     // toggle navigation links
     NavControl.enable();
     NavControl.disable(ViewControl.namespaces.getCurrName());
-    console.log('view is ready');
   });
 
-  ViewControl.viewComplete(() => {
-    console.log('view is complete');
+  ViewControl.onComplete(() => {
+    console.log('view is complete'); // !DEBUG
   });
 
   // # view-specific
@@ -333,16 +331,16 @@
   ViewControl.transitions.assign('index', 'fade');
   const indexView = ViewControl.namespaces.getSpace('index');
   indexView.onEnter = () => {
-    console.log('index view is entering');
+    console.log('index view is entering'); // !DEBUG
   };
   indexView.onEnterCompleted = () => {
-    console.log('index view has entered');
+    console.log('index view has entered'); // !DEBUG
   };
   indexView.onLeave = () => {
-    console.log('index view is leaving');
+    console.log('index view is leaving'); // !DEBUG
   };
   indexView.onLeaveCompleted = () => {
-    console.log('index view has left');
+    console.log('index view has left'); // !DEBUG
   };
 
 
@@ -353,12 +351,12 @@
 
   PageReady()
     .then(() => {
-      console.log('page is interactive');
+      console.log('page is interactive'); // !DEBUG
       ViewControl.init();
     });
 
   PageComplete()
     .then(() => {
-      console.log('page is complete');
+      console.log('page is complete'); // !DEBUG
     });
 }
