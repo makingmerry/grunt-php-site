@@ -1,5 +1,6 @@
 <?php
   $page = 'default';
+  $page_type = 'page';
   include 'snippets/header.php';
   include 'snippets/loader.php';
 ?>

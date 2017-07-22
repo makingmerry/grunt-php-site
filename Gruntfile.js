@@ -291,11 +291,10 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # critical css
-    // build critical inline stylesheets from main stylesheet
+    // build page type specific critical stylesheets
     //////////////////////////////
     criticalcss: {
-      // index page template
-      indexPage: {
+      home: {
         options: {
           url         : '<%= config.fullPath %>',
           filename    : '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/style.css',

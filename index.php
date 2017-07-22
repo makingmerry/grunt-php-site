@@ -1,5 +1,6 @@
 <?php
   $page = 'index';
+  $page_type = 'home-page';
   include 'snippets/header.php';
   include 'snippets/loader.php';
 ?>
