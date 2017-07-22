@@ -1,301 +1,362 @@
-// # global configurations
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
+{
+  // # configurations
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
 
-// # ESLint
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-/* global TweenLite Barba */
-/* eslint no-unused-vars: [2, {
-  "args": "after-used",
-  "varsIgnorePattern": "WebFontConfig"
-}] */
+  // # eslint
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
 
-// # Web Font Loader configurations
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-const WebFontConfig = {
-  custom: {
-    families: [
-      // '',
-    ],
-  },
-  timeout: 2000,
-};
-
-(() => {
-  // 'use strict'; // 'use strict' is unnecessary inside of modules — ESLint
+  /* global Barba TweenLite picturefill ga */
 
   // # modules
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  // # Web Font Loader
-  // Load linked fonts using @font-face with added control – Web Font Loader, Typekit & Google
-  // https://github.com/typekit/webfontloader
+  // # analytics
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-  function initWebFonts() {
-    const wf = document.createElement('script');
-    const s = document.scripts[0];
 
-    // Link to CDN for for script source,
-    // documentation recommends using explicit version numbers for performance reason
-    wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
-    s.parentNode.insertBefore(wf, s);
+  function PushPageView(Url) {
+    // https://developers.google.com/analytics/devguides/...
+    // ...collection/analyticsjs/single-page-applications
+    if (typeof ga === 'function') {
+      ga('set', 'page', Url);
+      ga('send', 'pageview');
+    }
   }
 
-  // # Preloader
-  //
-  // Ease in initial page content
+  // # page scroll
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-  const Preloader = {
-    el: document.getElementsByClassName('preloader')[0],
+
+  const PageScroll = {
     body: document.getElementsByTagName('body')[0],
-    state: {
-      active: true,
+
+    enable() {
+      this.body.style.overflow = 'auto';
     },
 
-    //////////////////////////////
-    // # Stop page scrolling
-    //////////////////////////////
-    stopScroll() {
-      const obj = this;
-      obj.body.style.overflow = 'hidden';
-    },
-
-    //////////////////////////////
-    // # Start (allow) page scrolling
-    //////////////////////////////
-    startScroll() {
-      const obj = this;
-      obj.body.style.overflow = 'auto';
-    },
-
-    //////////////////////////////
-    // # Open
-    //////////////////////////////
-    open() {
-      const obj = this;
-      // Restrict page content viewing
-      obj.stopScroll();
-      obj.state.active = true;
-      // Transit in preloader
-      TweenLite.set(obj.el, {
-        display: 'table',
-        visibility: 'visible',
-        opacity: 0,
-      });
-      TweenLite.to(obj.el, 0.35, {
-        opacity: 1,
-      });
-    },
-
-    //////////////////////////////
-    // # Close
-    //////////////////////////////
-    close() {
-      const obj = this;
-      // Transit out preloader
-      TweenLite.to(obj.el, 0.5, {
-        opacity: 0,
-        onComplete() {
-          TweenLite.set(obj.el, {
-            display: 'none',
-            visibility: 'hidden',
-          });
-          // Allow page content viewing
-          obj.startScroll();
-          obj.state.active = false;
-        },
-      });
-    },
-
-    //////////////////////////////
-    // # Toggle
-    //////////////////////////////
-    toggle() {
-      const obj = this;
-      if (obj.state.active) {
-        obj.close();
-      } else {
-        obj.open();
-      }
+    disable() {
+      this.body.style.overflow = 'hidden';
     },
   };
 
-  // # View Controller
-  // - Barba.js utility
-  // - http://barbajs.org/
-  //
-  // Utilising Pushstate AJAX (or PJAX) to simuluate a SPA-type navigation
+  // # pre-loader
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
-  const ViewController = {
-    //////////////////////////////
-    // # Initialise
-    //////////////////////////////
+
+  const Loader = {
+    element: document.getElementsByClassName('loader')[0],
+
+    show() {
+      return new Promise((resolve, reject) => {
+        TweenLite.set(this.element, {
+          display: 'table',
+          visibility: 'visible',
+          opacity: 0,
+        });
+        TweenLite.to(this.element, 0.35, {
+          opacity: 1,
+          onCompleteScope: this,
+          onComplete() {
+            resolve(this);
+          },
+        });
+      });
+    },
+
+    hide() {
+      return new Promise((resolve, reject) => {
+        TweenLite.to(this.element, 0.5, {
+          opacity: 0,
+          onCompleteScope: this,
+          onComplete() {
+            TweenLite.set(this.element, {
+              display: 'none',
+              visibility: 'hidden',
+            });
+            resolve(this);
+          },
+        });
+      });
+    },
+  };
+
+  // # view control
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  const ViewControl = {
     init() {
-      // Update DOM parsing variables
+      // setup DOM parsing variables for Barba.js
       Barba.Pjax.Dom.wrapperId = 'mainframe-wp';
       Barba.Pjax.Dom.containerClass = 'mainframe';
       Barba.Pjax.ignoreClassLink = 'no-frame-load';
-      // Processes
-      const obj = this;
-      obj.initAnalytics();
-      obj.initTransitions();
-      obj.initActions();
+      // initialise internal processes
+      return new Promise((resolve, reject) => {
+        this.namespaces.init();
+        this.transitions.init();
+        Barba.Pjax.start();
+        resolve(this);
+      });
+    },
+
+    isFirst() {
+      return Barba.HistoryManager.prevStatus() === null;
+    },
+
+    getCurrUrl() {
+      return Barba.Pjax.getCurrentUrl();
+    },
+
+    onRequested(callback) {
+      Barba.Dispatcher.on('linkClicked', () => { callback(); });
+    },
+
+    onChange(callback) {
+      Barba.Dispatcher.on('initStateChange', () => { callback(); });
+    },
+
+    onReady(callback) {
+      Barba.Dispatcher.on('newPageReady', () => { callback(); });
+    },
+
+    onComplete(callback) {
+      Barba.Dispatcher.on('transitionCompleted', () => { callback(); });
     },
 
     //////////////////////////////
-    // # Initialise analytics
-    // Track new pages loaded in timeline
+    // sub-module:
+    // # transitions
     //////////////////////////////
-    initAnalytics() {
-      Barba.Dispatcher.on('initStateChange', () => {
-        if (Barba.HistoryManager.prevStatus() === null) {
-          // Google analytics SPA tracking
-          // - https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
-          // ga('set', 'page', Barba.Pjax.getCurrentUrl());
-          // ga('send', 'pageview');
+    transitions: {
+      store: {
+        // fades out current view container,
+        // fades in new view container
+        fade: Barba.BaseTransition.extend({
+          start() {
+            Promise
+              .all([this.newContainerLoading, this.hideOld()])
+              .then(this.showNew.bind(this));
+          },
+
+          hideOld() {
+            return new Promise((resolve) => {
+              TweenLite.to(this.oldContainer, 0.15, {
+                opacity: 0,
+                onComplete() {
+                  resolve(true);
+                },
+              });
+            });
+          },
+
+          showNew() {
+            this.oldContainer.style.display = 'none';
+            TweenLite.set(this.newContainer, {
+              visibility: 'visible',
+              opacity: 0,
+            });
+            TweenLite.to(this.newContainer, 0.15, {
+              opacity: 1,
+              onCompleteScope: this,
+              onComplete() {
+                this.done();
+              },
+            });
+          },
+        }),
+      },
+
+      assignments: {},
+      assign(name, transitionKey) {
+        this.assignments[name] = transitionKey;
+      },
+
+      init() {
+        Barba.Pjax.getTransition = () => {
+          const currViewName = Barba.HistoryManager.prevStatus().namespace;
+          if (Object.hasOwnProperty.call(this.assignments, currViewName)) {
+            const transitionKey = this.assignments[currViewName];
+            return this.store[transitionKey];
+          }
+          return this.store.fade;
+        };
+      },
+    },
+
+    //////////////////////////////
+    // sub-module:
+    // # namespaces
+    //////////////////////////////
+    namespaces: {
+      store: {},
+      pushSpace(name) {
+        this.store[name] = Barba.BaseView.extend({
+          namespace: name,
+          onEnter() {},
+          onEnterCompleted() {},
+          onLeave() {},
+          onLeaveCompleted() {},
+        });
+      },
+
+      getSpace(name) {
+        return this.store[name];
+      },
+
+      getCurrName() {
+        return Barba.HistoryManager.currentStatus().namespace;
+      },
+
+      init() {
+        Object.keys(this.store)
+          .forEach((space) => {
+            this.store[space].init();
+          });
+      },
+    },
+  };
+
+  // # navigation control
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  const NavControl = {
+    links: Array.from(document.getElementsByClassName('nav-a')),
+
+    enable() {
+      const list = this.links
+        .filter(link => !link.href.length);
+      list.forEach((link) => {
+        // demote active links to default state
+        if (link.dataset.href) {
+          link.href = link.dataset.href;
+          link.removeAttribute('data-href');
         }
       });
     },
 
-    //////////////////////////////
-    // # Transitions
-    // Custom transitions
-    //////////////////////////////
-    transitions: {
-      //////////////////////////////
-      // # Fade in-out
-      //////////////////////////////
-      fade: Barba.BaseTransition.extend({
-        //////////////////////////////
-        // # Start
-        //////////////////////////////
-        start() {
-          const obj = this;
-          Promise
-            .all([obj.newContainerLoading, obj.hideOld()])
-            .then(obj.showNew.bind(this));
-        },
-
-        //////////////////////////////
-        // # Hide old content
-        //////////////////////////////
-        hideOld() {
-          // Animate out current content and fulfill promise
-          const obj = this;
-          return new Promise((resolve) => {
-            TweenLite.to(obj.oldContainer, 0.15, {
-              opacity: 0,
-              onComplete() {
-                resolve(true);
-              },
-            });
-          });
-        },
-
-        //////////////////////////////
-        // # Show new content
-        //////////////////////////////
-        showNew() {
-          const obj = this;
-          // Hide old content
-          obj.oldContainer.style.display = 'none';
-          // Animate in new content and fulfill promise
-          TweenLite.set(obj.newContainer, {
-            visibility: 'visible',
-            opacity: 0,
-          });
-          TweenLite.to(this.newContainer, 0.15, {
-            opacity: 1,
-            onComplete() {
-              obj.done();
-            },
-          });
-        },
-      }),
-    },
-
-    //////////////////////////////
-    // # Initialise transitions
-    // Process view-specific transitions if required,
-    // defaults to fade in-out
-    //////////////////////////////
-    initTransitions() {
-      const obj = this;
-      // Barba.Pjax.getTransition = function () { // Unexpected unnamed function -- TEST THIS
-      Barba.Pjax.getTransition = () => {
-        // Get transition based on current namespace
-        switch (Barba.HistoryManager.prevStatus().namespace) {
-          case 'index': return obj.transitions.fade;
-          default: return obj.transitions.fade;
-        }
-      };
-    },
-
-    //////////////////////////////
-    // # Initialise actions
-    // Process view-specific and step-specific actions
-    // - http://barbajs.org/views.html
-    //////////////////////////////
-    initActions() {
-      const list = {
-        // Index view
-        index: Barba.BaseView.extend({
-          namespace: 'index',
-          onEnter() {
-            // New container is ready and attached to DOM
-          },
-          onEnterCompleted() {
-            // Transition is complete
-          },
-          onLeave() {
-            // New transition to a new page has started
-          },
-          onLeaveCompleted() {
-            // Current container removed from DOM
-          },
-        }),
-      };
-
-      Object.keys(list).forEach((view) => {
-        list[view].init();
+    disable(name) {
+      const list = this.links
+        .filter(link => link.dataset.controls === name);
+      list.forEach((link) => {
+        // promote matched 'named' links to active state
+        link.dataset.href = link.href;
+        link.removeAttribute('href');
       });
     },
   };
 
+  // # page ready
+  // document has finished loading and the document has been parsed
+  // but sub-resources such as images, stylesheets and frames are still loading
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
 
-  // # PROCESS: on load
+  function PageReady() {
+    return new Promise((resolve, reject) => {
+      resolve(this);
+    });
+  }
+
+  // # page complete
+  // document and all sub-resources have finished loading,
+  // state indicates that the load event is about to fire
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  function PageComplete() {
+    return new Promise((resolve, reject) => {
+      const complete = setInterval(() => {
+        if (document.readyState === 'complete') {
+          resolve(this);
+          clearInterval(complete);
+        }
+      }, 100);
+    });
+  }
+
+  // # contexts
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  // Web Font Loader
-  initWebFonts();
-  // Preloader
-  Preloader.toggle();
+  // # general
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
 
+  ViewControl.onRequested(() => {
+    console.log('view is requested'); // !DEBUG
+  });
 
-  // # PROCESS: on complete
-  //
-  // Post-CSSOM load – ensures styles are applied first before executing functions
-  //////////////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////////
-
-  const complete = setInterval(() => {
-    if (document.readyState === 'complete') {
-      // View Controller
-      ViewController.init();
-      Barba.Pjax.start();
-
-      clearInterval(complete);
+  ViewControl.onChange(() => {
+    console.log('view is changing'); // !DEBUG
+    if (ViewControl.isFirst()) {
+      // hide loader
+      Loader.hide().then(() => {
+        // enable page scroll
+        PageScroll.enable();
+      });
+    } else {
+      // track new page analytics
+      PushPageView(ViewControl.getCurrUrl());
     }
-  }, 100);
-})();
+  });
+
+  ViewControl.onReady(() => {
+    console.log('view is ready'); // !DEBUG
+    // polyfill <picture> element
+    picturefill();
+    // toggle navigation links
+    NavControl.enable();
+    NavControl.disable(ViewControl.namespaces.getCurrName());
+  });
+
+  ViewControl.onComplete(() => {
+    console.log('view is complete'); // !DEBUG
+  });
+
+  // # view-specific
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  //////////////////////////////
+  // # index view
+  //////////////////////////////
+  ViewControl.namespaces.pushSpace('index');
+  ViewControl.transitions.assign('index', 'fade');
+  const indexView = ViewControl.namespaces.getSpace('index');
+  indexView.onEnter = () => {
+    console.log('index view is entering'); // !DEBUG
+  };
+  indexView.onEnterCompleted = () => {
+    console.log('index view has entered'); // !DEBUG
+  };
+  indexView.onLeave = () => {
+    console.log('index view is leaving'); // !DEBUG
+  };
+  indexView.onLeaveCompleted = () => {
+    console.log('index view has left'); // !DEBUG
+  };
+
+
+  // # processes
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
+
+  PageReady()
+    .then(() => {
+      console.log('page is interactive'); // !DEBUG
+      ViewControl.init();
+    });
+
+  PageComplete()
+    .then(() => {
+      console.log('page is complete'); // !DEBUG
+    });
+}

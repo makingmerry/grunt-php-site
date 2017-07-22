@@ -18,7 +18,7 @@
   <!-- load critical inline styles -->
   <style type="text/css">
     <?php
-      $file = 'assets/stylesheets/build/critical/'.$page.'.css';
+      $file = 'assets/stylesheets/build/critical/'.$page_type.'.css';
       file_exists($file) AND include $file;
     ?>
   </style>
@@ -28,10 +28,10 @@
     <link href="assets/stylesheets/build/style.css" rel="stylesheet" type="text/css">
   </noscript>
 
-  <!-- hide preloader if javascript is disabled -->
+  <!-- hide loader if javascript is disabled -->
   <noscript>
     <style type="text/css">
-      .preloader {
+      .loader {
         display: none;
         visibility: hidden;
         opacity: 0;

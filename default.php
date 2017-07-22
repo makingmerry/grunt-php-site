@@ -1,7 +1,8 @@
 <?php
   $page = 'default';
+  $page_type = 'page';
   include 'snippets/header.php';
-  include 'snippets/preloader.php';
+  include 'snippets/loader.php';
 ?>
 
 <div class="d-flex fdr-row fwp-wrap ac-s-between frame">
