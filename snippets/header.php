@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 <head>
   <!-- # meta tags -->
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
   <title><?php echo $page; ?></title>
+  <meta name="description" content="">
 
   <!-- # og tags -->
-  <meta property="og:url" content="">
   <meta property="og:title" content="">
   <meta property="og:description" content="">
+  <meta property="og:url" content="">
   <meta property="og:image" content="">
 
   <!-- # styles -->
