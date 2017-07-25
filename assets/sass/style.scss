@@ -28,6 +28,8 @@
 //////////////////////////////
 // # layout
 //////////////////////////////
+@import "base/properties/layout/position";
+@import "base/properties/layout/z-index";
 @import "base/properties/layout/display";
 @import "base/properties/layout/grid";
 @import "base/properties/layout/justify-content";
@@ -43,6 +45,7 @@
 @import "base/properties/layout/padding";
 @import "base/properties/layout/vertical-align";
 @import "base/properties/layout/horizontal-align";
+@import "base/properties/layout/overflow";
 
 //////////////////////////////
 // # typography
@@ -57,6 +60,7 @@
 @import "base/properties/typography/text-align";
 @import "base/properties/typography/text-transform";
 @import "base/properties/typography/text-decoration";
+@import "base/properties/typography/text-indent";
 @import "base/properties/typography/white-space";
 @import "base/properties/typography/measure";
 
@@ -73,6 +77,7 @@
 @import "base/properties/theme/border-width";
 @import "base/properties/theme/border-color";
 @import "base/properties/theme/border-radius";
+@import "base/properties/theme/fill";
 @import "base/properties/theme/opacity";
 @import "base/properties/theme/transition-duration";
 
