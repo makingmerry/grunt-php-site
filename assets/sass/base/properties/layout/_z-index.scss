@@ -1,38 +1,8 @@
-// # z index
+// # z-index
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-@include make-responsive-rulesets((
-  (
-    'selector': '.z-0',
-    'declarations': (
-      z-index: 0,
-    ),
-  ), (
-    'selector': '.z-1',
-    'declarations': (
-      z-index: 1,
-    ),
-  ), (
-    'selector': '.z-2',
-    'declarations': (
-      z-index: 2,
-    ),
-  ), (
-    'selector': '.z-3',
-    'declarations': (
-      z-index: 3,
-    ),
-  ), (
-    'selector': '.z-4',
-    'declarations': (
-      z-index: 4,
-    ),
-  ), (
-    'selector': '.z-100',
-    'declarations': (
-      z-index: 100,
-    ),
-  ),
-));
+@include make-responsive-rulesets(
+  make-RSON($z-indexes, '.z', 'z-index'), $screen-sizes
+);

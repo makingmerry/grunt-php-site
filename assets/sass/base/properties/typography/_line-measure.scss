@@ -1,23 +1,28 @@
-// # text_ decoration
+// # line_ measure
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.t-d-none',
+    'selector': '.l-m-none',
     'declarations': (
-      text-decoration: none,
-    ),
-  ),(
-    'selector': '.t-d-strike',
-    'declarations': (
-      text-decoration: strike,
+      max-width: 100%,
     ),
   ), (
-    'selector': '.t-d-underline',
+    'selector': '.l-m-base',
     'declarations': (
-      text-decoration: underline,
+      max-width: map-get($line-measures, 'base'),
+    ),
+  ), (
+    'selector': '.l-m-narrow',
+    'declarations': (
+      max-width: map-get($line-measures, 'narrow'),
+    ),
+  ), (
+    'selector': '.l-m-wide',
+    'declarations': (
+      max-width: map-get($line-measures, 'wide'),
     ),
   ),
 ), $screen-sizes);

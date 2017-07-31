@@ -1,38 +1,38 @@
-// # align content
+// # flex_ align-self
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.ac-start',
+    'selector': '.flx-as-auto',
     'declarations': (
-      align-content: flex-start,
+      align-self: auto,
     ),
   ), (
-    'selector': '.ac-end',
+    'selector': '.flx-as-start',
     'declarations': (
-      align-content: flex-end,
+      align-self: flex-start,
     ),
   ), (
-    'selector': '.ac-center',
+    'selector': '.flx-as-end',
     'declarations': (
-      align-content: center,
+      align-self: flex-end,
     ),
   ), (
-    'selector': '.ac-stretch',
+    'selector': '.flx-as-center',
     'declarations': (
-      align-content: stretch,
+      align-self: center,
     ),
   ), (
-    'selector': '.ac-s-between',
+    'selector': '.flx-as-stretch',
     'declarations': (
-      align-content: space-between,
+      align-self: stretch,
     ),
   ), (
-    'selector': '.ac-s-around',
+    'selector': '.flx-as-baseline',
     'declarations': (
-      align-content: space-around,
+      align-self: baseline,
     ),
   ),
-));
+), $screen-sizes);

@@ -1,28 +1,28 @@
-// # border style
+// # border_ style
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.bs-none',
+    'selector': '.b-sy-none',
     'declarations': (
       border-style: none,
     ),
   ), (
-    'selector': '.bs-solid',
+    'selector': '.b-sy-solid',
     'declarations': (
       border-style: solid,
     ),
   ), (
-    'selector': '.bs-dot',
+    'selector': '.b-sy-dot',
     'declarations': (
       border-style: dotted,
     ),
   ), (
-    'selector': '.bs-dash',
+    'selector': '.b-sy-dash',
     'declarations': (
       border-style: dashed,
     ),
   ),
-));
+), $screen-sizes);

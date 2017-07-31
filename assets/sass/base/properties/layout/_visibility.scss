@@ -1,18 +1,23 @@
-// # order
+// # visibility
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.o-first',
+    'selector': '.vis-visible',
     'declarations': (
-      order: -1,
+      visibility: visible,
     ),
   ), (
-    'selector': '.o-last',
+    'selector': '.vis-hidden',
     'declarations': (
-      order: 99,
+      visibility: hidden,
+    ),
+  ), (
+    'selector': '.vis-collapse',
+    'declarations': (
+      visibility: collapse,
     ),
   ),
-));
+), $screen-sizes);

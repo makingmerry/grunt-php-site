@@ -3,10 +3,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$opacity-base-RSON: make-RSON($opacities, '.op', 'opacity');
+$opacity-RSON: make-RSON($opacities, '.op', 'opacity');
 $opacity-hover-RSON: make-RSON($opacities, '.hov-op', 'opacity', ':hover');
+
 $full-opacity-RSON: concat-lists(
-  $opacity-base-RSON,
+  $opacity-RSON,
   $opacity-hover-RSON
 );
-@include make-responsive-rulesets($full-opacity-RSON);
+
+@include make-responsive-rulesets($full-opacity-RSON, $screen-sizes);

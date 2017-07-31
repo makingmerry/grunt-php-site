@@ -3,11 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$position-top-RSON: make-RSON($positionings, '.top', 'top');
-$position-right-RSON: make-RSON($positionings, '.right', 'right');
-$position-bottom-RSON: make-RSON($positionings, '.bottom', 'bottom');
-$position-left-RSON: make-RSON($positionings, '.left', 'left');
-$position-static-RSON: (
+@include make-responsive-rulesets((
   (
     'selector': '.pos-static',
     'declarations': (
@@ -29,12 +25,4 @@ $position-static-RSON: (
       position: absolute,
     ),
   ),
-);
-$full-position-RSON: concat-lists(
-  $position-top-RSON,
-  $position-right-RSON,
-  $position-bottom-RSON,
-  $position-left-RSON,
-  $position-static-RSON
-);
-@include make-responsive-rulesets($full-position-RSON);
+), $screen-sizes);

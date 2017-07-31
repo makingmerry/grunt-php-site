@@ -5,15 +5,24 @@
   include 'snippets/loader.php';
 ?>
 
-<div class="d-flex fdr-row fwp-wrap ac-s-between frame">
-  <div class="g-12-12 frame__top">
-    <!-- mast -->
-    <div class="m-bottom-4 frame__mast-wp">
+<!-- structure -->
+<div class="
+  pos-relative z-1
+  d-flex flx-dir-row flx-wp-wrap flx-ac-s-between
+  h-100vh-min">
+  <!-- top -->
+  <div class="
+    pos-relative z-1
+    g12-12">
+    <!-- view mast -->
+    <div class="
+      pos-relative z-2
+      m-bottom-4">
       <?php include 'snippets/mast.php'; ?>
     </div>
 
-    <!-- main -->
-    <div class="frame__main-wp" id="mainframe-wp">
+    <!-- view -->
+    <div class="pos-relative z-1" id="mainframe-wp">
       <main class="mainframe" data-namespace="<?php echo $page; ?>">
         index<br>
         <a href="/default.php">go to default page</a>
@@ -21,9 +30,12 @@
     </div>
   </div>
 
-  <!-- base -->
-  <div class="g-12-12 frame__bot">
-    <div class="m-top-4 frame__base-wp">
+  <!-- bottom -->
+  <div class="
+    pos-relative z-2
+    g12-12">
+    <!-- view base -->
+    <div class="m-top-4">
       <?php include 'snippets/base.php'; ?>
     </div>
   </div>

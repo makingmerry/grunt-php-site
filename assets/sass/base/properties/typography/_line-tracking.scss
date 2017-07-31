@@ -1,33 +1,28 @@
-// # white space
+// # line_ tracking
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.ws-normal',
+    'selector': '.l-t-none',
     'declarations': (
-      white-space: normal,
+      letter-spacing: 0,
     ),
   ), (
-    'selector': '.ws-nowrap',
+    'selector': '.l-t-base',
     'declarations': (
-      white-space: nowrap,
+      letter-spacing: map-get($line-trackings, 'base'),
     ),
   ), (
-    'selector': '.ws-pre',
+    'selector': '.l-t-tight',
     'declarations': (
-      white-space: pre,
+      letter-spacing: map-get($line-trackings, 'tight'),
     ),
   ), (
-    'selector': '.ws-pre-wrap',
+    'selector': '.l-t-wide',
     'declarations': (
-      white-space: pre-wrap,
-    ),
-  ), (
-    'selector': '.ws-pre-line',
-    'declarations': (
-      white-space: pre-line,
+      letter-spacing: map-get($line-trackings, 'wide'),
     ),
   ),
-));
+), $screen-sizes);

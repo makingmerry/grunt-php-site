@@ -1,58 +1,58 @@
-// # background position
+// # background_ position
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.bgp-none',
+    'selector': '.bg-p-none',
     'declarations': (
       background-position: 0% 0%,
     ),
   ), (
-    'selector': '.bgp-top',
+    'selector': '.bg-p-top',
     'declarations': (
       background-position: top,
     ),
   ), (
-    'selector': '.bgp-top-right',
+    'selector': '.bg-p-top-right',
     'declarations': (
       background-position: right top,
     ),
   ), (
-    'selector': '.bgp-right',
+    'selector': '.bg-p-right',
     'declarations': (
       background-position: right,
     ),
   ), (
-    'selector': '.bgp-bottom-right',
+    'selector': '.bg-p-bottom-right',
     'declarations': (
       background-position: right bottom,
     ),
   ), (
-    'selector': '.bgp-bottom',
+    'selector': '.bg-p-bottom',
     'declarations': (
       background-position: bottom,
     ),
   ), (
-    'selector': '.bgp-bottom-left',
+    'selector': '.bg-p-bottom-left',
     'declarations': (
       background-position: left bottom,
     ),
   ), (
-    'selector': '.bgp-left',
+    'selector': '.bg-p-left',
     'declarations': (
       background-position: left,
     ),
   ), (
-    'selector': '.bgp-top-left',
+    'selector': '.bg-p-top-left',
     'declarations': (
       background-position: left top,
     ),
   ), (
-    'selector': '.bgp-center',
+    'selector': '.bg-p-center',
     'declarations': (
       background-position: center,
     ),
   ),
-));
+), $screen-sizes);

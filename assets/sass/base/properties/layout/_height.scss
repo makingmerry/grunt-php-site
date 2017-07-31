@@ -45,19 +45,19 @@
       max-height: 100%,
     ),
   ), (
-    'selector': '.h-100-vh',
+    'selector': '.h-100vh',
     'declarations': (
       height: 100vh,
     ),
   ), (
-    'selector': '.h-100-vh-min',
+    'selector': '.h-100vh-min',
     'declarations': (
       min-height: 100vh,
     ),
   ), (
-    'selector': '.h-100-vh-max',
+    'selector': '.h-100vh-max',
     'declarations': (
       max-height: 100vh,
     ),
   ),
-));
+), $screen-sizes);

@@ -9,7 +9,9 @@
 
 @import "base/tools/list-extension";
 @import "base/tools/map-extension";
-@import "base/tools/rule-set-builder";
+@import "base/tools/ruleset-builder";
+@import "base/tools/gradient-background-builder";
+@import "base/tools/material-shadow-builder";
 @import "base/tools/debug";
 
 // # configurations
@@ -30,14 +32,17 @@
 //////////////////////////////
 @import "base/properties/layout/position";
 @import "base/properties/layout/z-index";
+@import "base/properties/layout/move";
+@import "base/properties/layout/float";
+@import "base/properties/layout/visibility";
 @import "base/properties/layout/display";
-@import "base/properties/layout/grid";
-@import "base/properties/layout/justify-content";
-@import "base/properties/layout/align-items";
-@import "base/properties/layout/align-content";
 @import "base/properties/layout/flex-direction";
 @import "base/properties/layout/flex-wrap";
-@import "base/properties/layout/order";
+@import "base/properties/layout/flex-justify-content";
+@import "base/properties/layout/flex-align-items";
+@import "base/properties/layout/flex-align-content";
+@import "base/properties/layout/flex-align-self";
+@import "base/properties/layout/flex-order";
 @import "base/properties/layout/wrap";
 @import "base/properties/layout/width";
 @import "base/properties/layout/height";
@@ -45,6 +50,7 @@
 @import "base/properties/layout/padding";
 @import "base/properties/layout/vertical-align";
 @import "base/properties/layout/horizontal-align";
+@import "base/properties/layout/grid";
 @import "base/properties/layout/overflow";
 
 //////////////////////////////
@@ -55,14 +61,14 @@
 @import "base/properties/typography/font-weight";
 @import "base/properties/typography/font-style";
 @import "base/properties/typography/font-render";
+@import "base/properties/typography/line-measure";
 @import "base/properties/typography/line-height";
-@import "base/properties/typography/tracking";
+@import "base/properties/typography/line-tracking";
 @import "base/properties/typography/text-align";
 @import "base/properties/typography/text-transform";
 @import "base/properties/typography/text-decoration";
 @import "base/properties/typography/text-indent";
-@import "base/properties/typography/white-space";
-@import "base/properties/typography/measure";
+@import "base/properties/typography/text-white-space";
 
 //////////////////////////////
 // # theme
@@ -92,7 +98,6 @@
 @import "element/counter-list";
 @import "element/form-multi-input";
 @import "element/form-select";
-@import "element/tiny-table";
 
 
 // # component
@@ -108,10 +113,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@import "composition/frame";
-
 
 // # page
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+

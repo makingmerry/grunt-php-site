@@ -1,33 +1,33 @@
-// # justify content
+// # flex_ justify-content
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.jc-start',
+    'selector': '.flx-jc-start',
     'declarations': (
       justify-content: flex-start,
     ),
   ), (
-    'selector': '.jc-end',
+    'selector': '.flx-jc-end',
     'declarations': (
       justify-content: flex-end,
     ),
   ), (
-    'selector': '.jc-center',
+    'selector': '.flx-jc-center',
     'declarations': (
       justify-content: center,
     ),
   ), (
-    'selector': '.jc-s-between',
+    'selector': '.flx-jc-s-between',
     'declarations': (
       justify-content: space-between,
     ),
   ), (
-    'selector': '.jc-s-around',
+    'selector': '.flx-jc-s-around',
     'declarations': (
       justify-content: space-around,
     ),
   ),
-));
+), $screen-sizes);

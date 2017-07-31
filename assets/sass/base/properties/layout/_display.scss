@@ -30,14 +30,14 @@
       display: flex,
     ),
   ), (
-    'selector': '.d-i-table',
-    'declarations': (
-      display: inline-table,
-    ),
-  ), (
     'selector': '.d-table',
     'declarations': (
       display: table,
+    ),
+  ), (
+    'selector': '.d-i-table',
+    'declarations': (
+      display: inline-table,
     ),
   ), (
     'selector': '.d-t-cell',
@@ -50,17 +50,17 @@
       display: table-row,
     ),
   ), (
-    'selector': '.d-t-rowgrp',
+    'selector': '.d-t-row-grp',
     'declarations': (
       display: table-row-group,
     ),
   ), (
-    'selector': '.d-t-col',
+    'selector': '.d-t-column',
     'declarations': (
       display: table-column,
     ),
   ), (
-    'selector': '.d-t-colgrp',
+    'selector': '.d-t-column-grp',
     'declarations': (
       display: table-column-group,
     ),
@@ -68,7 +68,6 @@
     'selector': '.d-table-fix',
     'declarations': (
       table-layout: fixed,
-      width: 100%,
     ),
   ),
-));
+), $screen-sizes);

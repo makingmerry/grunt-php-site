@@ -1,23 +1,33 @@
-// # measure
+// # text_ white-space
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.measure',
+    'selector': '.t-ws-normal',
     'declarations': (
-      max-width: 30em,
+      white-space: normal,
     ),
   ), (
-    'selector': '.measure-narrow',
+    'selector': '.t-ws-nowrap',
     'declarations': (
-      max-width: 20em,
+      white-space: nowrap,
     ),
   ), (
-    'selector': '.measure-wide',
+    'selector': '.t-ws-pre',
     'declarations': (
-      max-width: 34em,
+      white-space: pre,
+    ),
+  ), (
+    'selector': '.t-ws-pre-wrap',
+    'declarations': (
+      white-space: pre-wrap,
+    ),
+  ), (
+    'selector': '.t-ws-pre-line',
+    'declarations': (
+      white-space: pre-line,
     ),
   ),
-));
+), $screen-sizes);

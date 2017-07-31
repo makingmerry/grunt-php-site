@@ -1,0 +1,125 @@
+// # ruleset builder
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// # RSON
+// -
+// pattern:
+// (
+//   (
+//     'selector': '.red-box',
+//     'declarations': (
+//       display: block,
+//       background-color: red,
+//     ),
+//     'state': '',
+//   ),
+//   ...
+// )
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+//////////////////////////////
+// # make-RSON
+// {Function} returns a RSON data object list
+// for generating rulesets with 'ruleset makers'
+// -
+// @param {Map} $config-map - Map of selector modifier `key`s to declaration `value`s
+// @param {String} $selector-prefix - Identity part of selector
+// @param {String | List} $properties - Property(ies) to list in declaration blocks
+// @param {String} $state - (Optional) state listener (e.g. ':hover') to modify selector
+// -
+// @return {List}
+//////////////////////////////
+@function make-RSON($config-map, $selector-prefix, $properties, $state: '') {
+  $result: ();
+  // generate data objects from each config line
+  @each $key, $value in $config-map {
+    // generate each data object's declaration block by
+    // merging property `key`s and config `value`s
+    $declaration-block: ();
+    @each $property in $properties {
+      $declaration-block: map-merge($declaration-block, ($property: $value));
+    }
+
+    // add data object to resulting list
+    $result: append($result, (
+      'selector': $selector-prefix + '-' + $key,
+      'declarations': $declaration-block,
+      'state': $state,
+    ), 'comma');
+  }
+
+  @return $result;
+}
+
+// # ruleset
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+//////////////////////////////
+// # make-responsive-rulesets
+// {Mixin} forms mulitple rulesets from a RSON list,
+// duplicated for multiple screens size constraints
+// -
+// @param {List} $RSON - RSON list containing ruleset data to form CSS rulesets
+// @param {Map} $screen-sizes - Map of screen-sizes to get constraints from
+// -
+// @requires {Mixin} make-rulesets
+//////////////////////////////
+@mixin make-responsive-rulesets($RSON, $screen-sizes) {
+  // form base rulesets
+  @include make-rulesets($RSON);
+
+  // form rulesets for subsequent breakpoints
+  @each $size, $breakpoint in $screen-sizes {
+    @media (min-width: $breakpoint) {
+      @include make-rulesets($RSON, $size);
+    }
+  }
+}
+
+//////////////////////////////
+// # make-rulesets
+// {Mixin} forms mulitple rulesets from a RSON list
+// -
+// @param {List} $RSON - RSON list containing ruleset data to form CSS rulesets
+// @param {String} $selector-mod - (Optional) string to modify all selectors
+// -
+// @requires {Mixin} make-ruleset
+//////////////////////////////
+@mixin make-rulesets($RSON, $selector-mod: '') {
+  @each $obj in $RSON {
+    // forms single CSS rulesets from every data object
+    $i: index($RSON, $obj);
+    $ruleset: nth($RSON, $i);
+    $selector: map-get($ruleset, 'selector');
+    $declarations: map-get($ruleset, 'declarations');
+    $state: map-get($ruleset, 'state');
+
+    @include make-ruleset($selector, $declarations, $selector-mod, $state);
+  }
+}
+
+//////////////////////////////
+// # make-ruleset
+// {Mixin} forms a single CSS ruleset with delcared arguments
+// -
+// @param {String} $selector - Name prefixed with type-notation (e.g. '.' for Class)
+// @param {Map} $declarations - Property to `value` pairs
+// @param {String} $selector-mod - (Optional) string to modify selector
+// @param {String} $state - (Optional) state listener (e.g. ':hover') to modify selector
+//////////////////////////////
+@mixin make-ruleset($selector, $declarations, $selector-mod: '', $state: '') {
+  @if $selector-mod != '' {
+    $selector: $selector + '--' + $selector-mod;
+  }
+
+  // CSS ruleset template literal
+  #{$selector}#{$state} {
+    @each $property, $value in $declarations {
+      #{$property}: #{$value};
+    }
+  }
+};
