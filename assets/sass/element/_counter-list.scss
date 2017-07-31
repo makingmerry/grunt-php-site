@@ -4,13 +4,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 .ct-list {
+  // position: relative;
   counter-reset: custom-counter;
 }
 
 .ct-list__li {
-  position: relative;
-
-  &:before {
+  &::before {
     content: counter(custom-counter);
     counter-increment: custom-counter;
     position: absolute;

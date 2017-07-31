@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- # meta tags -->
+  <!-- meta tags -->
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php echo $page; ?></title>
   <meta name="description" content="">
 
-  <!-- # og tags -->
+  <!-- og tags -->
   <meta property="og:title" content="">
   <meta property="og:description" content="">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
 
-  <!-- # styles -->
+  <!-- styles -->
   <!-- load critical inline styles -->
   <style type="text/css">
     <?php
@@ -54,7 +54,7 @@
     else window.addEventListener('load', loadDeferredStyles);
   </script>
 
-  <!-- # load critical scripts -->
+  <!-- load critical scripts -->
   <script>
     // javascript hook
     if (document.documentElement.classList.length) {
@@ -66,7 +66,7 @@
     document.createElement('picture');
   </script>
 
-  <!-- # favicons -->
+  <!-- favicons -->
   <?php include 'assets/favicons/build/favicons.html'; ?>
 </head>
 <body>

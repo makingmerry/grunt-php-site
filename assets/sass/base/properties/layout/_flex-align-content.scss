@@ -1,33 +1,38 @@
-// # align items
+// # flex_ align-content
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.ai-start',
+    'selector': '.flx-ac-start',
     'declarations': (
-      align-items: flex-start,
+      align-content: flex-start,
     ),
   ), (
-    'selector': '.ai-end',
+    'selector': '.flx-ac-end',
     'declarations': (
-      align-items: flex-end,
+      align-content: flex-end,
     ),
   ), (
-    'selector': '.ai-center',
+    'selector': '.flx-ac-center',
     'declarations': (
-      align-items: center,
+      align-content: center,
     ),
   ), (
-    'selector': '.ai-stretch',
+    'selector': '.flx-ac-stretch',
     'declarations': (
-      align-items: stretch,
+      align-content: stretch,
     ),
   ), (
-    'selector': '.ai-baseline',
+    'selector': '.flx-ac-s-between',
     'declarations': (
-      align-items: baseline,
+      align-content: space-between,
+    ),
+  ), (
+    'selector': '.flx-ac-s-around',
+    'declarations': (
+      align-content: space-around,
     ),
   ),
-));
+), $screen-sizes);

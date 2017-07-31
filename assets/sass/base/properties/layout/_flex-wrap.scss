@@ -1,23 +1,23 @@
-// # flex wrap
+// # flex_ wrap
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.fwp-none',
+    'selector': '.flx-wp-none',
     'declarations': (
       flex-wrap: nowrap,
     ),
   ), (
-    'selector': '.fwp-wrap',
+    'selector': '.flx-wp-wrap',
     'declarations': (
       flex-wrap: wrap,
     ),
   ), (
-    'selector': '.fwp-wrap-r',
+    'selector': '.flx-wp-wrap-r',
     'declarations': (
       flex-wrap: wrap-reverse,
     ),
   ),
-));
+), $screen-sizes);

@@ -1,23 +1,33 @@
-// # text_ decoration
+// # flex_ align-items
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.t-d-none',
+    'selector': '.flx-ai-start',
     'declarations': (
-      text-decoration: none,
-    ),
-  ),(
-    'selector': '.t-d-strike',
-    'declarations': (
-      text-decoration: strike,
+      align-items: flex-start,
     ),
   ), (
-    'selector': '.t-d-underline',
+    'selector': '.flx-ai-end',
     'declarations': (
-      text-decoration: underline,
+      align-items: flex-end,
+    ),
+  ), (
+    'selector': '.flx-ai-center',
+    'declarations': (
+      align-items: center,
+    ),
+  ), (
+    'selector': '.flx-ai-stretch',
+    'declarations': (
+      align-items: stretch,
+    ),
+  ), (
+    'selector': '.flx-ai-baseline',
+    'declarations': (
+      align-items: baseline,
     ),
   ),
 ), $screen-sizes);

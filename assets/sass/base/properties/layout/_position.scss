@@ -1,18 +1,28 @@
-// # order
+// # position
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.o-first',
+    'selector': '.pos-static',
     'declarations': (
-      order: -1,
+      position: static,
     ),
   ), (
-    'selector': '.o-last',
+    'selector': '.pos-fixed',
     'declarations': (
-      order: 99,
+      position: fixed,
+    ),
+  ), (
+    'selector': '.pos-relative',
+    'declarations': (
+      position: relative,
+    ),
+  ), (
+    'selector': '.pos-absolute',
+    'declarations': (
+      position: absolute,
     ),
   ),
-));
+), $screen-sizes);

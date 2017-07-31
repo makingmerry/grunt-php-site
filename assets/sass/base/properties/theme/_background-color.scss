@@ -1,12 +1,18 @@
-// # background colors
+// # background_ colors
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$background-color-base-RSON: make-RSON($colors, '.bgc', 'background-color');
-$background-color-hover-RSON: make-RSON($colors, '.hov-bgc', 'background-color', ':hover');
-$full-background-color-RSON: concat-lists(
-  $background-color-base-RSON,
-  $background-color-hover-RSON
+$global-bg-colors: map-merge($colors, (
+  'transparent': transparent,
+));
+
+$bg-color-RSON: make-RSON($global-bg-colors, '.bg-c', 'background-color');
+$bg-color-hover-RSON: make-RSON($global-bg-colors, '.hov-bg-c', 'background-color', ':hover');
+
+$full-bg-color-RSON: concat-lists(
+  $bg-color-RSON,
+  $bg-color-hover-RSON
 );
-@include make-responsive-rulesets($full-background-color-RSON);
+
+@include make-responsive-rulesets($full-bg-color-RSON, $screen-sizes);

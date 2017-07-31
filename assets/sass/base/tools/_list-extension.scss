@@ -3,12 +3,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-// # @mixin concat-lists($lists...)
-//
-// Returns a new merged list of multiple lists
-//
-// @param `arglist`: $lists: Argument list of lists to join
-// @return `list`
+// # concat-lists
+// {Function} returns a new merged list of multiple lists
+// -
+// @param {Arglist} $lists - Argument list of lists to join
+// -
+// @return {List}
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 @function concat-lists($lists...) {
@@ -16,5 +16,6 @@
   @each $list in $lists {
     $result: join($result, $list, 'comma');
   }
+
   @return $result;
 }

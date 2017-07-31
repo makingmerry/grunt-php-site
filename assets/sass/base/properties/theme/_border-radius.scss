@@ -1,48 +1,50 @@
-// # border radius
+// # border_ radius
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$border-radius-config-RSON: make-RSON($border-radii, '.brd', ('border-radius'));
-$border-radius-static-RSON: (
+$border-radius-RSON: make-RSON($border-radii, '.b-r', 'border-radius');
+$global-border-radius-RSON: (
   (
-    'selector': '.brd-100',
+    'selector': '.b-r-100',
     'declarations': (
       border-radius: 100%,
     ),
   ), (
-    'selector': '.brd-pill',
+    'selector': '.b-r-pill',
     'declarations': (
       border-radius: 9999px
     ),
   ), (
-    'selector': '.brd-top',
+    'selector': '.b-r-top',
     'declarations': (
       border-bottom-left-radius: 0,
       border-bottom-right-radius: 0,
     ),
   ), (
-    'selector': '.brd-right',
+    'selector': '.b-r-right',
     'declarations': (
       border-top-left-radius: 0,
       border-bottom-left-radius: 0,
     ),
   ), (
-    'selector': '.brd-bottom',
+    'selector': '.b-r-bottom',
     'declarations': (
       border-top-left-radius: 0,
       border-top-right-radius: 0,
     ),
   ), (
-    'selector': '.brd-left',
+    'selector': '.b-r-left',
     'declarations': (
       border-top-right-radius: 0,
       border-bottom-right-radius: 0,
     ),
   ),
 );
+
 $full-border-radius-RSON: concat-lists(
-  $border-radius-config-RSON,
-  $border-radius-static-RSON
+  $border-radius-RSON,
+  $global-border-radius-RSON
 );
-@include make-responsive-rulesets($full-border-radius-RSON);
+
+@include make-responsive-rulesets($full-border-radius-RSON, $screen-sizes);

@@ -1,12 +1,14 @@
-// # transition duration
+// # transition-duration
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$transition-duration-base-RSON: make-RSON($transition-durations, '.tx', 'transition-duration');
+$transition-duration-RSON: make-RSON($transition-durations, '.tx', 'transition-duration');
 $transition-duration-hover-RSON: make-RSON($transition-durations, '.hov-tx', 'transition-duration', ':hover');
+
 $full-transition-duration-RSON: concat-lists(
-  $transition-duration-base-RSON,
+  $transition-duration-RSON,
   $transition-duration-hover-RSON
 );
-@include make-responsive-rulesets($full-transition-duration-RSON);
+
+@include make-responsive-rulesets($full-transition-duration-RSON, $screen-sizes);

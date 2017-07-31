@@ -1,23 +1,23 @@
-// # tracking
+// # float
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.track',
+    'selector': '.flo-none',
     'declarations': (
-      letter-spacing: map-get($trackings, 'track'),
+      float: none,
     ),
   ), (
-    'selector': '.track-tight',
+    'selector': '.flo-right',
     'declarations': (
-      letter-spacing: map-get($trackings, 'tight'),
+      float: right,
     ),
   ), (
-    'selector': '.track-wide',
+    'selector': '.flo-left',
     'declarations': (
-      letter-spacing: map-get($trackings, 'wide'),
+      float: left,
     ),
   ),
-));
+), $screen-sizes);

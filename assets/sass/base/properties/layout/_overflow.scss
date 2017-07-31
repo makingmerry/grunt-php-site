@@ -1,63 +1,68 @@
-// # height
+// # overflow
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.h-auto',
+    'selector': '.of-visible',
     'declarations': (
-      height: auto,
+      overflow: visible,
     ),
   ), (
-    'selector': '.h-0',
+    'selector': '.of-hidden',
     'declarations': (
-      height: 0,
+      overflow: hidden,
     ),
   ), (
-    'selector': '.h-25',
+    'selector': '.of-scroll',
     'declarations': (
-      height: 25%,
+      overflow: scroll,
     ),
   ), (
-    'selector': '.h-50',
+    'selector': '.of-auto',
     'declarations': (
-      height: 50%,
+      overflow: auto,
     ),
   ), (
-    'selector': '.h-75',
+    'selector': '.of-x-visible',
     'declarations': (
-      height: 75%,
+      overflow-x: visible,
     ),
   ), (
-    'selector': '.h-100',
+    'selector': '.of-x-hidden',
     'declarations': (
-      height: 100%,
+      overflow-x: hidden,
     ),
   ), (
-    'selector': '.h-100-min',
+    'selector': '.of-x-scroll',
     'declarations': (
-      min-height: 100%,
+      overflow-x: scroll,
     ),
   ), (
-    'selector': '.h-100-max',
+    'selector': '.of-x-auto',
     'declarations': (
-      max-height: 100%,
+      overflow-x: auto,
     ),
   ), (
-    'selector': '.h-100vh',
+    'selector': '.of-y-visible',
     'declarations': (
-      height: 100vh,
+      overflow-y: visible,
     ),
   ), (
-    'selector': '.h-100vh-min',
+    'selector': '.of-y-hidden',
     'declarations': (
-      min-height: 100vh,
+      overflow-y: hidden,
     ),
   ), (
-    'selector': '.h-100vh-max',
+    'selector': '.of-y-scroll',
     'declarations': (
-      max-height: 100vh,
+      overflow-y: scroll,
+    ),
+  ), (
+    'selector': '.of-y-auto',
+    'declarations': (
+      overflow-y: auto,
     ),
   ),
 ), $screen-sizes);

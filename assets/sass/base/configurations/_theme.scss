@@ -22,7 +22,6 @@ $neutral-colors: (
   'light-grey': #eee,
   'near-white': #f4f4f4,
   'white': #fff,
-  'transparent': transparent,
   // ...
 );
 
@@ -53,6 +52,7 @@ $border-widths: (
   '3': 0.5em,
   '4': 1em,
   '5': 2em,
+  // ...
 );
 
 $border-radii: (
@@ -61,6 +61,7 @@ $border-radii: (
   '2': 0.25em,
   '3': 0.5em,
   '4': 1em,
+  // ...
 );
 
 // # opacity
@@ -72,6 +73,7 @@ $opacities: (
   '2': 0.6,
   '3': 0.85,
   '4': 1,
+  // ...
 );
 
 // # transition
@@ -82,4 +84,5 @@ $transition-durations: (
   '1': 0.15s,
   '2': 0.35s,
   '3': 0.85s,
+  // ...
 );

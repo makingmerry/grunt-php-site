@@ -1,23 +1,23 @@
-// # text_ decoration
+// # visibility
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.t-d-none',
+    'selector': '.vis-visible',
     'declarations': (
-      text-decoration: none,
-    ),
-  ),(
-    'selector': '.t-d-strike',
-    'declarations': (
-      text-decoration: strike,
+      visibility: visible,
     ),
   ), (
-    'selector': '.t-d-underline',
+    'selector': '.vis-hidden',
     'declarations': (
-      text-decoration: underline,
+      visibility: hidden,
+    ),
+  ), (
+    'selector': '.vis-collapse',
+    'declarations': (
+      visibility: collapse,
     ),
   ),
 ), $screen-sizes);

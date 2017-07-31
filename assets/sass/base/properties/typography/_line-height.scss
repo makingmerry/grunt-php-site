@@ -1,23 +1,23 @@
-// # line height
+// # line_ height
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.lh-copy',
+    'selector': '.l-h-copy',
     'declarations': (
       line-height: map-get($line-heights, 'copy'),
     ),
   ), (
-    'selector': '.lh-title',
+    'selector': '.l-h-title',
     'declarations': (
       line-height: map-get($line-heights, 'title'),
     ),
   ), (
-    'selector': '.lh-solid',
+    'selector': '.l-h-solid',
     'declarations': (
       line-height: map-get($line-heights, 'solid'),
     ),
   ),
-));
+), $screen-sizes);

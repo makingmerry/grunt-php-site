@@ -1,23 +1,23 @@
-// # text align
+// # text_ align
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
 @include make-responsive-rulesets((
   (
-    'selector': '.ta-left',
+    'selector': '.t-a-left',
     'declarations': (
       text-align: left,
     ),
   ), (
-    'selector': '.ta-center',
+    'selector': '.t-a-center',
     'declarations': (
       text-align: center,
     ),
   ), (
-    'selector': '.ta-right',
+    'selector': '.t-a-right',
     'declarations': (
       text-align: right,
     ),
   ),
-));
+), $screen-sizes);

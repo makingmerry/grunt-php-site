@@ -45,19 +45,19 @@
       max-width: 100%,
     ),
   ), (
-    'selector': '.w-100-vw',
+    'selector': '.w-100vw',
     'declarations': (
       width: 100vw,
     ),
   ), (
-    'selector': '.w-100-vw-min',
+    'selector': '.w-100vw-min',
     'declarations': (
       min-width: 100vw,
     ),
   ), (
-    'selector': '.w-100-vw-max',
+    'selector': '.w-100vw-max',
     'declarations': (
       max-width: 100vw,
     ),
   ),
-));
+), $screen-sizes);

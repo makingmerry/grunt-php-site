@@ -3,12 +3,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-// # @function map-column-widths($column-count)
-//
-// Returns a map of index 'key' to percentage width 'value' pairs
-//
-// @param `number`: $column-count: Number to get index and associated widths
-// @return `map`
+// # map-column-widths
+// {Function} returns a map of index 'key' to percentage width 'value' pairs
+// -
+// @param {Number} $column-count - Number to get index and associated widths
+// -
+// @return {Map}
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 @function map-column-widths($column-count) {
@@ -17,27 +17,29 @@
     $width: 100 / ($column-count / $i) + '%';
     $result: map-merge($result, ('#{$i}': $width));
   }
+
   @return $result;
 }
 
-// # @function make-grid-RSON($column-counts...)
-//
-// Returns a RSON list for grid columns ruleset generation
-//
-// @param `number`(s): $column-counts: Number(s) of columns formed in grid(s)
-// @return `list`
+// # make-grid-RSON
+// {Function} returns a RSON list for grid columns ruleset generation
+// -
+// @param {Number | Arglist} $column-counts - Number(s) of columns to form grid(s) with
+// -
+// @return {List}
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 @function make-grid-RSON($column-counts...) {
   $result: ();
   @each $column-count in $column-counts {
     $column-widths: map-column-widths($column-count);
-    $grid-RSON: make-RSON($column-widths, '.g-#{$column-count}', ('flex-basis', 'max-width'));
+    $grid-RSON: make-RSON($column-widths, '.g#{$column-count}', ('flex-basis', 'max-width'));
     $result: join($result, $grid-RSON, 'comma');
   }
+
   @return $result;
 }
 
 @include make-responsive-rulesets(
-  make-grid-RSON($grids...)
+  make-grid-RSON($grids...), $screen-sizes
 );
