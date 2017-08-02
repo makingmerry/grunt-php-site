@@ -42,6 +42,14 @@
     disable() {
       this.body.style.overflow = 'hidden';
     },
+
+    isTop() {
+      return document.body.scrollTop === 0;
+    },
+
+    toTop() {
+      TweenLite.to(window, 0.2, { scrollTo: 0 });
+    },
   };
 
   // # pre-loader
@@ -58,7 +66,7 @@
           visibility: 'visible',
           opacity: 0,
         });
-        TweenLite.to(this.element, 0.35, {
+        TweenLite.to(this.element, 0.25, {
           opacity: 1,
           onCompleteScope: this,
           onComplete() {
@@ -70,7 +78,7 @@
 
     hide() {
       return new Promise((resolve, reject) => {
-        TweenLite.to(this.element, 0.5, {
+        TweenLite.to(this.element, 0.35, {
           opacity: 0,
           onCompleteScope: this,
           onComplete() {
@@ -138,6 +146,15 @@
         // fades in new view container
         fade: Barba.BaseTransition.extend({
           start() {
+            // prevent page jump during transition,
+            // set wrapper height to oldContainer height initially
+            const wrapper = Barba.Pjax.Dom.getWrapper();
+            wrapper.style.overflow = 'hidden';
+            TweenLite.set(wrapper, {
+              height: this.oldContainer.offsetHeight,
+            });
+
+            // resolve processes
             Promise
               .all([this.newContainerLoading, this.hideOld()])
               .then(this.showNew.bind(this));
@@ -155,13 +172,28 @@
           },
 
           showNew() {
+            // prevent page jump during transition,
+            // animate wrapper height to newContent height
+            const wrapper = Barba.Pjax.Dom.getWrapper();
+            const wrapperResizeDuration = 0.15;
+            TweenLite.to(wrapper, wrapperResizeDuration, {
+              height: this.newContainer.offsetHeight,
+              onComplete() {
+                wrapper.style.overflow = 'visible';
+                wrapper.style.height = null;
+              },
+            });
+
+            // remove old container and
+            // transit in new container
             this.oldContainer.style.display = 'none';
             TweenLite.set(this.newContainer, {
               visibility: 'visible',
               opacity: 0,
             });
-            TweenLite.to(this.newContainer, 0.15, {
+            TweenLite.to(this.newContainer, 0.1, {
               opacity: 1,
+              delay: wrapperResizeDuration,
               onCompleteScope: this,
               onComplete() {
                 this.done();
@@ -295,15 +327,22 @@
 
   ViewControl.onChange(() => {
     console.log('view is changing'); // !DEBUG
+    // initial view load
     if (ViewControl.isFirst()) {
       // hide loader
       Loader.hide().then(() => {
         // enable page scroll
         PageScroll.enable();
       });
+    // subsequent view loads
     } else {
       // track new page analytics
       PushPageView(ViewControl.getCurrUrl());
+    }
+
+    // start views at top
+    if (!PageScroll.isTop()) {
+      PageScroll.toTop();
     }
   });
 
