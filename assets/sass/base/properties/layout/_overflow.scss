@@ -66,3 +66,20 @@
     ),
   ),
 ), $screen-sizes);
+
+// js enhancements
+.js {
+  @include make-responsive-rulesets((
+    (
+      'selector': '.js-of-visible',
+      'declarations': (
+        overflow: visible,
+      ),
+    ), (
+      'selector': '.js-of-hidden',
+      'declarations': (
+        overflow: hidden,
+      ),
+    ),
+  ), $screen-sizes);
+}

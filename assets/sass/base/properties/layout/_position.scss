@@ -26,3 +26,30 @@
     ),
   ),
 ), $screen-sizes);
+
+// js enhancements
+.js {
+  @include make-responsive-rulesets((
+    (
+      'selector': '.js-pos-static',
+      'declarations': (
+        position: static,
+      ),
+    ), (
+      'selector': '.js-pos-fixed',
+      'declarations': (
+        position: fixed,
+      ),
+    ), (
+      'selector': '.js-pos-relative',
+      'declarations': (
+        position: relative,
+      ),
+    ), (
+      'selector': '.js-pos-absolute',
+      'declarations': (
+        position: absolute,
+      ),
+    ),
+  ), $screen-sizes);
+}
