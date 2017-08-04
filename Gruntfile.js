@@ -336,6 +336,7 @@ module.exports = function(grunt) {
           // polyfills
           '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/picturefill.js',
           '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/svg4everybody.js',
+          '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/polyfill.array.from.js',
           // features
           '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.source %>/<%= config.library %>/barba.js',
           // animations

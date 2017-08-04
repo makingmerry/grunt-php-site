@@ -44,7 +44,7 @@
     },
 
     isTop() {
-      return document.body.scrollTop === 0;
+      return window.pageYOffset === 0;
     },
 
     toTop() {
@@ -340,11 +340,6 @@
       // track new page analytics
       PushPageView(ViewControl.getCurrUrl());
     }
-
-    // start views at top
-    if (!PageScroll.isTop()) {
-      PageScroll.toTop();
-    }
   });
 
   ViewControl.onReady(() => {
@@ -358,6 +353,10 @@
 
   ViewControl.onComplete(() => {
     console.log('view is complete'); // !DEBUG
+    // start views at top
+    if (!PageScroll.isTop()) {
+      PageScroll.toTop();
+    }
   });
 
   // # view-specific
