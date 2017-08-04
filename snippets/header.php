@@ -28,17 +28,6 @@
     <link href="assets/stylesheets/build/style.css" rel="stylesheet" type="text/css">
   </noscript>
 
-  <!-- hide loader if javascript is disabled -->
-  <noscript>
-    <style type="text/css">
-      .loader {
-        display: none;
-        visibility: hidden;
-        opacity: 0;
-      }
-    </style>
-  </noscript>
-
   <!-- load non-critical styles -->
   <script>
     var loadDeferredStyles = function() {
@@ -69,4 +58,4 @@
   <!-- favicons -->
   <?php include 'assets/favicons/build/favicons.html'; ?>
 </head>
-<body>
+<body class="js-pos-relative js-of-hidden">

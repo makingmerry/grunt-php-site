@@ -52,6 +52,7 @@
 @import "base/properties/layout/horizontal-align";
 @import "base/properties/layout/grid";
 @import "base/properties/layout/overflow";
+@import "base/properties/layout/pointer-events";
 
 //////////////////////////////
 // # typography
@@ -85,6 +86,7 @@
 @import "base/properties/theme/border-radius";
 @import "base/properties/theme/fill";
 @import "base/properties/theme/opacity";
+@import "base/properties/theme/cursor";
 @import "base/properties/theme/transition-duration";
 
 
@@ -104,8 +106,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@import "component/loader";
 
 
 // # composition

@@ -71,3 +71,45 @@
     ),
   ),
 ), $screen-sizes);
+
+// js enhancements
+.js {
+  @include make-responsive-rulesets((
+    (
+      'selector': '.js-d-none',
+      'declarations': (
+        display: none,
+      ),
+    ), (
+      'selector': '.js-d-block',
+      'declarations': (
+        display: block,
+      ),
+    ), (
+      'selector': '.js-d-inline',
+      'declarations': (
+        display: inline,
+      ),
+    ), (
+      'selector': '.js-d-i-block',
+      'declarations': (
+        display: inline-block,
+      ),
+    ), (
+      'selector': '.js-d-flex',
+      'declarations': (
+        display: flex,
+      ),
+    ), (
+      'selector': '.js-d-table',
+      'declarations': (
+        display: table,
+      ),
+    ), (
+      'selector': '.js-d-i-table',
+      'declarations': (
+        display: inline-table,
+      ),
+    ),
+  ), $screen-sizes);
+}
