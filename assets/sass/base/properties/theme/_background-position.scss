@@ -12,7 +12,7 @@
   ), (
     'selector': '.bg-p-top',
     'declarations': (
-      background-position: top,
+      background-position: center top,
     ),
   ), (
     'selector': '.bg-p-top-right',
@@ -22,7 +22,7 @@
   ), (
     'selector': '.bg-p-right',
     'declarations': (
-      background-position: right,
+      background-position: right center,
     ),
   ), (
     'selector': '.bg-p-bottom-right',
@@ -32,7 +32,7 @@
   ), (
     'selector': '.bg-p-bottom',
     'declarations': (
-      background-position: bottom,
+      background-position: center bottom,
     ),
   ), (
     'selector': '.bg-p-bottom-left',
@@ -42,7 +42,7 @@
   ), (
     'selector': '.bg-p-left',
     'declarations': (
-      background-position: left,
+      background-position: left center,
     ),
   ), (
     'selector': '.bg-p-top-left',
@@ -52,7 +52,7 @@
   ), (
     'selector': '.bg-p-center',
     'declarations': (
-      background-position: center,
+      background-position: center center,
     ),
   ),
 ), $screen-sizes);
