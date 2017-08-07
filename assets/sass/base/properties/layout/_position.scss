@@ -1,0 +1,55 @@
+// # position
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.pos-static',
+    'declarations': (
+      position: static,
+    ),
+  ), (
+    'selector': '.pos-fixed',
+    'declarations': (
+      position: fixed,
+    ),
+  ), (
+    'selector': '.pos-relative',
+    'declarations': (
+      position: relative,
+    ),
+  ), (
+    'selector': '.pos-absolute',
+    'declarations': (
+      position: absolute,
+    ),
+  ),
+), $screen-sizes);
+
+// js enhancements
+.js {
+  @include make-responsive-rulesets((
+    (
+      'selector': '.js-pos-static',
+      'declarations': (
+        position: static,
+      ),
+    ), (
+      'selector': '.js-pos-fixed',
+      'declarations': (
+        position: fixed,
+      ),
+    ), (
+      'selector': '.js-pos-relative',
+      'declarations': (
+        position: relative,
+      ),
+    ), (
+      'selector': '.js-pos-absolute',
+      'declarations': (
+        position: absolute,
+      ),
+    ),
+  ), $screen-sizes);
+}

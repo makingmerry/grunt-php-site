@@ -1,0 +1,33 @@
+// # text_ white-space
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.t-ws-normal',
+    'declarations': (
+      white-space: normal,
+    ),
+  ), (
+    'selector': '.t-ws-nowrap',
+    'declarations': (
+      white-space: nowrap,
+    ),
+  ), (
+    'selector': '.t-ws-pre',
+    'declarations': (
+      white-space: pre,
+    ),
+  ), (
+    'selector': '.t-ws-pre-wrap',
+    'declarations': (
+      white-space: pre-wrap,
+    ),
+  ), (
+    'selector': '.t-ws-pre-line',
+    'declarations': (
+      white-space: pre-line,
+    ),
+  ),
+), $screen-sizes);

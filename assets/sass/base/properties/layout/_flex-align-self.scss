@@ -1,0 +1,38 @@
+// # flex_ align-self
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.flx-as-auto',
+    'declarations': (
+      align-self: auto,
+    ),
+  ), (
+    'selector': '.flx-as-start',
+    'declarations': (
+      align-self: flex-start,
+    ),
+  ), (
+    'selector': '.flx-as-end',
+    'declarations': (
+      align-self: flex-end,
+    ),
+  ), (
+    'selector': '.flx-as-center',
+    'declarations': (
+      align-self: center,
+    ),
+  ), (
+    'selector': '.flx-as-stretch',
+    'declarations': (
+      align-self: stretch,
+    ),
+  ), (
+    'selector': '.flx-as-baseline',
+    'declarations': (
+      align-self: baseline,
+    ),
+  ),
+), $screen-sizes);

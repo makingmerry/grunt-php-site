@@ -1,0 +1,85 @@
+// # overflow
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.of-visible',
+    'declarations': (
+      overflow: visible,
+    ),
+  ), (
+    'selector': '.of-hidden',
+    'declarations': (
+      overflow: hidden,
+    ),
+  ), (
+    'selector': '.of-scroll',
+    'declarations': (
+      overflow: scroll,
+    ),
+  ), (
+    'selector': '.of-auto',
+    'declarations': (
+      overflow: auto,
+    ),
+  ), (
+    'selector': '.of-x-visible',
+    'declarations': (
+      overflow-x: visible,
+    ),
+  ), (
+    'selector': '.of-x-hidden',
+    'declarations': (
+      overflow-x: hidden,
+    ),
+  ), (
+    'selector': '.of-x-scroll',
+    'declarations': (
+      overflow-x: scroll,
+    ),
+  ), (
+    'selector': '.of-x-auto',
+    'declarations': (
+      overflow-x: auto,
+    ),
+  ), (
+    'selector': '.of-y-visible',
+    'declarations': (
+      overflow-y: visible,
+    ),
+  ), (
+    'selector': '.of-y-hidden',
+    'declarations': (
+      overflow-y: hidden,
+    ),
+  ), (
+    'selector': '.of-y-scroll',
+    'declarations': (
+      overflow-y: scroll,
+    ),
+  ), (
+    'selector': '.of-y-auto',
+    'declarations': (
+      overflow-y: auto,
+    ),
+  ),
+), $screen-sizes);
+
+// js enhancements
+.js {
+  @include make-responsive-rulesets((
+    (
+      'selector': '.js-of-visible',
+      'declarations': (
+        overflow: visible,
+      ),
+    ), (
+      'selector': '.js-of-hidden',
+      'declarations': (
+        overflow: hidden,
+      ),
+    ),
+  ), $screen-sizes);
+}

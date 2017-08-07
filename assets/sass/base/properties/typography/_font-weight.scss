@@ -1,0 +1,53 @@
+// # font_ weight
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.f-w-1',
+    'declarations': (
+      font-weight: 100,
+    ),
+  ), (
+    'selector': '.f-w-2',
+    'declarations': (
+      font-weight: 200,
+    ),
+  ), (
+    'selector': '.f-w-3',
+    'declarations': (
+      font-weight: 300,
+    ),
+  ), (
+    'selector': '.f-w-4',
+    'declarations': (
+      font-weight: 400,
+    ),
+  ), (
+    'selector': '.f-w-5',
+    'declarations': (
+      font-weight: 500,
+    ),
+  ), (
+    'selector': '.f-w-6',
+    'declarations': (
+      font-weight: 600,
+    ),
+  ), (
+    'selector': '.f-w-7',
+    'declarations': (
+      font-weight: 700,
+    ),
+  ), (
+    'selector': '.f-w-8',
+    'declarations': (
+      font-weight: 800,
+    ),
+  ), (
+    'selector': '.f-w-9',
+    'declarations': (
+      font-weight: 900,
+    ),
+  ),
+), $screen-sizes);

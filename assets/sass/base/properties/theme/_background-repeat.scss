@@ -1,0 +1,28 @@
+// # background_ repeat
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.bg-r-none',
+    'declarations': (
+      background-repeat: no-repeat,
+    ),
+  ), (
+    'selector': '.bg-r-repeat',
+    'declarations': (
+      background-repeat: repeat,
+    ),
+  ), (
+    'selector': '.bg-r-repeat-x',
+    'declarations': (
+      background-repeat: repeat-x,
+    ),
+  ), (
+    'selector': '.bg-r-repeat-y',
+    'declarations': (
+      background-repeat: repeat-y,
+    ),
+  ),
+), $screen-sizes);

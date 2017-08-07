@@ -1,0 +1,22 @@
+// # move
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+$global-moves: map-merge($moves, (
+  'auto': auto,
+));
+
+$move-top-RSON: make-RSON($global-moves, '.top', 'top');
+$move-right-RSON: make-RSON($global-moves, '.right', 'right');
+$move-bottom-RSON: make-RSON($global-moves, '.bottom', 'bottom');
+$move-left-RSON: make-RSON($global-moves, '.left', 'left');
+
+$full-move-RSON: concat-lists(
+  $move-top-RSON,
+  $move-right-RSON,
+  $move-bottom-RSON,
+  $move-left-RSON
+);
+
+@include make-responsive-rulesets($full-move-RSON, $screen-sizes);

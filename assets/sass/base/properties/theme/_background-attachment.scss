@@ -1,0 +1,23 @@
+// # background_ attachment
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.bg-a-scroll',
+    'declarations': (
+      background-attachment: scroll,
+    ),
+  ), (
+    'selector': '.bg-a-fixed',
+    'declarations': (
+      background-attachment: fixed,
+    ),
+  ), (
+    'selector': '.bg-a-local',
+    'declarations': (
+      background-attachment: local,
+    ),
+  ),
+), $screen-sizes);

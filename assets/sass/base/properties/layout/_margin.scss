@@ -1,0 +1,24 @@
+// # margin
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+$margin-all-RSON: make-RSON($margins, '.m-all', 'margin');
+$margin-vertical-RSON: make-RSON($margins, '.m-ver', ('margin-top', 'margin-bottom'));
+$margin-horizontal-RSON: make-RSON($margins, '.m-hor', ('margin-right', 'margin-left'));
+$margin-top-RSON: make-RSON($margins, '.m-top', 'margin-top');
+$margin-right-RSON: make-RSON($margins, '.m-right', 'margin-right');
+$margin-bottom-RSON: make-RSON($margins, '.m-bottom', 'margin-bottom');
+$margin-left-RSON: make-RSON($margins, '.m-left', 'margin-left');
+
+$full-margin-RSON: concat-lists(
+  $margin-all-RSON,
+  $margin-vertical-RSON,
+  $margin-horizontal-RSON,
+  $margin-top-RSON,
+  $margin-right-RSON,
+  $margin-bottom-RSON,
+  $margin-left-RSON
+);
+
+@include make-responsive-rulesets($full-margin-RSON, $screen-sizes);

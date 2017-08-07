@@ -1,0 +1,23 @@
+// # background_ size
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.bg-s-none',
+    'declarations': (
+      background-size: auto auto,
+    ),
+  ), (
+    'selector': '.bg-s-cover',
+    'declarations': (
+      background-size: cover,
+    ),
+  ), (
+    'selector': '.bg-s-contain',
+    'declarations': (
+      background-size: contain,
+    ),
+  ),
+), $screen-sizes);

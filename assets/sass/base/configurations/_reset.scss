@@ -1,0 +1,129 @@
+// # reset
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@viewport{
+  zoom: 1.0;
+  width: device-width;
+}
+
+@-ms-viewport {
+  zoom: 1.0;
+  width: device-width;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  box-sizing: inherit;
+}
+
+body {
+  font-size: $base-font-size;
+  line-height: 1;
+}
+
+main, article, aside, details, figcaption, figure, footer, header, menu, nav, section, div {
+  display: block;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+button {
+  appearance: none;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+button:focus {
+  outline: 0;
+}
+
+input, select, textarea  {
+  appearance: none;
+  border-radius: 0;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+textarea {
+  resize: vertical;
+}

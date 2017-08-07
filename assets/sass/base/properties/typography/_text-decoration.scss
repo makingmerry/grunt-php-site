@@ -1,0 +1,23 @@
+// # text_ decoration
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.t-d-none',
+    'declarations': (
+      text-decoration: none,
+    ),
+  ),(
+    'selector': '.t-d-strike',
+    'declarations': (
+      text-decoration: strike,
+    ),
+  ), (
+    'selector': '.t-d-underline',
+    'declarations': (
+      text-decoration: underline,
+    ),
+  ),
+), $screen-sizes);

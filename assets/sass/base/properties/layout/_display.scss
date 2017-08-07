@@ -1,0 +1,115 @@
+// # display
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.d-none',
+    'declarations': (
+      display: none,
+    ),
+  ), (
+    'selector': '.d-block',
+    'declarations': (
+      display: block,
+    ),
+  ), (
+    'selector': '.d-inline',
+    'declarations': (
+      display: inline,
+    ),
+  ), (
+    'selector': '.d-i-block',
+    'declarations': (
+      display: inline-block,
+    ),
+  ), (
+    'selector': '.d-flex',
+    'declarations': (
+      display: flex,
+    ),
+  ), (
+    'selector': '.d-table',
+    'declarations': (
+      display: table,
+    ),
+  ), (
+    'selector': '.d-i-table',
+    'declarations': (
+      display: inline-table,
+    ),
+  ), (
+    'selector': '.d-t-cell',
+    'declarations': (
+      display: table-cell,
+    ),
+  ), (
+    'selector': '.d-t-row',
+    'declarations': (
+      display: table-row,
+    ),
+  ), (
+    'selector': '.d-t-row-grp',
+    'declarations': (
+      display: table-row-group,
+    ),
+  ), (
+    'selector': '.d-t-column',
+    'declarations': (
+      display: table-column,
+    ),
+  ), (
+    'selector': '.d-t-column-grp',
+    'declarations': (
+      display: table-column-group,
+    ),
+  ), (
+    'selector': '.d-table-fix',
+    'declarations': (
+      table-layout: fixed,
+    ),
+  ),
+), $screen-sizes);
+
+// js enhancements
+.js {
+  @include make-responsive-rulesets((
+    (
+      'selector': '.js-d-none',
+      'declarations': (
+        display: none,
+      ),
+    ), (
+      'selector': '.js-d-block',
+      'declarations': (
+        display: block,
+      ),
+    ), (
+      'selector': '.js-d-inline',
+      'declarations': (
+        display: inline,
+      ),
+    ), (
+      'selector': '.js-d-i-block',
+      'declarations': (
+        display: inline-block,
+      ),
+    ), (
+      'selector': '.js-d-flex',
+      'declarations': (
+        display: flex,
+      ),
+    ), (
+      'selector': '.js-d-table',
+      'declarations': (
+        display: table,
+      ),
+    ), (
+      'selector': '.js-d-i-table',
+      'declarations': (
+        display: inline-table,
+      ),
+    ),
+  ), $screen-sizes);
+}

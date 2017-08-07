@@ -1,0 +1,38 @@
+// # border
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.b-none',
+    'declarations': (
+      border: none,
+    ),
+  ), (
+    'selector': '.b-all',
+    'declarations': (
+      border: 1px solid,
+    ),
+  ), (
+    'selector': '.b-top',
+    'declarations': (
+      border-top: 1px solid,
+    ),
+  ), (
+    'selector': '.b-right',
+    'declarations': (
+      border-right: 1px solid,
+    ),
+  ), (
+    'selector': '.b-bottom',
+    'declarations': (
+      border-bottom: 1px solid,
+    ),
+  ), (
+    'selector': '.b-left',
+    'declarations': (
+      border-left: 1px solid,
+    ),
+  ),
+), $screen-sizes);

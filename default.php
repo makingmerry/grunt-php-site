@@ -1,6 +1,6 @@
 <?php
-  $page = 'index';
-  $page_type = 'home-page';
+  $page = 'default';
+  $page_type = 'page';
   include 'snippets/header.php';
   include 'snippets/loader.php';
 ?>
@@ -24,8 +24,8 @@
     <!-- view -->
     <div class="pos-relative z-1" id="mainframe-wp">
       <main class="mainframe" data-namespace="<?php echo $page; ?>">
-        index<br>
-        <a href="/default.php">go to default page</a>
+        default<br>
+        <a href="/index.php">go to index page</a>
       </main>
     </div>
   </div>

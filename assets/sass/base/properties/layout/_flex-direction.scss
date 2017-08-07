@@ -1,0 +1,28 @@
+// # flex_ direction
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.flx-dir-row',
+    'declarations': (
+      flex-direction: row,
+    ),
+  ), (
+    'selector': '.flx-dir-row-r',
+    'declarations': (
+      flex-direction: row-reverse,
+    ),
+  ), (
+    'selector': '.flx-dir-column',
+    'declarations': (
+      flex-direction: column,
+    ),
+  ), (
+    'selector': '.flx-dir-column-r',
+    'declarations': (
+      flex-direction: column-rev
+    ),
+  ),
+), $screen-sizes);
