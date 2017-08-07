@@ -1,12 +1,12 @@
 {
-  "name": "base-site",
-  "description": "Grunt task runner for rapid deployment of static PHP sites",
+  "name": "task-runner__website--pg-multi",
+  "description": "Grunt task runner for multi-page static websites",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makingmerry/base-site"
+    "url": "https://github.com/makingmerry/task-runner__website--pg-multi/"
   },
   "license": "UNLICENSED",
-  "version": "1.1.49",
+  "version": "2.0.0",
   "babel": {
     "presets": [
       "es2015"
