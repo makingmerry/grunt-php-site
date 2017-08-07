@@ -1,5 +1,5 @@
 <!-- base -->
-<footer class="m-bottom-0">
+<footer>
   base
   <!-- navigation -->
   <ul>

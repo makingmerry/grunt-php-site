@@ -1,5 +1,5 @@
 <!-- mast -->
-<header class="m-bottom-0">
+<header>
   mast
   <!-- navigation -->
   <ul>
