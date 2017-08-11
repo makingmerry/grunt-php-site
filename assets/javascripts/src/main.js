@@ -33,7 +33,7 @@
   ////////////////////////////////////////////////////////////
 
   const PageScroll = {
-    body: document.getElementsByTagName('body')[0],
+    body: document.body,
 
     enable() {
       this.body.style.overflow = 'auto';
@@ -57,7 +57,7 @@
   ////////////////////////////////////////////////////////////
 
   const Loader = {
-    element: document.getElementsByClassName('loader')[0],
+    element: document.getElementById('loader'),
 
     show() {
       return new Promise((resolve, reject) => {
