@@ -19,11 +19,11 @@
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  function PushPageView(Url) {
+  function PushPageView(URL) {
     // https://developers.google.com/analytics/devguides/...
     // ...collection/analyticsjs/single-page-applications
     if (typeof ga === 'function') {
-      ga('set', 'page', Url);
+      ga('set', 'page', URL);
       ga('send', 'pageview');
     }
   }
@@ -103,10 +103,11 @@
       // setup DOM parsing variables for Barba.js
       Barba.Pjax.Dom.wrapperId = 'mainframe-wp';
       Barba.Pjax.Dom.containerClass = 'mainframe';
+      Barba.Pjax.Dom.dataNamespace = 'template';
       Barba.Pjax.ignoreClassLink = 'no-frame-load';
       // initialise internal processes
       return new Promise((resolve, reject) => {
-        this.namespaces.init();
+        this.templates.init();
         this.transitions.init();
         Barba.Pjax.start();
         resolve(this);
@@ -117,8 +118,13 @@
       return Barba.HistoryManager.prevStatus() === null;
     },
 
-    getCurrUrl() {
+    getCurrURL() {
       return Barba.Pjax.getCurrentUrl();
+    },
+
+    getCurrUID() {
+      return document.getElementsByClassName(Barba.Pjax.Dom.containerClass)[0]
+        .dataset.uid;
     },
 
     onRequested(callback) {
@@ -223,11 +229,11 @@
 
     //////////////////////////////
     // sub-module:
-    // # namespaces
+    // # templates
     //////////////////////////////
-    namespaces: {
+    templates: {
       store: {},
-      pushSpace(name) {
+      pushModel(name) {
         this.store[name] = Barba.BaseView.extend({
           namespace: name,
           onEnter() {},
@@ -237,18 +243,18 @@
         });
       },
 
-      getSpace(name) {
+      getModel(name) {
         return this.store[name];
       },
 
-      getCurrName() {
+      getCurrModelName() {
         return Barba.HistoryManager.currentStatus().namespace;
       },
 
       init() {
         Object.keys(this.store)
-          .forEach((space) => {
-            this.store[space].init();
+          .forEach((model) => {
+            this.store[model].init();
           });
       },
     },
@@ -273,9 +279,9 @@
       });
     },
 
-    disable(name) {
+    disable(UID) {
       const list = this.links
-        .filter(link => link.dataset.controls === name);
+        .filter(link => link.dataset.controls === UID);
       list.forEach((link) => {
         // promote matched 'named' links to active state
         link.dataset.href = link.href;
@@ -338,7 +344,7 @@
     // subsequent view loads
     } else {
       // track new page analytics
-      PushPageView(ViewControl.getCurrUrl());
+      PushPageView(ViewControl.getCurrURL());
     }
   });
 
@@ -346,9 +352,6 @@
     console.log('view is ready'); // !DEBUG
     // polyfill <picture> element
     picturefill();
-    // toggle navigation links
-    NavControl.enable();
-    NavControl.disable(ViewControl.namespaces.getCurrName());
   });
 
   ViewControl.onComplete(() => {
@@ -357,18 +360,21 @@
     if (!PageScroll.isTop()) {
       PageScroll.toTop();
     }
+    // toggle navigation links
+    NavControl.enable();
+    NavControl.disable(ViewControl.getCurrUID());
   });
 
-  // # view-specific
+  // # template-specific
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
   //////////////////////////////
-  // # index view
+  // # index template
   //////////////////////////////
-  ViewControl.namespaces.pushSpace('index');
+  ViewControl.templates.pushModel('index');
   ViewControl.transitions.assign('index', 'fade');
-  const indexView = ViewControl.namespaces.getSpace('index');
+  const indexView = ViewControl.templates.getModel('index');
   indexView.onEnter = () => {
     console.log('index view is entering'); // !DEBUG
   };
