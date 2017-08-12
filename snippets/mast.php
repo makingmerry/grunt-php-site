@@ -1,5 +1,5 @@
 <!-- mast -->
-<header class="m-bottom-0">
+<header>
   mast
   <!-- navigation -->
   <ul>
@@ -9,7 +9,7 @@
       </a>
     </li>
     <li class="d-i-block">
-      <a class="nav-a" data-controls="default" href="/default.php">
+      <a class="nav-a" data-controls="default" href="/page.php">
         default page
       </a>
     </li>

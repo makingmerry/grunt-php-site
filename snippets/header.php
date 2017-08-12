@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo $page; ?></title>
+  <title><?php echo $title; ?></title>
   <meta name="description" content="">
 
   <!-- og tags -->
@@ -18,7 +18,7 @@
   <!-- load critical inline styles -->
   <style type="text/css">
     <?php
-      $file = 'assets/stylesheets/build/critical/'.$page_type.'.css';
+      $file = 'assets/stylesheets/build/critical/'.$template.'.css';
       file_exists($file) AND include $file;
     ?>
   </style>

@@ -1,6 +1,7 @@
 <?php
-  $page = 'default';
-  $page_type = 'page';
+  $template = 'page';
+  $uid = 'default';
+  $title = 'Default';
   include 'snippets/header.php';
   include 'snippets/loader.php';
 ?>
@@ -23,9 +24,13 @@
 
     <!-- view -->
     <div class="pos-relative z-1" id="mainframe-wp">
-      <main class="mainframe" data-namespace="<?php echo $page; ?>">
-        default<br>
-        <a href="/index.php">go to index page</a>
+      <main class="mainframe" data-template="<?php echo $template; ?>" data-uid="<?php echo $uid; ?>">
+        <h1>
+          <?php echo $title; ?>
+        </h1>
+        <a href="/index.php">
+          go to index page
+        </a>
       </main>
     </div>
   </div>

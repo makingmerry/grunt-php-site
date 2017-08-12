@@ -3,8 +3,7 @@
   pos-fixed z-2 top-0 left-0
   d-none vis-hidden w-100 h-100
     js-d-table js-vis-visible
-  bg-c-white
-  loader">
+  bg-c-white" id="loader">
   <!-- loader graphic -->
   <div class="d-t-cell va-middle">
     <div class="
