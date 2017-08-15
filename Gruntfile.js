@@ -449,13 +449,13 @@ module.exports = function(grunt) {
       templates: {
         files: ['*.{html,php}', 'snippets/*.{html,php}'],
       },
-      images: {
-        files: ['<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/**'],
-        tasks: ['build-img'],
-      },
       symbols: {
         files: ['<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.source %>/**'],
         tasks: ['build-symbols'],
+      },
+      images: {
+        files: ['<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/**'],
+        tasks: ['build-img'],
       },
       css: {
         files: ['<%= config.assets %>/<%= config.sassDirectory %>/**/*.scss'],
@@ -523,14 +523,14 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # css
   //////////////////////////////
-  grunt.registerTask('build-base-css', ['sass', 'postcss:base']);
+  grunt.registerTask('build-base-css', ['clean:css', 'sass', 'postcss:base']);
   grunt.registerTask('build-critical-css', ['criticalcss', 'postcss:critical']);
   grunt.registerTask('build-css', ['build-base-css', 'build-critical-css']);
 
   //////////////////////////////
   // # javascript
   //////////////////////////////
-  grunt.registerTask('build-js', ['babel', 'concat', 'eslint', 'uglify']);
+  grunt.registerTask('build-js', ['clean:javascripts', 'babel', 'concat', 'eslint', 'uglify']);
 
   //////////////////////////////
   // # core
