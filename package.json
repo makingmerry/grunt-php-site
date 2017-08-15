@@ -6,7 +6,7 @@
     "url": "https://github.com/makingmerry/task-runner__website--pg-multi/"
   },
   "license": "UNLICENSED",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "babel": {
     "presets": [
       "es2015"
@@ -57,6 +57,7 @@
     "eslint-plugin-react": "^7.0.1",
     "grunt": "^1.0.1",
     "grunt-babel": "^6.0.0",
+    "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-imagemin": "^1.0.1",

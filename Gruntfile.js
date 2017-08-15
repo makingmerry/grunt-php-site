@@ -381,6 +381,34 @@ module.exports = function(grunt) {
     ////////////////////////////////////////////////////////////
     
     //////////////////////////////
+    // # clean
+    // delete old and unnecessary files
+    //////////////////////////////
+    clean: {
+      // media
+      favicons: [
+        '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/*',
+      ],
+      symbols: [
+        '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.temporary %>/*',
+        '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.build %>/*',
+      ],
+      images: [
+        '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.temporary %>/*',
+        '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/*',
+      ],
+      // css
+      css: [
+        '<%= config.assets %>/<%= config.cssDirectory %>/*',
+      ],
+      // javascript
+      javascripts: [
+        '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/*',
+        '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.build %>/*',
+      ],
+    },
+
+    //////////////////////////////
     // # copy
     // copy build files for deployment
     //////////////////////////////
@@ -423,7 +451,7 @@ module.exports = function(grunt) {
       },
       images: {
         files: ['<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/**'],
-        tasks: ['build-img', 'build-graphics'],
+        tasks: ['build-img'],
       },
       symbols: {
         files: ['<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.source %>/**'],
@@ -473,6 +501,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # core
   //////////////////////////////
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
@@ -486,10 +515,10 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # media
   //////////////////////////////
-  grunt.registerTask('build-favicons', ['realFavicon:favicons', 'imagemin:favicons']);
-  grunt.registerTask('build-symbols', ['svg_sprite:symbols', 'svg2png:symbols', 'imagemin:symbols']);
+  grunt.registerTask('build-favicons', ['clean:favicons', 'realFavicon:favicons', 'imagemin:favicons']);
+  grunt.registerTask('build-symbols', ['clean:symbols', 'svg_sprite:symbols', 'svg2png:symbols', 'imagemin:symbols']);
   grunt.registerTask('build-graphics', ['svg2png:graphics', 'imagemin:graphics', 'imagemin:graphicsFallback']);
-  grunt.registerTask('build-img', ['imagemin:images']);
+  grunt.registerTask('build-img', ['clean:images', 'imagemin:images', 'build-graphics']);
 
   //////////////////////////////
   // # css
@@ -507,5 +536,5 @@ module.exports = function(grunt) {
   // # core
   //////////////////////////////
   grunt.registerTask('build', 'copy:build');
-  grunt.registerTask('default', ['build-favicons', 'build-symbols', 'build-graphics', 'build-img', 'build-css', 'build-js', 'build']);
+  grunt.registerTask('default', ['build-favicons', 'build-symbols', 'build-img', 'build-css', 'build-js', 'build']);
 };
