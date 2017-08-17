@@ -6,7 +6,7 @@
     "url": "https://github.com/makingmerry/task-runner__website--pg-multi/"
   },
   "license": "UNLICENSED",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "babel": {
     "presets": [
       "es2015"

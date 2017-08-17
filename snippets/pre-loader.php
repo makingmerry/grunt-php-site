@@ -1,9 +1,9 @@
-<!-- loader -->
+<!-- pre-loader -->
 <div class="
-  pos-fixed top-0 left-0
+  pos-fixed z-2 top-0 left-0
   d-none vis-hidden w-100 h-100
-    js-d-table
-  bg-c-white" id="loader">
+    js-d-table js-vis-visible
+  bg-c-white" id="pre-loader">
   <!-- loader graphic -->
   <div class="d-t-cell va-middle">
     <div class="

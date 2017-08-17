@@ -3,7 +3,7 @@
   $uid = 'index';
   $title = 'Index';
   include 'snippets/header.php';
-  include 'snippets/loader.php';
+  include 'snippets/pre-loader.php';
 ?>
 
 <!-- structure -->
@@ -17,9 +17,14 @@
     g12-12">
     <!-- view mast -->
     <div class="
-      pos-relative z-2
+      pos-relative z-3
       m-bottom-4">
       <?php include 'snippets/mast.php'; ?>
+    </div>
+
+    <!-- view loader -->
+    <div class="pos-relative z-2">
+      <?php include 'snippets/loader.php'; ?>
     </div>
 
     <!-- view -->
@@ -37,7 +42,7 @@
 
   <!-- bottom -->
   <div class="
-    pos-relative z-2
+    pos-relative z-3
     g12-12">
     <!-- view base -->
     <div class="m-top-4">

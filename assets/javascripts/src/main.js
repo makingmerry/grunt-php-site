@@ -56,9 +56,11 @@
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  const Loader = {
-    element: document.getElementById('loader'),
+  function Loader(elementID) {
+    this.element = document.getElementById(elementID);
+  }
 
+  Loader.prototype = {
     show() {
       return new Promise((resolve, reject) => {
         TweenLite.set(this.element, {
@@ -324,9 +326,12 @@
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  // # general
+  // # global
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
+
+  const preLoader = new Loader('pre-loader');
+  const loader = new Loader('loader');
 
   ViewControl.onRequested(() => {
     console.log('view is requested'); // !DEBUG
@@ -334,17 +339,12 @@
 
   ViewControl.onChange(() => {
     console.log('view is changing'); // !DEBUG
-    // initial view load
-    if (ViewControl.isFirst()) {
-      // hide loader
-      Loader.hide().then(() => {
-        // enable page scroll
-        PageScroll.enable();
-      });
     // subsequent view loads
-    } else {
+    if (!ViewControl.isFirst()) {
       // track new page analytics
       PushPageView(ViewControl.getCurrURL());
+      // show loader
+      loader.show();
     }
   });
 
@@ -360,12 +360,27 @@
     if (!PageScroll.isTop()) {
       PageScroll.toTop();
     }
+
     // toggle navigation links
     NavControl.enable();
     NavControl.disable(ViewControl.getCurrUID());
+
+    // initial view load
+    if (ViewControl.isFirst()) {
+      // hide pre-loader
+      preLoader.hide().then(() => {
+        // enable page scroll
+        PageScroll.enable();
+      });
+
+    // subsequent view loads
+    } else {
+      // hide loader
+      loader.hide();
+    }
   });
 
-  // # template-specific
+  // # template
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
@@ -374,16 +389,20 @@
   //////////////////////////////
   ViewControl.templates.pushModel('index');
   ViewControl.transitions.assign('index', 'fade');
+
   const indexView = ViewControl.templates.getModel('index');
   indexView.onEnter = () => {
     console.log('index view is entering'); // !DEBUG
   };
+
   indexView.onEnterCompleted = () => {
     console.log('index view has entered'); // !DEBUG
   };
+
   indexView.onLeave = () => {
     console.log('index view is leaving'); // !DEBUG
   };
+
   indexView.onLeaveCompleted = () => {
     console.log('index view has left'); // !DEBUG
   };

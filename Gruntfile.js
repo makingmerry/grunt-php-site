@@ -302,6 +302,7 @@ module.exports = function(grunt) {
           height: 720,
           outputfile: '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/critical/index.css',
           forceInclude: [],
+          ignoreConsole: true,
         },
       },
     },
