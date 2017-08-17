@@ -1,6 +1,6 @@
 <!-- loader -->
 <div class="
-  pos-fixed top-0 left-0
+  pos-fixed z-1 top-0 left-0
   d-none vis-hidden w-100 h-100
     js-d-table
   bg-c-white" id="loader">

@@ -13,11 +13,11 @@
   h-100vh-min">
   <!-- top -->
   <div class="
-    pos-relative z-3
+    pos-relative z-1
     g12-12">
     <!-- view mast -->
     <div class="
-      pos-relative z-2
+      pos-relative z-3
       m-bottom-4">
       <?php include 'snippets/mast.php'; ?>
     </div>
@@ -42,7 +42,7 @@
 
   <!-- bottom -->
   <div class="
-    pos-relative z-3
+    pos-relative z-2
     g12-12">
     <!-- view base -->
     <div class="m-top-4">
