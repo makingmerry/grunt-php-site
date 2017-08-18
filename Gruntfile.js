@@ -302,6 +302,7 @@ module.exports = function(grunt) {
           height: 720,
           outputfile: '<%= config.assets %>/<%= config.cssDirectory %>/<%= config.temporary %>/critical/index.css',
           forceInclude: [],
+          ignoreConsole: true,
         },
       },
     },
@@ -381,6 +382,34 @@ module.exports = function(grunt) {
     ////////////////////////////////////////////////////////////
     
     //////////////////////////////
+    // # clean
+    // delete old and unnecessary files
+    //////////////////////////////
+    clean: {
+      // media
+      favicons: [
+        '<%= config.assets %>/<%= config.faviconDirectory %>/<%= config.build %>/*',
+      ],
+      symbols: [
+        '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.temporary %>/*',
+        '<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.build %>/*',
+      ],
+      images: [
+        '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.temporary %>/*',
+        '<%= config.assets %>/<%= config.imgDirectory %>/<%= config.build %>/*',
+      ],
+      // css
+      css: [
+        '<%= config.assets %>/<%= config.cssDirectory %>/*',
+      ],
+      // javascript
+      javascripts: [
+        '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.temporary %>/*',
+        '<%= config.assets %>/<%= config.jsDirectory %>/<%= config.build %>/*',
+      ],
+    },
+
+    //////////////////////////////
     // # copy
     // copy build files for deployment
     //////////////////////////////
@@ -421,13 +450,13 @@ module.exports = function(grunt) {
       templates: {
         files: ['*.{html,php}', 'snippets/*.{html,php}'],
       },
-      images: {
-        files: ['<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/**'],
-        tasks: ['build-img', 'build-graphics'],
-      },
       symbols: {
         files: ['<%= config.assets %>/<%= config.symbolDirectory %>/<%= config.source %>/**'],
         tasks: ['build-symbols'],
+      },
+      images: {
+        files: ['<%= config.assets %>/<%= config.imgDirectory %>/<%= config.source %>/**'],
+        tasks: ['build-img'],
       },
       css: {
         files: ['<%= config.assets %>/<%= config.sassDirectory %>/**/*.scss'],
@@ -473,6 +502,7 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # core
   //////////////////////////////
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
@@ -486,26 +516,26 @@ module.exports = function(grunt) {
   //////////////////////////////
   // # media
   //////////////////////////////
-  grunt.registerTask('build-favicons', ['realFavicon:favicons', 'imagemin:favicons']);
-  grunt.registerTask('build-symbols', ['svg_sprite:symbols', 'svg2png:symbols', 'imagemin:symbols']);
+  grunt.registerTask('build-favicons', ['clean:favicons', 'realFavicon:favicons', 'imagemin:favicons']);
+  grunt.registerTask('build-symbols', ['clean:symbols', 'svg_sprite:symbols', 'svg2png:symbols', 'imagemin:symbols']);
   grunt.registerTask('build-graphics', ['svg2png:graphics', 'imagemin:graphics', 'imagemin:graphicsFallback']);
-  grunt.registerTask('build-img', ['imagemin:images']);
+  grunt.registerTask('build-img', ['clean:images', 'imagemin:images', 'build-graphics']);
 
   //////////////////////////////
   // # css
   //////////////////////////////
-  grunt.registerTask('build-base-css', ['sass', 'postcss:base']);
+  grunt.registerTask('build-base-css', ['clean:css', 'sass', 'postcss:base']);
   grunt.registerTask('build-critical-css', ['criticalcss', 'postcss:critical']);
   grunt.registerTask('build-css', ['build-base-css', 'build-critical-css']);
 
   //////////////////////////////
   // # javascript
   //////////////////////////////
-  grunt.registerTask('build-js', ['babel', 'concat', 'eslint', 'uglify']);
+  grunt.registerTask('build-js', ['clean:javascripts', 'babel', 'concat', 'eslint', 'uglify']);
 
   //////////////////////////////
   // # core
   //////////////////////////////
   grunt.registerTask('build', 'copy:build');
-  grunt.registerTask('default', ['build-favicons', 'build-symbols', 'build-graphics', 'build-img', 'build-css', 'build-js', 'build']);
+  grunt.registerTask('default', ['build-favicons', 'build-symbols', 'build-img', 'build-css', 'build-js', 'build']);
 };
