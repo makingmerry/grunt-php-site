@@ -1,12 +1,12 @@
 {
-  "name": "task-runner__website--pg-multi",
-  "description": "Grunt task runner for multi-page static websites",
+  "name": "bob",
+  "description": "Framework and Grunt task-runner configuration for developing multi-page PHP websites.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makingmerry/task-runner__website--pg-multi/"
+    "url": "https://github.com/makingmerry/tool_bob"
   },
   "license": "UNLICENSED",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "babel": {
     "presets": [
       "es2015"
