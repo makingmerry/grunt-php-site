@@ -1,175 +1,134 @@
-# Task Runner
+# Bob
 
+Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configuration for developing multi-page PHP websites.
 
+---
 
-## Introduction
-Grunt task runner for rapid deployment of static PHP sites by:
+## Table of contents
+1. [Installation](#user-content-installation)
+2. [Configuration](#user-content-configuration)
+3. [Features](#user-content-features)
+4. [Resources](#user-content-resources)
 
-1. Automating processes to meet basic optimisations in current development standards
-2. Setting development conventions in the organisation
-
-
+---
 
 ## Installation
-1. Install [Node.js](https://docs.npmjs.com/getting-started/installing-node) and update npm
-2. Install [Grunt](http://gruntjs.com/getting-started)
-3. Install [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
-4. Install [Sass](http://sass-lang.com/install)
-5. Install [Brew](http://brew.sh/) and [ImageMagick](https://github.com/gleero/grunt-favicons) for grunt-favicons module
-6. Install LiveReload (optional), preferably Chrome's [LiveReload browser extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) if developing on Chrome.
-7. Add _base-site_(rename to preference) to folder
-8. Change directory to deployment on Terminal(Mac) and run `npm install`
+### Prerequisites
+- [Node.js](https://docs.npmjs.com/getting-started/installing-node)
+- [Grunt](http://gruntjs.com/getting-started)
+- [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+- [Sass](http://sass-lang.com/install)
+- [Livereload](https://chrome.google.com/webstore/detail/livereload/)
 
+### Install
+- Clone project and run npm install
 
+---
 
 ## Configuration
 ### General
-| Property name  | Default value | Description                                                                                   |
-| -------------- | :-----------: | --------------------------------------------------------------------------------------------: |
-| `siteFullPath` | `null`        | Full path to the project folder                                                               |
-| `src`          | "src"         | Source folder name. Source folders store initial assets before build processing.              |
-| `tmp`          | "tmp"         | Temporary folder name. Temporary folders stored by-products generated during build processes. |
-| `build`        | "build"       | Build folder name. Build folders store the output of build processes.                         |
+| @param    | Type   | Default value   | Description                            |
+| --------- | ------ | --------------- | -------------------------------------- |
+| path      | string | 'localhost'     | Path to project.                       |
+| assets    | string | 'assets'        | Assets folder name.                    |
+| library   | string | 'lib'           | Library modules folder name.           |
+| source    | string | 'src'           | Source folder name.                    |
+| temporary | string | 'tmp'           | Temporary folder name.                 |
+| build     | string | 'build'         | Build folder name.                     |
+
+### Structure
+| @param    | Type   | Default value   | Description                            |
+| --------- | ------ | --------------- | -------------------------------------- |
+| snipDir   | string | 'snippets'      | Folder containing snippet blocks.      |
 
 ### Media
-| Property name  | Default value | Description                                                                                   |
-| -------------- | :-----------: | --------------------------------------------------------------------------------------------: |
-| `svgDir`       | "svgs"        | Folder storing SVG icon assets                                                                |
-| `faviDir`      | "favicons"    | Folder storing Favicon assets                                                                 |
-| `imgDir`       | "images"      | Folder storing static images                                                                  |
+| @param    | Type   | Default value   | Description                            |
+| --------- | ------ | --------------- | -------------------------------------- |
+| faviDir   | string | 'favicons'      | Folder containing the favicon image.   |
+| symbDir   | string | 'symbols'       | Folder containing graphic symbols.     |
+| imgDir    | string | 'images'        | Folder containing images and graphics. |
 
-### Stylesheets
-| Property name  | Default value | Description                                                                                   |
-| -------------- | :-----------: | --------------------------------------------------------------------------------------------: |
-| `sassDir`      | "sass"        | Folder storing Sass assets                                                                    |
-| `cssDir`       | "stylesheets" | Folder storing generated css assets                                                           |
-| `fontDir`      | "fonts"       | Folder storing font assets                                                                    |
+### CSS
+| @param    | Type   | Default value   | Description                            |
+| --------- | ------ | --------------- | -------------------------------------- |
+| sassDir   | string | 'favicons'      | Folder containing Sass partials.       |
+| cssDir    | string | 'symbols'       | Folder containing compiled CSS.        |
+| fontDir   | string | 'images'        | Folder containing font files.          |
 
-### Javascripts
-| Property name  | Default value | Description                                                                                   |
-| -------------- | :-----------: | --------------------------------------------------------------------------------------------: |
-| `jsDir`        | "javascripts" | Folder storing javascript assets       
+### JS    
+| @param    | Type   | Default value   | Description                            |
+| --------- | ------ | --------------- | -------------------------------------- |
+| jsDir     | string | 'javascripts'   | Folder containing JS modules.          |
 
-
+---
 
 ## Features
+### Media
+  - #### Icon spritesheet
+    Concat and compile individual graphics into a single spritesheet for use.
+    ##### Configuration/documentation:
+      - Compiling spritesheet: [grunt-svg-sprite](https://github.com/jkphl/grunt-svg-sprite)
 
-### Scalable Vector Graphics (SVG)
-#### Clean SVGs
-- Change `classes` and `ids` to lowercase
-- Change `ids` of SVG groups to `classes` (name paths/layers: `class="{class name}"`)
+  - #### Image optimisation
+    Generate vector graphic fallbacks and minify images.
+    ##### Configuration/documentation:
+      - Generating vector graphic fallbacks: [grunt-svg2png](https://www.npmjs.com/package/grunt-svg2png)
+      - Minification: [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
 
-##### Sources/documentation
-- <http://mattsoria.com/killersvgworkflow/>
-- <https://github.com/yoniholmes/grunt-text-replace>
+### CSS
+  - #### Sass compilation
+    Concat, process (e.g. adding vendor prefixes, .etc) and compiling Sass partials into CSS.
+    ##### Configuration/documentation:
+      - Concatenating and compiling: [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass)
+      - Processors: [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
 
----
+  - #### Critical CSS
+    Generate critical CSS for rendering 'above the fold' content for individual templates.
+    ##### Configuration/documentation:
+      - Generating critical CSS: [grunt-criticalcss](https://github.com/filamentgroup/grunt-criticalcss)
 
-#### Concatenating SVGs into spritesheet
-- Injects individual shape with ids with `shape-` prefix (shape reference: `#shape- + {name of file}`)
-- Generates spritesheet in build sub-folder (file reference: svg-defs.svg)
-- Generates image fallbacks (file reference: {name of file}.png)
-- Compression of generated fallback images
+  - #### Functional classes with modular structure
+    Generate property-based functional classes for rapid development, while setting modular structure for extension.
+    ##### Configuration/documentation:
+      - Functional classes: [Scoop](https://github.com/makingmerry/tool_scoop)
 
-##### Issues/Milestones
-- Generate Sass spritesheet partial
-- Generate HTML demo file
+### JS
+  - #### Transpile, concat and compile
+    Transpile ES6 code to ES5 code, concatenate required modules and minify for production.
+    ##### Configuration/documentation:
+      - Transpiling ES6 code: [grunt-babel](https://github.com/babel/grunt-babel)
+      - Concatenation: [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)
+      - Minification: [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
 
-##### Sources/documentation
-- <http://mattsoria.com/killersvgworkflow/>
-- <https://github.com/FWeinb/grunt-svgstore>
-- <https://github.com/sindresorhus/grunt-svgmin>
-- <https://github.com/dbushell/grunt-svg2png>
-- <https://github.com/gruntjs/grunt-contrib-imagemin>
+  - #### Linting
+    Enforce JS development standards, following the [Airbnb Styleguides](https://github.com/airbnb/javascript).
+    ##### Configuration/documentation:
+      - Linter: [grunt-eslint](https://github.com/sindresorhus/grunt-eslint)
+      - Styleguide: [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 
+  - #### Smooth page transitions
+    Simulate Single Page Application (SPA) style transitions when moving around pages.
+    ##### Configuration/documentation:
+      - Ajax transition library: [Barba.js](http://barbajs.org/)
 
-### Favicons
-#### Generating favicon versions
-- Accepts favicon.png
-- Recommended size for base image is 640 * 640px
-- HTML is generated into page header
-- Compression of generated favicon images
+### Integrated services/applications
+  - #### Analytics tracking
+    Setup preferred analytics' (Google Analytics) tracking code.
+    ##### Configuration/documentation:
+      - Async implementation: [Google Analytics fundamentals](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
+      - SPA tracking: [Google Analytics SPA tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications)
 
-##### Issues/Milestones
-- Subsequent favicon generation creates blank lines
+  - #### Favicon generation
+    Generate and install a multi-platform favicon.
+    ##### Configuration/documentation:
+      - Generator: [Real Favicon Generator](https://realfavicongenerator.net)
 
-##### Sources/documentation
-- <https://github.com/audreyr/favicon-cheat-sheet>
-- <https://github.com/gleero/grunt-favicons>
-- <https://github.com/gruntjs/grunt-contrib-imagemin>
-
-
-### Static Images
-#### Compressing static images
-- Accepts .png, .jpg, .gif image formats
-
-##### Sources/documentation
-- <https://github.com/gruntjs/grunt-contrib-imagemin>
-
-
-### Cascading Stylesheets (CSS)
-#### Compiling Sass into CSS
-- Automated prefixing for CSS properties
-- Automated `px` fallback values provided for `rem` values
-
-##### Sources/documentation
-- <https://github.com/gruntjs/grunt-contrib-sass>
-
----
-
-#### Prevent render blocking of non-critical CSS
-- Critical CSS is called into page header
-- Asynchronous and deferred loading of non-critical CSS
-- * Manual listing of template pages in Gruntfile
-
-##### Sources/documentation
-- <https://github.com/filamentgroup/grunt-criticalcss>
-- <https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery>
-- <https://varvy.com/pagespeed/render-blocking-css.html>
-
-
-### Javascripts (JS)
-#### Ensuring code quality and consistency
-- Lint logs errors, bad practices and inconsistencies in terminal
-
-##### Sources/documentation
-- <https://github.com/gruntjs/grunt-contrib-jshint>
+  - #### Asynchronous web font loading
+    Asynchronously add web fonts with most popular web font providers.
+    ##### Configuration/documentation:
+      - Loader: [Web Font Loader](https://github.com/typekit/webfontloader)
 
 ---
 
-#### Concatenating scripts into a global script
-- Generates global script in build sub-folder (file reference: global.min.js
-- * Manual ordered listing of script files in Gruntfile
-
-##### Sources/documentation
-- <https://github.com/gruntjs/grunt-contrib-concat>
-- <https://github.com/gruntjs/grunt-contrib-uglify>
-
----
-
-#### Prevent render blocking of non-critical scripts
-- Asynchronous and deferred loading of non-critical scripts
-- * Manual adding of critical scripts
-
-##### Sources/documentation
-- <https://developers.google.com/speed/docs/insights/BlockingJS>
-- <https://varvy.com/pagespeed/render-blocking.html>
-
-
-### Layout
-#### Basic grid system
-- `Flex-box` based row and column grid system (file references: base/_grid.scss)
-
-##### Sources/documentation
-- <https://css-tricks.com/snippets/css/a-guide-to-flexbox>/
-
-
-
-## Tasks
-| Operation name             | Description                                                                                                                                                                       |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| `grunt watch`              | Watches for changes to listed scope (templates, images, SVG files, Sass files, scripts) and fires LiveReload if available.                                                        |
-| `grunt build-favicons`     | Generate favicon images and HTML. * Subsequent generations create blank lines in place of previously generated HTML, refactor as required.                                        |
-| `grunt build-critical-css` | Generate critical CSS for various template files. * Not included in watch due to manual aspect of listing template files and long processing time for generating critical styles. |
-| `grunt build`              | Generate a build copy of the files (not listing source and temporarily generated files)                                                                                           |
-| `grunt`                    | Full build of site, useful for initial deployment.                                                                                                                                |
+## Resources
+*Coming soon*
