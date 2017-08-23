@@ -5,14 +5,14 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 ---
 
 ## Table of contents
-1. [Installation](#installation)
-2. [Configuration](#configuration)
-3. [Features](#features)
-4. [Resources](#resources)
+1. [Installation](#user-content-installation)
+2. [Configuration](#user-content-configuration)
+3. [Features](#user-content-features)
+4. [Resources](#user-content-resources)
 
 ---
 
-## Installation {#installation}
+## Installation
 ### Prerequisites
 - [Node.js](https://docs.npmjs.com/getting-started/installing-node)
 - [Grunt](http://gruntjs.com/getting-started)
@@ -25,7 +25,7 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 
 ---
 
-## Configuration {#configuration}
+## Configuration
 ### General
 | @param    | Type   | Default value   | Description                            |
 | --------- | ------ | --------------- | -------------------------------------- |
@@ -62,76 +62,73 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 
 ---
 
-## Features {#features}
+## Features
 ### Media
-#### Icon spritesheet
-Concat and compile individual graphics into a single spritesheet for use.
-##### Configuration/documentation:
-- **Compiling spritesheet:** [grunt-svg-sprite](https://github.com/jkphl/grunt-svg-sprite)
+  #### Icon spritesheet
+  Concat and compile individual graphics into a single spritesheet for use.
+  ##### Configuration/documentation:
+  - **Compiling spritesheet:** [grunt-svg-sprite](https://github.com/jkphl/grunt-svg-sprite)
 
-#### Image optimisation
-Generate vector graphic fallbacks and minify images.
-##### Configuration/documentation:
-- **Generating vector graphic fallbacks:** [grunt-svg2png](https://www.npmjs.com/package/grunt-svg2png)
-- **Minification:** [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
+  #### Image optimisation
+  Generate vector graphic fallbacks and minify images.
+  ##### Configuration/documentation:
+  - **Generating vector graphic fallbacks:** [grunt-svg2png](https://www.npmjs.com/package/grunt-svg2png)
+  - **Minification:** [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
 
 ### CSS
-#### Sass compilation
-Concat, process (e.g. adding vendor prefixes, .etc) and compiling Sass partials into CSS.
-##### Configuration/documentation:
-- **Concatenating and compiling:** [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass)
-- **Processors:** [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
+  #### Sass compilation
+  Concat, process (e.g. adding vendor prefixes, .etc) and compiling Sass partials into CSS.
+  ##### Configuration/documentation:
+  - **Concatenating and compiling:** [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass)
+  - **Processors:** [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
 
-#### Critical CSS
-Generate critical CSS for rendering 'above the fold' content for individual templates.
-##### Configuration/documentation:
-- **Generating critical CSS:** [grunt-criticalcss](https://github.com/filamentgroup/grunt-criticalcss)
+  #### Critical CSS
+  Generate critical CSS for rendering 'above the fold' content for individual templates.
+  ##### Configuration/documentation:
+  - **Generating critical CSS:** [grunt-criticalcss](https://github.com/filamentgroup/grunt-criticalcss)
 
-#### Functional classes with modular structure
-Generate property-based functional classes for rapid development, while setting modular structure for extension.
-##### Configuration/documentation:
-- **Functional classes:** [Scoop](https://github.com/makingmerry/tool_scoop)
+  #### Functional classes with modular structure
+  Generate property-based functional classes for rapid development, while setting modular structure for extension.
+  ##### Configuration/documentation:
+  - **Functional classes:** [Scoop](https://github.com/makingmerry/tool_scoop)
 
 ### JS
-#### Transpile, concat and compile
-Transpile ES6 code to ES5 code, concatenate required modules and minify for production.
-##### Configuration/documentation:
-- **Transpiling ES6 code:** [grunt-babel](https://github.com/babel/grunt-babel)
-- **Concatenation:** [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)
-- **Minification:** [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
+  #### Transpile, concat and compile
+  Transpile ES6 code to ES5 code, concatenate required modules and minify for production.
+  ##### Configuration/documentation:
+  - **Transpiling ES6 code:** [grunt-babel](https://github.com/babel/grunt-babel)
+  - **Concatenation:** [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)
+  - **Minification:** [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
 
-#### Linting
-Enforce JS development standards, following the [Airbnb Styleguides](https://github.com/airbnb/javascript).
-##### Configuration/documentation:
-- **Linter:** [grunt-eslint](https://github.com/sindresorhus/grunt-eslint)
-- **Styleguide:** [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+  #### Linting
+  Enforce JS development standards, following the [Airbnb Styleguides](https://github.com/airbnb/javascript).
+  ##### Configuration/documentation:
+  - **Linter:** [grunt-eslint](https://github.com/sindresorhus/grunt-eslint)
+  - **Styleguide:** [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 
-#### Smooth page transitions
-Simulate Single Page Application (SPA) style transitions when moving around pages.
-##### Configuration/documentation:
-- **Ajax transition library:** [Barba.js](http://barbajs.org/)
+  #### Smooth page transitions
+  Simulate Single Page Application (SPA) style transitions when moving around pages.
+  ##### Configuration/documentation:
+  - **Ajax transition library:** [Barba.js](http://barbajs.org/)
 
 ### Integrated services/applications
-#### Analytics tracking
-Setup preferred analytics' (Google Analytics) tracking code.
-##### Configuration/documentation:
-- **Async implementation:** [Google Analytics fundamentals](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
-- **SPA tracking:** [Google Analytics SPA tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications)
+  #### Analytics tracking
+  Setup preferred analytics' (Google Analytics) tracking code.
+  ##### Configuration/documentation:
+  - **Async implementation:** [Google Analytics fundamentals](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
+  - **SPA tracking:** [Google Analytics SPA tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications)
 
-#### Favicon generation
-Generate and install a multi-platform favicon.
-##### Configuration/documentation:
-- **Generator:** [Real Favicon Generator](https://realfavicongenerator.net)
+  #### Favicon generation
+  Generate and install a multi-platform favicon.
+  ##### Configuration/documentation:
+  - **Generator:** [Real Favicon Generator](https://realfavicongenerator.net)
 
-#### Asynchronous web font loading
-Asynchronously add web fonts with most popular web font providers.
-##### Configuration/documentation:
-- **Loader:** [Web Font Loader](https://github.com/typekit/webfontloader)
+  #### Asynchronous web font loading
+  Asynchronously add web fonts with most popular web font providers.
+  ##### Configuration/documentation:
+  - **Loader:** [Web Font Loader](https://github.com/typekit/webfontloader)
 
 ---
 
-## Resources {#resources}
+## Resources
 *Coming soon*
-[//](Leo — https://github.com/makingmerry/tool_leo)
-[//](Wendy — https://github.com/makingmerry/tool_wendy)
-[//](Scoop — https://github.com/makingmerry/tool_scoop)
