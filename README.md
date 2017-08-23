@@ -2,7 +2,6 @@
 
 Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configuration for developing multi-page PHP websites.
 
----
 
 ## Table of contents
 1. [Installation](#user-content-installation)
@@ -10,7 +9,6 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 3. [Features](#user-content-features)
 4. [Resources](#user-content-resources)
 
----
 
 ## Installation
 ### Prerequisites
@@ -23,7 +21,6 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 ### Install
 - Clone project and run npm install
 
----
 
 ## Configuration
 ### General
@@ -64,16 +61,16 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 
 ## Features
 ### Media
-  #### Icon spritesheet
-  Concat and compile individual graphics into a single spritesheet for use.
-  ##### Configuration/documentation:
-  - Compiling spritesheet: [grunt-svg-sprite](https://github.com/jkphl/grunt-svg-sprite)
+  - #### Icon spritesheet
+    Concat and compile individual graphics into a single spritesheet for use.
+    ##### Configuration/documentation:
+    - Compiling spritesheet: [grunt-svg-sprite](https://github.com/jkphl/grunt-svg-sprite)
 
-  #### Image optimisation
-  Generate vector graphic fallbacks and minify images.
-  ##### Configuration/documentation:
-  - Generating vector graphic fallbacks: [grunt-svg2png](https://www.npmjs.com/package/grunt-svg2png)
-  - Minification: [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
+  - #### Image optimisation
+    Generate vector graphic fallbacks and minify images.
+    ##### Configuration/documentation:
+    - Generating vector graphic fallbacks: [grunt-svg2png](https://www.npmjs.com/package/grunt-svg2png)
+    - Minification: [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
 
 ---
 
@@ -133,8 +130,6 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
   Asynchronously add web fonts with most popular web font providers.
   ##### Configuration/documentation:
   - Loader: [Web Font Loader](https://github.com/typekit/webfontloader)
-
----
 
 ## Resources
 *Coming soon*
