@@ -18,14 +18,14 @@
   <!-- load critical inline styles -->
   <style type="text/css">
     <?php
-      $file = 'assets/stylesheets/build/critical/'.$template.'.css';
+      $file = SITE_ROOT . '/assets/stylesheets/build/critical/'.$template.'.css';
       file_exists($file) AND include $file;
     ?>
   </style>
 
   <!-- defer loading of non-critical styles -->
   <noscript id="deferred-styles">
-    <link href="assets/stylesheets/build/style.css" rel="stylesheet" type="text/css">
+    <link href="/assets/stylesheets/build/style.css" rel="stylesheet" type="text/css">
   </noscript>
 
   <!-- load non-critical styles -->
@@ -56,6 +56,9 @@
   </script>
 
   <!-- favicons -->
-  <?php include 'assets/favicons/build/favicons.html'; ?>
+  <?php
+    $file = SITE_ROOT . '/assets/favicons/build/favicons.html';
+    file_exists($file) AND include $file;
+  ?>
 </head>
 <body class="js-pos-relative js-of-hidden">

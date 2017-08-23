@@ -1,15 +1,14 @@
 module.exports = function(grunt) {
-
-  // # functions
-  ////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////////
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    // # configuration
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
 
-    // # configurations
+    // # project
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
+    pkg: grunt.file.readJSON('package.json'),
     config: {
       //////////////////////////////
       // # general
@@ -46,16 +45,12 @@ module.exports = function(grunt) {
       jsDir: 'javascripts',
     },
 
-
-    // # media
+    // # modules
     ////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////
 
     //////////////////////////////
     // # real favicons
-    // generate favicons for various platforms
-    // use interface to set properties
-    // https://github.com/RealFaviconGenerator/grunt-real-favicon
     //////////////////////////////
     realFavicon: {
       favicons: {
@@ -120,7 +115,6 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # svg sprite
-    // generate svg symbolsheet from individual files
     //////////////////////////////
     svg_sprite: {
       symbols: {
@@ -141,7 +135,6 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # svg2png
-    // build png fallbacks from svg
     //////////////////////////////
     svg2png: {
       symbols: {
@@ -152,7 +145,6 @@ module.exports = function(grunt) {
           dest: '<%= config.assets %>/<%= config.symbDir %>/<%= config.temporary %>/',
         }]
       },
-
       graphics: {
         files: [{ 
           flatten: true,
@@ -165,7 +157,6 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # imagemin
-    // minifying image file sizes
     //////////////////////////////
     imagemin: {
       images: {
@@ -179,7 +170,6 @@ module.exports = function(grunt) {
           dest: '<%= config.assets %>/<%= config.imgDir %>/<%= config.build %>/',
         }],
       },
-
       graphics: {
         options: {
           optimizationLevel: 3,
@@ -195,7 +185,6 @@ module.exports = function(grunt) {
           dest: '<%= config.assets %>/<%= config.imgDir %>/<%= config.build %>/',
         }],
       },
-
       graphicsFallback: {
         options: {
           optimizationLevel: 3,
@@ -207,7 +196,6 @@ module.exports = function(grunt) {
           dest: '<%= config.assets %>/<%= config.imgDir %>/<%= config.build %>/',
         }],
       },
-
       symbols: {
         options: {
           optimizationLevel: 3,
@@ -219,7 +207,6 @@ module.exports = function(grunt) {
           dest: '<%= config.assets %>/<%= config.symbDir %>/<%= config.build %>/',
         }],
       },
-
       favicons: {
         options: {
           optimizationLevel: 3,
@@ -233,46 +220,60 @@ module.exports = function(grunt) {
       },
     },
 
-
-    // # css
-    ////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////
-    
     //////////////////////////////
     // # sass
-    // compile sass to css
     //////////////////////////////
     sass: {
-      dist: {
+      functional: {
         options: {
           style: 'expanded',
+          precision: 3,
+          sourcemap: false,
         },
         files: {
-          '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css': '<%= config.assets %>/<%= config.sassDir %>/style.scss',
+          '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css': '<%= config.assets %>/<%= config.sassDir %>/functional.scss',
+        },
+      },
+      structural: {
+        options: {
+          style: 'expanded',
+          precision: 3,
+          sourcemap: false,
+        },
+        files: {
+          '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css': '<%= config.assets %>/<%= config.sassDir %>/structural.scss',
         },
       },
     },
 
     //////////////////////////////
     // # postcss
-    // add fallbacks for rem units,
-    // add vendor prefixes,
-    // minify the result
     //////////////////////////////
     postcss: {
-      base: {
+      functional: {
         options: {
-          map: true,
+          map: false,
           processors: [
             require('pixrem')(),
             require('autoprefixer')({ browsers: 'last 2 versions' }),
             require('cssnano')(),
           ],
         },
-        src: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css',
-        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/style.css',
+        src: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
+        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
       },
-
+      structural: {
+        options: {
+          map: false,
+          processors: [
+            require('pixrem')(),
+            require('autoprefixer')({ browsers: 'last 2 versions' }),
+            require('cssnano')(),
+          ],
+        },
+        src: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
+        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
+      },
       critical: {
         options: {
           map: false,
@@ -291,7 +292,6 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # critical css
-    // build page type specific critical stylesheets
     //////////////////////////////
     criticalcss: {
       index: {
@@ -307,32 +307,68 @@ module.exports = function(grunt) {
       },
     },
 
+    //////////////////////////////
+    // # eslint
+    //////////////////////////////
+    eslint: {
+      options: {
+        configFile: '',
+        rulePaths: '',
+      },
+      project: [
+        '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/project.js',
+      ],
+    },
 
-    // # javascript
-    ////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////
-    
     //////////////////////////////
     // # babel
-    // transpile es2015 syntax to older standards for browser support
     //////////////////////////////
     babel: {
       options: {
         sourceMap: true,
       },
-      dist: {
+      project: {
         files: {
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/main.js': '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/main.js',
+          '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js': '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/project.js',
         },
       },
     },
 
     //////////////////////////////
+    // # uglify
+    //////////////////////////////
+    uglify: {
+      library: {
+        src: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js',
+        dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js',
+      },
+      project: {
+        src: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js',
+        dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js',
+      },
+      global: {
+        src: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/global.js',
+        dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.build %>/global.js',
+      },
+    },
+
+    //////////////////////////////
     // # concat
-    // concatenate javascript files
     //////////////////////////////
     concat: {
-      dist: {
+      // css
+      css: {
+        options: {
+          separator: '',
+        },
+        src: [
+          '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
+          '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
+        ],
+        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/style.css',
+      },
+      // js
+      libraryJs: {
         src: [
           // polyfills
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/picturefill.js',
@@ -340,50 +376,23 @@ module.exports = function(grunt) {
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/polyfill.array.from.js',
           // features
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/barba.js',
-          // animations
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/TweenLite.js',
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/CSSPlugin.js',
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/ScrollToPlugin.js',
-          // project
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/main.js',
+        ],
+        dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js',
+      },
+      js: {
+        src: [
+          '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js',
+          '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js',
         ],
         dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/global.js',
       },
     },
-
-    //////////////////////////////
-    // # eslint
-    // javascript linter
-    //////////////////////////////
-    eslint: {
-      options: {
-        configFile: '',
-        rulePaths: '',
-      },
-      target: [
-        '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/main.js',
-      ],
-    },
-
-    //////////////////////////////
-    // # uglify
-    // compress javscript files
-    //////////////////////////////
-    uglify: {
-      build: {
-        src: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/global.js',
-        dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.build %>/global.min.js',
-      },
-    },
-
-
-    // # core
-    ////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////
     
     //////////////////////////////
     // # clean
-    // delete old and unnecessary files
     //////////////////////////////
     clean: {
       // media
@@ -399,11 +408,28 @@ module.exports = function(grunt) {
         '<%= config.assets %>/<%= config.imgDir %>/<%= config.build %>/*',
       ],
       // css
+      functionalCss: [
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css.map',
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/*'
+      ],
+      structuralCss: [
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css.map',
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/*'
+      ],
       css: [
         '<%= config.assets %>/<%= config.cssDir %>/*',
       ],
-      // javascript
-      javascripts: [
+      // js
+      libraryJs: [
+        '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js',
+      ],
+      projectJs: [
+        '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js',
+        '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js.map',
+      ],
+      js: [
         '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/*',
         '<%= config.assets %>/<%= config.jsDir %>/<%= config.build %>/*',
       ],
@@ -411,10 +437,9 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # copy
-    // copy build files for deployment
     //////////////////////////////
     copy: {
-      build: {
+      deploy: {
         expand: true,
         src: [
           // media
@@ -424,7 +449,7 @@ module.exports = function(grunt) {
           // css
           '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/**',
           '<%= config.assets %>/<%= config.fontDir %>/*',
-          // javascript
+          // js
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.build %>/*',
           // models
           '<%= config.snipDir %>/*.{html,php}',
@@ -436,106 +461,235 @@ module.exports = function(grunt) {
 
     //////////////////////////////
     // # watch
-    // watch files for changes
     //////////////////////////////
     watch: {
       options: {
-        event: ['changed', 'added', 'deleted'],
         spawn: false,
-        livereload: {
-          host: '127.0.0.1', // livereload IP
-          port: 35729, // livereload port
-        },
       },
-      templates: {
-        files: ['*.{html,php}', 'snippets/*.{html,php}'],
-      },
+      // media
       symbols: {
-        files: ['<%= config.assets %>/<%= config.symbDir %>/<%= config.source %>/**'],
-        tasks: ['build-symbols'],
+        files: ['<%= config.assets %>/<%= config.imgDir %>/<%= config.source %>/**'],
+        tasks: ['build-img'],
       },
       images: {
         files: ['<%= config.assets %>/<%= config.imgDir %>/<%= config.source %>/**'],
         tasks: ['build-img'],
       },
+      // css
+      functionalCss: {
+        files: [
+          '<%= config.assets %>/<%= config.sassDir %>/base/properties/**/*.scss',
+          '<%= config.assets %>/<%= config.sassDir %>/functional.scss',
+        ],
+        tasks: ['build-functional-css'],
+      },
+      structuralCss: {
+        files: [
+          '<%= config.assets %>/<%= config.sassDir %>/element/*.scss',
+          '<%= config.assets %>/<%= config.sassDir %>/component/*.scss',
+          '<%= config.assets %>/<%= config.sassDir %>/composition/*.scss',
+          '<%= config.assets %>/<%= config.sassDir %>/page/*.scss',
+          '<%= config.assets %>/<%= config.sassDir %>/structural.scss',
+        ],
+        tasks: ['build-structural-css'],
+      },
       css: {
-        files: ['<%= config.assets %>/<%= config.sassDir %>/**/*.scss'],
+        files: [
+          '<%= config.assets %>/<%= config.sassDir %>/base/configurations/*.scss',
+          '<%= config.assets %>/<%= config.sassDir %>/base/tools/*.scss',
+        ],
         tasks: ['build-base-css'],
       },
-      js: {
-        files: ['<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/**/*.js'],
-        tasks: ['build-js'],
+      // js
+      libraryJs: {
+        files: ['<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/*.js'],
+        tasks: ['build-library-js'],
+      },
+      projectJs: {
+        files: ['<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/project.js'],
+        tasks: ['build-project-js'],
+      },
+      // models
+      models: {
+        files: [
+          '*.{html,php}',
+          '<%= config.snipDir %>/*.{html,php}',
+        ],
+      },
+    },
+
+    //////////////////////////////
+    // # php server
+    //////////////////////////////
+    php: {
+      dev: {
+        options: {
+          hostname: '127.0.0.1',
+          port: 8888,
+          base:  '.',
+        },
+      },
+    },
+
+    //////////////////////////////
+    // # browser sync
+    //////////////////////////////
+    browserSync: {
+      dev: {
+        bsFiles: {
+          src : [
+            // media
+            '<%= config.assets %>/<%= config.faviDir %>/<%= config.build %>/*.{html}',
+            '<%= config.assets %>/<%= config.symbDir %>/<%= config.build %>/*.{svg}',
+            '<%= config.assets %>/<%= config.imgDir %>/<%= config.build %>/*.{png,jpg,gif,svg}',
+            // css
+            '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/*.{css}',
+            // js
+            '<%= config.assets %>/<%= config.jsDir %>/<%= config.build %>/*.{js}',
+            // models
+            '*.{html,php}',
+            '<%= config.snipDir %>/*.{html,php}',
+          ],
+        },
+        options: {
+          proxy: '127.0.0.1:8888',
+          port: 3000,
+          open: true,
+          watchTask: true,
+          watchEvents: ['add', 'change'],
+        },
       },
     },
   });
 
-
-
-  // # load plugin dependencies
+  // # load modules
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////
-  // # media
-  //////////////////////////////
+  // media
   grunt.loadNpmTasks('grunt-svg-sprite');
   grunt.loadNpmTasks('grunt-svg2png');
   grunt.loadNpmTasks('grunt-real-favicon');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-
-  //////////////////////////////
-  // # css
-  //////////////////////////////
+  // css
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-criticalcss');
-
-  //////////////////////////////
-  // # javascript
-  //////////////////////////////
+  // js
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-
-  //////////////////////////////
-  // # core
-  //////////////////////////////
+  // core
+  grunt.loadNpmTasks('grunt-php');
+  grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-
-
 
   // # tasks
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////
-  // # media
-  //////////////////////////////
-  grunt.registerTask('build-favicons', ['clean:favicons', 'realFavicon:favicons', 'imagemin:favicons']);
-  grunt.registerTask('build-symbols', ['clean:symbols', 'svg_sprite:symbols', 'svg2png:symbols', 'imagemin:symbols']);
-  grunt.registerTask('build-graphics', ['svg2png:graphics', 'imagemin:graphics', 'imagemin:graphicsFallback']);
-  grunt.registerTask('build-img', ['clean:images', 'imagemin:images', 'build-graphics']);
-
-  //////////////////////////////
-  // # css
-  //////////////////////////////
-  grunt.registerTask('build-base-css', ['clean:css', 'sass', 'postcss:base']);
-  grunt.registerTask('build-critical-css', ['criticalcss', 'postcss:critical']);
-  grunt.registerTask('build-css', ['build-base-css', 'build-critical-css']);
-
-  //////////////////////////////
-  // # javascript
-  //////////////////////////////
-  grunt.registerTask('build-js', ['clean:javascripts', 'babel', 'concat', 'eslint', 'uglify']);
-
-  //////////////////////////////
-  // # core
-  //////////////////////////////
-  grunt.registerTask('build', 'copy:build');
-  grunt.registerTask('default', ['build-favicons', 'build-symbols', 'build-img', 'build-css', 'build-js', 'build']);
+  // media
+  grunt.registerTask('build-favicons', [
+    'clean:favicons',
+    'realFavicon:favicons',
+    'imagemin:favicons',
+  ]);
+  grunt.registerTask('build-symbols', [
+    'clean:symbols',
+    'svg_sprite:symbols',
+    'svg2png:symbols',
+    'imagemin:symbols',
+  ]);
+  grunt.registerTask('build-graphics', [
+    'svg2png:graphics',
+    'imagemin:graphics',
+    'imagemin:graphicsFallback',
+  ]);
+  grunt.registerTask('build-img', [
+    'clean:images',
+    'imagemin:images',
+    'build-graphics',
+  ]);
+  // css
+  grunt.registerTask('build-functional-css', [
+    'clean:functionalCss',
+    'sass:functional',
+    'postcss:functional',
+    'concat:css',
+  ]);
+  grunt.registerTask('build-structural-css', [
+    'clean:structuralCss',
+    'sass:structural',
+    'postcss:structural',
+    'concat:css',
+  ]);
+  grunt.registerTask('build-base-css', [
+    'clean:css',
+    'sass:functional',
+    'postcss:functional',
+    'sass:structural',
+    'postcss:structural',
+    'concat:css',
+  ]);
+  grunt.registerTask('build-critical-css', [
+    'criticalcss',
+    'postcss:critical',
+  ]);
+  grunt.registerTask('build-css', [
+    'build-base-css',
+    'build-critical-css',
+  ]);
+  // js
+  grunt.registerTask('build-library-js', [
+    'clean:libraryJs',
+    'concat:libraryJs',
+    'uglify:library',
+    'concat:js',
+    'uglify:global',
+  ]);
+  grunt.registerTask('build-project-js', [
+    'clean:projectJs',
+    'eslint:project',
+    'babel:project',
+    'uglify:project',
+    'concat:js',
+    'uglify:global',
+  ]);
+  grunt.registerTask('build-js', [
+    'clean:js',
+    'concat:libraryJs',
+    'uglify:library',
+    'eslint:project',
+    'babel:project',
+    'uglify:project',
+    'concat:js',
+    'uglify:global',
+  ]);
+  // core
+  grunt.registerTask('init', [
+    'build-base-css',
+    'build-js',
+  ]);
+  grunt.registerTask('build', [
+    'build-favicons',
+    'build-symbols',
+    'build-img',
+    'build-css',
+    'build-js',
+  ]);
+  grunt.registerTask('deploy', [
+    'build',
+    'copy:deploy',
+  ]);
+  grunt.registerTask('default', [
+    'init',
+    'php',
+    'browserSync',
+    'watch',
+  ]);
 };

@@ -18,7 +18,6 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 - [Grunt](http://gruntjs.com/getting-started)
 - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
 - [Sass](http://sass-lang.com/install)
-- [Livereload](https://chrome.google.com/webstore/detail/livereload/)
 
 ### Install
 - Clone project and run npm install
@@ -112,6 +111,17 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
       - Ajax transition library: [Barba.js](http://barbajs.org/)
 
 ### Integrated services/applications
+  - #### Built-in PHP web server
+    Runs a built-in server to assist in developing PHP projects or running tests.
+    ##### Configuration/documentation:
+      - Module: [grunt-php](https://github.com/sindresorhus/grunt-php)
+
+  - #### Watching and live reloading of browsers
+    Run tasks and reload browsers when files are updated.
+    ##### Configuration/documentation:
+      - Watcher: [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)
+      - Browser sync: [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
+
   - #### Analytics tracking
     Setup preferred analytics' (Google Analytics) tracking code.
     ##### Configuration/documentation:
