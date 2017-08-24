@@ -13,7 +13,8 @@ module.exports = function(grunt) {
       //////////////////////////////
       // # general
       //////////////////////////////
-      path: 'http://localhost:8888/',
+      hostname: '127.0.0.1',
+      port: 3000,
       library: 'lib',
       assets: 'assets',
       source: 'src',
@@ -250,7 +251,7 @@ module.exports = function(grunt) {
     // # postcss
     //////////////////////////////
     postcss: {
-      functional: {
+      base: {
         options: {
           map: false,
           processors: [
@@ -259,20 +260,8 @@ module.exports = function(grunt) {
             require('cssnano')(),
           ],
         },
-        src: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
-        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
-      },
-      structural: {
-        options: {
-          map: false,
-          processors: [
-            require('pixrem')(),
-            require('autoprefixer')({ browsers: 'last 2 versions' }),
-            require('cssnano')(),
-          ],
-        },
-        src: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
-        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
+        src: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css',
+        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/style.css',
       },
       critical: {
         options: {
@@ -296,11 +285,22 @@ module.exports = function(grunt) {
     criticalcss: {
       index: {
         options: {
-          url: '<%= config.path %>',
+          url: 'http://<%= config.hostname %>:<%= php.dev.options.port %>',
           filename: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css',
           width: 1280,
           height: 720,
           outputfile: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/critical/index.css',
+          forceInclude: [],
+          ignoreConsole: true,
+        },
+      },
+      default: {
+        options: {
+          url: 'http://<%= config.hostname %>:<%= php.dev.options.port %>/page.php',
+          filename: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css',
+          width: 1280,
+          height: 720,
+          outputfile: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/critical/default.css',
           forceInclude: [],
           ignoreConsole: true,
         },
@@ -358,14 +358,11 @@ module.exports = function(grunt) {
     concat: {
       // css
       css: {
-        options: {
-          separator: '',
-        },
         src: [
           '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
           '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
         ],
-        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/style.css',
+        dest: '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css',
       },
       // js
       libraryJs: {
@@ -411,12 +408,18 @@ module.exports = function(grunt) {
       functionalCss: [
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css',
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/functional.css.map',
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css',
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/*'
       ],
       structuralCss: [
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css',
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/structural.css.map',
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/style.css',
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/*'
+      ],
+      criticalCss: [
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/critical/*',
+        '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/critical/*',
       ],
       css: [
         '<%= config.assets %>/<%= config.cssDir %>/*',
@@ -456,6 +459,19 @@ module.exports = function(grunt) {
           '*.{html,php}',
         ],
         dest: 'build/',
+      },
+    },
+
+    //////////////////////////////
+    // # php server
+    //////////////////////////////
+    php: {
+      dev: {
+        options: {
+          hostname: '<%= config.hostname %>',
+          port: 8888,
+          base:  '.',
+        },
       },
     },
 
@@ -519,19 +535,6 @@ module.exports = function(grunt) {
     },
 
     //////////////////////////////
-    // # php server
-    //////////////////////////////
-    php: {
-      dev: {
-        options: {
-          hostname: '127.0.0.1',
-          port: 8888,
-          base:  '.',
-        },
-      },
-    },
-
-    //////////////////////////////
     // # browser sync
     //////////////////////////////
     browserSync: {
@@ -552,8 +555,8 @@ module.exports = function(grunt) {
           ],
         },
         options: {
-          proxy: '127.0.0.1:8888',
-          port: 3000,
+          proxy: '<%= config.hostname %>:<%= php.dev.options.port %>',
+          port: '<%= config.port %>',
           open: true,
           watchTask: true,
           watchEvents: ['add', 'change'],
@@ -619,24 +622,25 @@ module.exports = function(grunt) {
   grunt.registerTask('build-functional-css', [
     'clean:functionalCss',
     'sass:functional',
-    'postcss:functional',
     'concat:css',
+    'postcss:base',
   ]);
   grunt.registerTask('build-structural-css', [
     'clean:structuralCss',
     'sass:structural',
-    'postcss:structural',
     'concat:css',
+    'postcss:base',
   ]);
   grunt.registerTask('build-base-css', [
     'clean:css',
     'sass:functional',
-    'postcss:functional',
     'sass:structural',
-    'postcss:structural',
     'concat:css',
+    'postcss:base',
   ]);
   grunt.registerTask('build-critical-css', [
+    'clean:criticalCss',
+    'php',
     'criticalcss',
     'postcss:critical',
   ]);
@@ -687,7 +691,6 @@ module.exports = function(grunt) {
     'copy:deploy',
   ]);
   grunt.registerTask('default', [
-    'init',
     'php',
     'browserSync',
     'watch',
