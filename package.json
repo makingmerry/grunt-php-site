@@ -3,10 +3,10 @@
   "description": "Framework and Grunt task-runner configuration for developing multi-page PHP websites.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/makingmerry/tool_bob"
+    "url": "https://github.com/makingmerry/tool_bob/"
   },
   "license": "UNLICENSED",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "babel": {
     "presets": [
       "es2015"
