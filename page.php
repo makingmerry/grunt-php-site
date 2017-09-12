@@ -2,6 +2,7 @@
   $template = 'page';
   $uid = 'default';
   $title = 'Default';
+  include 'config.php';
   include 'snippets/header.php';
   include 'snippets/pre-loader.php';
 ?>

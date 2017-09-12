@@ -2,6 +2,7 @@
   $template = 'index';
   $uid = 'index';
   $title = 'Index';
+  include 'config.php';
   include 'snippets/header.php';
   include 'snippets/pre-loader.php';
 ?>
