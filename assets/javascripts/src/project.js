@@ -23,7 +23,7 @@
     // https://developers.google.com/analytics/devguides/...
     // ...collection/analyticsjs/single-page-applications
     if (typeof ga === 'function') {
-      ga('set', 'page', URL);
+      ga('set', 'page', URL.split(window.location.origin).pop());
       ga('send', 'pageview');
     }
   }
