@@ -484,8 +484,8 @@ module.exports = function(grunt) {
       },
       // media
       symbols: {
-        files: ['<%= config.assets %>/<%= config.imgDir %>/<%= config.source %>/**'],
-        tasks: ['build-img'],
+        files: ['<%= config.assets %>/<%= config.symbDir %>/<%= config.source %>/**'],
+        tasks: ['build-symbols'],
       },
       images: {
         files: ['<%= config.assets %>/<%= config.imgDir %>/<%= config.source %>/**'],
