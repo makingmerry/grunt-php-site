@@ -8,39 +8,216 @@
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  /* global Barba TweenLite picturefill ga */
+  /* global Barba TweenLite picturefill WebFont google */
+
+  // # polyfill, helpers
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////
+
+  // polyfill element selector matching
+  // .matches & .closest
+  if (!Element.prototype.closest) {
+    if (!Element.prototype.matches) {
+      Element.prototype.matches =
+        Element.prototype.msMatchesSelector ||
+        Element.prototype.webkitMatchesSelector;
+    }
+    Element.prototype.closest = function closest(Selector) {
+      const el = this;
+      let ancestor = this;
+      if (!document.documentElement.contains(el)) return null;
+      do {
+        if (ancestor.matches(Selector)) return ancestor;
+        ancestor = ancestor.parentElement;
+      } while (ancestor !== null);
+      return null;
+    };
+  }
+
+  // type check
+  const isFunction = function isFunction(X) {
+    return Object.prototype.toString.call(X) === '[object Function]';
+  };
 
   // # modules
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  // # analytics
+  // # debounce and throttle
+  // https://davidwalsh.name/javascript-debounce-function
+  // https://medium.com/@_jh3y/throttling-and-debouncing-in-javascript-b01cad5c8edf
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  function PushPageView(URL) {
-    // https://developers.google.com/analytics/devguides/...
-    // ...collection/analyticsjs/single-page-applications
-    if (typeof ga === 'function') {
-      ga('set', 'page', URL.split(window.location.origin).pop());
-      ga('send', 'pageview');
+  const debounce = function debounce(Func, Wait, Immediate, ...Args) {
+    let inDebounce;
+    return function timer() {
+      const context = this;
+      const later = function later() {
+        inDebounce = null;
+        if (!Immediate) Func.apply(context, Func, Wait, Immediate, ...Args);
+      };
+      const callNow = Immediate && !inDebounce;
+      clearTimeout(inDebounce);
+      inDebounce = setTimeout(later, Wait);
+      if (callNow) Func.apply(context, Func, Wait, Immediate, ...Args);
+    };
+  };
+
+  const throttle = function throttle(Func, Limit, ...Args) {
+    let inThrottle;
+    let lastFunc;
+    let lastRan;
+    return function timer() {
+      const context = this;
+      if (!inThrottle) {
+        Func.apply(context, Func, Limit, ...Args);
+        lastRan = Date.now();
+        inThrottle = true;
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(() => {
+          if ((Date.now() - lastRan) >= Limit) {
+            Func.apply(context, Func, Limit, ...Args);
+            lastRan = Date.now();
+          }
+        }, Limit - (Date.now() - lastRan));
+      }
+    };
+  };
+
+  // # promise-based async script loader
+  // https://bradb.net/blog/promise-based-js-script-loader/
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  const asyncLoadScript = function asyncLoadScript(Url) {
+    return new Promise((Resolve, Reject) => {
+      let ready = false;
+      const anchor = document.getElementsByTagName('script')[0];
+      const script = document.createElement('script');
+
+      script.type = 'text/javascript';
+      script.src = Url;
+      script.async = true;
+      script.onreadystatechange = function onreadystatechange() {
+        if (!ready && (!this.readyState || this.readyState === 'complete')) {
+          ready = true;
+          Resolve(this);
+        }
+      };
+      script.onload = script.onreadystatechange;
+      script.onabort = Reject;
+      script.onerror = script.onabort;
+      anchor.parentNode.insertBefore(script, anchor);
+    });
+  };
+
+  // # page load ready states
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  // document has finished loading and the document has been parsed
+  // but sub-resources such as images, stylesheets and frames are still loading
+  const pageIsReady = function pageIsReady() {
+    return new Promise((Resolve) => {
+      Resolve(this);
+    });
+  };
+
+  // document and all sub-resources have finished loading,
+  // state indicates that the load event is about to fire
+  const pageIsComplete = function pageIsComplete() {
+    return new Promise((Resolve) => {
+      const complete = setInterval(() => {
+        if (document.readyState === 'complete') {
+          Resolve(this);
+          clearInterval(complete);
+        }
+      }, 250);
+    });
+  };
+
+  // # loader
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  const Loader = class {
+    constructor(Element) {
+      this.domRef = {
+        shieldSelector: '.loader',
+      };
+      this.cache = {
+        element: Element,
+        shield: null,
+      };
     }
-  }
 
-  // # page scroll
+    init() {
+      this.cacheShield();
+    }
+
+    dest() {
+      this.uncacheShield();
+      this.domRef = null;
+      this.cache = null;
+    }
+
+    cacheShield() {
+      this.cache.shield = this.cache.element.querySelector(this.domRef.shieldSelector);
+    }
+
+    uncacheShield() {
+      this.cache.shield = null;
+    }
+
+    showShield() {
+      return new Promise((Resolve) => {
+        TweenLite.set(this.cache.shield, {
+          display: 'table',
+          visibility: 'visible',
+          opacity: 0,
+        });
+        TweenLite.to(this.cache.shield, 0.25, {
+          opacity: 1,
+          onCompleteScope: this,
+          onComplete() {
+            Resolve(this);
+          },
+        });
+      });
+    }
+
+    hideShield() {
+      return new Promise((Resolve) => {
+        TweenLite.to(this.cache.shield, 0.35, {
+          opacity: 0,
+          onCompleteScope: this,
+          onComplete() {
+            TweenLite.set(this.cache.shield, {
+              display: 'none',
+              visibility: 'hidden',
+            });
+            Resolve(this);
+          },
+        });
+      });
+    }
+  };
+
+  // # scroll control
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  const PageScroll = {
-    body: document.body,
-
+  const ScrollControl = {
     enable() {
-      this.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';
     },
 
     disable() {
-      this.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
     },
 
     isTop() {
@@ -48,50 +225,59 @@
     },
 
     toTop() {
-      TweenLite.to(window, 0.2, { scrollTo: 0 });
+      if (!this.isTop()) {
+        TweenLite.to(window, 0.2, { scrollTo: 0 });
+      }
+    },
+
+    toSection(SectionId) {
+      TweenLite.to(window, 1, { scrollTo: SectionId });
     },
   };
 
-  // # loader
+    // # font control
+  // https://github.com/typekit/webfontloader
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  function Loader(elementID) {
-    this.element = document.getElementById(elementID);
-  }
-
-  Loader.prototype = {
-    show() {
-      return new Promise((resolve, reject) => {
-        TweenLite.set(this.element, {
-          display: 'table',
-          visibility: 'visible',
-          opacity: 0,
-        });
-        TweenLite.to(this.element, 0.25, {
-          opacity: 1,
-          onCompleteScope: this,
-          onComplete() {
-            resolve(this);
-          },
-        });
-      });
+  const FontControl = {
+    options: {
+      fontConfig: null,
+    },
+    cache: {
+      script: null,
     },
 
-    hide() {
-      return new Promise((resolve, reject) => {
-        TweenLite.to(this.element, 0.35, {
-          opacity: 0,
-          onCompleteScope: this,
-          onComplete() {
-            TweenLite.set(this.element, {
-              display: 'none',
-              visibility: 'hidden',
-            });
-            resolve(this);
-          },
+    init(
+      Url,
+      Options = {
+        fontConfig: null,
+      }) {
+      // script loaded
+      if (this.cache.script && document.contains(this.cache.script)) {
+        return Promise.resolve();
+      }
+      // first script load
+      this.options = Options;
+      return asyncLoadScript(Url)
+        .then((Response) => {
+          this.cache.script = Response;
+          this.initFonts();
+        })
+        .catch((ErrorMsg) => {
+          console.error(ErrorMsg);
         });
-      });
+    },
+
+    dest() {
+      if (this.cache.script && document.contains(this.cache.script)) {
+        this.cache.script.parentNode.removeChild(this.cache.script);
+        this.cache.script = null;
+      }
+    },
+
+    initFonts() {
+      WebFont.load(this.options.fontConfig);
     },
   };
 
@@ -101,6 +287,23 @@
   ////////////////////////////////////////////////////////////
 
   const ViewControl = {
+    isFirst() {
+      return Barba.HistoryManager.prevStatus() === null;
+    },
+
+    getCurUrl() {
+      return Barba.Pjax.getCurrentUrl();
+    },
+
+    getCurUid() {
+      return document.getElementsByClassName(Barba.Pjax.Dom.containerClass)[0]
+        .dataset.uid;
+    },
+
+    getCurPathname() {
+      return this.getCurUrl().split(window.location.origin).pop();
+    },
+
     init() {
       // setup DOM parsing variables for Barba.js
       Barba.Pjax.Dom.wrapperId = 'mainframe-wp';
@@ -108,47 +311,36 @@
       Barba.Pjax.Dom.dataNamespace = 'template';
       Barba.Pjax.ignoreClassLink = 'no-frame-load';
       // initialise internal processes
-      return new Promise((resolve, reject) => {
+      return new Promise((Resolve) => {
         this.templates.init();
         this.transitions.init();
         Barba.Pjax.start();
-        resolve(this);
+        Resolve(this);
       });
     },
 
-    isFirst() {
-      return Barba.HistoryManager.prevStatus() === null;
+    // doesn't fire on initial load
+    onRequested(Callback) {
+      Barba.Dispatcher.on('linkClicked', () => { Callback(); });
     },
 
-    getCurrURL() {
-      return Barba.Pjax.getCurrentUrl();
+    onChange(Callback) {
+      Barba.Dispatcher.on('initStateChange', () => { Callback(); });
     },
 
-    getCurrUID() {
-      return document.getElementsByClassName(Barba.Pjax.Dom.containerClass)[0]
-        .dataset.uid;
+    onReady(Callback) {
+      Barba.Dispatcher.on('newPageReady', () => { Callback(); });
     },
 
-    onRequested(callback) {
-      Barba.Dispatcher.on('linkClicked', () => { callback(); });
-    },
-
-    onChange(callback) {
-      Barba.Dispatcher.on('initStateChange', () => { callback(); });
-    },
-
-    onReady(callback) {
-      Barba.Dispatcher.on('newPageReady', () => { callback(); });
-    },
-
-    onComplete(callback) {
-      Barba.Dispatcher.on('transitionCompleted', () => { callback(); });
+    onComplete(Callback) {
+      Barba.Dispatcher.on('transitionCompleted', () => { Callback(); });
     },
 
     //////////////////////////////
     // sub-module:
     // # transitions
     //////////////////////////////
+
     transitions: {
       store: {
         // fades out current view container,
@@ -170,11 +362,11 @@
           },
 
           hideOld() {
-            return new Promise((resolve) => {
+            return new Promise((Resolve) => {
               TweenLite.to(this.oldContainer, 0.15, {
                 opacity: 0,
                 onComplete() {
-                  resolve(true);
+                  Resolve(true);
                 },
               });
             });
@@ -213,15 +405,15 @@
       },
 
       assignments: {},
-      assign(name, transitionKey) {
-        this.assignments[name] = transitionKey;
+      assign(Name, TransitionKey) {
+        this.assignments[Name] = TransitionKey;
       },
 
       init() {
         Barba.Pjax.getTransition = () => {
-          const currViewName = Barba.HistoryManager.prevStatus().namespace;
-          if (Object.hasOwnProperty.call(this.assignments, currViewName)) {
-            const transitionKey = this.assignments[currViewName];
+          const curViewName = Barba.HistoryManager.prevStatus().namespace;
+          if (Object.hasOwnProperty.call(this.assignments, curViewName)) {
+            const transitionKey = this.assignments[curViewName];
             return this.store[transitionKey];
           }
           return this.store.fade;
@@ -233,11 +425,12 @@
     // sub-module:
     // # templates
     //////////////////////////////
+
     templates: {
       store: {},
-      pushModel(name) {
-        this.store[name] = Barba.BaseView.extend({
-          namespace: name,
+      pushModel(Name) {
+        this.store[Name] = Barba.BaseView.extend({
+          namespace: Name,
           onEnter() {},
           onEnterCompleted() {},
           onLeave() {},
@@ -245,20 +438,119 @@
         });
       },
 
-      getModel(name) {
-        return this.store[name];
+      getModel(Name) {
+        return this.store[Name];
       },
 
-      getCurrModelName() {
+      getCurModelName() {
         return Barba.HistoryManager.currentStatus().namespace;
       },
 
       init() {
         Object.keys(this.store)
-          .forEach((model) => {
-            this.store[model].init();
+          .forEach((Model) => {
+            this.store[Model].init();
           });
       },
+    },
+  };
+
+  // # analytics control
+  // https://developers.google.com/analytics/devguides/collection/gtagjs/
+  ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+
+  const AnalyticsControl = {
+    options: null,
+    cache: {
+      script: null,
+    },
+
+    init(
+      Url,
+      Options = {
+        trackingId: null,
+      }) {
+      // script loaded
+      if (this.cache.script && document.contains(this.cache.script)) {
+        return Promise.resolve();
+      }
+      // first script load
+      this.options = Options;
+      this.initApi();
+      return asyncLoadScript(Url)
+        .then((Response) => {
+          this.cache.script = Response;
+          this.initTracker();
+        })
+        .catch((ErrorMsg) => {
+          console.error(ErrorMsg);
+        });
+    },
+
+    dest() {
+      this.destApi();
+      if (this.cache.script && document.contains(this.cache.script)) {
+        this.cache.script.parentNode.removeChild(this.cache.script);
+        this.cache.script = null;
+      }
+    },
+
+    initApi() {
+      // deconstructed Google Analytics async script
+      // http://code.stephenmorley.org/javascript/understanding-the-google-analytics-tracking-code/
+      // store the name of the Analytics object
+      window.GoogleAnalyticsObject = 'ga';
+      // check whether the Analytics object is defined
+      if (!('ga' in window)) {
+        // define the Analytics object
+        window.ga = function ga(...Args) {
+          // add the tasks to the queue
+          window.ga.q.push(Args);
+        };
+        // create the queue
+        window.ga.q = [];
+      }
+      // store the current timestamp
+      window.ga.l = (new Date()).getTime();
+    },
+
+    destApi() {
+      window.GoogleAnalyticsObject = null;
+      window.ga = null;
+      window.ga.q = null;
+      window.ga.l = null;
+    },
+
+    initTracker() {
+      window.ga('create', {
+        trackingId: this.options.trackingId,
+        cookieDomain: 'auto',
+      });
+    },
+
+    setPageView(Url, Pathname, Title) {
+      window.ga('set', {
+        location: Url,
+        page: Pathname,
+        title: Title,
+      });
+    },
+
+    send(...Data) {
+      window.ga('send', ...Data);
+    },
+
+    sendPageView() {
+      this.send('pageview');
+    },
+
+    sendEvent(Category, Action, Label = '') {
+      this.send('event', {
+        eventCategory: Category,
+        eventAction: Action,
+        eventLabel: Label,
+      });
     },
   };
 
@@ -267,160 +559,175 @@
   ////////////////////////////////////////////////////////////
 
   const NavControl = {
-    links: Array.from(document.getElementsByClassName('nav-a')),
+    cache: {
+      links: null,
+    },
+    domRef: {
+      linkSelector: '.nav__a',
+    },
 
-    enable() {
-      const list = this.links
-        .filter(link => !link.href.length);
-      list.forEach((link) => {
-        // demote active links to default state
-        if (link.dataset.href) {
-          link.href = link.dataset.href;
-          link.removeAttribute('data-href');
+    init() {
+      this.cacheLinks();
+    },
+
+    dest() {
+      this.enableAllLinks();
+      this.cache = null;
+      this.domRef = null;
+    },
+
+    update(Uid) {
+      this.enableAllLinks();
+      this.disableLink(Uid);
+    },
+
+    cacheLinks() {
+      this.cache.links = [...document.querySelectorAll(this.domRef.linkSelector)];
+    },
+
+    enableAllLinks() {
+      const disabledLinks = this.cache.links.filter(Link => !Link.href.length);
+      // swap in stored data-href attribute to href to re-enable default link behavior
+      disabledLinks.forEach((Link) => {
+        if (Link.dataset.href) {
+          Link.href = Link.dataset.href;
+          Link.removeAttribute('data-href');
         }
       });
     },
 
-    disable(UID) {
-      const list = this.links
-        .filter(link => link.dataset.controls === UID);
-      list.forEach((link) => {
-        // promote matched 'named' links to active state
-        link.dataset.href = link.href;
-        link.removeAttribute('href');
+    disableLink(Uid) {
+      const activeLinks = this.cache.links.filter(Link => Link.dataset.controlsUid === Uid);
+      // store href as data-href attribute to disable default link behavior
+      activeLinks.forEach((Link) => {
+        Link.dataset.href = Link.href;
+        Link.removeAttribute('href');
       });
     },
   };
 
-  // # page ready
-  // document has finished loading and the document has been parsed
-  // but sub-resources such as images, stylesheets and frames are still loading
-  ////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////
-
-  function PageReady() {
-    return new Promise((resolve, reject) => {
-      resolve(this);
-    });
-  }
-
-  // # page complete
-  // document and all sub-resources have finished loading,
-  // state indicates that the load event is about to fire
-  ////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////
-
-  function PageComplete() {
-    return new Promise((resolve, reject) => {
-      const complete = setInterval(() => {
-        if (document.readyState === 'complete') {
-          resolve(this);
-          clearInterval(complete);
-        }
-      }, 100);
-    });
-  }
 
   // # contexts
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  // # global
+  // # site wide
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  const preLoader = new Loader('pre-loader');
-  const loader = new Loader('loader');
+  const preLoaderElement = document.querySelector('#pre-loader');
+  const preLoader = new Loader(preLoaderElement);
+  preLoader.domRef.shieldSelector = '.loader';
+  preLoader.init();
+  let viewLoader;
 
+  // doesn't fire on initial load
   ViewControl.onRequested(() => {
-    console.log('view is requested'); // !DEBUG
-  });
-
-  ViewControl.onChange(() => {
-    console.log('view is changing'); // !DEBUG
-    // subsequent view loads
-    if (!ViewControl.isFirst()) {
-      // track new page analytics
-      PushPageView(ViewControl.getCurrURL());
-      // show loader
-      loader.show();
-    }
+    // show loader
+    viewLoader.showShield();
   });
 
   ViewControl.onReady(() => {
-    console.log('view is ready'); // !DEBUG
-    // polyfill <picture> element
+    // polyfill picture element
     picturefill();
+
+    // track analytics
+    const viewUrl = ViewControl.getCurUrl();
+    const viewPathname = ViewControl.getCurPathname();
+    const viewTitle = document.title;
+    AnalyticsControl.setPageView(viewUrl, viewPathname, viewTitle);
+    AnalyticsControl.sendPageView();
   });
 
   ViewControl.onComplete(() => {
-    console.log('view is complete'); // !DEBUG
-    // start views at top
-    if (!PageScroll.isTop()) {
-      PageScroll.toTop();
-    }
+    // scroll page to top
+    ScrollControl.toTop();
 
-    // toggle navigation links
-    NavControl.enable();
-    NavControl.disable(ViewControl.getCurrUID());
+    // update navigation links
+    const uid = ViewControl.getCurUid();
+    NavControl.update(uid);
 
-    // initial view load
     if (ViewControl.isFirst()) {
-      // hide pre-loader
-      preLoader.hide().then(() => {
-        // enable page scroll
-        PageScroll.enable();
-      });
-
-    // subsequent view loads
+      // hide preloader on load
+      preLoader.hideShield()
+        .then(() => {
+          ScrollControl.enable();
+        });
     } else {
       // hide loader
-      loader.hide();
+      viewLoader.hideShield();
     }
   });
 
-  // # template
+  // # view specific
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
   //////////////////////////////
-  // # index template
+  // # index
   //////////////////////////////
-  ViewControl.templates.pushModel('index');
-  ViewControl.transitions.assign('index', 'fade');
 
-  const indexView = ViewControl.templates.getModel('index');
-  indexView.onEnter = () => {
-    console.log('index view is entering'); // !DEBUG
-  };
+  // !example
+  {
+    ViewControl.templates.pushModel('index');
+    const view = ViewControl.templates.getModel('index');
 
-  indexView.onEnterCompleted = () => {
-    console.log('index view has entered'); // !DEBUG
-  };
+    view.onEnter = () => {
+      console.log('index view enter'); // !debug
+    };
 
-  indexView.onLeave = () => {
-    console.log('index view is leaving'); // !DEBUG
-  };
+    view.onEnterCompleted = () => {
+      console.log('index view enter complete'); // !debug
+    };
 
-  indexView.onLeaveCompleted = () => {
-    console.log('index view has left'); // !DEBUG
-  };
+    view.onLeave = () => {
+      console.log('index view leave'); // !debug
+    };
 
+    view.onLeaveCompleted = () => {
+      console.log('index view leave complete'); // !debug
+    };
+  }
 
   // # processes
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////
 
-  PageReady()
+  pageIsReady()
     .then(() => {
-      console.log('page is interactive'); // !DEBUG
-      ViewControl.init();
+      // enable web fonts with loader
+      const wfLoaderScriptUrl = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+      const fontConfig = {
+        custom: {
+          families: [], // !input
+        },
+        timeout: 2000,
+      };
+      FontControl.init(
+        wfLoaderScriptUrl,
+        { fontConfig });
+
+      // enable google analytics with loader
+      const analyticsSciptUrl = 'https://www.google-analytics.com/analytics.js';
+      const analyticsTrackingId = 'UA-XXXXX-Y'; // !input
+      AnalyticsControl.init(
+        analyticsSciptUrl,
+        { trackingId: analyticsTrackingId });
     });
 
-  PageComplete()
+  pageIsComplete()
     .then(() => {
-      console.log('page is complete'); // !DEBUG
+      // initialise nav control
+      NavControl.init();
+
+      // initialise view loader
+      const viewLoaderElement = document.querySelector('#view-loader');
+      viewLoader = new Loader(viewLoaderElement);
+      viewLoader.init();
+
+      // initialise view control
+      ViewControl.init();
     });
 }
