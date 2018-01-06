@@ -73,12 +73,12 @@
     </div>
     <!-- wrapper: start -->
     <div class="
-    pos-relative z-2
-    d-flex flx-dir-row flx-wp-wrap flx-ac-s-between
-    h-100vh-min">
+      pos-relative z-2
+      d-flex flx-dir-row flx-wp-wrap flx-ac-s-between
+      h-100vh-min">
       <!-- top -->
       <div class="
-        pos-relative z-2
+        pos-relative z-1
         g12-12">
         <!-- view mast -->
         <div class="pos-relative z-3">

@@ -17,5 +17,6 @@
     </a>
   </main>
 </div>
+<!-- view: end -->
 
 <?php include 'snippets/foot.php'; ?>
