@@ -8,7 +8,7 @@
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  /* global Barba TweenLite picturefill WebFont google */
+  /* global Barba TweenLite picturefill svg4everybody WebFont google */
 
   // # polyfill, helpers
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -631,6 +631,9 @@
   ViewControl.onReady(() => {
     // polyfill picture element
     picturefill();
+
+    // polyfill svg elements
+    svg4everybody();
 
     // track analytics
     const viewUrl = ViewControl.getCurUrl();
