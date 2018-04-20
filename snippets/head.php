@@ -61,4 +61,33 @@
     file_exists($file) AND include $file;
   ?>
 </head>
-<body class="js-pos-relative js-of-hidden">
+<body class="
+  js-pos-relative js-of-hidden
+  l-h-copy
+  c-near-black">
+    <div class="
+      pos-fixed z-3
+      w-100vw h-100vh pe-none
+      loader__wrap--pre" id="pre-loader">
+      <?php include 'snippets/loader.php'; ?>
+    </div>
+    <!-- wrapper: start -->
+    <div class="
+      pos-relative z-2
+      d-flex flx-dir-row flx-wp-wrap flx-ac-s-between
+      h-100vh-min">
+      <!-- top -->
+      <div class="
+        pos-relative z-1
+        g12-12">
+        <!-- view mast -->
+        <div class="pos-relative z-3">
+          <?php include 'snippets/mast.php'; ?>
+        </div>
+
+        <!-- view loader -->
+        <div class="
+          pos-fixed z-2
+          w-100vw h-100vh pe-none" id="view-loader">
+          <?php include 'snippets/loader.php'; ?>
+        </div>
