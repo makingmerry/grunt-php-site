@@ -21,9 +21,10 @@ assets/javascripts/*
 !snippets/
 !*.php
 
-# track taskrunner(Grunt) configurations
+# track configs
 !package.json
 !package-lock.json
+!npm-shrinkwrap.json
 !Gruntfile.js
 
 # ignore all files starting with . or ~
@@ -58,7 +59,7 @@ Icon*
 *.tar
 *.zip
 
-# track code configurations and documentations
+# track additional config and docs
 !.gitignore
 !.gitkeep
 !.editorconfig
