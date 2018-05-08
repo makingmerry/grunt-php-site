@@ -1,105 +1,66 @@
-# --------------------------------------------------------------------------------
-# .gitignore
-# --------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------
+# blanket blacklist
+*
 
-# ----------------------------------------
-# Project
-# ----------------------------------------
-# ----------------------------------------
-  # --------------------
-  # Blacklist
-  # --------------------
+# track source assets and templates
+!assets/
+assets/*
+!assets/fonts/*
+!assets/sass/*
+!assets/favicons/
+assets/favicons/*
+!assets/favicons/src/
+!assets/symbols/
+assets/symbols/*
+!assets/symbols/src/
+!assets/images/
+assets/images/*
+!assets/images/src/
+!assets/javascripts/
+assets/javascripts/*
+!assets/javascripts/src/
+!snippets/
+!*.php
 
-  # blanket blacklist
-  ----------
-  *
+# track taskrunner(Grunt) configurations
+!package.json
+!package-lock.json
+!Gruntfile.js
 
-  # --------------------
-  # Whitelist
-  # --------------------
+# ignore all files starting with . or ~
+.*
+~*
 
-  # track source assets and templates
-  ----------
-  !assets/
-    assets/*
-    !assets/fonts/*
-    !assets/sass/*
-    !assets/favicons/
-      assets/favicons/*
-      !assets/favicons/src/
-    !assets/symbols/
-      assets/symbols/*
-      !assets/symbols/src/
-    !assets/images/
-      assets/images/*
-      !assets/images/src/
-    !assets/javascripts/
-      assets/javascripts/*
-      !assets/javascripts/src/
-  !snippets/
-  !*.php
+# ignore OS generated files
+ehthumbs.db
+Thumbs.db
+Icon*
 
-  # track taskrunner(Grunt) configurations
-  ----------
-  !package.json
-  !package-lock.json
-  !Gruntfile.js
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
 
+# ignore compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
 
-# ----------------------------------------
-# General
-# ----------------------------------------
-# ----------------------------------------
-  # --------------------
-  # Blacklist
-  # --------------------
+# ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
 
-  # ignore all files starting with . or ~
-  ----------
-  .*
-  ~*
-
-  # ignore OS generated files
-  ----------
-  ehthumbs.db
-  Thumbs.db
-  Icon*
-
-   # ignore log files and databases
-  ----------
-  *.log
-  *.sql
-  *.sqlite
-
-  # ignore compiled files
-  ----------
-  *.com
-  *.class
-  *.dll
-  *.exe
-  *.o
-  *.so
-
-  # ignore packaged files
-  ----------
-  *.7z
-  *.dmg
-  *.gz
-  *.iso
-  *.jar
-  *.rar
-  *.tar
-  *.zip
-
-  # --------------------
-  # Whitelist
-  # --------------------
-  # track code configurations and documentations
-  ----------
-  !.gitignore
-  !.gitkeep
-  !.editorconfig
-  !README.md
-  !CHANGELOG.md
+# track code configurations and documentations
+!.gitignore
+!.gitkeep
+!.editorconfig
+!README.md
+!CHANGELOG.md
