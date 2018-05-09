@@ -1,5 +1,5 @@
 # blanket blacklist
-*
+/*
 
 # track source assets and templates
 !assets/
