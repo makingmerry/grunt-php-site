@@ -366,17 +366,7 @@ module.exports = function(grunt) {
       },
       // js
       libraryJs: {
-        src: [
-          // polyfills
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/picturefill.js',
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/svg4everybody.js',
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/polyfill.array.from.js',
-          // features
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/barba.js',
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/TweenLite.js',
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/CSSPlugin.js',
-          '<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/ScrollToPlugin.js',
-        ],
+        src: ['<%= config.assets %>/<%= config.jsDir %>/<%= config.source %>/<%= config.library %>/*.js'],
         dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js',
       },
       js: {
@@ -393,9 +383,7 @@ module.exports = function(grunt) {
     //////////////////////////////
     clean: {
       // media
-      favicons: [
-        '<%= config.assets %>/<%= config.faviDir %>/<%= config.build %>/*',
-      ],
+      favicons: ['<%= config.assets %>/<%= config.faviDir %>/<%= config.build %>/*'],
       symbols: [
         '<%= config.assets %>/<%= config.symbDir %>/<%= config.temporary %>/*',
         '<%= config.assets %>/<%= config.symbDir %>/<%= config.build %>/*',
@@ -421,13 +409,9 @@ module.exports = function(grunt) {
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.temporary %>/critical/*',
         '<%= config.assets %>/<%= config.cssDir %>/<%= config.build %>/critical/*',
       ],
-      css: [
-        '<%= config.assets %>/<%= config.cssDir %>/*',
-      ],
+      css: ['<%= config.assets %>/<%= config.cssDir %>/*'],
       // js
-      libraryJs: [
-        '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js',
-      ],
+      libraryJs: ['<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/library.js'],
       projectJs: [
         '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js',
         '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/project.js.map',
