@@ -167,7 +167,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.assets %>/<%= config.imgDir %>/<%= config.source %>/',
-          src: ['*.{png,jpg,gif,}'],
+          src: ['*.{png,jpg,gif}'],
           dest: '<%= config.assets %>/<%= config.imgDir %>/<%= config.build %>/',
         }],
       },
@@ -193,7 +193,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.assets %>/<%= config.imgDir %>/<%= config.temporary %>/',
-          src: ['*.{png,jpg,gif,}'],
+          src: ['*.{png,jpg,gif}'],
           dest: '<%= config.assets %>/<%= config.imgDir %>/<%= config.build %>/',
         }],
       },

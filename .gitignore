@@ -1,31 +1,73 @@
 # blanket blacklist
 /*
 
-# track source assets and templates
+# track templates and snippets
+!*.php
+!*.html
+!snippets/
+snippets/*
+!snippets/*.php
+!snippets/*.html
+
+# track assets
 !assets/
 assets/*
-!assets/fonts/*
-!assets/sass/*
-!assets/favicons/
-assets/favicons/*
-!assets/favicons/src/
-!assets/symbols/
-assets/symbols/*
-!assets/symbols/src/
+
+# track source image assets
 !assets/images/
 assets/images/*
 !assets/images/src/
+assets/images/src/*
+!assets/images/src/*.png
+!assets/images/src/*.jpg
+!assets/images/src/*.gif
+!assets/images/src/*.svg
+
+# track source favicon assets
+!assets/favicons/
+assets/favicons/*
+!assets/favicons/src/
+assets/favicons/src/*
+!assets/favicons/src/*.png
+!assets/favicons/src/*.ico
+
+# track source symbol assets
+!assets/symbols/
+assets/symbols/*
+!assets/symbols/src/
+assets/symbols/src/*
+!assets/symbols/src/*.svg
+
+# track source font assets
+!assets/fonts/
+assets/fonts/*
+!assets/fonts/*.woff
+!assets/fonts/*.woff2
+!assets/fonts/*.svg
+!assets/fonts/*.svgz
+!assets/fonts/*.eot
+!assets/fonts/*.otf
+!assets/fonts/*.ttf
+
+# track source sass assets
+!assets/sass/
+assets/sass/*
+!assets/sass/*.scss
+!assets/sass/*/
+assets/sass/*/*
+!assets/sass/*/*.scss
+
+# track source javascript assets
 !assets/javascripts/
 assets/javascripts/*
 !assets/javascripts/src/
-!snippets/
-!*.php
-
-# track configs
-!package.json
-!package-lock.json
-!npm-shrinkwrap.json
-!Gruntfile.js
+assets/javascripts/src/*
+!assets/javascripts/src/*.js
+!assets/javascripts/src/*.json
+!assets/javascripts/src/lib/
+assets/javascripts/src/lib/*
+!assets/javascripts/src/lib/*.js
+!assets/javascripts/src/lib/*.json
 
 # ignore all files starting with . or ~
 .*
@@ -59,7 +101,11 @@ Icon*
 *.tar
 *.zip
 
-# track additional config and docs
+# track configuration
+!package.json
+!package-lock.json
+!npm-shrinkwrap.json
+!Gruntfile.js
 !.gitignore
 !.gitkeep
 !.editorconfig
