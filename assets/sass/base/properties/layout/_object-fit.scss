@@ -1,0 +1,33 @@
+// # object_ fit
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+@include make-responsive-rulesets((
+  (
+    'selector': '.obj-f-none',
+    'declarations': (
+      object-fit: none,
+    ),
+  ), (
+    'selector': '.obj-f-fill',
+    'declarations': (
+      object-fit: fill,
+    ),
+  ), (
+    'selector': '.obj-f-contain',
+    'declarations': (
+      object-fit: contain,
+    ),
+  ),  (
+    'selector': '.obj-f-cover',
+    'declarations': (
+      object-fit: cover,
+    ),
+  ),  (
+    'selector': '.obj-f-scale-down',
+    'declarations': (
+      object-fit: scale-down,
+    ),
+  ), 
+), $screen-sizes);

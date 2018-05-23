@@ -51,11 +51,6 @@ assets/fonts/*
 
 # track source sass assets
 !assets/sass/
-assets/sass/*
-!assets/sass/*.scss
-!assets/sass/*/
-assets/sass/*/*
-!assets/sass/*/*.scss
 
 # track source javascript assets
 !assets/javascripts/
