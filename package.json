@@ -6,7 +6,7 @@
     "url": "https://github.com/makingmerry/tool_bob/"
   },
   "license": "MIT",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "babel": {
     "presets": [
       "es2015"

@@ -230,8 +230,8 @@
       }
     },
 
-    toSection(SectionId) {
-      TweenLite.to(window, 1, { scrollTo: SectionId });
+    toSection(ID) {
+      TweenLite.to(window, 1, { scrollTo: ID });
     },
   };
 
@@ -305,11 +305,25 @@
     },
 
     init() {
+      // !Hotfix: Browser loads new page if a link contains a hash.
+      // https://github.com/luruke/barba.js/issues/53
+      Barba.Pjax.originalPreventCheck = Barba.Pjax.preventCheck;
+      Barba.Pjax.preventCheck = (event, element) => {
+        if (element !== null) {
+          const href = element.getAttribute('href');
+          if (href && href.indexOf('#') > -1) {
+            return true;
+          }
+        }
+        return Barba.Pjax.originalPreventCheck(event, element);
+      };
+
       // setup DOM parsing variables for Barba.js
       Barba.Pjax.Dom.wrapperId = 'mainframe-wp';
       Barba.Pjax.Dom.containerClass = 'mainframe';
       Barba.Pjax.Dom.dataNamespace = 'template';
       Barba.Pjax.ignoreClassLink = 'no-frame-load';
+
       // initialise internal processes
       return new Promise((Resolve) => {
         this.templates.init();
@@ -644,8 +658,13 @@
   });
 
   ViewControl.onComplete(() => {
-    // scroll page to top
-    ScrollControl.toTop();
+    // Anchor page to hash section or page top on every load.
+    const { hash } = window.location;
+    if (hash !== '' && document.querySelector(hash) !== null) {
+      ScrollControl.toSection(hash);
+    } else {
+      ScrollControl.toTop();
+    }
 
     // update navigation links
     const uid = ViewControl.getCurUid();
