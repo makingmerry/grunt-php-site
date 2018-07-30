@@ -1,7 +1,4 @@
-<!-- base -->
-<footer>
-  base
-  <!-- navigation -->
+<nav>
   <ul>
     <li class="d-i-block">
       <a class="nav__a" data-controls-uid="index" href="/">
@@ -18,4 +15,4 @@
       </a>
     </li>
   </ul>
-</footer>
+</nav>

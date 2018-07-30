@@ -5,13 +5,13 @@
 !*.php
 !*.html
 !snippets/
-snippets/*
-!snippets/*.php
-!snippets/*.html
 
 # track assets
 !assets/
 assets/*
+
+# track utilities
+!utilities/
 
 # track source image assets
 !assets/images/

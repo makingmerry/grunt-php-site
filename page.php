@@ -1,22 +1,28 @@
 <?php
-  $template = 'page';
-  $uid = 'default';
-  $title = 'Default';
+  // Core utility modules:
   include 'config.php';
-  include 'snippets/head.php';
+  include 'helpers.php';
+
+  // Data:
+  $data = [
+    'template' => 'Value',
+    'uid' => 'home',
+    'title' => 'Home',
+    'desc' => 'Home description',
+  ];
+
+  snippet('layouts/head', $data);
 ?>
 
-<!-- view -->
 <div class="pos-relative z-1" id="mainframe-wp">
-  <main class="mainframe" data-template="<?php echo $template; ?>" data-uid="<?php echo $uid; ?>">
+  <main class="mainframe" data-template="<?php echo $data['template']; ?>" data-uid="<?php echo $data['uid']; ?>">
     <h1>
-      <?php echo $title; ?> page
+      <?php echo $data[title]; ?> page
     </h1>
-    <a href="/">
-      go to index page
+    <a href="/index.php">
+      go to home page
     </a>
   </main>
 </div>
-<!-- view: end -->
 
-<?php include 'snippets/foot.php'; ?>
+<?php snippet('layouts/foot'); ?>

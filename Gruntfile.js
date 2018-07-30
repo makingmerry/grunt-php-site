@@ -139,18 +139,18 @@ module.exports = function(grunt) {
     //////////////////////////////
     svg2png: {
       symbols: {
-        files: [{ 
+        files: [{
           flatten: true,
-          cwd: '<%= config.assets %>/<%= config.symbDir %>/<%= config.source %>/', 
-          src: ['*.svg'], 
+          cwd: '<%= config.assets %>/<%= config.symbDir %>/<%= config.source %>/',
+          src: ['*.svg'],
           dest: '<%= config.assets %>/<%= config.symbDir %>/<%= config.temporary %>/',
         }]
       },
       graphics: {
-        files: [{ 
+        files: [{
           flatten: true,
-          cwd: '<%= config.assets %>/<%= config.imgDir %>/<%= config.source %>/', 
-          src: ['*.svg'], 
+          cwd: '<%= config.assets %>/<%= config.imgDir %>/<%= config.source %>/',
+          src: ['*.svg'],
           dest: '<%= config.assets %>/<%= config.imgDir %>/<%= config.temporary %>/',
         }]
       },
@@ -377,7 +377,7 @@ module.exports = function(grunt) {
         dest: '<%= config.assets %>/<%= config.jsDir %>/<%= config.temporary %>/global.js',
       },
     },
-    
+
     //////////////////////////////
     // # clean
     //////////////////////////////
@@ -439,7 +439,7 @@ module.exports = function(grunt) {
           // js
           '<%= config.assets %>/<%= config.jsDir %>/<%= config.build %>/*',
           // models
-          '<%= config.snipDir %>/*.{html,php}',
+          '<%= config.snipDir %>/**/*.{html,php}',
           '*.{html,php}',
         ],
         dest: 'build/',
@@ -513,7 +513,7 @@ module.exports = function(grunt) {
       models: {
         files: [
           '*.{html,php}',
-          '<%= config.snipDir %>/*.{html,php}',
+          '<%= config.snipDir %>/**/*.{html,php}',
         ],
       },
     },
@@ -535,7 +535,7 @@ module.exports = function(grunt) {
             '<%= config.assets %>/<%= config.jsDir %>/<%= config.build %>/*.{js}',
             // models
             '*.{html,php}',
-            '<%= config.snipDir %>/*.{html,php}',
+            '<%= config.snipDir %>/**/*.{html,php}',
           ],
         },
         options: {

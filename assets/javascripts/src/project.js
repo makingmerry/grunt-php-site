@@ -687,28 +687,28 @@
   ////////////////////////////////////////////////////////////
 
   //////////////////////////////
-  // # index
+  // # home
   //////////////////////////////
 
   // !example
   {
-    ViewControl.templates.pushModel('index');
-    const view = ViewControl.templates.getModel('index');
+    ViewControl.templates.pushModel('home');
+    const view = ViewControl.templates.getModel('home');
 
     view.onEnter = () => {
-      console.log('index view enter'); // !debug
+      console.log('home view enter'); // !debug
     };
 
     view.onEnterCompleted = () => {
-      console.log('index view enter complete'); // !debug
+      console.log('home view enter complete'); // !debug
     };
 
     view.onLeave = () => {
-      console.log('index view leave'); // !debug
+      console.log('home view leave'); // !debug
     };
 
     view.onLeaveCompleted = () => {
-      console.log('index view leave complete'); // !debug
+      console.log('home view leave complete'); // !debug
     };
   }
 

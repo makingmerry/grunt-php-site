@@ -1,11 +1,10 @@
-<!-- loader -->
 <div class="
   pos-relative
   d-none w-100 h-100 vis-hidden pe-auto
   bg-c-white
   loader">
-  <!-- graphic -->
   <div class="d-t-cell va-middle">
+    <?php // Spinner: ?>
     <div class="
       ha-center of-hidden
       whirligig">

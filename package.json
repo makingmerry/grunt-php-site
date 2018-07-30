@@ -6,7 +6,7 @@
     "url": "https://github.com/makingmerry/tool_bob/"
   },
   "license": "MIT",
-  "version": "2.1.7",
+  "version": "2.2.0",
   "babel": {
     "presets": [
       "es2015"
@@ -67,7 +67,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "grunt-babel": "^6.0.0",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-clean": "^1.1.0",
@@ -77,7 +77,7 @@
     "grunt-contrib-nodeunit": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^3.0.1",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-criticalcss": "^2.1.0",
     "grunt-eslint": "^19.0.0",
     "grunt-php": "^1.5.1",
