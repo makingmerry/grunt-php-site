@@ -4,20 +4,20 @@
   include 'helpers.php';
 
   // Data:
-  $data = [
+  $site_data = [
     'template' => 'Value',
     'uid' => 'home',
     'title' => 'Home',
     'desc' => 'Home description',
   ];
 
-  snippet('layouts/head', $data);
+  snippet('layouts/head', $site_data);
 ?>
 
 <div class="pos-relative z-1" id="mainframe-wp">
-  <main class="mainframe" data-template="<?php echo $data['template']; ?>" data-uid="<?php echo $data['uid']; ?>">
+  <main class="mainframe" data-template="<?php echo $site_data['template']; ?>" data-uid="<?php echo $site_data['uid']; ?>">
     <h1>
-      <?php echo $data[title]; ?> page
+      <?php echo $site_data['title']; ?> page
     </h1>
     <a href="/page.php">
       go to default page
