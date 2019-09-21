@@ -6,9 +6,7 @@
 // # color
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
-$brand-colors: (
-  // ...
-);
+$brand-colors: ();
 
 $neutral-colors: (
   'black': #000,
@@ -22,7 +20,6 @@ $neutral-colors: (
   'light-grey': #eee,
   'near-white': #f4f4f4,
   'white': #fff,
-  // ...
 );
 
 $notification-colors: (
@@ -32,14 +29,12 @@ $notification-colors: (
   'dark-green':  #137752,
   'green': #19a974,
   'light-green': #9eebcf,
-  // ...
 );
 
 $colors: concat-maps(
   $brand-colors,
   $neutral-colors,
   $notification-colors
-  // ...
 );
 
 // # border
@@ -47,21 +42,19 @@ $colors: concat-maps(
 ////////////////////////////////////////////////////////////
 $border-widths: (
   '0': 0,
-  '1': 0.125em,
-  '2': 0.25em,
-  '3': 0.5em,
-  '4': 1em,
-  '5': 2em,
-  // ...
+  '1': 0.125rem,
+  '2': 0.25rem,
+  '3': 0.5rem,
+  '4': 1rem,
+  '5': 2rem,
 );
 
 $border-radii: (
   '0': 0,
-  '1': 0.125em,
-  '2': 0.25em,
-  '3': 0.5em,
-  '4': 1em,
-  // ...
+  '1': 0.125rem,
+  '2': 0.25rem,
+  '3': 0.5rem,
+  '4': 1rem,
 );
 
 // # opacity
@@ -73,7 +66,6 @@ $opacities: (
   '2': 0.6,
   '3': 0.85,
   '4': 1,
-  // ...
 );
 
 // # transition
@@ -84,5 +76,4 @@ $transition-durations: (
   '1': 0.15s,
   '2': 0.35s,
   '3': 0.85s,
-  // ...
 );

@@ -5,17 +5,22 @@
 
   // Data:
   $site_data = [
-    'template' => 'Value',
-    'uid' => 'default',
-    'title' => 'Default',
-    'desc' => 'Default description',
+    'template' => 'page',
+    'uid' => 'page',
+    'title' => 'Page',
+    'desc' => 'Page description',
   ];
 
   snippet('layouts/head', $site_data);
 ?>
 
-<div class="pos-relative z-1" id="mainframe-wp">
-  <main class="mainframe" data-template="<?php echo $site_data['template']; ?>" data-uid="<?php echo $site_data['uid']; ?>">
+<div
+  class="pos-relative z-1"
+  id="mainframe-wp">
+  <main
+    class="mainframe"
+    data-template="<?php echo $site_data['template']; ?>"
+    data-uid="<?php echo $site_data['uid']; ?>">
     <h1>
       <?php echo $site_data['title']; ?> page
     </h1>
