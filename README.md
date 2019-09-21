@@ -1,4 +1,45 @@
-# Bob
+# Grunt PHP site
+
+Grunt taskrunner starter-kit for generating .php websites.
+
+## Table of contents
+
+1. [Installation](#user-content-installation)
+2. [Project structure](#user-content-project-structure)
+3. [Tasks](#user-content-tasks)
+4. [Features](#user-content-features)
+  1. [General](#user-content-general)
+  2. [Markup](#user-content-markup)
+  3. [Images](#user-content-media)
+  4. [CSS](#user-content-css)
+  5. [Javascript](#user-content-javascript)
+
+## Installation
+TBC
+
+## Project structure
+TBC
+
+## Tasks
+TBC
+
+## Features
+### General
+TBC
+
+### Markup
+TBC
+
+### Images
+TBC
+
+### CSS
+TBC
+
+### Javascript
+TBC
+
+<!-- # Bob
 
 Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configuration for developing multi-page PHP websites.
 
@@ -57,7 +98,7 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
   | cssDir    | string | 'symbols'       | Folder containing compiled CSS.        |
   | fontDir   | string | 'images'        | Folder containing font files.          |
 
-  ### JS    
+  ### JS
   | @param    | Type   | Default value   | Description                            |
   | --------- | ------ | --------------- | -------------------------------------- |
   | jsDir     | string | 'javascripts'   | Folder containing JS modules.          |
@@ -144,4 +185,6 @@ Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configurat
 ---
 
 ## Resources
-*Coming soon*
+*Coming soon* -->
+
+
