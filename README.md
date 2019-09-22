@@ -5,9 +5,8 @@ Grunt taskrunner starter-kit for generating .php websites.
 ## Table of contents
 
 1. [Installation](#user-content-installation)
-2. [Project structure](#user-content-project-structure)
-3. [Tasks](#user-content-tasks)
-4. [Features](#user-content-features):
+2. [Tasks](#user-content-tasks)
+3. [Features](#user-content-features):
     1. [General](#user-content-general)
     2. [Markup](#user-content-markup)
     3. [Images](#user-content-media)
@@ -18,17 +17,23 @@ Grunt taskrunner starter-kit for generating .php websites.
 You will need [Node](https://docs.npmjs.com/getting-started/installing-node), [Sass](http://sass-lang.com/install) and [Sass](http://sass-lang.com/install) installed on your local development machine.
 
 To get your starter-kit up and running:
-```
-npm install // To install all package dependencies.
-grunt init  // To compile and process core project assets.
-grunt       // To start development process.
-```
 
-## Project structure
-TBC
+```
+npm install
+grunt init
+grunt
+```
 
 ## Tasks
-TBC
+
+**Compile and process initial core project assets**
+```grunt init```
+
+**Build production optimised project assets and files**
+```grunt build```
+
+**Start development server and watch on assets and files**
+```grunt```
 
 ## Features
 ### General

@@ -1,16 +1,12 @@
 <?php
-  // Core utility modules:
-  include 'config.php';
-  include 'helpers.php';
-
-  // Data:
+  include 'utilities/config.php';
+  include 'utilities/helpers.php';
   $site_data = [
     'template' => 'home',
     'uid' => 'home',
     'title' => 'Home',
     'desc' => 'Home description',
   ];
-
   snippet('layouts/head', $site_data);
 ?>
 

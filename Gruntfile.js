@@ -442,7 +442,7 @@ module.exports = function (grunt) {
     // # copy
     //////////////////////////////
     copy: {
-      deploy: {
+      build: {
         expand: true,
         src: [
           // media
@@ -674,7 +674,7 @@ module.exports = function (grunt) {
     'build-img',
     'build-css',
     'build-js',
+    'copy:build',
   ]);
-  grunt.registerTask('deploy', ['build', 'copy:deploy']);
   grunt.registerTask('default', ['php', 'browserSync', 'watch']);
 };

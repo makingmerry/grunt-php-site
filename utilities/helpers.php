@@ -1,5 +1,5 @@
 <?php
-  require_once('utilities/scoped_include/index.php');
+  require_once('scoped_include/index.php');
 
   // Include snippet with scoped data.
   function snippet($name, $data = [], $return = false) {
