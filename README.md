@@ -1,6 +1,6 @@
 # Grunt PHP site
 
-Grunt taskrunner starter-kit for generating .php websites.
+Grunt taskrunner starter-kit for generating .php websites
 
 ## Table of contents
 
@@ -34,61 +34,65 @@ grunt
 
 ## Features
 1. **General**
-    1. Generates favicon variants and application icons.
-    2. Starts development server with hot reloading in browser.
+    1. Generates favicon variants and application icons
+    2. Starts development server with hot reloading in browser
 
 2. **Markup**
-    1. Basic site structure for building websites.
-    2. Scoped snippet include function to support building with reusable components.
+    1. Basic site structure for building websites
+    2. Scoped snippet include function to support building with reusable components
 
 3. **Images**
-    1. Compiles spritesheet from individual .svg icon assets.
-    2. Optimises vector and bitmap image assets.
-    3. Generates vector image fallbacks.
+    1. Compiles spritesheet from individual .svg icon assets
+    2. Optimises vector and bitmap image assets
+    3. Generates vector image fallbacks
 
 4. **CSS**
-    1. Compiles from Sass.
-    2. Configurable critical CSS generation.
-    3. Generates atomic CSS classnames.
+    1. Compiles from Sass
+    2. Configurable critical CSS generation
+    3. Generates atomic CSS classnames
 
 5. **Javascript**
-    1. Transpiles from ES6.
-    2. Configurable smooth page load transitions.
-    3. Configurable Google Analytics implementation.
-    4. Configurable Web Font loader implementation.
+    1. Transpiles from ES6
+    2. Configurable smooth page load transitions
+    3. Configurable Google Analytics implementation
+    4. Configurable Web Font loader implementation
 
 ## Detailed features
 ### General
-Generates favicon variants and application icons.
-Starts development server with hot reloading in browser.
+#### Generates favicon variants and application icons
+- Include initial favicon image to ```/assets/favicons/src.```
+- Recommended dimensions for initial favicon image: ```260x260```
+- Uses [Real Favicon Generator](https://realfavicongenerator.net/favicon/grunt)
+
+#### Starts development server with hot reloading in browser
 
 ### Markup
-#### Basic site structure for building websites.
+#### Basic site structure for building websites
 
-#### Scoped snippet include function to support building with reusable components.
+#### Scoped snippet include function to support building with reusable components
 
 ### Images
-#### Compiles spritesheet from individual .svg icon assets.
+#### Compiles spritesheet from individual .svg icon assets
 
-#### Optimises vector and bitmap image assets.
+#### Optimises vector and bitmap image assets
 
-#### Generates vector image fallbacks.
+#### Generates vector image fallbacks
 
 ### CSS
-#### Compiles from Sass.
+#### Compiles from Sass
 
-#### Configurable critical CSS generation.
+#### Configurable critical CSS generation
 
-#### Generates atomic CSS classnames.
+#### Generates atomic CSS classnames
 
 ### Javascript
-#### Transpiles from ES6.
+#### Transpiles from ES6
 
-#### Configurable smooth page load transitions.
+#### Configurable smooth page load transitions
 
-#### Configurable Google Analytics implementation.
+#### Configurable Google Analytics implementation
 
-#### Configurable Web Font loader implementation.
+#### Configurable Web Font loader implementation
 
 
 <!-- # Bob
