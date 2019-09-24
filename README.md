@@ -7,6 +7,7 @@ Grunt taskrunner starter-kit for generating .php websites.
 1. [Installation](#user-content-installation)
 2. [Tasks](#user-content-tasks)
 3. [Features](#user-content-features):
+4. [Detailed features](#user-content-detailed-features):
     1. [General](#user-content-general)
     2. [Markup](#user-content-markup)
     3. [Images](#user-content-media)
@@ -32,34 +33,65 @@ grunt
 | ```grunt```        | Start development server and watch on assets and files |
 
 ## Features
+1. **General**
+    1. Generates favicon variants and application icons.
+    2. Starts development server with hot reloading in browser.
+
+2. **Markup**
+    1. Basic site structure for building websites.
+    2. Scoped snippet include function to support building with reusable components.
+
+3. **Images**
+    1. Compiles spritesheet from individual .svg icon assets.
+    2. Optimises vector and bitmap image assets.
+    3. Generates vector image fallbacks.
+
+4. **CSS**
+    1. Compiles from Sass.
+    2. Configurable critical CSS generation.
+    3. Generates atomic CSS classnames.
+
+5. **Javascript**
+    1. Transpiles from ES6.
+    2. Configurable smooth page load transitions.
+    3. Configurable Google Analytics implementation.
+    4. Configurable Web Font loader implementation.
+
+## Detailed features
 ### General
-- * Favicon generation.
-- * Development server.
-- * Hot reloading.
+Generates favicon variants and application icons.
+Starts development server with hot reloading in browser.
 
 ### Markup
-- * Base site structure.
-- * Scoped snippet includes.
+#### Basic site structure for building websites.
+
+#### Scoped snippet include function to support building with reusable components.
 
 ### Images
-- Compiles spritesheet from individual .svg icon assets.
-- Optimises vector and bitmap image assets.
-- Generates vector image fallbacks.
+#### Compiles spritesheet from individual .svg icon assets.
+
+#### Optimises vector and bitmap image assets.
+
+#### Generates vector image fallbacks.
 
 ### CSS
-- Compiles from Sass.
-- Configurable critical CSS generation.
-- Generates atomic CSS classnames.
+#### Compiles from Sass.
+
+#### Configurable critical CSS generation.
+
+#### Generates atomic CSS classnames.
 
 ### Javascript
-- Transpiles from ES6.
-- Configurable smooth page load transitions.
-- Configurable Google Analytics implementation.
-- Configurable Web Font loader implementation.
-- * Prettier config.
+#### Transpiles from ES6.
+
+#### Configurable smooth page load transitions.
+
+#### Configurable Google Analytics implementation.
+
+#### Configurable Web Font loader implementation.
+
 
 <!-- # Bob
-
 
 ## Features
 ### Media
