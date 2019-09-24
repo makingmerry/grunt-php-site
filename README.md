@@ -38,8 +38,8 @@ grunt
     2. Starts development server with hot reloading in browser
 
 2. **Markup**
-    1. Basic site structure for building websites
-    2. Scoped snippet include function to support building with reusable components
+    1. Scoped snippet include function to support building with reusable components
+    2. Starter template structure
 
 3. **Images**
     1. Compiles spritesheet from individual .svg icon assets
@@ -68,32 +68,42 @@ grunt
 - Hot-reloading in browser when files are updated with [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
 
 ### Markup
-#### Basic site structure for building websites
-*TBC*
-
 #### Reusable snippets
 - Snippets can be written to the ```/snippets``` folder, in the appropriate archetype folder.
 
-    **Syntax for writing snippets:**
+    **Writing snippets:**
     ```
     <?php
       // Define expected prop keys and default values
       ${:key} = ${:key} ?? ${:default_value};
     ?>
-    <div><?php echo ${:key}; // User prop values in mark-up ?></div>
+    <div>
+      <?php
+        // Use prop values in mark-up
+        echo ${:key};
+      ?>
+    </div>
     ```
 
 - Snippets can be included onto templates or other snippets with the syntax:
 
-    **Syntax for adding snippet:**
+    **Adding snippets:**
     ```
     <?php
       $data = [
-        ${:key} => ${:value}, // data key-value pairs are passed and scoped to snippet files as prop variables.
+        // data array key-value pairs are passed and scoped to
+        // snippet files as prop variables
+        ${:key} => ${:value},
       ];
-      snippet('path/to/snippet', $data); // path string is relative to /snippets folder
+      // path string is relative to /snippets folder
+      snippet('path/to/snippet', $data);
     ?>
     ```
+
+#### Starter template structure
+- Includes commonly used core snippets and a basic site structure for
+    - Rapidly developing websites
+    - Supporting other project features (e.g. favicon generation and injection)
 
 ### Images
 #### Compiles spritesheet from individual .svg icon assets
