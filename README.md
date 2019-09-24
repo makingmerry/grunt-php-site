@@ -60,16 +60,35 @@ grunt
 ## Detailed features
 ### General
 #### Generates favicon variants and application icons
-- Include initial favicon image to ```/assets/favicons/src.```
+- Include initial favicon image to ```/assets/favicons/src``` with [grunt-real-favicon](https://github.com/RealFaviconGenerator/grunt-real-favicon)
 - Recommended dimensions for initial favicon image: ```260x260```
-- Uses [Real Favicon Generator](https://realfavicongenerator.net/favicon/grunt)
 
-#### Starts development server with hot reloading in browser
+#### Starts development server with hot-reloading in browser
+- Serves php files with [grunt-php](https://github.com/sindresorhus/grunt-php)
+- Hot-reloading in browser when files are updated with [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
 
 ### Markup
 #### Basic site structure for building websites
+*TBC*
 
-#### Scoped snippet include function to support building with reusable components
+#### Supports scoped reusable php components(snippets)
+- In-built scoped include utility:
+    **Syntax for writing snippets:**
+    ```
+    <?php
+      $key<string> = $key<string> ?? value<any>;
+    ?>
+    <div><?php echo $key; ?></div>
+    ```
+    **Syntax for including snippet:**
+    ```
+    <?php
+      $data = [
+        key<string> => value<any>, // key-pair values are passed to snippets as scoped variables.
+      ];
+      snippet(path<string>, $data);
+    ?>
+    ```
 
 ### Images
 #### Compiles spritesheet from individual .svg icon assets

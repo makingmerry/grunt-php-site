@@ -1,9 +1,3 @@
-<?php
-  // Parameters:
-  // $title: String
-  // $desc: String
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
