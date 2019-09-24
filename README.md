@@ -25,97 +25,41 @@ grunt
 ```
 
 ## Tasks
-
-**Compile and process initial core project assets**
-```grunt init```
-
-**Build production optimised project assets and files**
-```grunt build```
-
-**Start development server and watch on assets and files**
-```grunt```
+| Task               | Description                                            |
+| ------------------ | ------------------------------------------------------ |
+| ```grunt init```   | Compile and process initial core project assets        |
+| ```grunt build```  | Build production optimised project assets and files    |
+| ```grunt```        | Start development server and watch on assets and files |
 
 ## Features
 ### General
-TBC
+- * Favicon generation.
+- * Development server.
+- * Hot reloading.
 
 ### Markup
-TBC
+- * Base site structure.
+- * Scoped snippet includes.
 
 ### Images
-TBC
+- Compiles spritesheet from individual .svg icon assets.
+- Optimises vector and bitmap image assets.
+- Generates vector image fallbacks.
 
 ### CSS
-TBC
+- Compiles from Sass.
+- Configurable critical CSS generation.
+- Generates atomic CSS classnames.
 
 ### Javascript
-TBC
+- Transpiles from ES6.
+- Configurable smooth page load transitions.
+- Configurable Google Analytics implementation.
+- Configurable Web Font loader implementation.
+- * Prettier config.
 
 <!-- # Bob
 
-Framework and [Grunt](http://gruntjs.com/getting-started) task-runner configuration for developing multi-page PHP websites.
-
----
-
-## Table of contents
-1. [Installation](#user-content-installation)
-2. [Configuration](#user-content-configuration)
-3. [Features](#user-content-features)
-4. [Resources](#user-content-resources)
-
----
-
-## Installation
-  ### Prerequisites
-  - [Node.js](https://docs.npmjs.com/getting-started/installing-node)
-  - [Grunt](http://gruntjs.com/getting-started)
-  - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
-  - [Sass](http://sass-lang.com/install)
-
-  ### Install
-  1. `git clone` project to local directory.
-  2. run `npm install` to install node modules.
-  3. run `grunt init` to generate needed assets.
-  4. run `grunt` to start server and watcher.
-
----
-
-## Configuration
-  ### General
-  | @param    | Type   | Default value   | Description                            |
-  | --------- | ------ | --------------- | -------------------------------------- |
-  | path      | string | 'localhost'     | Path to project.                       |
-  | assets    | string | 'assets'        | Assets folder name.                    |
-  | library   | string | 'lib'           | Library modules folder name.           |
-  | source    | string | 'src'           | Source folder name.                    |
-  | temporary | string | 'tmp'           | Temporary folder name.                 |
-  | build     | string | 'build'         | Build folder name.                     |
-
-  ### Structure
-  | @param    | Type   | Default value   | Description                            |
-  | --------- | ------ | --------------- | -------------------------------------- |
-  | snipDir   | string | 'snippets'      | Folder containing snippet blocks.      |
-
-  ### Media
-  | @param    | Type   | Default value   | Description                            |
-  | --------- | ------ | --------------- | -------------------------------------- |
-  | faviDir   | string | 'favicons'      | Folder containing the favicon image.   |
-  | symbDir   | string | 'symbols'       | Folder containing graphic symbols.     |
-  | imgDir    | string | 'images'        | Folder containing images and graphics. |
-
-  ### CSS
-  | @param    | Type   | Default value   | Description                            |
-  | --------- | ------ | --------------- | -------------------------------------- |
-  | sassDir   | string | 'favicons'      | Folder containing Sass partials.       |
-  | cssDir    | string | 'symbols'       | Folder containing compiled CSS.        |
-  | fontDir   | string | 'images'        | Folder containing font files.          |
-
-  ### JS
-  | @param    | Type   | Default value   | Description                            |
-  | --------- | ------ | --------------- | -------------------------------------- |
-  | jsDir     | string | 'javascripts'   | Folder containing JS modules.          |
-
----
 
 ## Features
 ### Media
