@@ -71,22 +71,27 @@ grunt
 #### Basic site structure for building websites
 *TBC*
 
-#### Supports scoped reusable php components(snippets)
-- In-built scoped include utility:
+#### Reusable snippets
+- Snippets can be written to the ```/snippets``` folder, in the appropriate archetype folder.
+
     **Syntax for writing snippets:**
     ```
     <?php
-      $key<string> = $key<string> ?? value<any>;
+      // Define expected prop keys and default values
+      ${:key} = ${:key} ?? ${:default_value};
     ?>
-    <div><?php echo $key; ?></div>
+    <div><?php echo ${:key}; // User prop values in mark-up ?></div>
     ```
-    **Syntax for including snippet:**
+
+- Snippets can be included onto templates or other snippets with the syntax:
+
+    **Syntax for adding snippet:**
     ```
     <?php
       $data = [
-        key<string> => value<any>, // key-pair values are passed to snippets as scoped variables.
+        ${:key} => ${:value}, // data key-value pairs are passed and scoped to snippet files as prop variables.
       ];
-      snippet(path<string>, $data);
+      snippet('path/to/snippet', $data); // path string is relative to /snippets folder
     ?>
     ```
 

@@ -1,3 +1,10 @@
+<?php
+  $data = [
+    'Key' => 'Value',
+  ];
+  snippet('Pathname', $data);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
