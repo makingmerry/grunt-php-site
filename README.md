@@ -8,13 +8,14 @@ Grunt taskrunner starter-kit for generating .php websites
 2. [Tasks](#user-content-tasks)
 3. [Features](#user-content-features):
 4. [Detailed features](#user-content-detailed-features):
-    1. [General](#user-content-general)
-    2. [Markup](#user-content-markup)
-    3. [Images](#user-content-media)
-    4. [CSS](#user-content-css)
-    5. [Javascript](#user-content-javascript)
+   1. [General](#user-content-general)
+   2. [Markup](#user-content-markup)
+   3. [Images](#user-content-media)
+   4. [CSS](#user-content-css)
+   5. [Javascript](#user-content-javascript)
 
 ## Installation
+
 You will need [Node](https://docs.npmjs.com/getting-started/installing-node), [Sass](http://sass-lang.com/install) and [Sass](http://sass-lang.com/install) installed on your local development machine.
 
 To get your starter-kit up and running:
@@ -26,86 +27,102 @@ grunt
 ```
 
 ## Tasks
-| Task               | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| ```grunt init```   | Compile and process initial core project assets        |
-| ```grunt build```  | Build production optimised project assets and files    |
-| ```grunt```        | Start development server and watch on assets and files |
+
+| Task          | Description                                            |
+| ------------- | ------------------------------------------------------ |
+| `grunt init`  | Compile and process initial core project assets        |
+| `grunt build` | Build production optimised project assets and files    |
+| `grunt`       | Start development server and watch on assets and files |
 
 ## Features
+
 1. **General**
-    1. Generates favicon variants and application icons
-    2. Starts development server with hot reloading in browser
+
+   1. Generates favicon variants and application icons
+   2. Starts development server with hot reloading in browser
 
 2. **Markup**
-    1. Scoped snippet include function to support building with reusable components
-    2. Starter template structure
+
+   1. Scoped snippet include function to support building with reusable components
+   2. Starter template structure
 
 3. **Images**
-    1. Compiles spritesheet from individual .svg icon assets
-    2. Optimises vector and bitmap image assets
-    3. Generates vector image fallbacks
+
+   1. Compiles spritesheet from individual .svg icon assets
+   2. Optimises vector and bitmap image assets
+   3. Generates vector image fallbacks
 
 4. **CSS**
-    1. Compiles from Sass
-    2. Configurable critical CSS generation
-    3. Generates atomic CSS classnames
+
+   1. Compiles from Sass
+   2. Configurable critical CSS generation
+   3. Generates atomic CSS classnames
 
 5. **Javascript**
-    1. Transpiles from ES6
-    2. Configurable smooth page load transitions
-    3. Configurable Google Analytics implementation
-    4. Configurable Web Font loader implementation
+   1. Transpiles from ES6
+   2. Configurable smooth page load transitions
+   3. Configurable Google Analytics implementation
+   4. Configurable Web Font loader implementation
 
 ## Detailed features
+
 ### General
+
 #### Generates favicon variants and application icons
-- Include initial favicon image to ```/assets/favicons/src``` with [grunt-real-favicon](https://github.com/RealFaviconGenerator/grunt-real-favicon)
-- Recommended dimensions for initial favicon image: ```260x260```
+
+- Include initial favicon image to `/assets/favicons/src` with [grunt-real-favicon](https://github.com/RealFaviconGenerator/grunt-real-favicon)
+- Recommended dimensions for initial favicon image: `260x260`
 
 #### Starts development server with hot-reloading in browser
+
 - Serves php files with [grunt-php](https://github.com/sindresorhus/grunt-php)
 - Hot-reloading in browser when files are updated with [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
 
 ### Markup
-#### Reusable snippets
-- Snippets can be written to the ```/snippets``` folder, in the appropriate archetype folder.
 
-    **Writing snippets:**
-    ```
+#### Reusable snippets
+
+- Snippets can be written to the `/snippets` folder, in the appropriate archetype folder.
+
+  **Writing snippets:**
+
+  ```
+  <?php
+    // Define expected prop keys and default values
+    ${:key} = ${:key} ?? ${:default_value};
+  ?>
+  <div>
     <?php
-      // Define expected prop keys and default values
-      ${:key} = ${:key} ?? ${:default_value};
+      // Use prop values in mark-up
+      echo ${:key};
     ?>
-    <div>
-      <?php
-        // Use prop values in mark-up
-        echo ${:key};
-      ?>
-    </div>
-    ```
+  </div>
+  ```
 
 - Snippets can be included onto templates or other snippets with the syntax:
 
-    **Adding snippets:**
-    ```
-    <?php
-      $data = [
-        // data array key-value pairs are passed and scoped to
-        // snippet files as prop variables
-        ${:key} => ${:value},
-      ];
-      // path string is relative to /snippets folder
-      snippet('path/to/snippet', $data);
-    ?>
-    ```
+  **Adding snippets:**
+
+  ```
+  <?php
+    $data = [
+      // data array key-value pairs are passed and scoped to
+      // snippet files as prop variables
+      ${:key} => ${:value},
+    ];
+    // path string is relative to /snippets folder
+    snippet('path/to/snippet', $data);
+  ?>
+  ```
 
 #### Starter template structure
+
 - Includes commonly used core snippets and a basic site structure for
-    - Rapidly developing websites
-    - Supporting other project features (e.g. favicon generation and injection)
+  - Rapidly developing websites
+  - Supporting other project features (e.g. favicon generation and injection)
 
 ### Images
+
 #### Compiles spritesheet from individual .svg icon assets
 
 #### Optimises vector and bitmap image assets
@@ -113,6 +130,7 @@ grunt
 #### Generates vector image fallbacks
 
 ### CSS
+
 #### Compiles from Sass
 
 #### Configurable critical CSS generation
@@ -120,6 +138,7 @@ grunt
 #### Generates atomic CSS classnames
 
 ### Javascript
+
 #### Transpiles from ES6
 
 #### Configurable smooth page load transitions
@@ -128,6 +147,12 @@ grunt
 
 #### Configurable Web Font loader implementation
 
+<!--
+TODO:
+- Resolve hot-reloading not triggering when CSS and JS is updated.
+- Resolve .gitignore conflict and not listing folders/files named icon
+- Check if ignore list can be better streamlined.
+-->
 
 <!-- # Bob
 
@@ -212,5 +237,3 @@ grunt
 
 ## Resources
 *Coming soon* -->
-
-
