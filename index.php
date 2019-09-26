@@ -1,5 +1,5 @@
 <?php
-  include 'utilities/config.php';
+  include 'config.php';
   include 'utilities/helpers.php';
   $site_data = [
     'template' => 'home',
@@ -15,8 +15,8 @@
   id="mainframe-wp">
   <main
     class="mainframe"
-    data-template="<?php echo $site_data['template']; ?>"
-    data-uid="<?php echo $site_data['uid']; ?>">
+    <?php echo $site_data['template'] ? 'data-template="'.$site_data['template'].'"' : ''; ?>
+    <?php echo $site_data['uid'] ? 'data-uid="'.$site_data['uid'].'"' : ''; ?>>
     <h1>
       <?php echo $site_data['title']; ?> page
     </h1>

@@ -1,0 +1,8 @@
+@function concat-lists($lists...) {
+  $result: ();
+  @each $list in $lists {
+    $result: join($result, $list, "comma");
+  }
+
+  @return $result;
+}

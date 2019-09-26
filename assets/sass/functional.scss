@@ -1,29 +1,22 @@
-// # tools
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
+// Sass method extensions
+@import "base/extensions/list";
+@import "base/extensions/map";
 
-@import "base/tools/list-extension";
-@import "base/tools/map-extension";
-@import "base/tools/ruleset-builder";
-@import "base/tools/gradient-background-builder";
-@import "base/tools/material-shadow-builder";
-
-// # configurations
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
-
+// Project configurations
 @import "base/configurations/layout";
 @import "base/configurations/typography";
 @import "base/configurations/theme";
 @import "base/configurations/reset";
 
-// # properties
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
+// Helper methods
+@import "base/tools/ruleset-builder";
+@import "base/tools/gradient-background-builder";
+@import "base/tools/material-shadow-builder";
+@import "base/tools/debug";
+@import "base/tools/unit-conversion";
 
-//////////////////////////////
-// # layout
-//////////////////////////////
+// Atomic classes
+// Layout:
 @import "base/properties/layout/position";
 @import "base/properties/layout/z-index";
 @import "base/properties/layout/move";
@@ -50,9 +43,7 @@
 @import "base/properties/layout/object-fit";
 @import "base/properties/layout/object-position";
 
-//////////////////////////////
-// # typography
-//////////////////////////////
+// Typography:
 @import "base/properties/typography/font-family";
 @import "base/properties/typography/font-size";
 @import "base/properties/typography/font-weight";
@@ -67,9 +58,7 @@
 @import "base/properties/typography/text-indent";
 @import "base/properties/typography/text-white-space";
 
-//////////////////////////////
-// # theme
-//////////////////////////////
+// Theme:
 @import "base/properties/theme/color";
 @import "base/properties/theme/background-color";
 @import "base/properties/theme/background-size";

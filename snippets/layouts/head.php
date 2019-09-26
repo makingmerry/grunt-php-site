@@ -1,8 +1,7 @@
 <?php
-  $data = [
-    'Key' => 'Value',
-  ];
-  snippet('Pathname', $data);
+  $template = $template ?? false;
+  $title = $title ?? '';
+  $desc = $desc ?? 'false';
 ?>
 
 <!DOCTYPE html>
@@ -22,16 +21,18 @@
     <meta property="og:image" content="">
 
     <?php // Styles: ?>
-    <?php
-      // Embed critical-path CSS if stylesheet is present.
-      $critical_path_css = SITE_ROOT.'/assets/css/build/critical/'.$template.'.css';
-      if (file_exists($critical_path_css)) {
-        echo '<style type="text/css">';
-        include $critical_path_css;
-        echo '</style>';
-      }
-    ?>
-    <?php // Defer loading of site-wide CSS, paired with critical-path CSS to improve page render time. ?>
+    <?php if ($template): ?>
+      <?php
+        // Template-specific critical CSS
+        $critical_path_css = __ROOT__.'/assets/css/build/critical/'.$template.'.css';
+        if (file_exists($critical_path_css)) {
+          echo '<style type="text/css">';
+          include $critical_path_css;
+          echo '</style>';
+        }
+      ?>
+    <?php endif; ?>
+    <?php // Defer loading of site-wide CSS, paired with critical-path CSS to improve page render time ?>
     <noscript id="deferred-styles">
       <link href="/assets/css/build/style.css" rel="stylesheet" type="text/css">
     </noscript>
@@ -49,7 +50,7 @@
       else window.addEventListener('load', loadDeferredStyles);
     </script>
 
-    <?php // Run essential scripts. ?>
+    <?php // Run essential scripts ?>
     <script>
       // Add class hook so UI dependent on javascript can be presented accordingly.
       if (document.documentElement.classList.length) {
@@ -63,8 +64,8 @@
 
     <?php // Favicons: ?>
     <?php
-      // Embed favicons if file is present.
-      $favicons = SITE_ROOT.'/assets/favicons/build/favicons.html';
+      // Embed favicons if file is present
+      $favicons = __ROOT__.'/assets/favicons/build/favicons.html';
       file_exists($favicons) && include $favicons;
     ?>
   </head>
