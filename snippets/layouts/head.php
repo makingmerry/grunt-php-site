@@ -24,7 +24,7 @@
     <?php // Styles: ?>
     <?php
       // Embed critical-path CSS if stylesheet is present.
-      $critical_path_css = SITE_ROOT.'/assets/stylesheets/build/critical/'.$template.'.css';
+      $critical_path_css = SITE_ROOT.'/assets/css/build/critical/'.$template.'.css';
       if (file_exists($critical_path_css)) {
         echo '<style type="text/css">';
         include $critical_path_css;
@@ -33,7 +33,7 @@
     ?>
     <?php // Defer loading of site-wide CSS, paired with critical-path CSS to improve page render time. ?>
     <noscript id="deferred-styles">
-      <link href="/assets/stylesheets/build/style.css" rel="stylesheet" type="text/css">
+      <link href="/assets/css/build/style.css" rel="stylesheet" type="text/css">
     </noscript>
     <script>
       var loadDeferredStyles = function() {

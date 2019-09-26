@@ -82,7 +82,7 @@ grunt
 
 #### Reusable snippets
 
-- Snippets can be written to the `/snippets` folder, in the appropriate archetype folder.
+- Snippets are written to the `/snippets` folder.
 
   **Writing snippets:**
 
@@ -99,7 +99,7 @@ grunt
   </div>
   ```
 
-- Snippets can be included onto templates or other snippets with the syntax:
+- Snippets can be included onto templates or other snippets with the syntax.
 
   **Adding snippets:**
 
@@ -124,6 +124,8 @@ grunt
 ### Images
 
 #### Compiles spritesheet from individual .svg icon assets
+
+- Individual .svg icon assets are written to the `/assets/symbols/` folder.
 
 #### Optimises vector and bitmap image assets
 

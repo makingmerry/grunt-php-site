@@ -10,6 +10,6 @@
     </div>
 
     <?php // Load any non-essential scripts (i.e. project script) to improve render time. ?>
-    <script src="assets/javascripts/build/global.js" async></script>
+    <script src="assets/js/build/global.js" async></script>
   </body>
 </html>
