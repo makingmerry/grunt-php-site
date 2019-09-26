@@ -134,10 +134,6 @@ textarea {
   resize: vertical;
 }
 
-.debug * {
-  outline: 1px solid red;
-}
-
 .pos-static {
   position: static;
 }
@@ -9298,8 +9294,6 @@ textarea {
   }
 }
 
-/*# sourceMappingURL=functional.css.map */
-
 @viewport {
   zoom: 1;
   width: device-width;
@@ -9555,5 +9549,3 @@ textarea {
 .nav__a:not([href]) .nav__a-label {
   text-decoration: underline;
 }
-
-/*# sourceMappingURL=structural.css.map */
