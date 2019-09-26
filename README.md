@@ -71,7 +71,7 @@ grunt
 #### Generates favicon variants and application icons
 
 - Include initial favicon image to `/assets/favicons/src`
-- Recommended dimensions for initial favicon image: `260x260`
+- Recommended dimensions for initial favicon image: `260px by 260px`
 
 #### Starts development server with hot-reloading in browser
 
@@ -136,6 +136,7 @@ grunt
 
 - Keeping icons as symbols in an .svg spritesheet allows for additional CSS styling control (e.g. `fill`, `transition`, .etc)
 - Optimised fall-back .png files are also generated from original .svg icon assets
+- Default (and recommended) dimensions for icon: `24px by 24px`
 
 #### Optimises vector and bitmap image assets
 

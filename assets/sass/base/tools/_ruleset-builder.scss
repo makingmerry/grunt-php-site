@@ -1,8 +1,3 @@
-// # ruleset builder
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
 // # RSON
 // -
 // pattern:
@@ -32,7 +27,7 @@
 // -
 // @return {List}
 //////////////////////////////
-@function make-RSON($config-map, $selector-prefix, $properties, $state: '') {
+@function make-RSON($config-map, $selector-prefix, $properties, $state: "") {
   $result: ();
   // generate data objects from each config line
   @each $key, $value in $config-map {
@@ -40,15 +35,24 @@
     // merging property `key`s and config `value`s
     $declaration-block: ();
     @each $property in $properties {
-      $declaration-block: map-merge($declaration-block, ($property: $value));
+      $declaration-block: map-merge(
+        $declaration-block,
+        (
+          $property: $value
+        )
+      );
     }
 
     // add data object to resulting list
-    $result: append($result, (
-      'selector': $selector-prefix + '-' + $key,
-      'declarations': $declaration-block,
-      'state': $state,
-    ), 'comma');
+    $result: append(
+      $result,
+      (
+        "selector": $selector-prefix + "-" + $key,
+        "declarations": $declaration-block,
+        "state": $state
+      ),
+      "comma"
+    );
   }
 
   @return $result;
@@ -89,14 +93,14 @@
 // -
 // @requires {Mixin} make-ruleset
 //////////////////////////////
-@mixin make-rulesets($RSON, $selector-mod: '') {
+@mixin make-rulesets($RSON, $selector-mod: "") {
   @each $obj in $RSON {
     // forms single CSS rulesets from every data object
     $i: index($RSON, $obj);
     $ruleset: nth($RSON, $i);
-    $selector: map-get($ruleset, 'selector');
-    $declarations: map-get($ruleset, 'declarations');
-    $state: map-get($ruleset, 'state');
+    $selector: map-get($ruleset, "selector");
+    $declarations: map-get($ruleset, "declarations");
+    $state: map-get($ruleset, "state");
 
     @include make-ruleset($selector, $declarations, $selector-mod, $state);
   }
@@ -111,9 +115,9 @@
 // @param {String} $selector-mod - (Optional) string to modify selector
 // @param {String} $state - (Optional) state listener (e.g. ':hover') to modify selector
 //////////////////////////////
-@mixin make-ruleset($selector, $declarations, $selector-mod: '', $state: '') {
-  @if $selector-mod != '' {
-    $selector: $selector + '--' + $selector-mod;
+@mixin make-ruleset($selector, $declarations, $selector-mod: "", $state: "") {
+  @if $selector-mod != "" {
+    $selector: $selector + "--" + $selector-mod;
   }
 
   // CSS ruleset template literal
@@ -122,4 +126,4 @@
       #{$property}: #{$value};
     }
   }
-};
+}

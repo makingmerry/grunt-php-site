@@ -17,7 +17,7 @@ module.exports = function(grunt) {
       snippets: "snippets",
       favicons: "favicons",
       icons: "icons",
-      images: "images",
+      img: "img",
       sass: "sass",
       css: "css",
       fonts: "fonts",
@@ -137,11 +137,10 @@ module.exports = function(grunt) {
         files: [
           {
             flatten: true,
-            cwd:
-              "<%= config.assets %>/<%= config.images %>/<%= config.source %>/",
+            cwd: "<%= config.assets %>/<%= config.img %>/<%= config.source %>/",
             src: ["*.svg"],
             dest:
-              "<%= config.assets %>/<%= config.images %>/<%= config.temporary %>/"
+              "<%= config.assets %>/<%= config.img %>/<%= config.temporary %>/"
           }
         ]
       }
@@ -151,18 +150,16 @@ module.exports = function(grunt) {
     // # imagemin
     //////////////////////////////
     imagemin: {
-      images: {
+      img: {
         options: {
           optimizationLevel: 3
         },
         files: [
           {
             expand: true,
-            cwd:
-              "<%= config.assets %>/<%= config.images %>/<%= config.source %>/",
+            cwd: "<%= config.assets %>/<%= config.img %>/<%= config.source %>/",
             src: ["*.{png,jpg,gif}"],
-            dest:
-              "<%= config.assets %>/<%= config.images %>/<%= config.build %>/"
+            dest: "<%= config.assets %>/<%= config.img %>/<%= config.build %>/"
           }
         ]
       },
@@ -174,11 +171,9 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd:
-              "<%= config.assets %>/<%= config.images %>/<%= config.source %>/",
+            cwd: "<%= config.assets %>/<%= config.img %>/<%= config.source %>/",
             src: ["*.svg"],
-            dest:
-              "<%= config.assets %>/<%= config.images %>/<%= config.build %>/"
+            dest: "<%= config.assets %>/<%= config.img %>/<%= config.build %>/"
           }
         ]
       },
@@ -190,10 +185,9 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd:
-              "<%= config.assets %>/<%= config.images %>/<%= config.temporary %>/",
+              "<%= config.assets %>/<%= config.img %>/<%= config.temporary %>/",
             src: ["*.{png,jpg,gif}"],
-            dest:
-              "<%= config.assets %>/<%= config.images %>/<%= config.build %>/"
+            dest: "<%= config.assets %>/<%= config.img %>/<%= config.build %>/"
           }
         ]
       },
@@ -418,9 +412,9 @@ module.exports = function(grunt) {
         "<%= config.assets %>/<%= config.icons %>/<%= config.temporary %>/*",
         "<%= config.assets %>/<%= config.icons %>/<%= config.build %>/*"
       ],
-      images: [
-        "<%= config.assets %>/<%= config.images %>/<%= config.temporary %>/*",
-        "<%= config.assets %>/<%= config.images %>/<%= config.build %>/*"
+      img: [
+        "<%= config.assets %>/<%= config.img %>/<%= config.temporary %>/*",
+        "<%= config.assets %>/<%= config.img %>/<%= config.build %>/*"
       ],
       functionalCss: [
         "<%= config.assets %>/<%= config.css %>/<%= config.temporary %>/functional.css",
@@ -461,7 +455,7 @@ module.exports = function(grunt) {
         src: [
           "<%= config.assets %>/<%= config.favicons %>/<%= config.build %>/*",
           "<%= config.assets %>/<%= config.icons %>/<%= config.build %>/*",
-          "<%= config.assets %>/<%= config.images %>/<%= config.build %>/*",
+          "<%= config.assets %>/<%= config.img %>/<%= config.build %>/*",
           "<%= config.assets %>/<%= config.css %>/<%= config.build %>/**",
           "<%= config.assets %>/<%= config.fonts %>/*",
           "<%= config.assets %>/<%= config.js %>/<%= config.build %>/*",
@@ -498,9 +492,9 @@ module.exports = function(grunt) {
         ],
         tasks: ["build-icons"]
       },
-      images: {
+      img: {
         files: [
-          "<%= config.assets %>/<%= config.images %>/<%= config.source %>/**"
+          "<%= config.assets %>/<%= config.img %>/<%= config.source %>/**"
         ],
         tasks: ["build-img"]
       },
@@ -554,7 +548,7 @@ module.exports = function(grunt) {
           src: [
             "<%= config.assets %>/<%= config.favicons %>/<%= config.build %>/*.{html}",
             "<%= config.assets %>/<%= config.icons %>/<%= config.build %>/*.{svg}",
-            "<%= config.assets %>/<%= config.images %>/<%= config.build %>/*.{png,jpg,gif,svg}",
+            "<%= config.assets %>/<%= config.img %>/<%= config.build %>/*.{png,jpg,gif,svg}",
             "<%= config.assets %>/<%= config.css %>/<%= config.build %>/*.{css}",
             "<%= config.assets %>/<%= config.js %>/<%= config.build %>/*.{js}",
             "*.{html,php}",
@@ -616,8 +610,8 @@ module.exports = function(grunt) {
     "imagemin:graphicsFallback"
   ]);
   grunt.registerTask("build-img", [
-    "clean:images",
-    "imagemin:images",
+    "clean:img",
+    "imagemin:img",
     "build-graphics"
   ]);
   grunt.registerTask("build-functional-css", [

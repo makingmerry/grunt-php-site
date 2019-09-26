@@ -1,23 +1,22 @@
-// # reset
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@viewport{
-  zoom: 1.0;
+@viewport {
+  zoom: 1;
   width: device-width;
 }
 
 @-ms-viewport {
-  zoom: 1.0;
+  zoom: 1;
   width: device-width;
 }
 
 html {
   box-sizing: border-box;
+  font-size: $base-font-size;
+  line-height: 1;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   border: 0;
@@ -28,16 +27,23 @@ html {
   box-sizing: inherit;
 }
 
-body {
-  font-size: $base-font-size;
-  line-height: 1;
-}
-
-main, article, aside, details, figcaption, figure, footer, header, menu, nav, section, div {
+main,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+menu,
+nav,
+section,
+div {
   display: block;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
@@ -73,7 +79,8 @@ del {
   text-decoration: line-through;
 }
 
-abbr[title], dfn[title] {
+abbr[title],
+dfn[title] {
   border-bottom: 1px dotted;
   cursor: help;
 }
@@ -92,7 +99,8 @@ hr {
   padding: 0;
 }
 
-input, select {
+input,
+select {
   vertical-align: middle;
 }
 
@@ -107,7 +115,9 @@ button:focus {
   outline: 0;
 }
 
-input, select, textarea  {
+input,
+select,
+textarea {
   appearance: none;
   border-radius: 0;
   font-family: inherit;

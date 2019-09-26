@@ -1,14 +1,4 @@
-// # form multiple-choice input
-// (radio and check boxes)
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
 .multi-opt {
-  // position: relative;
-  // display: inline-block;
-  // border: 1px all;
-  // border-radius: 100%; // IF RADIO
   width: 1em;
   height: 1em;
   margin-top: -0.125em;
@@ -25,12 +15,14 @@
 
   &:checked {
     &::before {
-      background: map-get($neutral-colors, 'near-black');
+      background: map-get($neutral-colors, "near-black");
     }
   }
 }
 
 .multi-opt--radio {
+  border-radius: 100%;
+
   &::before {
     border-radius: 100%;
   }
