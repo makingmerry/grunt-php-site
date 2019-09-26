@@ -70,26 +70,26 @@ grunt
 
 #### Generates favicon variants and application icons
 
-- Include initial favicon image to `/assets/favicons/src` with [grunt-real-favicon](https://github.com/RealFaviconGenerator/grunt-real-favicon)
+- Include initial favicon image to `/assets/favicons/src`
 - Recommended dimensions for initial favicon image: `260x260`
 
 #### Starts development server with hot-reloading in browser
 
-- Serves php files with [grunt-php](https://github.com/sindresorhus/grunt-php)
-- Hot-reloading in browser when files are updated with [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
+- Serves .php files with PHP built-in web server
+- Hot-reloading in browser when files are updated
 
 ### Markup
 
 #### Reusable snippets
 
-- Snippets are written to the `/snippets` folder.
+- Snippets are written to the `/snippets` folder
 
   **Writing snippets:**
 
   ```
   <?php
     // Define expected prop keys and default values
-    ${:key} = ${:key} ?? ${:default_value};
+    ${:key} = ${:key} ?? {:default_value};
   ?>
   <div>
     <?php
@@ -99,7 +99,7 @@ grunt
   </div>
   ```
 
-- Snippets can be included onto templates or other snippets with the syntax.
+- Snippets can be included onto templates or other snippets
 
   **Adding snippets:**
 
@@ -108,7 +108,7 @@ grunt
     $data = [
       // data array key-value pairs are passed and scoped to
       // snippet files as prop variables
-      ${:key} => ${:value},
+      '{:key}' => {:value},
     ];
     // path string is relative to /snippets folder
     snippet('path/to/snippet', $data);
@@ -125,7 +125,17 @@ grunt
 
 #### Compiles spritesheet from individual .svg icon assets
 
-- Individual .svg icon assets are written to the `/assets/symbols/` folder.
+- Individual .svg icon assets are written to the `/assets/symbols/` folder
+- Icons are compiled into a single spritesheet, and can be included in the project as a media snippet:
+
+  **Adding icon:**
+
+  ```
+  <?php snippet('media/icon', ['icon' => '{:name}']); ?>
+  ```
+
+- Keeping icons as symbols in an .svg spritesheet allows for additional CSS styling control (e.g. `fill`, `transition`, .etc)
+- Optimised fall-back .png files are also generated from original .svg icon assets
 
 #### Optimises vector and bitmap image assets
 
