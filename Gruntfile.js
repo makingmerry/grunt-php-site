@@ -229,25 +229,29 @@ module.exports = function (grunt) {
       },
     },
     // Compile Sass to CSS
+    // !Bulk of compilation time attributed to base CSS but it is usually unchanged, so
+    // to allow for quicker compilations, first split into base and project specific styles,
+    // then concat and reconcile later down the pipeline (see concat, postcss and clean)
+    // so project styles don't trigger base re-compilations
     sass: {
-      functional: {
+      base: {
         options: {
           style: 'expanded',
           precision: 3,
-          sourcemap: false,
+          sourcemap: 'none',
         },
         files: {
-          'assets/css/tmp/functional.css': 'assets/sass/functional.scss',
+          'assets/css/tmp/base.css': 'assets/sass/base.scss',
         },
       },
-      structural: {
+      project: {
         options: {
           style: 'expanded',
           precision: 3,
-          sourcemap: false,
+          sourcemap: 'none',
         },
         files: {
-          'assets/css/tmp/structural.css': 'assets/sass/structural.scss',
+          'assets/css/tmp/project.css': 'assets/sass/project.scss',
         },
       },
     },
@@ -255,6 +259,7 @@ module.exports = function (grunt) {
     criticalcss,
     // Optimise and transform post-compiled CSS
     postcss: {
+      // !Important to remove duplicates from concatenating step (see concat)
       global: {
         options: {
           map: false,
@@ -318,8 +323,9 @@ module.exports = function (grunt) {
     },
     // Concat assets
     concat: {
+      // !Concatenating base and project styles WILL result in duplicate declarations
       css: {
-        src: ['assets/css/tmp/functional.css', 'assets/css/tmp/structural.css'],
+        src: ['assets/css/tmp/base.css', 'assets/css/tmp/project.css'],
         dest: 'assets/css/tmp/style.css',
       },
       libraryJs: {
@@ -336,17 +342,16 @@ module.exports = function (grunt) {
       favicons: ['assets/favicons/build/*'],
       icons: ['assets/icons/tmp/*', 'assets/icons/build/*'],
       img: ['assets/img/tmp/*', 'assets/img/build/*'],
-      functionalCss: [
-        'assets/css/tmp/functional.css',
-        'assets/css/tmp/functional.css.map',
+      // !Important to keep compiled other half of CSS, to allow for concatenation
+      baseCss: [
+        'assets/css/tmp/base.css',
         'assets/css/tmp/style.css',
-        'assets/css/build/*',
+        'assets/css/build/style.css',
       ],
-      structuralCss: [
-        'assets/css/tmp/structural.css',
-        'assets/css/tmp/structural.css.map',
+      projectCss: [
+        'assets/css/tmp/project.css',
         'assets/css/tmp/style.css',
-        'assets/css/build/*',
+        'assets/css/build/style.css',
       ],
       criticalCss: ['assets/css/tmp/critical/*', 'assets/css/build/critical/*'],
       css: ['assets/css/*'],
@@ -362,10 +367,10 @@ module.exports = function (grunt) {
           'assets/favicons/build/*',
           'assets/icons/build/*',
           'assets/img/build/*',
-          'assets/css/build/**',
+          'assets/css/build/*',
           'assets/fonts/*',
           'assets/js/build/*',
-          'snippets/**/*.{html,php}',
+          'snippets/**/*',
           '*.{html,php}',
         ],
         dest: 'build/',
@@ -394,23 +399,17 @@ module.exports = function (grunt) {
         files: ['assets/img/src/**'],
         tasks: ['build-img'],
       },
-      functionalCss: {
-        files: ['assets/sass/base/properties/**/*.scss', 'assets/sass/functional.scss'],
-        tasks: ['build-functional-css'],
-      },
-      structuralCss: {
-        files: [
-          'assets/sass/element/*.scss',
-          'assets/sass/component/*.scss',
-          'assets/sass/composition/*.scss',
-          'assets/sass/page/*.scss',
-          'assets/sass/structural.scss',
-        ],
-        tasks: ['build-structural-css'],
-      },
-      css: {
-        files: ['assets/sass/base/configurations/*.scss', 'assets/sass/base/tools/*.scss'],
+      baseCss: {
+        files: ['assets/sass/base/**/*.scss', 'assets/sass/base.scss'],
         tasks: ['build-base-css'],
+      },
+      projectCss: {
+        files: ['assets/sass/project/**/*.scss', 'assets/sass/project.scss'],
+        tasks: ['build-project-css'],
+      },
+      globalCss: {
+        files: ['assets/sass/foundation/**/*.scss'],
+        tasks: ['build-global-css'],
       },
       libraryJs: {
         files: ['assets/js/src/lib/*.js'],
@@ -464,32 +463,34 @@ module.exports = function (grunt) {
   ]);
   grunt.registerTask('build-graphics', ['svg2png:svg', 'imagemin:svg', 'imagemin:svgImg']);
   grunt.registerTask('build-img', ['clean:img', 'imagemin:img', 'build-graphics']);
-  grunt.registerTask('build-functional-css', [
-    'clean:functionalCss',
-    'sass:functional',
-    'concat:css',
-    'postcss:global',
-  ]);
-  grunt.registerTask('build-structural-css', [
-    'clean:structuralCss',
-    'sass:structural',
-    'concat:css',
-    'postcss:global',
-  ]);
   grunt.registerTask('build-base-css', [
+    'clean:baseCss',
+    'sass:base',
+    'concat:css',
+    'postcss:global',
+  ]);
+  grunt.registerTask('build-project-css', [
+    'clean:projectCss',
+    'sass:project',
+    'concat:css',
+    'postcss:global',
+  ]);
+  grunt.registerTask('build-global-css', [
     'clean:css',
-    'sass:functional',
-    'sass:structural',
+    'sass:base',
+    'sass:project',
     'concat:css',
     'postcss:global',
   ]);
   grunt.registerTask('build-critical-css', [
     'clean:criticalCss',
+    // Start server to allow for criticalcss to visualise
+    // and scan the project in the background
     'php',
     'criticalcss',
     'postcss:critical',
   ]);
-  grunt.registerTask('build-css', ['build-base-css', 'build-critical-css']);
+  grunt.registerTask('build-css', ['build-global-css', 'build-critical-css']);
   grunt.registerTask('build-library-js', [
     'clean:libraryJs',
     'concat:libraryJs',
