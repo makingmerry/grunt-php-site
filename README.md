@@ -125,7 +125,7 @@ grunt
 
 #### Compiles spritesheet from individual .svg icon assets
 
-- Individual .svg icon assets are written to the `/assets/symbols/` folder
+- Individual .svg icon assets are written to the `/assets/icons/src/` folder
 - Icons are compiled into a single spritesheet, and can be included in the project as a media snippet:
 
   **Adding icon:**
@@ -140,15 +140,39 @@ grunt
 
 #### Optimises vector and bitmap image assets
 
-#### Generates vector image fallbacks
+- Both vector and bitmap image assets are written to the `assets/img/src/` folder
+- Optimised fall-back .png files are also generated from vector image assets
 
 ### CSS
 
+#### Multilayered CSS style of organising CSS
+
+1. Foundational style reset/normalising
+2. Use of Atomic CSS style classes (e.g. `w-100` for `width: 100%`) for base styling
+3. Use of OOCSS style overriding classes to support project-specific component styling
+
 #### Compiles from Sass
 
-#### Configurable critical CSS generation
+- Compiles .scss files from `assets/sass/` folder to `assets/css/` folder
+  <!-- - .scss files are grouped to reflect multilayered style of organising and component structure:
+    ```
+    | foundation
+    | -- config
+    | -- reset
+    | -- tools
+    | base
+    | -- properties
+    | ---- layout
+    | ---- typography
+    | ---- theme
+    | project
+    | -- element
+    | -- component
+    | -- composition
+    | -- page
+    ```-->
 
-#### Generates atomic CSS classnames
+#### Configurable critical CSS generation
 
 ### Javascript
 
