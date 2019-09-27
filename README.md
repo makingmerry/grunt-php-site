@@ -6,8 +6,7 @@ Grunt taskrunner starter-kit for generating accessible and performant .php websi
 
 1. [Installation](#user-content-installation)
 2. [Tasks](#user-content-tasks)
-3. [Features](#user-content-features):
-4. [Detailed features](#user-content-detailed-features):
+3. [Features](#user-content-detailed-features):
    1. [General](#user-content-general)
    2. [Markup](#user-content-markup)
    3. [Images](#user-content-media)
@@ -35,36 +34,6 @@ grunt start
 | `grunt build`   | Build production optimised project assets and files |
 
 ## Features
-
-1. **General**
-
-   1. Generates favicon variants and application icons
-   2. Starts development server with hot reloading in browser
-
-2. **Markup**
-
-   1. Scoped snippet include function to support building with reusable components
-   2. Starter template structure
-
-3. **Images**
-
-   1. Compiles spritesheet from individual .svg icon assets
-   2. Optimises vector and bitmap image assets
-   3. Generates vector image fallbacks
-
-4. **CSS**
-
-   1. Compiles from Sass
-   2. Configurable critical CSS generation
-   3. Generates atomic CSS classnames
-
-5. **Javascript**
-   1. Transpiles from ES6
-   2. Configurable smooth page load transitions
-   3. Configurable Google Analytics implementation
-   4. Configurable Web Font loader implementation
-
-## Detailed features
 
 ### General
 
@@ -162,10 +131,9 @@ grunt start
   | -- reset
   | -- tools
   | base
-  | -- properties
-  | ---- layout
-  | ---- typography
-  | ---- theme
+  | -- layout
+  | -- typography
+  | -- theme
   | project
   | -- element
   | -- component
@@ -180,94 +148,24 @@ grunt start
 
 ### Javascript
 
-#### Transpiles from ES6
+#### Compiles library scripts
 
-#### Configurable smooth page load transitions
+- Library scripts are added to the `assets/js/src/` folder
 
-#### Configurable Google Analytics implementation
+#### Compiles to ES5
 
-#### Configurable Web Font loader implementation
+- Write with the latest features and allow Babel to compile down to ES5 for browser compatibility.
+- Optimised global script is generated after project script is concatenated with any library scripts
 
-<!-- # Bob
+#### Smooth page load transitions
 
-## Features
-### Media
-  - #### Icon spritesheet
-    Concat and compile individual graphics into a single spritesheet for use.
-      ##### Configuration/documentation:
-      - Compiling spritesheet: [grunt-svg-sprite](https://github.com/jkphl/grunt-svg-sprite)
+- Uses Barba.js to enhance with client-side rendering
+- Page transitions are customisable with default loader
 
-  - #### Image optimisation
-    Generate vector graphic fallbacks and minify images.
-      ##### Configuration/documentation:
-      - Generating vector graphic fallbacks: [grunt-svg2png](https://www.npmjs.com/package/grunt-svg2png)
-      - Minification: [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
+#### Google Analytics implementation
 
-### CSS
-  - #### Sass compilation
-    Concat, process (e.g. adding vendor prefixes, .etc) and compiling Sass partials into CSS.
-      ##### Configuration/documentation:
-      - Concatenating and compiling: [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass)
-      - Processors: [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
+- Added basic Google Analytics implementation to reduce intergration time to Google Analytics
 
-  - #### Critical CSS
-    Generate critical CSS for rendering 'above the fold' content for individual templates.
-      ##### Configuration/documentation:
-      - Generating critical CSS: [grunt-criticalcss](https://github.com/filamentgroup/grunt-criticalcss)
+#### Web Font loader implementation
 
-  - #### Functional classes with modular structure
-    Generate property-based functional classes for rapid development, while setting modular structure for extension.
-      ##### Configuration/documentation:
-      - Functional classes: [Scoop](https://github.com/makingmerry/tool_scoop)
-
-### JS
-  - #### Transpile, concat and compile
-    Transpile ES6 code to ES5 code, concatenate required modules and minify for production.
-      ##### Configuration/documentation:
-      - Transpiling ES6 code: [grunt-babel](https://github.com/babel/grunt-babel)
-      - Concatenation: [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)
-      - Minification: [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify)
-
-  - #### Linting
-    Enforce JS development standards, following the [Airbnb Styleguides](https://github.com/airbnb/javascript).
-      ##### Configuration/documentation:
-      - Linter: [grunt-eslint](https://github.com/sindresorhus/grunt-eslint)
-      - Styleguide: [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-
-  - #### Smooth page transitions
-    Simulate Single Page Application (SPA) style transitions when moving around pages.
-      ##### Configuration/documentation:
-      - Ajax transition library: [Barba.js](http://barbajs.org/)
-
-### Integrated services/applications
-  - #### Built-in PHP web server
-    Runs a built-in server to assist in developing PHP projects or running tests.
-      ##### Configuration/documentation:
-      - Module: [grunt-php](https://github.com/sindresorhus/grunt-php)
-
-  - #### Watching and live reloading of browsers
-    Run tasks and reload browsers when files are updated.
-      ##### Configuration/documentation:
-      - Watcher: [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)
-      - Browser sync: [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
-
-  - #### Analytics tracking
-    Setup preferred analytics' (Google Analytics) tracking code.
-      ##### Configuration/documentation:
-      - Async implementation: [Google Analytics fundamentals](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
-      - SPA tracking: [Google Analytics SPA tracking](https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications)
-
-  - #### Favicon generation
-    Generate and install a multi-platform favicon.
-      ##### Configuration/documentation:
-      - Generator: [Real Favicon Generator](https://realfavicongenerator.net)
-
-  - #### Asynchronous web font loading
-    Asynchronously add web fonts with most popular web font providers.
-      ##### Configuration/documentation:
-      - Loader: [Web Font Loader](https://github.com/typekit/webfontloader)
-
----
-
-## Resources
-*Coming soon* -->
+- Added control when linking fonts with Web Font Loader, to improve loading experience
