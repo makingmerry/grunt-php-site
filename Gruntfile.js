@@ -5,23 +5,6 @@ const config = {
   serverPort: 4000,
 };
 
-// List templates that require generating critical CSS
-const templates = [{ path: '', template: 'home' }, { path: 'page.php', template: 'default' }];
-const criticalcss = templates.reduce((map, item) => {
-  map[item.template] = {
-    options: {
-      url: `http://${config.host}:${config.port}/${item.path}`,
-      filename: 'assets/css/tmp/style.css',
-      outputfile: `assets/css/tmp/critical/${item.template}.css`,
-      width: 1280,
-      height: 720,
-      forceInclude: [],
-      ignoreConsole: true,
-    },
-  };
-  return map;
-}, {});
-
 // Grunt configuration
 module.exports = function (grunt) {
   // Modules
@@ -41,6 +24,24 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
+
+  // Dynamically list templates that require generating critical CSS
+  const templates = grunt.file.expand({ filter: 'isFile', cwd: 'templates' }, ['*.php']);
+  const criticalcss = templates.reduce((map, filename) => {
+    const template = filename.split('.')[0];
+    map[template] = {
+      options: {
+        url: `http://${config.host}:${config.port}/${filename}`,
+        filename: 'assets/css/tmp/style.css',
+        outputfile: `assets/css/tmp/critical/${template}.css`,
+        width: 1280,
+        height: 720,
+        forceInclude: [],
+        ignoreConsole: true,
+      },
+    };
+    return map;
+  }, {});
 
   // Config
   grunt.initConfig({
