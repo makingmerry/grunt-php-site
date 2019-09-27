@@ -19,7 +19,7 @@
     <h1>
       <?php echo $site_data['title']; ?> page
     </h1>
-    <a href="/index.php">
+    <a href="/home.php">
       go to home page
     </a>
   </main>

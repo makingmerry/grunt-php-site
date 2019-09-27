@@ -435,7 +435,7 @@ module.exports = function (grunt) {
         options: {
           proxy: `${config.host}:${config.port}`,
           open: true,
-          startPath: '/index.php',
+          startPath: '/home.php',
           watchTask: true,
           watchEvents: ['add', 'change'],
         },

@@ -1,7 +1,7 @@
 <nav>
   <ul>
     <li class="d-i-block">
-      <a class="nav__a" data-controls-uid="index" href="/index.php">
+      <a class="nav__a" data-controls-uid="index" href="/home.php">
         <span class="nav__a-label">
           home page
         </span>

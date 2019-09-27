@@ -1,6 +1,6 @@
 # Grunt PHP site
 
-Grunt taskrunner starter-kit for generating .php websites
+Grunt taskrunner starter-kit for generating accessible and performant .php websites
 
 ## Table of contents
 
@@ -22,17 +22,17 @@ To get your starter-kit up and running:
 
 ```
 npm install
-grunt init
-grunt
+grunt install
+grunt start
 ```
 
 ## Tasks
 
-| Task          | Description                                            |
-| ------------- | ------------------------------------------------------ |
-| `grunt init`  | Compile and process initial core project assets        |
-| `grunt build` | Build production optimised project assets and files    |
-| `grunt`       | Start development server and watch on assets and files |
+| Task            | Description                                         |
+| --------------- | --------------------------------------------------- |
+| `grunt install` | Compile core project assets                         |
+| `grunt start`   | Start development server and watch assets and files |
+| `grunt build`   | Build production optimised project assets and files |
 
 ## Features
 
@@ -117,9 +117,10 @@ grunt
 
 #### Starter template structure
 
+- Templates are written to the `/templates` folder
 - Includes commonly used core snippets and a basic site structure for
   - Rapidly developing websites
-  - Supporting other project features (e.g. favicon generation and injection)
+  - Supporting other project features (e.g. favicon generation and injection, .etc)
 
 ### Images
 
@@ -153,28 +154,29 @@ grunt
 
 #### Compiles from Sass
 
-- Compiles .scss files from `assets/sass/` folder to `assets/css/` folder
-  <!-- - .scss files are grouped to reflect multilayered style of organising and component structure:
-    ```
-    | foundation
-    | -- config
-    | -- reset
-    | -- tools
-    | base
-    | -- properties
-    | ---- layout
-    | ---- typography
-    | ---- theme
-    | project
-    | -- element
-    | -- component
-    | -- composition
-    | -- page
-    ```-->
+- Compiles Sass files from `assets/sass/` folder to `assets/css/` folder
+- Sass files are grouped to reflect multilayered style of organising and component structure:
+  ```
+  | foundation
+  | -- config
+  | -- reset
+  | -- tools
+  | base
+  | -- properties
+  | ---- layout
+  | ---- typography
+  | ---- theme
+  | project
+  | -- element
+  | -- component
+  | -- composition
+  | -- page
+  ```
 
-#### Configurable critical CSS generation
+#### Automatic critical CSS generation for production code
 
--
+- On build, critical CSS is generated for all templates listed in `templates/` folder
+- `$template` prop in template files must match filename for correct automation
 
 ### Javascript
 
@@ -185,14 +187,6 @@ grunt
 #### Configurable Google Analytics implementation
 
 #### Configurable Web Font loader implementation
-
-<!--
-TODO:
-- Resolve hot-reloading not triggering when CSS and JS is updated.
-- Resolve .gitignore conflict and not listing folders/files named icon
-- Check if ignore list can be better streamlined.
-- Keep empty directories (.keep)
--->
 
 <!-- # Bob
 
