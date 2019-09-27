@@ -1,5 +1,5 @@
 <?php
-  define('__ROOT__', __DIR__);
+  include 'config.php';
   $templates = __ROOT__.'/templates';
 
   if (file_exists(__ROOT__.'/'.$_SERVER['SCRIPT_NAME'])) {

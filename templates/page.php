@@ -1,4 +1,5 @@
 <?php
+  include 'config.php';
   include 'utilities/helpers.php';
   $site_data = [
     'template' => 'page',
@@ -19,8 +20,8 @@
     <h1>
       <?php echo $site_data['title']; ?> page
     </h1>
-    <a href="/home.php">
-      go to home page
+    <a href="/index.php">
+      go to index page
     </a>
   </main>
 </div>

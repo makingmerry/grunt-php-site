@@ -1,6 +1,6 @@
 # Grunt PHP site
 
-Grunt taskrunner starter-kit for generating accessible and performant .php websites
+Grunt taskrunner starter-kit for developing accessible and performant .php websites
 
 ## Table of contents
 
@@ -104,7 +104,7 @@ grunt start
   <?php snippet('media/icon', ['icon' => '{:name}']); ?>
   ```
 
-- Keeping icons as symbols in an .svg spritesheet allows for additional CSS styling control (e.g. `fill`, `transition`, .etc)
+- Keeping [icons as symbols](https://css-tricks.com/svg-symbol-good-choice-icons/) in an .svg spritesheet allows for additional CSS styling control (e.g. `fill`, `transition`, .etc)
 - Optimised fall-back .png files are also generated from original .svg icon assets
 - Default (and recommended) dimensions for icon: `24px by 24px`
 
@@ -118,12 +118,13 @@ grunt start
 #### Multilayered CSS style of organising CSS
 
 1. Foundational style reset/normalising
-2. Use of Atomic CSS style classes (e.g. `w-100` for `width: 100%`) for base styling
-3. Use of OOCSS style overriding classes to support project-specific component styling
+2. Use of [Atomic CSS](https://css-tricks.com/methods-organize-css/#article-header-id-2) style classes (e.g. `w-100` for `width: 100%`) for base styling
+3. Use of [OOCSS](https://css-tricks.com/methods-organize-css/#article-header-id-0) style overriding classes to support project-specific component styling
 
 #### Compiles from Sass
 
-- Compiles Sass files from `assets/sass/` folder to `assets/css/` folder
+- Compiles [Sass](https://sass-lang.com/) files from `assets/sass/` folder to `assets/css/` folder
+- Sass files are compiled to a single stylesheet to reduce number of stylesheet requests
 - Sass files are grouped to reflect multilayered style of organising and component structure:
   ```
   | foundation
@@ -151,21 +152,22 @@ grunt start
 #### Compiles library scripts
 
 - Library scripts are added to the `assets/js/src/` folder
+- Library scripts are concatenanted to the project script to form a global script to reduce number of script requests
 
 #### Compiles to ES5
 
-- Write with the latest features and allow Babel to compile down to ES5 for browser compatibility.
+- Write with the latest features and allow [Babel](https://babeljs.io/) to compile down to ES5 for browser compatibility.
 - Optimised global script is generated after project script is concatenated with any library scripts
 
 #### Smooth page load transitions
 
-- Uses Barba.js to enhance with client-side rendering
+- Uses [Barba.js](https://barba.js.org/docs/v2/user/) to enhance with client-side rendering
 - Page transitions are customisable with default loader
 
 #### Google Analytics implementation
 
-- Added basic Google Analytics implementation to reduce intergration time to Google Analytics
+- Added basic [Google Analytics](https://analytics.google.com/analytics/web/) implementation to reduce intergration time to Google Analytics
 
 #### Web Font loader implementation
 
-- Added control when linking fonts with Web Font Loader, to improve loading experience
+- Added control when linking fonts with [Web Font Loader](https://github.com/typekit/webfontloader), to improve loading experience

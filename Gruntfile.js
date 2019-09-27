@@ -353,22 +353,37 @@ module.exports = function (grunt) {
       css: ['assets/css/*'],
       projectJs: ['assets/js/tmp/project.js', 'assets/js/build/*'],
       js: ['assets/js/tmp/*', 'assets/js/build/*'],
+      build: ['build/'],
     },
     // Copy production files to build directory
     copy: {
       build: {
-        expand: true,
-        src: [
-          'assets/favicons/build/*',
-          'assets/icons/build/*',
-          'assets/img/build/*',
-          'assets/css/build/*',
-          'assets/fonts/*',
-          'assets/js/build/*',
-          'snippets/**/*',
-          '*.{html,php}',
+        files: [
+          {
+            expand: true,
+            src: [
+              'assets/favicons/build/*',
+              'assets/icons/build/*',
+              'assets/img/build/*',
+              'assets/css/build/*',
+              'assets/fonts/*',
+              'assets/js/build/*',
+              'utilities/**/*',
+              'snippets/**/*',
+              'config.php',
+            ],
+            dest: 'build/',
+            filter: 'isFile',
+          },
+          // Spread template files to root
+          {
+            expand: true,
+            src: ['*.{html,php}'],
+            cwd: 'templates/',
+            dest: 'build/',
+            filter: 'isFile',
+          },
         ],
-        dest: 'build/',
       },
     },
     // Start PHP in-built server
@@ -435,7 +450,7 @@ module.exports = function (grunt) {
         options: {
           proxy: `${config.host}:${config.port}`,
           open: true,
-          startPath: '/home.php',
+          startPath: '/index.php',
           watchTask: true,
           watchEvents: ['add', 'change'],
         },
@@ -445,7 +460,7 @@ module.exports = function (grunt) {
 
   // Tasks
   grunt.registerTask('install', [
-    // Clean assets
+    // Cleanup
     'clean:icons',
     'clean:img',
     'clean:svg',
@@ -480,6 +495,8 @@ module.exports = function (grunt) {
     'watch',
   ]);
   grunt.registerTask('build', [
+    // Cleanup
+    'clean:build',
     // Build core assets
     'install',
     // Build favicons

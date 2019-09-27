@@ -1,7 +1,7 @@
 <nav>
   <ul>
     <li class="d-i-block">
-      <a class="nav__a" data-controls-uid="index" href="/">
+      <a class="nav__a" data-controls-uid="index" href="/index.php">
         <span class="nav__a-label">
           index page
         </span>

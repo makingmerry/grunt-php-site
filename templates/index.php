@@ -1,10 +1,11 @@
 <?php
+  include 'config.php';
   include 'utilities/helpers.php';
   $site_data = [
-    'template' => 'home',
-    'uid' => 'home',
-    'title' => 'Home',
-    'desc' => 'Home description',
+    'template' => 'index',
+    'uid' => 'index',
+    'title' => 'Index',
+    'desc' => 'Index description',
   ];
   snippet('layouts/head', $site_data);
 ?>
