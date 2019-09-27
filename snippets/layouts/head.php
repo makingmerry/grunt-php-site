@@ -20,37 +20,42 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
 
-    <?php // Styles: ?>
+    <?php // CSS: ?>
     <?php if ($template): ?>
-      <?php
-        // Template-specific critical CSS
-        $critical_path_css = __ROOT__.'/assets/css/build/critical/'.$template.'.css';
-        if (file_exists($critical_path_css)) {
+      <?php // Critical: ?>
+      <?php if (file_exists(css('critical/'.$template, true))): ?>
+        <?php
+          // !Not writing in regular syntax to get around syntax highlighting issues with
+          // wrapping PHP in style tags
           echo '<style type="text/css">';
-          include $critical_path_css;
+          include css('critical/'.$template);
           echo '</style>';
-        }
-      ?>
+        ?>
+      <?php endif; ?>
     <?php endif; ?>
-    <?php // Defer loading of site-wide CSS, paired with critical-path CSS to improve page render time ?>
-    <noscript id="deferred-styles">
-      <link href="/assets/css/build/style.css" rel="stylesheet" type="text/css">
-    </noscript>
-    <script>
-      var loadDeferredStyles = function() {
-        var addStylesNode = document.getElementById('deferred-styles');
-        var replacement = document.createElement('div');
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement);
-        addStylesNode.parentElement.removeChild(addStylesNode);
-      };
-      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-          webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-      else window.addEventListener('load', loadDeferredStyles);
-    </script>
 
-    <?php // Run essential scripts ?>
+    <?php // Global: ?>
+    <?php if (file_exists(css('style', true))): ?>
+      <?php // Defer loading of site-wide CSS, paired with critical-path CSS to improve page render time ?>
+      <noscript id="deferred-styles">
+        <link href="<?php echo css('style'); ?>" rel="stylesheet" type="text/css">
+      </noscript>
+      <script>
+        var loadDeferredStyles = function() {
+          var addStylesNode = document.getElementById('deferred-styles');
+          var replacement = document.createElement('div');
+          replacement.innerHTML = addStylesNode.textContent;
+          document.body.appendChild(replacement);
+          addStylesNode.parentElement.removeChild(addStylesNode);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+        else window.addEventListener('load', loadDeferredStyles);
+      </script>
+    <?php endif; ?>
+
+    <?php // Core JS: ?>
     <script>
       // Add class hook so UI dependent on javascript can be presented accordingly.
       if (document.documentElement.classList.length) {
@@ -63,11 +68,9 @@
     </script>
 
     <?php // Favicons: ?>
-    <?php
-      // Embed favicons if file is present
-      $favicons = __ROOT__.'/assets/favicons/build/favicons.html';
-      file_exists($favicons) && include $favicons;
-    ?>
+    <?php if (file_exists(favicons('favicons', true))): ?>
+      <?php include favicons('favicons'); ?>
+    <?php endif; ?>
   </head>
   <body class="
     js-pos-relative js-of-hidden

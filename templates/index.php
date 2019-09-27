@@ -1,5 +1,4 @@
 <?php
-  include 'config.php';
   include 'utilities/helpers.php';
   $site_data = [
     'template' => 'home',

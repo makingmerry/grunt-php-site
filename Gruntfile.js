@@ -2,7 +2,6 @@
 const config = {
   host: '127.0.0.1',
   port: 3000,
-  serverPort: 4000,
 };
 
 // Grunt configuration
@@ -377,8 +376,8 @@ module.exports = function (grunt) {
       dev: {
         options: {
           hostname: config.host,
-          port: config.serverPort,
-          base: '.',
+          port: config.port,
+          router: 'router.php',
         },
       },
     },
@@ -434,9 +433,9 @@ module.exports = function (grunt) {
           ],
         },
         options: {
-          proxy: `${config.host}:${config.serverPort}`,
-          port: config.port,
+          proxy: `${config.host}:${config.port}`,
           open: true,
+          startPath: '/index.php',
           watchTask: true,
           watchEvents: ['add', 'change'],
         },

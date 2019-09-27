@@ -9,7 +9,9 @@
       </div>
     </div>
 
-    <?php // Load any non-essential scripts (i.e. project script) to improve render time. ?>
-    <script src="assets/js/build/global.js" async></script>
+    <?php // Global JS: ?>
+    <?php if (file_exists(js('global', true))): ?>
+      <script src="<?php echo js('global'); ?>" async></script>
+    <?php endif; ?>
   </body>
 </html>
