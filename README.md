@@ -189,6 +189,7 @@ TODO:
 - Resolve hot-reloading not triggering when CSS and JS is updated.
 - Resolve .gitignore conflict and not listing folders/files named icon
 - Check if ignore list can be better streamlined.
+- Keep empty directories (.keep)
 -->
 
 <!-- # Bob
