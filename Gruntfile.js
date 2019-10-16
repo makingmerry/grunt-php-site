@@ -1,63 +1,65 @@
 // Configure development server
 const config = {
-  host: '127.0.0.1',
+  host: "127.0.0.1",
   port: 3000,
-};
+}
 
 // Grunt configuration
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   // Modules
-  grunt.loadNpmTasks('grunt-svg-sprite');
-  grunt.loadNpmTasks('grunt-svg2png');
-  grunt.loadNpmTasks('grunt-real-favicon');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-postcss');
-  grunt.loadNpmTasks('grunt-criticalcss');
-  grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks("grunt-svg-sprite")
+  grunt.loadNpmTasks("grunt-svg2png")
+  grunt.loadNpmTasks("grunt-real-favicon")
+  grunt.loadNpmTasks("grunt-contrib-imagemin")
+  grunt.loadNpmTasks("grunt-contrib-sass")
+  grunt.loadNpmTasks("grunt-postcss")
+  grunt.loadNpmTasks("grunt-criticalcss")
+  grunt.loadNpmTasks("grunt-babel")
   // grunt.loadNpmTasks('grunt-eslint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-php');
-  grunt.loadNpmTasks('grunt-browser-sync');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks("grunt-contrib-concat")
+  grunt.loadNpmTasks("grunt-contrib-uglify")
+  grunt.loadNpmTasks("grunt-php")
+  grunt.loadNpmTasks("grunt-browser-sync")
+  grunt.loadNpmTasks("grunt-contrib-watch")
+  grunt.loadNpmTasks("grunt-contrib-clean")
+  grunt.loadNpmTasks("grunt-contrib-copy")
 
   // Dynamically list templates that require generating critical CSS
-  const templates = grunt.file.expand({ filter: 'isFile', cwd: 'templates' }, ['*.php']);
+  const templates = grunt.file.expand({ filter: "isFile", cwd: "templates" }, [
+    "*.php",
+  ])
   const criticalcss = templates.reduce((map, filename) => {
-    const template = filename.split('.')[0];
+    const template = filename.split(".")[0]
     map[template] = {
       options: {
         url: `http://${config.host}:${config.port}/${filename}`,
-        filename: 'assets/css/tmp/style.css',
+        filename: "assets/css/tmp/style.css",
         outputfile: `assets/css/tmp/critical/${template}.css`,
         width: 1280,
         height: 720,
         forceInclude: [],
         ignoreConsole: true,
       },
-    };
-    return map;
-  }, {});
+    }
+    return map
+  }, {})
 
   // Config
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON("package.json"),
     // Generates favicons from a source favicon image
     realFavicon: {
       favicons: {
-        src: 'assets/favicons/src/favicon.png',
-        dest: 'assets/favicons/build/',
+        src: "assets/favicons/src/favicon.png",
+        dest: "assets/favicons/build/",
         options: {
-          iconsPath: 'assets/favicons/build/',
-          html: 'assets/favicons/build/favicons.html',
+          iconsPath: "assets/favicons/build/",
+          html: "assets/favicons/build/favicons.html",
           design: {
             ios: {
-              pictureAspect: 'backgroundAndMargin',
-              backgroundColor: '#ffffff',
-              margin: '14%',
+              pictureAspect: "backgroundAndMargin",
+              backgroundColor: "#ffffff",
+              margin: "14%",
               assets: {
                 ios6AndPriorIcons: false,
                 ios7AndLaterIcons: false,
@@ -67,9 +69,9 @@ module.exports = function (grunt) {
             },
             desktopBrowser: {},
             windows: {
-              pictureAspect: 'whiteSilhouette',
-              backgroundColor: '#ffffff',
-              onConflict: 'override',
+              pictureAspect: "whiteSilhouette",
+              backgroundColor: "#ffffff",
+              onConflict: "override",
               assets: {
                 windows80Ie10Tile: false,
                 windows10Ie11EdgeTiles: {
@@ -81,12 +83,12 @@ module.exports = function (grunt) {
               },
             },
             androidChrome: {
-              pictureAspect: 'noChange',
-              themeColor: '#ffffff',
+              pictureAspect: "noChange",
+              themeColor: "#ffffff",
               manifest: {
-                display: 'standalone',
-                orientation: 'notSet',
-                onConflict: 'override',
+                display: "standalone",
+                orientation: "notSet",
+                onConflict: "override",
                 declared: true,
               },
               assets: {
@@ -95,12 +97,12 @@ module.exports = function (grunt) {
               },
             },
             safariPinnedTab: {
-              pictureAspect: 'silhouette',
-              themeColor: '#ffffff',
+              pictureAspect: "silhouette",
+              themeColor: "#ffffff",
             },
           },
           settings: {
-            scalingAlgorithm: 'Mitchell',
+            scalingAlgorithm: "Mitchell",
             errorOnImageTooSmall: false,
           },
         },
@@ -110,14 +112,14 @@ module.exports = function (grunt) {
     svg_sprite: {
       icons: {
         expand: true,
-        cwd: 'assets/icons/src/',
-        dest: 'assets/icons/tmp/',
-        src: ['*.svg'],
+        cwd: "assets/icons/src/",
+        dest: "assets/icons/tmp/",
+        src: ["*.svg"],
         options: {
           mode: {
             symbol: {
-              dest: '.',
-              sprite: 'icons.svg',
+              dest: ".",
+              sprite: "icons.svg",
             },
           },
         },
@@ -129,9 +131,9 @@ module.exports = function (grunt) {
         files: [
           {
             flatten: true,
-            cwd: 'assets/icons/src/',
-            dest: 'assets/icons/tmp/',
-            src: ['*.svg'],
+            cwd: "assets/icons/src/",
+            dest: "assets/icons/tmp/",
+            src: ["*.svg"],
           },
         ],
       },
@@ -139,9 +141,9 @@ module.exports = function (grunt) {
         files: [
           {
             flatten: true,
-            cwd: 'assets/img/src/',
-            dest: 'assets/img/build/',
-            src: ['*.svg'],
+            cwd: "assets/img/src/",
+            dest: "assets/img/build/",
+            src: ["*.svg"],
           },
         ],
       },
@@ -157,9 +159,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'assets/icons/tmp/',
-            dest: 'assets/icons/build/',
-            src: ['*.svg'],
+            cwd: "assets/icons/tmp/",
+            dest: "assets/icons/build/",
+            src: ["*.svg"],
           },
         ],
       },
@@ -171,9 +173,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'assets/img/src/',
-            dest: 'assets/img/build/',
-            src: ['*.svg'],
+            cwd: "assets/img/src/",
+            dest: "assets/img/build/",
+            src: ["*.svg"],
           },
         ],
       },
@@ -185,9 +187,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'assets/img/src/',
-            dest: 'assets/img/build/',
-            src: ['*.{png,jpg,gif}'],
+            cwd: "assets/img/src/",
+            dest: "assets/img/build/",
+            src: ["*.{png,jpg,gif}"],
           },
         ],
       },
@@ -198,9 +200,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'assets/img/tmp/',
-            dest: 'assets/img/build/',
-            src: ['*.{png,jpg}'],
+            cwd: "assets/img/tmp/",
+            dest: "assets/img/build/",
+            src: ["*.{png,jpg}"],
           },
         ],
       },
@@ -211,9 +213,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'assets/icons/tmp/',
-            dest: 'assets/icons/build/',
-            src: ['*.{png,jpg}'],
+            cwd: "assets/icons/tmp/",
+            dest: "assets/icons/build/",
+            src: ["*.{png,jpg}"],
           },
         ],
       },
@@ -224,9 +226,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'assets/favicons/build/',
-            src: ['*.{png,jpg}'],
-            dest: 'assets/favicons/build/',
+            cwd: "assets/favicons/build/",
+            src: ["*.{png,jpg}"],
+            dest: "assets/favicons/build/",
           },
         ],
       },
@@ -239,22 +241,22 @@ module.exports = function (grunt) {
     sass: {
       base: {
         options: {
-          style: 'expanded',
+          style: "expanded",
           precision: 3,
-          sourcemap: 'none',
+          "no-source-map": true,
         },
         files: {
-          'assets/css/tmp/base.css': 'assets/sass/base.scss',
+          "assets/css/tmp/base.css": "assets/sass/base.scss",
         },
       },
       project: {
         options: {
-          style: 'expanded',
+          style: "expanded",
           precision: 3,
-          sourcemap: 'none',
+          "no-source-map": true,
         },
         files: {
-          'assets/css/tmp/project.css': 'assets/sass/project.scss',
+          "assets/css/tmp/project.css": "assets/sass/project.scss",
         },
       },
     },
@@ -267,27 +269,27 @@ module.exports = function (grunt) {
         options: {
           map: false,
           processors: [
-            require('pixrem')(),
-            require('autoprefixer')({ browsers: 'last 2 versions' }),
-            require('cssnano')(),
+            require("pixrem")(),
+            require("autoprefixer")({ browsers: "last 2 versions" }),
+            require("cssnano")(),
           ],
         },
-        src: 'assets/css/tmp/style.css',
-        dest: 'assets/css/build/style.css',
+        src: "assets/css/tmp/style.css",
+        dest: "assets/css/build/style.css",
       },
       critical: {
         options: {
           map: false,
           processors: [
-            require('pixrem')(),
-            require('autoprefixer')({ browsers: 'last 2 versions' }),
-            require('cssnano')(),
+            require("pixrem")(),
+            require("autoprefixer")({ browsers: "last 2 versions" }),
+            require("cssnano")(),
           ],
         },
         expand: true,
-        cwd: 'assets/css/tmp/critical/',
-        dest: 'assets/css/build/critical/',
-        src: ['**/*.css'],
+        cwd: "assets/css/tmp/critical/",
+        dest: "assets/css/build/critical/",
+        src: ["**/*.css"],
       },
     },
     // linter — !reconcile with .prettier config
@@ -305,55 +307,58 @@ module.exports = function (grunt) {
       },
       project: {
         files: {
-          'assets/js/tmp/project.js': 'assets/js/src/project.js',
+          "assets/js/tmp/project.js": "assets/js/src/project.js",
         },
       },
     },
     // Optimise JS
     uglify: {
       js: {
-        src: 'assets/js/tmp/global.js',
-        dest: 'assets/js/build/global.js',
+        src: "assets/js/tmp/global.js",
+        dest: "assets/js/build/global.js",
       },
     },
     // Concat assets
     concat: {
       // !Concatenating base and project styles WILL result in duplicate declarations
       css: {
-        src: ['assets/css/tmp/base.css', 'assets/css/tmp/project.css'],
-        dest: 'assets/css/tmp/style.css',
+        src: ["assets/css/tmp/base.css", "assets/css/tmp/project.css"],
+        dest: "assets/css/tmp/style.css",
       },
       libraryJs: {
-        src: ['assets/js/src/lib/*.js'],
-        dest: 'assets/js/tmp/library.js',
+        src: ["assets/js/src/lib/*.js"],
+        dest: "assets/js/tmp/library.js",
       },
       js: {
-        src: ['assets/js/tmp/library.js', 'assets/js/tmp/project.js'],
-        dest: 'assets/js/tmp/global.js',
+        src: ["assets/js/tmp/library.js", "assets/js/tmp/project.js"],
+        dest: "assets/js/tmp/global.js",
       },
     },
     // Clean up old files before every update/build
     clean: {
-      favicons: ['assets/favicons/build/*'],
-      icons: ['assets/icons/tmp/*', 'assets/icons/build/*'],
-      img: ['assets/img/tmp/*.{png,jpg,gif}', 'assets/img/build/*.{png,jpg,gif}'],
-      svg: ['assets/img/tmp/*.svg', 'assets/img/build/*.svg'],
+      favicons: ["assets/favicons/build/*"],
+      icons: ["assets/icons/tmp/*", "assets/icons/build/*"],
+      img: [
+        "assets/img/tmp/*.{png,jpg,gif}",
+        "assets/img/build/*.{png,jpg,gif}",
+      ],
+      svg: ["assets/img/tmp/*.svg", "assets/img/build/*.svg"],
       // !Important to keep compiled other half of CSS,
       // to allow for quicker concatenation
       baseCss: [
-        'assets/css/tmp/base.css',
-        'assets/css/tmp/style.css',
-        'assets/css/build/style.css',
+        "assets/css/tmp/base.css",
+        "assets/css/tmp/style.css",
+        "assets/css/build/style.css",
       ],
       projectCss: [
-        'assets/css/tmp/project.css',
-        'assets/css/tmp/style.css',
-        'assets/css/build/style.css',
+        "assets/css/tmp/project.css",
+        "assets/css/tmp/style.css",
+        "assets/css/build/style.css",
       ],
-      css: ['assets/css/*'],
-      projectJs: ['assets/js/tmp/project.js', 'assets/js/build/*'],
-      js: ['assets/js/tmp/*', 'assets/js/build/*'],
-      build: ['build/'],
+      css: ["assets/css/*"],
+      projectJs: ["assets/js/tmp/project.js", "assets/js/build/*"],
+      js: ["assets/js/tmp/*", "assets/js/build/*"],
+      build: ["build/"],
     },
     // Copy production files to build directory
     copy: {
@@ -362,26 +367,26 @@ module.exports = function (grunt) {
           {
             expand: true,
             src: [
-              'assets/favicons/build/*',
-              'assets/icons/build/*',
-              'assets/img/build/*',
-              'assets/css/build/*',
-              'assets/fonts/*',
-              'assets/js/build/*',
-              'utilities/**/*',
-              'snippets/**/*',
-              'config.php',
+              "assets/favicons/build/*",
+              "assets/icons/build/*",
+              "assets/img/build/*",
+              "assets/css/build/*",
+              "assets/fonts/*",
+              "assets/js/build/*",
+              "utilities/**/*",
+              "snippets/**/*",
+              "config.php",
             ],
-            dest: 'build/',
-            filter: 'isFile',
+            dest: "build/",
+            filter: "isFile",
           },
           // Spread template files to root
           {
             expand: true,
-            src: ['*.{html,php}'],
-            cwd: 'templates/',
-            dest: 'build/',
-            filter: 'isFile',
+            src: ["*.{html,php}"],
+            cwd: "templates/",
+            dest: "build/",
+            filter: "isFile",
           },
         ],
       },
@@ -392,7 +397,7 @@ module.exports = function (grunt) {
         options: {
           hostname: config.host,
           port: config.port,
-          router: 'router.php',
+          router: "router.php",
         },
       },
     },
@@ -402,36 +407,47 @@ module.exports = function (grunt) {
         spawn: false,
       },
       icons: {
-        files: ['assets/icons/src/*'],
-        tasks: ['clean:icons', 'svg_sprite', 'svg2png:icons', 'imagemin:icons', 'imagemin:iconImg'],
+        files: ["assets/icons/src/*"],
+        tasks: [
+          "clean:icons",
+          "svg_sprite",
+          "svg2png:icons",
+          "imagemin:icons",
+          "imagemin:iconImg",
+        ],
       },
       img: {
-        files: ['assets/img/src/*.{png,jpg,gif}'],
-        tasks: ['clean:img', 'imagemin:img'],
+        files: ["assets/img/src/*.{png,jpg,gif}"],
+        tasks: ["clean:img", "imagemin:img"],
       },
       svg: {
-        files: ['assets/img/src/*.svg'],
-        tasks: ['clean:svg', 'svg2png:svg', 'imagemin:svg', 'imagemin:svgImg'],
+        files: ["assets/img/src/*.svg"],
+        tasks: ["clean:svg", "svg2png:svg", "imagemin:svg", "imagemin:svgImg"],
       },
       baseCss: {
-        files: ['assets/sass/base/**/*', 'assets/sass/base.scss'],
-        tasks: ['clean:baseCss', 'sass:base', 'concat:css', 'postcss:global'],
+        files: ["assets/sass/base/**/*", "assets/sass/base.scss"],
+        tasks: ["clean:baseCss", "sass:base", "concat:css", "postcss:global"],
       },
       projectCss: {
-        files: ['assets/sass/base/**/*', 'assets/sass/base.scss'],
-        tasks: ['clean:projectCss', 'sass:project', 'concat:css', 'postcss:global'],
+        files: ["assets/sass/base/**/*", "assets/sass/base.scss"],
+        tasks: [
+          "clean:projectCss",
+          "sass:project",
+          "concat:css",
+          "postcss:global",
+        ],
       },
       css: {
-        files: ['assets/sass/foundation/**/*'],
-        tasks: ['clean:css', 'sass', 'concat:css', 'postcss:global'],
+        files: ["assets/sass/foundation/**/*"],
+        tasks: ["clean:css", "sass", "concat:css", "postcss:global"],
       },
       projectJs: {
-        files: ['assets/js/src/project.js'],
-        tasks: ['clean:projectJs', 'babel', 'concat:js', 'uglify'],
+        files: ["assets/js/src/project.js"],
+        tasks: ["clean:projectJs", "babel", "concat:js", "uglify"],
       },
       js: {
-        files: ['assets/js/src/lib/*'],
-        tasks: ['clean:js', 'babel', 'concat:libraryJs', 'concat:js', 'uglify'],
+        files: ["assets/js/src/lib/*"],
+        tasks: ["clean:js", "babel", "concat:libraryJs", "concat:js", "uglify"],
       },
     },
     // Browser hot-reloading for quicker development
@@ -439,75 +455,75 @@ module.exports = function (grunt) {
       dev: {
         bsFiles: {
           src: [
-            'assets/icons/build/*',
-            'assets/img/build/*',
-            'assets/css/build/*',
-            'assets/js/build/*',
-            'snippets/**/*',
-            '*.{html,php}',
+            "assets/icons/build/*",
+            "assets/img/build/*",
+            "assets/css/build/*",
+            "assets/js/build/*",
+            "snippets/**/*",
+            "*.{html,php}",
           ],
         },
         options: {
           proxy: `${config.host}:${config.port}`,
           open: true,
-          startPath: '/index.php',
+          startPath: "/index.php",
           watchTask: true,
-          watchEvents: ['add', 'change'],
+          watchEvents: ["add", "change"],
         },
       },
     },
-  });
+  })
 
   // Tasks
-  grunt.registerTask('install', [
+  grunt.registerTask("install", [
     // Cleanup
-    'clean:icons',
-    'clean:img',
-    'clean:svg',
-    'clean:css',
-    'clean:js',
+    "clean:icons",
+    "clean:img",
+    "clean:svg",
+    "clean:css",
+    "clean:js",
     // Build icons
-    'svg_sprite',
-    'svg2png:icons',
-    'imagemin:icons',
-    'imagemin:iconImg',
+    "svg_sprite",
+    "svg2png:icons",
+    "imagemin:icons",
+    "imagemin:iconImg",
     // Build images (bitmap + SVG)
-    'svg2png:svg',
-    'imagemin:svg',
-    'imagemin:svgImg',
-    'imagemin:img',
+    "svg2png:svg",
+    "imagemin:svg",
+    "imagemin:svgImg",
+    "imagemin:img",
     // Build CSS
-    'sass',
-    'concat:css',
-    'postcss:global',
+    "sass",
+    "concat:css",
+    "postcss:global",
     // Build JS
-    'babel',
-    'concat:libraryJs',
-    'concat:js',
-    'uglify',
-  ]);
-  grunt.registerTask('start', [
+    "babel",
+    "concat:libraryJs",
+    "concat:js",
+    "uglify",
+  ])
+  grunt.registerTask("start", [
     // Start server
-    'php',
+    "php",
     // Start browser + sync
-    'browserSync',
+    "browserSync",
     // Start watching files for changes
-    'watch',
-  ]);
-  grunt.registerTask('build', [
+    "watch",
+  ])
+  grunt.registerTask("build", [
     // Cleanup
-    'clean:build',
+    "clean:build",
     // Build core assets
-    'install',
+    "install",
     // Build favicons
-    'clean:favicons',
-    'realFavicon:favicons',
-    'imagemin:favicons',
+    "clean:favicons",
+    "realFavicon:favicons",
+    "imagemin:favicons",
     // Build critical CSS
-    'php',
-    'criticalcss',
-    'postcss:critical',
+    "php",
+    "criticalcss",
+    "postcss:critical",
     // Copy files and assets to build
-    'copy',
-  ]);
-};
+    "copy",
+  ])
+}
