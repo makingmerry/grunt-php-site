@@ -15,7 +15,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-postcss")
   grunt.loadNpmTasks("grunt-criticalcss")
   grunt.loadNpmTasks("grunt-babel")
-  // grunt.loadNpmTasks('grunt-eslint');
+  grunt.loadNpmTasks("grunt-eslint")
   grunt.loadNpmTasks("grunt-contrib-concat")
   grunt.loadNpmTasks("grunt-contrib-uglify")
   grunt.loadNpmTasks("grunt-php")
@@ -292,14 +292,10 @@ module.exports = function(grunt) {
         src: ["**/*.css"],
       },
     },
-    // linter — !reconcile with .prettier config
-    // eslint: {
-    //   options: {
-    //     configFile: '',
-    //     rulePaths: '',
-    //   },
-    //   project: ['assets/js/src/project.js'],
-    // },
+    // Linter
+    eslint: {
+      target: ["assets/js/src/project.js"],
+    },
     // Transpile project ES6 script to ES5
     babel: {
       options: {
@@ -443,11 +439,18 @@ module.exports = function(grunt) {
       },
       projectJs: {
         files: ["assets/js/src/project.js"],
-        tasks: ["clean:projectJs", "babel", "concat:js", "uglify"],
+        tasks: ["clean:projectJs", "eslint", "babel", "concat:js", "uglify"],
       },
       js: {
         files: ["assets/js/src/lib/*"],
-        tasks: ["clean:js", "babel", "concat:libraryJs", "concat:js", "uglify"],
+        tasks: [
+          "clean:js",
+          "eslint",
+          "babel",
+          "concat:libraryJs",
+          "concat:js",
+          "uglify",
+        ],
       },
     },
     // Browser hot-reloading for quicker development
@@ -498,6 +501,7 @@ module.exports = function(grunt) {
     "concat:css",
     "postcss:global",
     // Build JS
+    "eslint",
     "babel",
     "concat:libraryJs",
     "concat:js",

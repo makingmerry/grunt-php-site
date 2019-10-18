@@ -8,7 +8,7 @@
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  /* global Barba TweenLite picturefill svg4everybody WebFont google */
+  /* global Barba TweenLite picturefill svg4everybody WebFont */
 
   // # polyfill, helpers
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -33,11 +33,6 @@
       } while (ancestor !== null)
       return null
     }
-  }
-
-  // type check
-  const isFunction = function isFunction(X) {
-    return Object.prototype.toString.call(X) === "[object Function]"
   }
 
   // # modules
