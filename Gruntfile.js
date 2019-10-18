@@ -373,7 +373,7 @@ module.exports = function(grunt) {
               "assets/css/build/*",
               "assets/fonts/*",
               "assets/js/build/*",
-              "utilities/**/*",
+              "utils/**/*",
               "snippets/**/*",
               "config.php",
             ],
@@ -482,6 +482,7 @@ module.exports = function(grunt) {
     "clean:svg",
     "clean:css",
     "clean:js",
+    "clean:favicons",
     // Build icons
     "svg_sprite",
     "svg2png:icons",
@@ -501,6 +502,9 @@ module.exports = function(grunt) {
     "concat:libraryJs",
     "concat:js",
     "uglify",
+    // Build favicons
+    "realFavicon:favicons",
+    "imagemin:favicons",
   ])
   grunt.registerTask("start", [
     // Start server
@@ -515,10 +519,6 @@ module.exports = function(grunt) {
     "clean:build",
     // Build core assets
     "install",
-    // Build favicons
-    "clean:favicons",
-    "realFavicon:favicons",
-    "imagemin:favicons",
     // Build critical CSS
     "php",
     "criticalcss",

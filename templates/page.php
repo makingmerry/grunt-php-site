@@ -1,6 +1,6 @@
 <?php
   include 'config.php';
-  include 'utilities/helpers.php';
+  include 'utils/helpers.php';
   $site_data = [
     'template' => 'page',
     'uid' => 'page',

@@ -69,7 +69,7 @@
 
     <?php // Favicons: ?>
     <?php if (file_exists(favicons('favicons', true))): ?>
-      <?php include favicons('favicons'); ?>
+      <?php include favicons('favicons', true); ?>
     <?php endif; ?>
   </head>
   <body class="
