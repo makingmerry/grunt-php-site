@@ -15,7 +15,7 @@ Grunt taskrunner starter-kit for developing accessible and performant .php websi
 
 ## Installation
 
-You will need [Node](https://docs.npmjs.com/getting-started/installing-node), [Sass](http://sass-lang.com/install) and [Sass](http://sass-lang.com/install) installed on your local development machine.
+You will need [Node](https://docs.npmjs.com/getting-started/installing-node) and [Sass](http://sass-lang.com/install) installed on your local development machine.
 
 To get your starter-kit up and running:
 
