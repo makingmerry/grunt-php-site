@@ -485,7 +485,7 @@ module.exports = function(grunt) {
     "clean:svg",
     "clean:css",
     "clean:js",
-    "clean:favicons",
+    // "clean:favicons",
     // Build icons
     "svg_sprite",
     "svg2png:icons",
@@ -507,8 +507,8 @@ module.exports = function(grunt) {
     "concat:js",
     "uglify",
     // Build favicons
-    "realFavicon:favicons",
-    "imagemin:favicons",
+    // "realFavicon:favicons",
+    // "imagemin:favicons",
   ])
   grunt.registerTask("start", [
     // Start server
