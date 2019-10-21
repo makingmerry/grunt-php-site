@@ -1,18 +1,17 @@
-// # pointer-events
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.pe-none',
-    'declarations': (
-      pointer-events: none,
+    (
+      "selector": ".pe-none",
+      "declarations": (
+        pointer-events: none,
+      )
     ),
-  ), (
-    'selector': '.pe-auto',
-    'declarations': (
-      pointer-events: auto,
-    ),
+    (
+      "selector": ".pe-auto",
+      "declarations": (
+        pointer-events: auto,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

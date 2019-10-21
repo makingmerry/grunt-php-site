@@ -1,58 +1,65 @@
-// # background_ position
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.bg-p-none',
-    'declarations': (
-      background-position: 0% 0%,
+    (
+      "selector": ".bg-p-none",
+      "declarations": (
+        background-position: 0% 0%,
+      )
     ),
-  ), (
-    'selector': '.bg-p-top',
-    'declarations': (
-      background-position: center top,
+    (
+      "selector": ".bg-p-top",
+      "declarations": (
+        background-position: center top,
+      )
     ),
-  ), (
-    'selector': '.bg-p-top-right',
-    'declarations': (
-      background-position: right top,
+    (
+      "selector": ".bg-p-top-right",
+      "declarations": (
+        background-position: right top,
+      )
     ),
-  ), (
-    'selector': '.bg-p-right',
-    'declarations': (
-      background-position: right center,
+    (
+      "selector": ".bg-p-right",
+      "declarations": (
+        background-position: right center,
+      )
     ),
-  ), (
-    'selector': '.bg-p-bottom-right',
-    'declarations': (
-      background-position: right bottom,
+    (
+      "selector": ".bg-p-bottom-right",
+      "declarations": (
+        background-position: right bottom,
+      )
     ),
-  ), (
-    'selector': '.bg-p-bottom',
-    'declarations': (
-      background-position: center bottom,
+    (
+      "selector": ".bg-p-bottom",
+      "declarations": (
+        background-position: center bottom,
+      )
     ),
-  ), (
-    'selector': '.bg-p-bottom-left',
-    'declarations': (
-      background-position: left bottom,
+    (
+      "selector": ".bg-p-bottom-left",
+      "declarations": (
+        background-position: left bottom,
+      )
     ),
-  ), (
-    'selector': '.bg-p-left',
-    'declarations': (
-      background-position: left center,
+    (
+      "selector": ".bg-p-left",
+      "declarations": (
+        background-position: left center,
+      )
     ),
-  ), (
-    'selector': '.bg-p-top-left',
-    'declarations': (
-      background-position: left top,
+    (
+      "selector": ".bg-p-top-left",
+      "declarations": (
+        background-position: left top,
+      )
     ),
-  ), (
-    'selector': '.bg-p-center',
-    'declarations': (
-      background-position: center center,
-    ),
+    (
+      "selector": ".bg-p-center",
+      "declarations": (
+        background-position: center center,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

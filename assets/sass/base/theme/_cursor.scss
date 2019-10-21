@@ -1,33 +1,35 @@
-// # cursor
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.cs-none',
-    'declarations': (
-      cursor: none,
+    (
+      "selector": ".cs-none",
+      "declarations": (
+        cursor: none,
+      )
     ),
-  ), (
-    'selector': '.cs-auto',
-    'declarations': (
-      cursor: auto,
+    (
+      "selector": ".cs-auto",
+      "declarations": (
+        cursor: auto,
+      )
     ),
-  ), (
-    'selector': '.cs-default',
-    'declarations': (
-      cursor: default,
+    (
+      "selector": ".cs-default",
+      "declarations": (
+        cursor: default,
+      )
     ),
-  ), (
-    'selector': '.cs-pointer',
-    'declarations': (
-      cursor: pointer,
+    (
+      "selector": ".cs-pointer",
+      "declarations": (
+        cursor: pointer,
+      )
     ),
-  ), (
-    'selector': '.cs-text',
-    'declarations': (
-      cursor: text,
-    ),
+    (
+      "selector": ".cs-text",
+      "declarations": (
+        cursor: text,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

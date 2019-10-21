@@ -1,0 +1,29 @@
+@include make-responsive-rulesets(
+  (
+    (
+      "selector": ".l-l-none",
+      "declarations": (
+        max-width: 100%,
+      )
+    ),
+    (
+      "selector": ".l-l-base",
+      "declarations": (
+        max-width: map-get($line-lengths, "base"),
+      )
+    ),
+    (
+      "selector": ".l-l-narrow",
+      "declarations": (
+        max-width: map-get($line-lengths, "narrow"),
+      )
+    ),
+    (
+      "selector": ".l-l-wide",
+      "declarations": (
+        max-width: map-get($line-lengths, "wide"),
+      )
+    )
+  ),
+  $screen-sizes
+);

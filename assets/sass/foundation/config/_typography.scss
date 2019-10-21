@@ -1,0 +1,53 @@
+// Context
+$base-font-size: 16px;
+
+@function rem($pixels) {
+  @return convert-px-to-rem($pixels, $base-font-size);
+}
+
+@function em($pixels) {
+  @return convert-px-to-em($pixels, $base-font-size);
+}
+
+// Font
+$font-families: (
+  "helvetica": "helvetica neue, helvetica, sans-serif",
+);
+
+$type-scale: (
+  "1": rem(39.81),
+  "2": rem(33.18),
+  "3": rem(27.65),
+  "4": rem(23.04),
+  "5": rem(19.2),
+  "6": rem(16),
+  "7": rem(13.33),
+);
+
+// Line
+$line-lengths: (
+  "base": em(480),
+  "narrow": em(320),
+  "wide": em(560),
+);
+
+$line-heights: (
+  "copy": 1.45,
+  "title": 1.25,
+  "solid": 1,
+);
+
+$line-trackings: (
+  "base": em(1),
+  "tight": em(-8),
+  "wide": em(4),
+);
+
+// Word
+$text-indents: (
+  "0": 0,
+  "1": rem(4),
+  "2": rem(8),
+  "3": rem(16),
+  "4": rem(32),
+);

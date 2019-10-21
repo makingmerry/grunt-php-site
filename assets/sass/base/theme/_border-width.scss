@@ -1,36 +1,32 @@
-// # border_ width
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-$border-width-RSON: make-RSON($border-widths, '.b-w', 'border-width');
+$border-width-RSON: make-RSON($border-widths, ".b-w", "border-width");
 $global-border-width-RSON: (
   (
-    'selector': '.b-w-top-0',
-    'declarations': (
+    "selector": ".b-w-top-0",
+    "declarations": (
       border-top-width: 0,
     ),
-  ), (
-    'selector': '.b-w-right-0',
-    'declarations': (
+  ),
+  (
+    "selector": ".b-w-right-0",
+    "declarations": (
       border-right-width: 0,
     ),
-  ), (
-    'selector': '.b-w-bottom-0',
-    'declarations': (
+  ),
+  (
+    "selector": ".b-w-bottom-0",
+    "declarations": (
       border-bottom-width: 0,
     ),
-  ), (
-    'selector': '.b-w-left-0',
-    'declarations': (
+  ),
+  (
+    "selector": ".b-w-left-0",
+    "declarations": (
       border-left-width: 0,
     ),
-  ),
+  )
 );
-
 $full-border-width-RSON: concat-lists(
   $border-width-RSON,
   $global-border-width-RSON
 );
-
 @include make-responsive-rulesets($full-border-width-RSON, $screen-sizes);

@@ -1,23 +1,23 @@
-// # float
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.flo-none',
-    'declarations': (
-      float: none,
+    (
+      "selector": ".flo-none",
+      "declarations": (
+        float: none,
+      )
     ),
-  ), (
-    'selector': '.flo-right',
-    'declarations': (
-      float: right,
+    (
+      "selector": ".flo-right",
+      "declarations": (
+        float: right,
+      )
     ),
-  ), (
-    'selector': '.flo-left',
-    'declarations': (
-      float: left,
-    ),
+    (
+      "selector": ".flo-left",
+      "declarations": (
+        float: left,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

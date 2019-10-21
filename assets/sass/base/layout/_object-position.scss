@@ -1,58 +1,65 @@
-// # object_ position
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.obj-p-none',
-    'declarations': (
-      object-position: 0% 0%,
+    (
+      "selector": ".obj-p-none",
+      "declarations": (
+        object-position: 0% 0%,
+      )
     ),
-  ), (
-    'selector': '.obj-p-top',
-    'declarations': (
-      object-position: center top,
+    (
+      "selector": ".obj-p-top",
+      "declarations": (
+        object-position: center top,
+      )
     ),
-  ), (
-    'selector': '.obj-p-top-right',
-    'declarations': (
-      object-position: right top,
+    (
+      "selector": ".obj-p-top-right",
+      "declarations": (
+        object-position: right top,
+      )
     ),
-  ), (
-    'selector': '.obj-p-right',
-    'declarations': (
-      object-position: right center,
+    (
+      "selector": ".obj-p-right",
+      "declarations": (
+        object-position: right center,
+      )
     ),
-  ), (
-    'selector': '.obj-p-bottom-right',
-    'declarations': (
-      object-position: right bottom,
+    (
+      "selector": ".obj-p-bottom-right",
+      "declarations": (
+        object-position: right bottom,
+      )
     ),
-  ), (
-    'selector': '.obj-p-bottom',
-    'declarations': (
-      object-position: center bottom,
+    (
+      "selector": ".obj-p-bottom",
+      "declarations": (
+        object-position: center bottom,
+      )
     ),
-  ), (
-    'selector': '.obj-p-bottom-left',
-    'declarations': (
-      object-position: left bottom,
+    (
+      "selector": ".obj-p-bottom-left",
+      "declarations": (
+        object-position: left bottom,
+      )
     ),
-  ), (
-    'selector': '.obj-p-left',
-    'declarations': (
-      object-position: left center,
+    (
+      "selector": ".obj-p-left",
+      "declarations": (
+        object-position: left center,
+      )
     ),
-  ), (
-    'selector': '.obj-p-top-left',
-    'declarations': (
-      object-position: left top,
+    (
+      "selector": ".obj-p-top-left",
+      "declarations": (
+        object-position: left top,
+      )
     ),
-  ), (
-    'selector': '.obj-p-center',
-    'declarations': (
-      object-position: center center,
-    ),
+    (
+      "selector": ".obj-p-center",
+      "declarations": (
+        object-position: center center,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

@@ -1,45 +1,36 @@
-// # grid
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-// # map-column-widths
+// map-column-widths
 // {Function} returns a map of index 'key' to percentage width 'value' pairs
-// -
 // @param {Number} $column-count - Number to get index and associated widths
-// -
 // @return {Map}
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
 @function map-column-widths($column-count) {
   $result: ();
   @for $i from 1 through $column-count {
-    $width: 100 / ($column-count / $i) + '%';
-    $result: map-merge($result, ('#{$i}': $width));
+    $width: 100 / ($column-count / $i) + "%";
+    $result: map-merge(
+      $result,
+      (
+        "#{$i}": $width,
+      )
+    );
   }
-
   @return $result;
 }
 
-// # make-grid-RSON
+// make-grid-RSON
 // {Function} returns a RSON list for grid columns ruleset generation
-// -
 // @param {Number | Arglist} $column-counts - Number(s) of columns to form grid(s) with
-// -
 // @return {List}
-////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////
 @function make-grid-RSON($column-counts...) {
   $result: ();
   @each $column-count in $column-counts {
     $column-widths: map-column-widths($column-count);
-    $grid-RSON: make-RSON($column-widths, '.g#{$column-count}', ('flex-basis', 'max-width'));
-    $result: join($result, $grid-RSON, 'comma');
+    $grid-RSON: make-RSON(
+      $column-widths,
+      ".g#{$column-count}",
+      ("flex-basis", "max-width")
+    );
+    $result: join($result, $grid-RSON, "comma");
   }
-
   @return $result;
 }
-
-@include make-responsive-rulesets(
-  make-grid-RSON($grids...), $screen-sizes
-);
+@include make-responsive-rulesets(make-grid-RSON($grids...), $screen-sizes);

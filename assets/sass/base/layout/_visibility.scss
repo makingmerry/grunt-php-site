@@ -1,45 +1,49 @@
-// # visibility
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.vis-visible',
-    'declarations': (
-      visibility: visible,
-    ),
-  ), (
-    'selector': '.vis-hidden',
-    'declarations': (
-      visibility: hidden,
-    ),
-  ), (
-    'selector': '.vis-collapse',
-    'declarations': (
-      visibility: collapse,
-    ),
-  ),
-), $screen-sizes);
-
-// js enhancements
-.js {
-  @include make-responsive-rulesets((
     (
-      'selector': '.js-vis-visible',
-      'declarations': (
+      "selector": ".vis-visible",
+      "declarations": (
         visibility: visible,
-      ),
-    ), (
-      'selector': '.js-vis-hidden',
-      'declarations': (
-        visibility: hidden,
-      ),
-    ), (
-      'selector': '.js-vis-collapse',
-      'declarations': (
-        visibility: collapse,
-      ),
+      )
     ),
-  ), $screen-sizes);
+    (
+      "selector": ".vis-hidden",
+      "declarations": (
+        visibility: hidden,
+      )
+    ),
+    (
+      "selector": ".vis-collapse",
+      "declarations": (
+        visibility: collapse,
+      )
+    )
+  ),
+  $screen-sizes
+);
+
+.js {
+  @include make-responsive-rulesets(
+    (
+      (
+        "selector": ".js-vis-visible",
+        "declarations": (
+          visibility: visible,
+        )
+      ),
+      (
+        "selector": ".js-vis-hidden",
+        "declarations": (
+          visibility: hidden,
+        )
+      ),
+      (
+        "selector": ".js-vis-collapse",
+        "declarations": (
+          visibility: collapse,
+        )
+      )
+    ),
+    $screen-sizes
+  );
 }

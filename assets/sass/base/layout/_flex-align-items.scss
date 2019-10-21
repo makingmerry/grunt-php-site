@@ -1,33 +1,35 @@
-// # flex_ align-items
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.flx-ai-start',
-    'declarations': (
-      align-items: flex-start,
+    (
+      "selector": ".flx-ai-start",
+      "declarations": (
+        align-items: flex-start,
+      )
     ),
-  ), (
-    'selector': '.flx-ai-end',
-    'declarations': (
-      align-items: flex-end,
+    (
+      "selector": ".flx-ai-end",
+      "declarations": (
+        align-items: flex-end,
+      )
     ),
-  ), (
-    'selector': '.flx-ai-center',
-    'declarations': (
-      align-items: center,
+    (
+      "selector": ".flx-ai-center",
+      "declarations": (
+        align-items: center,
+      )
     ),
-  ), (
-    'selector': '.flx-ai-stretch',
-    'declarations': (
-      align-items: stretch,
+    (
+      "selector": ".flx-ai-stretch",
+      "declarations": (
+        align-items: stretch,
+      )
     ),
-  ), (
-    'selector': '.flx-ai-baseline',
-    'declarations': (
-      align-items: baseline,
-    ),
+    (
+      "selector": ".flx-ai-baseline",
+      "declarations": (
+        align-items: baseline,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

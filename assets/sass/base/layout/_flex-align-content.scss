@@ -1,38 +1,41 @@
-// # flex_ align-content
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.flx-ac-start',
-    'declarations': (
-      align-content: flex-start,
+    (
+      "selector": ".flx-ac-start",
+      "declarations": (
+        align-content: flex-start,
+      )
     ),
-  ), (
-    'selector': '.flx-ac-end',
-    'declarations': (
-      align-content: flex-end,
+    (
+      "selector": ".flx-ac-end",
+      "declarations": (
+        align-content: flex-end,
+      )
     ),
-  ), (
-    'selector': '.flx-ac-center',
-    'declarations': (
-      align-content: center,
+    (
+      "selector": ".flx-ac-center",
+      "declarations": (
+        align-content: center,
+      )
     ),
-  ), (
-    'selector': '.flx-ac-stretch',
-    'declarations': (
-      align-content: stretch,
+    (
+      "selector": ".flx-ac-stretch",
+      "declarations": (
+        align-content: stretch,
+      )
     ),
-  ), (
-    'selector': '.flx-ac-s-between',
-    'declarations': (
-      align-content: space-between,
+    (
+      "selector": ".flx-ac-s-between",
+      "declarations": (
+        align-content: space-between,
+      )
     ),
-  ), (
-    'selector': '.flx-ac-s-around',
-    'declarations': (
-      align-content: space-around,
-    ),
+    (
+      "selector": ".flx-ac-s-around",
+      "declarations": (
+        align-content: space-around,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

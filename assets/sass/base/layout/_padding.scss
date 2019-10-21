@@ -1,16 +1,18 @@
-// # padding
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-$padding-all-RSON: make-RSON($paddings, '.p-all', 'padding');
-$padding-vertical-RSON: make-RSON($paddings, '.p-ver', ('padding-top', 'padding-bottom'));
-$padding-horizontal-RSON: make-RSON($paddings, '.p-hor', ('padding-right', 'padding-left'));
-$padding-top-RSON: make-RSON($paddings, '.p-top', 'padding-top');
-$padding-right-RSON: make-RSON($paddings, '.p-right', 'padding-right');
-$padding-bottom-RSON: make-RSON($paddings, '.p-bottom', 'padding-bottom');
-$padding-left-RSON: make-RSON($paddings, '.p-left', 'padding-left');
-
+$padding-all-RSON: make-RSON($paddings, ".p-all", "padding");
+$padding-vertical-RSON: make-RSON(
+  $paddings,
+  ".p-ver",
+  ("padding-top", "padding-bottom")
+);
+$padding-horizontal-RSON: make-RSON(
+  $paddings,
+  ".p-hor",
+  ("padding-right", "padding-left")
+);
+$padding-top-RSON: make-RSON($paddings, ".p-top", "padding-top");
+$padding-right-RSON: make-RSON($paddings, ".p-right", "padding-right");
+$padding-bottom-RSON: make-RSON($paddings, ".p-bottom", "padding-bottom");
+$padding-left-RSON: make-RSON($paddings, ".p-left", "padding-left");
 $full-padding-RSON: concat-lists(
   $padding-all-RSON,
   $padding-vertical-RSON,
@@ -20,5 +22,4 @@ $full-padding-RSON: concat-lists(
   $padding-bottom-RSON,
   $padding-left-RSON
 );
-
 @include make-responsive-rulesets($full-padding-RSON, $screen-sizes);

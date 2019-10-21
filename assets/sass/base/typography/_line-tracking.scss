@@ -1,28 +1,29 @@
-// # line_ tracking
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.l-t-none',
-    'declarations': (
-      letter-spacing: 0,
+    (
+      "selector": ".l-t-none",
+      "declarations": (
+        letter-spacing: 0,
+      )
     ),
-  ), (
-    'selector': '.l-t-base',
-    'declarations': (
-      letter-spacing: map-get($line-trackings, 'base'),
+    (
+      "selector": ".l-t-base",
+      "declarations": (
+        letter-spacing: map-get($line-trackings, "base"),
+      )
     ),
-  ), (
-    'selector': '.l-t-tight',
-    'declarations': (
-      letter-spacing: map-get($line-trackings, 'tight'),
+    (
+      "selector": ".l-t-tight",
+      "declarations": (
+        letter-spacing: map-get($line-trackings, "tight"),
+      )
     ),
-  ), (
-    'selector': '.l-t-wide',
-    'declarations': (
-      letter-spacing: map-get($line-trackings, 'wide'),
-    ),
+    (
+      "selector": ".l-t-wide",
+      "declarations": (
+        letter-spacing: map-get($line-trackings, "wide"),
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

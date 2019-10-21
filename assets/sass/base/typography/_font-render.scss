@@ -1,18 +1,17 @@
-// # font_ render
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.f-r-auto',
-    'declarations': (
-      -webkit-font-smoothing: auto,
+    (
+      "selector": ".f-r-auto",
+      "declarations": (
+        -webkit-font-smoothing: auto,
+      )
     ),
-  ), (
-    'selector': '.f-r-smooth',
-    'declarations': (
-      -webkit-font-smoothing: antialiased,
-    ),
+    (
+      "selector": ".f-r-smooth",
+      "declarations": (
+        -webkit-font-smoothing: antialiased,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

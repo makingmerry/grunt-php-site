@@ -1,63 +1,71 @@
-// # height
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.h-auto',
-    'declarations': (
-      height: auto,
+    (
+      "selector": ".h-auto",
+      "declarations": (
+        height: auto,
+      )
     ),
-  ), (
-    'selector': '.h-0',
-    'declarations': (
-      height: 0,
+    (
+      "selector": ".h-0",
+      "declarations": (
+        height: 0,
+      )
     ),
-  ), (
-    'selector': '.h-25',
-    'declarations': (
-      height: 25%,
+    (
+      "selector": ".h-25",
+      "declarations": (
+        height: 25%,
+      )
     ),
-  ), (
-    'selector': '.h-50',
-    'declarations': (
-      height: 50%,
+    (
+      "selector": ".h-50",
+      "declarations": (
+        height: 50%,
+      )
     ),
-  ), (
-    'selector': '.h-75',
-    'declarations': (
-      height: 75%,
+    (
+      "selector": ".h-75",
+      "declarations": (
+        height: 75%,
+      )
     ),
-  ), (
-    'selector': '.h-100',
-    'declarations': (
-      height: 100%,
+    (
+      "selector": ".h-100",
+      "declarations": (
+        height: 100%,
+      )
     ),
-  ), (
-    'selector': '.h-100-min',
-    'declarations': (
-      min-height: 100%,
+    (
+      "selector": ".h-100-min",
+      "declarations": (
+        min-height: 100%,
+      )
     ),
-  ), (
-    'selector': '.h-100-max',
-    'declarations': (
-      max-height: 100%,
+    (
+      "selector": ".h-100-max",
+      "declarations": (
+        max-height: 100%,
+      )
     ),
-  ), (
-    'selector': '.h-100vh',
-    'declarations': (
-      height: 100vh,
+    (
+      "selector": ".h-100vh",
+      "declarations": (
+        height: 100vh,
+      )
     ),
-  ), (
-    'selector': '.h-100vh-min',
-    'declarations': (
-      min-height: 100vh,
+    (
+      "selector": ".h-100vh-min",
+      "declarations": (
+        min-height: 100vh,
+      )
     ),
-  ), (
-    'selector': '.h-100vh-max',
-    'declarations': (
-      max-height: 100vh,
-    ),
+    (
+      "selector": ".h-100vh-max",
+      "declarations": (
+        max-height: 100vh,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

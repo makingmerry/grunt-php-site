@@ -1,33 +1,35 @@
-// # flex_ justify-content
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.flx-jc-start',
-    'declarations': (
-      justify-content: flex-start,
+    (
+      "selector": ".flx-jc-start",
+      "declarations": (
+        justify-content: flex-start,
+      )
     ),
-  ), (
-    'selector': '.flx-jc-end',
-    'declarations': (
-      justify-content: flex-end,
+    (
+      "selector": ".flx-jc-end",
+      "declarations": (
+        justify-content: flex-end,
+      )
     ),
-  ), (
-    'selector': '.flx-jc-center',
-    'declarations': (
-      justify-content: center,
+    (
+      "selector": ".flx-jc-center",
+      "declarations": (
+        justify-content: center,
+      )
     ),
-  ), (
-    'selector': '.flx-jc-s-between',
-    'declarations': (
-      justify-content: space-between,
+    (
+      "selector": ".flx-jc-s-between",
+      "declarations": (
+        justify-content: space-between,
+      )
     ),
-  ), (
-    'selector': '.flx-jc-s-around',
-    'declarations': (
-      justify-content: space-around,
-    ),
+    (
+      "selector": ".flx-jc-s-around",
+      "declarations": (
+        justify-content: space-around,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

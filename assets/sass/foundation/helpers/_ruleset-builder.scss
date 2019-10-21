@@ -1,0 +1,63 @@
+@function make-RSON($config-map, $selector-prefix, $properties, $state: "") {
+  $result: ();
+  // generate data objects from each config line
+  @each $key, $value in $config-map {
+    // generate each data object's declaration block by
+    // merging property `key`s and config `value`s
+    $declaration-block: ();
+    @each $property in $properties {
+      $declaration-block: map-merge(
+        $declaration-block,
+        (
+          $property: $value,
+        )
+      );
+    }
+    // add data object to resulting list
+    $result: append(
+      $result,
+      (
+        "selector": $selector-prefix + "-" + $key,
+        "declarations": $declaration-block,
+        "state": $state,
+      ),
+      "comma"
+    );
+  }
+  @return $result;
+}
+
+@mixin make-responsive-rulesets($RSON, $screen-sizes) {
+  // form base rulesets
+  @include make-rulesets($RSON);
+  // form rulesets for subsequent breakpoints
+  @each $size, $breakpoint in $screen-sizes {
+    @media (min-width: $breakpoint) {
+      @include make-rulesets($RSON, $size);
+    }
+  }
+}
+
+@mixin make-rulesets($RSON, $selector-mod: "") {
+  @each $obj in $RSON {
+    // forms single CSS rulesets from every data object
+    $i: index($RSON, $obj);
+    $ruleset: nth($RSON, $i);
+    $selector: map-get($ruleset, "selector");
+    $declarations: map-get($ruleset, "declarations");
+    $state: map-get($ruleset, "state");
+    @include make-ruleset($selector, $declarations, $selector-mod, $state);
+  }
+}
+
+@mixin make-ruleset($selector, $declarations, $selector-mod: "", $state: "") {
+  @if $selector-mod != "" {
+    $selector: $selector + "--" + $selector-mod;
+  }
+  // CSS ruleset template literal
+  #{$selector}#{$state} {
+    @each $property, $value in $declarations {
+      #{$property}: #{$value};
+    }
+  }
+}

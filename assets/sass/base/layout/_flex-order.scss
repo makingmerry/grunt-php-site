@@ -1,18 +1,17 @@
-// # flex_ order
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.flx-ord-first',
-    'declarations': (
-      order: -1,
+    (
+      "selector": ".flx-ord-first",
+      "declarations": (
+        order: -1,
+      )
     ),
-  ), (
-    'selector': '.flx-ord-last',
-    'declarations': (
-      order: 99,
-    ),
+    (
+      "selector": ".flx-ord-last",
+      "declarations": (
+        order: 99,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

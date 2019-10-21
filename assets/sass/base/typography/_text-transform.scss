@@ -1,28 +1,29 @@
-// # text_ transform
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.t-t-none',
-    'declarations': (
-      text-transform: none,
+    (
+      "selector": ".t-t-none",
+      "declarations": (
+        text-transform: none,
+      )
     ),
-  ),(
-    'selector': '.t-t-upper',
-    'declarations': (
-      text-transform: uppercase,
+    (
+      "selector": ".t-t-upper",
+      "declarations": (
+        text-transform: uppercase,
+      )
     ),
-  ), (
-    'selector': '.t-t-lower',
-    'declarations': (
-      text-transform: lowercase,
+    (
+      "selector": ".t-t-lower",
+      "declarations": (
+        text-transform: lowercase,
+      )
     ),
-  ), (
-    'selector': '.t-t-cap',
-    'declarations': (
-      text-transform: capitalize,
-    ),
+    (
+      "selector": ".t-t-cap",
+      "declarations": (
+        text-transform: capitalize,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

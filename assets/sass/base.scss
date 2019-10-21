@@ -1,19 +1,35 @@
-// # Foundation
-// ## Sass method extensions
+// Sass method extensions
 @import "foundation/extensions/list";
 @import "foundation/extensions/map";
 
-// ## Project configurations
-@import "foundation/configurations/layout";
-@import "foundation/configurations/typography";
-@import "foundation/configurations/theme";
-@import "foundation/configurations/reset";
+// Helper methods
+@import "foundation/helpers/debug";
+@import "foundation/helpers/ruleset-builder";
+@import "foundation/helpers/unit-conversion";
 
-// ## Helper methods
-@import "foundation/tools/ruleset-builder";
+// Config
+@import "foundation/config/typography";
+@import "foundation/config/layout";
+@import "foundation/config/theme";
+@import "foundation/config/reset";
 
-// # Base
-// ## Layout
+// Atomic classes
+// Typography
+@import "base/typography/font-family";
+@import "base/typography/font-size";
+@import "base/typography/font-weight";
+@import "base/typography/font-style";
+@import "base/typography/font-render";
+@import "base/typography/line-length";
+@import "base/typography/line-height";
+@import "base/typography/line-tracking";
+@import "base/typography/text-align";
+@import "base/typography/text-transform";
+@import "base/typography/text-decoration";
+@import "base/typography/text-indent";
+@import "base/typography/text-white-space";
+
+// Layout
 @import "base/layout/position";
 @import "base/layout/z-index";
 @import "base/layout/move";
@@ -40,22 +56,7 @@
 @import "base/layout/object-fit";
 @import "base/layout/object-position";
 
-// ## Typography
-@import "base/typography/font-family";
-@import "base/typography/font-size";
-@import "base/typography/font-weight";
-@import "base/typography/font-style";
-@import "base/typography/font-render";
-@import "base/typography/line-measure";
-@import "base/typography/line-height";
-@import "base/typography/line-tracking";
-@import "base/typography/text-align";
-@import "base/typography/text-transform";
-@import "base/typography/text-decoration";
-@import "base/typography/text-indent";
-@import "base/typography/text-white-space";
-
-// ## Theme
+// Theme
 @import "base/theme/color";
 @import "base/theme/background-color";
 @import "base/theme/background-size";

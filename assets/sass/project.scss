@@ -1,22 +1,19 @@
-// # Foundation
-// ## Sass method extensions
+// Sass method extensions
 @import "foundation/extensions/list";
 @import "foundation/extensions/map";
 
-// ## Project configurations
-@import "foundation/configurations/layout";
-@import "foundation/configurations/typography";
-@import "foundation/configurations/theme";
-@import "foundation/configurations/reset";
+// Helper methods
+@import "foundation/helpers/debug";
+@import "foundation/helpers/unit-conversion";
 
-// ## Helper methods
-@import "foundation/tools/gradient-background-builder";
-@import "foundation/tools/material-shadow-builder";
-@import "foundation/tools/debug";
-@import "foundation/tools/unit-conversion";
+// Config
+@import "foundation/config/typography";
+@import "foundation/config/layout";
+@import "foundation/config/theme";
+@import "foundation/config/reset";
 
-// # Project
-// ## Elements
+// Project classes
+// Elements
 @import "project/element/absolute-center";
 @import "project/element/whirligig";
 @import "project/element/icon";
@@ -26,6 +23,6 @@
 @import "project/element/form-multi-input";
 @import "project/element/form-select";
 
-// ## Components
+// Components
 @import "project/component/loader";
 @import "project/component/nav";

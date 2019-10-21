@@ -1,21 +1,2 @@
-// # text_ indent
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-$text-indent-RSON: make-RSON($margins, '.t-i', 'text-indent');
-$global-text-indent-RSON: (
-  (
-    'selector': '.t-i-100',
-    'declarations': (
-      text-indent: 100%,
-    ),
-  ),
-);
-
-$full-text-indent-RSON: concat-lists(
-  $text-indent-RSON,
-  $global-text-indent-RSON
-);
-
-@include make-responsive-rulesets($full-text-indent-RSON, $screen-sizes);
+$text-indent-RSON: make-RSON($text-indents, ".t-i", "text-indent");
+@include make-responsive-rulesets($text-indent-RSON, $screen-sizes);

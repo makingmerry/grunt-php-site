@@ -1,26 +1,26 @@
-// # horizontal-align
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.ha-right',
-    'declarations': (
-      margin-right: 0,
-      margin-left: auto,
+    (
+      "selector": ".ha-right",
+      "declarations": (
+        margin-right: 0,
+        margin-left: auto,
+      )
     ),
-  ), (
-    'selector': '.ha-left',
-    'declarations': (
-      margin-right: auto,
-      margin-left: 0,
+    (
+      "selector": ".ha-left",
+      "declarations": (
+        margin-right: auto,
+        margin-left: 0,
+      )
     ),
-  ), (
-    'selector': '.ha-center',
-    'declarations': (
-      margin-right: auto,
-      margin-left: auto,
-    ),
+    (
+      "selector": ".ha-center",
+      "declarations": (
+        margin-right: auto,
+        margin-left: auto,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

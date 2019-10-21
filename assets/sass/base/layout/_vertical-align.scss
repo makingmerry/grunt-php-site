@@ -1,48 +1,53 @@
-// # vertical-align
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-@include make-responsive-rulesets((
+@include make-responsive-rulesets(
   (
-    'selector': '.va-top',
-    'declarations': (
-      vertical-align: top,
+    (
+      "selector": ".va-top",
+      "declarations": (
+        vertical-align: top,
+      )
     ),
-  ), (
-    'selector': '.va-middle',
-    'declarations': (
-      vertical-align: middle,
+    (
+      "selector": ".va-middle",
+      "declarations": (
+        vertical-align: middle,
+      )
     ),
-  ), (
-    'selector': '.va-bottom',
-    'declarations': (
-      vertical-align: bottom,
+    (
+      "selector": ".va-bottom",
+      "declarations": (
+        vertical-align: bottom,
+      )
     ),
-  ), (
-    'selector': '.va-t-top',
-    'declarations': (
-      vertical-align: text-top,
+    (
+      "selector": ".va-t-top",
+      "declarations": (
+        vertical-align: text-top,
+      )
     ),
-  ), (
-    'selector': '.va-t-bottom',
-    'declarations': (
-      vertical-align: text-bottom,
+    (
+      "selector": ".va-t-bottom",
+      "declarations": (
+        vertical-align: text-bottom,
+      )
     ),
-  ), (
-    'selector': '.va-sub',
-    'declarations': (
-      vertical-align: sub,
+    (
+      "selector": ".va-sub",
+      "declarations": (
+        vertical-align: sub,
+      )
     ),
-  ), (
-    'selector': '.va-sup',
-    'declarations': (
-      vertical-align: super,
+    (
+      "selector": ".va-sup",
+      "declarations": (
+        vertical-align: super,
+      )
     ),
-  ), (
-    'selector': '.va-baseline',
-    'declarations': (
-      vertical-align: baseline,
-    ),
+    (
+      "selector": ".va-baseline",
+      "declarations": (
+        vertical-align: baseline,
+      )
+    )
   ),
-), $screen-sizes);
+  $screen-sizes
+);

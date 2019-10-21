@@ -1,19 +1,19 @@
-// # border_ color
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-$global-border-colors: map-merge($colors, (
-  'transparent': transparent,
-  'inherit': inherit,
-));
-
-$border-color-RSON: make-RSON($colors, '.b-c', 'border-color');
-$border-color-hover-RSON: make-RSON($colors, '.hov-b-c', 'border-color', ':hover');
-
+$global-border-colors: map-merge(
+  $colors,
+  (
+    "transparent": transparent,
+    "inherit": inherit,
+  )
+);
+$border-color-RSON: make-RSON($colors, ".b-c", "border-color");
+$border-color-hover-RSON: make-RSON(
+  $colors,
+  ".hov-b-c",
+  "border-color",
+  ":hover"
+);
 $full-border-color-RSON: concat-lists(
   $border-color-RSON,
   $border-color-hover-RSON
 );
-
 @include make-responsive-rulesets($full-border-color-RSON, $screen-sizes);
