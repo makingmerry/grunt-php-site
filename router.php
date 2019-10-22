@@ -1,12 +1,21 @@
 <?php
-  include 'config.php';
-  $templates = __ROOT__.'/templates';
-
-  if (file_exists(__ROOT__.'/'.$_SERVER['SCRIPT_NAME'])) {
-    return false; // serve the requested resource as-is.
+  // Define root path variables
+  if (!defined('__ROOT__')) {
+    define('__ROOT__', __DIR__);
+  }
+  if (!defined('__SRC__')) {
+    define ('__SRC__', __ROOT__.'/src');
   }
 
-  $_SERVER['SCRIPT_NAME'] = str_replace($_SERVER['DOCUMENT_ROOT'], '', $template = $templates . $_SERVER['SCRIPT_NAME']);
+  // If requested file is a .php or .html file, look at templates folder
+  // Locate and return requested file if exists
 
-  include $template;
+  // if (file_exists($templates.$_SERVER['SCRIPT_NAME'])) {
+  //   include $templates.$_SERVER['SCRIPT_NAME'];
+  // } else {
+  //   $_SERVER['SCRIPT_NAME'] = str_replace($_SERVER['DOCUMENT_ROOT'], '', $template = $templates . '/templates' . $_SERVER['SCRIPT_NAME']);
+
+  //   include $template;
+
+  // }
 ?>

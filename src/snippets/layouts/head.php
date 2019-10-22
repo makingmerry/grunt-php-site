@@ -68,8 +68,9 @@
     </script>
 
     <?php // Favicons: ?>
-    <?php if (file_exists(favicons('favicons', true))): ?>
-      <?php include favicons('favicons', true); ?>
+    <?php $favicons = favicons('favicons', true); ?>
+    <?php if ($favicons): ?>
+      <?php include $favicons; ?>
     <?php endif; ?>
   </head>
   <body class="

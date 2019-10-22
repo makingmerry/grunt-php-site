@@ -3,11 +3,11 @@
 
   // Include snippet with scoped data
   function snippet($name, $data = [], $return = false) {
-    return tpl::load_file(__ROOT__.'/snippets/'.$name.'.php', $data, $return);
+    return tpl::load_file(__ROOT__.'/src/snippets/'.$name.'.php', $data, $return);
   };
 
   function asset($pathname, $file = false) {
-    return ($file ? __ROOT__ : '').'/assets/'.$pathname;
+    return ($file ? __ROOT__ : '').'/src/assets/'.$pathname;
   }
 
   function favicons($name, $file = false) {

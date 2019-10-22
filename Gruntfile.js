@@ -394,7 +394,7 @@ module.exports = function(grunt) {
         spawn: false,
       },
       icons: {
-        files: ["assets/icons/src/*"],
+        files: ["src/assets/icons/src/*"],
         tasks: [
           "clean:icons",
           "svg_sprite",
@@ -404,19 +404,19 @@ module.exports = function(grunt) {
         ],
       },
       img: {
-        files: ["assets/img/src/*.{png,jpg,gif}"],
+        files: ["src/assets/img/src/*.{png,jpg,gif}"],
         tasks: ["clean:img", "imagemin:img"],
       },
       svg: {
-        files: ["assets/img/src/*.svg"],
+        files: ["src/assets/img/src/*.svg"],
         tasks: ["clean:svg", "svg2png:svg", "imagemin:svg", "imagemin:svgImg"],
       },
       baseCss: {
-        files: ["assets/sass/base/**/*", "assets/sass/base.scss"],
+        files: ["src/assets/sass/base/**/*", "src/assets/sass/base.scss"],
         tasks: ["clean:baseCss", "sass:base", "concat:css", "postcss:global"],
       },
       projectCss: {
-        files: ["assets/sass/base/**/*", "assets/sass/base.scss"],
+        files: ["src/assets/sass/base/**/*", "src/assets/sass/base.scss"],
         tasks: [
           "clean:projectCss",
           "sass:project",
@@ -425,15 +425,15 @@ module.exports = function(grunt) {
         ],
       },
       css: {
-        files: ["assets/sass/foundation/**/*"],
+        files: ["src/assets/sass/foundation/**/*"],
         tasks: ["clean:css", "sass", "concat:css", "postcss:global"],
       },
       projectJs: {
-        files: ["assets/js/src/project.js"],
+        files: ["src/assets/js/src/project.js"],
         tasks: ["clean:projectJs", "eslint", "babel", "concat:js", "uglify"],
       },
       js: {
-        files: ["assets/js/src/lib/*"],
+        files: ["src/assets/js/src/lib/*"],
         tasks: [
           "clean:js",
           "eslint",
@@ -449,11 +449,13 @@ module.exports = function(grunt) {
       dev: {
         bsFiles: {
           src: [
-            "assets/icons/build/*",
-            "assets/img/build/*",
-            "assets/css/build/*",
-            "assets/js/build/*",
-            "snippets/**/*",
+            "src/assets/icons/build/*",
+            "src/assets/img/build/*",
+            "src/assets/css/build/*",
+            "src/assets/js/build/*",
+            "src/snippets/**/*",
+            "src/templates/**/*",
+            "src/utils/**/*",
             "*.{html,php}",
           ],
         },
