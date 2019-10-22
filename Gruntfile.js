@@ -25,16 +25,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-copy")
 
   // Dynamically list templates that require generating critical CSS
-  const templates = grunt.file.expand({ filter: "isFile", cwd: "templates" }, [
-    "*.php",
-  ])
+  const templates = grunt.file.expand(
+    { filter: "isFile", cwd: "src/templates" },
+    ["*.php"]
+  )
   const criticalcss = templates.reduce((map, filename) => {
     const template = filename.split(".")[0]
     map[template] = {
       options: {
         url: `http://${config.host}:${config.port}/${filename}`,
-        filename: "assets/css/tmp/style.css",
-        outputfile: `assets/css/tmp/critical/${template}.css`,
+        filename: "src/assets/css/tmp/style.css",
+        outputfile: `src/assets/css/tmp/critical/${template}.css`,
         width: 1280,
         height: 720,
         forceInclude: [],
@@ -50,11 +51,11 @@ module.exports = function(grunt) {
     // Generates favicons from a source favicon image
     realFavicon: {
       favicons: {
-        src: "assets/favicons/src/favicon.png",
-        dest: "assets/favicons/build/",
+        src: "src/assets/favicons/src/favicon.png",
+        dest: "src/assets/favicons/build/",
         options: {
-          iconsPath: "assets/favicons/build/",
-          html: "assets/favicons/build/favicons.html",
+          iconsPath: "src/assets/favicons/build/",
+          html: "src/assets/favicons/build/favicons.html",
           design: {
             ios: {
               pictureAspect: "backgroundAndMargin",
@@ -112,8 +113,8 @@ module.exports = function(grunt) {
     svg_sprite: {
       icons: {
         expand: true,
-        cwd: "assets/icons/src/",
-        dest: "assets/icons/tmp/",
+        cwd: "src/assets/icons/src/",
+        dest: "src/assets/icons/tmp/",
         src: ["*.svg"],
         options: {
           mode: {
@@ -131,8 +132,8 @@ module.exports = function(grunt) {
         files: [
           {
             flatten: true,
-            cwd: "assets/icons/src/",
-            dest: "assets/icons/tmp/",
+            cwd: "src/assets/icons/src/",
+            dest: "src/assets/icons/tmp/",
             src: ["*.svg"],
           },
         ],
@@ -141,8 +142,8 @@ module.exports = function(grunt) {
         files: [
           {
             flatten: true,
-            cwd: "assets/img/src/",
-            dest: "assets/img/build/",
+            cwd: "src/assets/img/src/",
+            dest: "src/assets/img/build/",
             src: ["*.svg"],
           },
         ],
@@ -159,8 +160,8 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: "assets/icons/tmp/",
-            dest: "assets/icons/build/",
+            cwd: "src/assets/icons/tmp/",
+            dest: "src/assets/icons/build/",
             src: ["*.svg"],
           },
         ],
@@ -173,8 +174,8 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: "assets/img/src/",
-            dest: "assets/img/build/",
+            cwd: "src/assets/img/src/",
+            dest: "src/assets/img/build/",
             src: ["*.svg"],
           },
         ],
@@ -187,8 +188,8 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: "assets/img/src/",
-            dest: "assets/img/build/",
+            cwd: "src/assets/img/src/",
+            dest: "src/assets/img/build/",
             src: ["*.{png,jpg,gif}"],
           },
         ],
@@ -200,8 +201,8 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: "assets/img/tmp/",
-            dest: "assets/img/build/",
+            cwd: "src/assets/img/tmp/",
+            dest: "src/assets/img/build/",
             src: ["*.{png,jpg}"],
           },
         ],
@@ -213,8 +214,8 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: "assets/icons/tmp/",
-            dest: "assets/icons/build/",
+            cwd: "src/assets/icons/tmp/",
+            dest: "src/assets/icons/build/",
             src: ["*.{png,jpg}"],
           },
         ],
@@ -226,9 +227,9 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: "assets/favicons/build/",
+            cwd: "src/assets/favicons/build/",
             src: ["*.{png,jpg}"],
-            dest: "assets/favicons/build/",
+            dest: "src/assets/favicons/build/",
           },
         ],
       },
@@ -250,12 +251,12 @@ module.exports = function(grunt) {
       },
       base: {
         files: {
-          "assets/css/tmp/base.css": "assets/sass/base.scss",
+          "src/assets/css/tmp/base.css": "src/assets/sass/base.scss",
         },
       },
       project: {
         files: {
-          "assets/css/tmp/project.css": "assets/sass/project.scss",
+          "src/assets/css/tmp/project.css": "src/assets/sass/project.scss",
         },
       },
     },
@@ -273,19 +274,19 @@ module.exports = function(grunt) {
       },
       // !Important to remove duplicates from concatenating step (see concat)
       global: {
-        src: "assets/css/tmp/style.css",
-        dest: "assets/css/build/style.css",
+        src: "src/assets/css/tmp/style.css",
+        dest: "src/assets/css/build/style.css",
       },
       critical: {
         expand: true,
-        cwd: "assets/css/tmp/critical/",
-        dest: "assets/css/build/critical/",
+        cwd: "src/assets/css/tmp/critical/",
+        dest: "src/assets/css/build/critical/",
         src: ["**/*.css"],
       },
     },
     // Linter
     eslint: {
-      target: ["assets/js/src/project.js"],
+      target: ["src/assets/js/src/project.js"],
     },
     // Transpile project ES6 script to ES5
     babel: {
@@ -294,57 +295,57 @@ module.exports = function(grunt) {
       },
       project: {
         files: {
-          "assets/js/tmp/project.js": "assets/js/src/project.js",
+          "src/assets/js/tmp/project.js": "src/assets/js/src/project.js",
         },
       },
     },
     // Optimise JS
     uglify: {
       js: {
-        src: "assets/js/tmp/global.js",
-        dest: "assets/js/build/global.js",
+        src: "src/assets/js/tmp/global.js",
+        dest: "src/assets/js/build/global.js",
       },
     },
     // Concat assets
     concat: {
       // !Concatenating base and project styles WILL result in duplicate declarations
       css: {
-        src: ["assets/css/tmp/base.css", "assets/css/tmp/project.css"],
-        dest: "assets/css/tmp/style.css",
+        src: ["src/assets/css/tmp/base.css", "src/assets/css/tmp/project.css"],
+        dest: "src/assets/css/tmp/style.css",
       },
       libraryJs: {
-        src: ["assets/js/src/lib/*.js"],
-        dest: "assets/js/tmp/library.js",
+        src: ["src/assets/js/src/lib/*.js"],
+        dest: "src/assets/js/tmp/library.js",
       },
       js: {
-        src: ["assets/js/tmp/library.js", "assets/js/tmp/project.js"],
-        dest: "assets/js/tmp/global.js",
+        src: ["src/assets/js/tmp/library.js", "src/assets/js/tmp/project.js"],
+        dest: "src/assets/js/tmp/global.js",
       },
     },
     // Clean up old files before every update/build
     clean: {
-      favicons: ["assets/favicons/build/*"],
-      icons: ["assets/icons/tmp/*", "assets/icons/build/*"],
+      favicons: ["src/assets/favicons/build/*"],
+      icons: ["src/assets/icons/tmp/*", "src/assets/icons/build/*"],
       img: [
-        "assets/img/tmp/*.{png,jpg,gif}",
-        "assets/img/build/*.{png,jpg,gif}",
+        "src/assets/img/tmp/*.{png,jpg,gif}",
+        "src/assets/img/build/*.{png,jpg,gif}",
       ],
-      svg: ["assets/img/tmp/*.svg", "assets/img/build/*.svg"],
+      svg: ["src/assets/img/tmp/*.svg", "src/assets/img/build/*.svg"],
       // !Important to keep compiled other half of CSS,
       // to allow for quicker concatenation
       baseCss: [
-        "assets/css/tmp/base.css",
-        "assets/css/tmp/style.css",
-        "assets/css/build/style.css",
+        "src/assets/css/tmp/base.css",
+        "src/assets/css/tmp/style.css",
+        "src/assets/css/build/style.css",
       ],
       projectCss: [
-        "assets/css/tmp/project.css",
-        "assets/css/tmp/style.css",
-        "assets/css/build/style.css",
+        "src/assets/css/tmp/project.css",
+        "src/assets/css/tmp/style.css",
+        "src/assets/css/build/style.css",
       ],
-      css: ["assets/css/*"],
-      projectJs: ["assets/js/tmp/project.js", "assets/js/build/*"],
-      js: ["assets/js/tmp/*", "assets/js/build/*"],
+      css: ["src/assets/css/*"],
+      projectJs: ["src/assets/js/tmp/project.js", "src/assets/js/build/*"],
+      js: ["src/assets/js/tmp/*", "src/assets/js/build/*"],
       build: ["build/"],
     },
     // Copy production files to build directory
@@ -353,6 +354,7 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
+            cwd: "src/",
             src: [
               "assets/favicons/build/*",
               "assets/icons/build/*",
@@ -362,16 +364,9 @@ module.exports = function(grunt) {
               "assets/js/build/*",
               "utils/**/*",
               "snippets/**/*",
-              "config.php",
+              "templates/**/*",
+              "*.{html,php}",
             ],
-            dest: "build/",
-            filter: "isFile",
-          },
-          // Spread template files to root
-          {
-            expand: true,
-            src: ["*.{html,php}"],
-            cwd: "templates/",
             dest: "build/",
             filter: "isFile",
           },
@@ -384,7 +379,8 @@ module.exports = function(grunt) {
         options: {
           hostname: config.host,
           port: config.port,
-          router: "router.php",
+          base: "src",
+          router: "src/router.php",
         },
       },
     },
@@ -394,7 +390,7 @@ module.exports = function(grunt) {
         spawn: false,
       },
       icons: {
-        files: ["assets/icons/src/*"],
+        files: ["src/assets/icons/src/*"],
         tasks: [
           "clean:icons",
           "svg_sprite",
@@ -404,19 +400,19 @@ module.exports = function(grunt) {
         ],
       },
       img: {
-        files: ["assets/img/src/*.{png,jpg,gif}"],
+        files: ["src/assets/img/src/*.{png,jpg,gif}"],
         tasks: ["clean:img", "imagemin:img"],
       },
       svg: {
-        files: ["assets/img/src/*.svg"],
+        files: ["src/assets/img/src/*.svg"],
         tasks: ["clean:svg", "svg2png:svg", "imagemin:svg", "imagemin:svgImg"],
       },
       baseCss: {
-        files: ["assets/sass/base/**/*", "assets/sass/base.scss"],
+        files: ["src/assets/sass/base/**/*", "src/assets/sass/base.scss"],
         tasks: ["clean:baseCss", "sass:base", "concat:css", "postcss:global"],
       },
       projectCss: {
-        files: ["assets/sass/base/**/*", "assets/sass/base.scss"],
+        files: ["src/assets/sass/project/**/*", "src/assets/sass/project.scss"],
         tasks: [
           "clean:projectCss",
           "sass:project",
@@ -425,15 +421,15 @@ module.exports = function(grunt) {
         ],
       },
       css: {
-        files: ["assets/sass/foundation/**/*"],
+        files: ["src/assets/sass/foundation/**/*"],
         tasks: ["clean:css", "sass", "concat:css", "postcss:global"],
       },
       projectJs: {
-        files: ["assets/js/src/project.js"],
+        files: ["src/assets/js/src/project.js"],
         tasks: ["clean:projectJs", "eslint", "babel", "concat:js", "uglify"],
       },
       js: {
-        files: ["assets/js/src/lib/*"],
+        files: ["src/assets/js/src/lib/*"],
         tasks: [
           "clean:js",
           "eslint",
@@ -449,12 +445,14 @@ module.exports = function(grunt) {
       dev: {
         bsFiles: {
           src: [
-            "assets/icons/build/*",
-            "assets/img/build/*",
-            "assets/css/build/*",
-            "assets/js/build/*",
-            "snippets/**/*",
-            "*.{html,php}",
+            "src/assets/icons/build/*",
+            "src/assets/img/build/*",
+            "src/assets/css/build/*",
+            "src/assets/js/build/*",
+            "src/utils/**/*",
+            "src/snippets/**/*",
+            "src/templates/**/*",
+            "src/*.{html,php}",
           ],
         },
         options: {

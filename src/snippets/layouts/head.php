@@ -23,12 +23,12 @@
     <?php // CSS: ?>
     <?php if ($template): ?>
       <?php // Critical: ?>
-      <?php if (file_exists(css('critical/'.$template, true))): ?>
+      <?php if (file_exists(css('critical/' . $template, true))): ?>
         <?php
           // !Not writing in regular syntax to get around syntax highlighting issues with
           // wrapping PHP in style tags
           echo '<style type="text/css">';
-          include css('critical/'.$template);
+          include css('critical/' . $template);
           echo '</style>';
         ?>
       <?php endif; ?>
@@ -68,13 +68,14 @@
     </script>
 
     <?php // Favicons: ?>
-    <?php if (file_exists(favicons('favicons', true))): ?>
-      <?php include favicons('favicons', true); ?>
+    <?php $favicons = favicons('favicons', true); ?>
+    <?php if ($favicons): ?>
+      <?php include $favicons; ?>
     <?php endif; ?>
   </head>
   <body class="
     js-pos-relative js-of-hidden
-    l-h-copy
+    f-f-helvetica l-h-copy
     c-near-black">
       <div class="
         pos-fixed z-3

@@ -11,7 +11,7 @@
 
     <?php // Global JS: ?>
     <?php if (file_exists(js('global', true))): ?>
-      <script src="<?php echo js('global'); ?>" async></script>
+      <script src="<?php echo js('global'); ?>"></script>
     <?php endif; ?>
   </body>
 </html>
