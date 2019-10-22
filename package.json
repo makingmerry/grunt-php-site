@@ -6,7 +6,7 @@
     "url": "https://github.com/makingmerry/grunt-php-site/"
   },
   "license": "MIT",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "babel": {
     "presets": [
       "es2015"
