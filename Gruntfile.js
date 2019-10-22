@@ -384,7 +384,8 @@ module.exports = function(grunt) {
         options: {
           hostname: config.host,
           port: config.port,
-          router: "router.php",
+          base: "src",
+          router: "src/router.php",
         },
       },
     },
@@ -456,7 +457,7 @@ module.exports = function(grunt) {
             "src/snippets/**/*",
             "src/templates/**/*",
             "src/utils/**/*",
-            "*.{html,php}",
+            "src/*.{html,php}",
           ],
         },
         options: {
