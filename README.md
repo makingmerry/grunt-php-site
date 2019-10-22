@@ -12,10 +12,13 @@ Grunt taskrunner starter-kit for developing accessible and performant .php websi
    3. [Images](#user-content-media)
    4. [CSS](#user-content-css)
    5. [Javascript](#user-content-javascript)
+4. [Resources](#user-content-resources)
 
 ## Installation
 
-You will need [Node](https://docs.npmjs.com/getting-started/installing-node) and [Sass](http://sass-lang.com/install) installed on your local development machine.
+You will need [Node version < 12.x](https://docs.npmjs.com/getting-started/installing-node)\* installed on your local development machine.
+
+- Issue with generating favicons with Node versions > 12.x, [see issue](https://github.com/RealFaviconGenerator/grunt-real-favicon/issues/46)
 
 To get your starter-kit up and running:
 
@@ -171,3 +174,7 @@ grunt start
 #### Web Font loader implementation
 
 - Added control when linking fonts with [Web Font Loader](https://github.com/typekit/webfontloader), to improve loading experience
+
+## Resources
+
+- https://github.com/makingmerry/scss-atomic-classes

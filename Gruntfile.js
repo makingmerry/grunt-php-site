@@ -11,7 +11,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-svg2png")
   grunt.loadNpmTasks("grunt-real-favicon")
   grunt.loadNpmTasks("grunt-contrib-imagemin")
-  grunt.loadNpmTasks("grunt-contrib-sass")
+  grunt.loadNpmTasks("grunt-sass")
   grunt.loadNpmTasks("grunt-postcss")
   grunt.loadNpmTasks("grunt-criticalcss")
   grunt.loadNpmTasks("grunt-babel")
@@ -239,22 +239,21 @@ module.exports = function(grunt) {
     // then concat and reconcile later down the pipeline (see concat, postcss and clean)
     // so project styles don't trigger base re-compilations
     sass: {
+      options: {
+        implementation: require("sass"),
+        // By default, in Dart Sass, synchronous compilation is twice as fast as asynchronous compilation
+        // due to overhead of asynchronous callbacks.
+        // Fibers pacakge helps to avoid this overhead
+        fiber: require("fibers"),
+        sourcemap: false,
+        outputStyle: "expanded",
+      },
       base: {
-        options: {
-          style: "expanded",
-          precision: 3,
-          "no-source-map": true,
-        },
         files: {
           "assets/css/tmp/base.css": "assets/sass/base.scss",
         },
       },
       project: {
-        options: {
-          style: "expanded",
-          precision: 3,
-          "no-source-map": true,
-        },
         files: {
           "assets/css/tmp/project.css": "assets/sass/project.scss",
         },
@@ -264,28 +263,20 @@ module.exports = function(grunt) {
     criticalcss,
     // Optimise and transform post-compiled CSS
     postcss: {
+      options: {
+        map: false,
+        processors: [
+          require("pixrem")(),
+          require("autoprefixer")({ browsers: "last 2 versions" }),
+          require("cssnano")(),
+        ],
+      },
       // !Important to remove duplicates from concatenating step (see concat)
       global: {
-        options: {
-          map: false,
-          processors: [
-            require("pixrem")(),
-            require("autoprefixer")({ browsers: "last 2 versions" }),
-            require("cssnano")(),
-          ],
-        },
         src: "assets/css/tmp/style.css",
         dest: "assets/css/build/style.css",
       },
       critical: {
-        options: {
-          map: false,
-          processors: [
-            require("pixrem")(),
-            require("autoprefixer")({ browsers: "last 2 versions" }),
-            require("cssnano")(),
-          ],
-        },
         expand: true,
         cwd: "assets/css/tmp/critical/",
         dest: "assets/css/build/critical/",
@@ -485,7 +476,7 @@ module.exports = function(grunt) {
     "clean:svg",
     "clean:css",
     "clean:js",
-    // "clean:favicons",
+    "clean:favicons",
     // Build icons
     "svg_sprite",
     "svg2png:icons",
@@ -507,8 +498,8 @@ module.exports = function(grunt) {
     "concat:js",
     "uglify",
     // Build favicons
-    // "realFavicon:favicons",
-    // "imagemin:favicons",
+    "realFavicon:favicons",
+    "imagemin:favicons",
   ])
   grunt.registerTask("start", [
     // Start server
