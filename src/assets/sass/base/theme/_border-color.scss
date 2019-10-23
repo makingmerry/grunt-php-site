@@ -1,10 +1,3 @@
-$global-border-colors: map-merge(
-  $colors,
-  (
-    "transparent": transparent,
-    "inherit": inherit,
-  )
-);
 $border-color-RSON: make-RSON($colors, ".b-c", "border-color");
 $border-color-hover-RSON: make-RSON(
   $colors,
