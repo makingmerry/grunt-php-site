@@ -1,12 +1,6 @@
-$global-bg-colors: map-merge(
-  $colors,
-  (
-    "transparent": transparent,
-  )
-);
-$bg-color-RSON: make-RSON($global-bg-colors, ".bg-c", "background-color");
+$bg-color-RSON: make-RSON($colors, ".bg-c", "background-color");
 $bg-color-hover-RSON: make-RSON(
-  $global-bg-colors,
+  $colors,
   ".hov-bg-c",
   "background-color",
   ":hover"

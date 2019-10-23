@@ -1,11 +1,4 @@
-$global-colors: map-merge(
-  $colors,
-  (
-    "transparent": transparent,
-    "inherit": inherit,
-  )
-);
-$color-RSON: make-RSON($global-colors, ".c", "color");
-$color-hover-RSON: make-RSON($global-colors, ".hov-c", "color", ":hover");
+$color-RSON: make-RSON($colors, ".c", "color");
+$color-hover-RSON: make-RSON($colors, ".hov-c", "color", ":hover");
 $full-color-RSON: concat-lists($color-RSON, $color-hover-RSON);
 @include make-responsive-rulesets($full-color-RSON, $screen-sizes);
